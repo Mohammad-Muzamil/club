@@ -1,21 +1,17 @@
-import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-
-const Logo = ({ imageUrl, logoClass }) => {
+import MainLogo from "../../assets/img/logo/Logo.png"
+const Logo = (props) => {
   return (
     <div 
-    className={`${logoClass ? logoClass : ""}`}>
+    className={`${"logoClass"}`}>
       <Link to={process.env.PUBLIC_URL + "/"}>
-        <img alt="" className="w-100" src={process.env.PUBLIC_URL + imageUrl} />
+        <img alt="" className="w-100"  src={MainLogo} />
       </Link>
     </div>
   );
 };
 
-Logo.propTypes = {
-  imageUrl: PropTypes.string,
-  logoClass: PropTypes.string
-};
+
 
 export default Logo;

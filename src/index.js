@@ -3,12 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.js';
+import "./assets/scss/style.scss";
 
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { save, load } from "redux-localstorage-simple";
+import { Provider } from "react-redux";
+
+import { composeWithDevTools } from "redux-devtools-extension";
+import rootReducer from "./redux/reducers/rootReducer";
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const store = createStore(
+  rootReducer,
+  load(),
+  composeWithDevTools(applyMiddleware(thunk, save()))
+);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+  <App />
+</Provider>,
+document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,7 +1,6 @@
-import { computeHeadingLevel } from "@testing-library/react";
 import React, { Fragment} from "react";
 
-// import LayoutOne from "../../layouts/LayoutOne";
+import LayoutOne from "../../layouts/LayoutOne";
 // import { connect } from "react-redux";
 // import { setCatgories } from "../../redux/actions/categoryActions";
 
@@ -10,12 +9,9 @@ const Home = (props) => {
   console.log("hello")
   return (
     <Fragment>
-      <div>
-        <p>hel;l;;pppjsoicfb</p>
-        hello
-      </div>
     
-      {/* <LayoutOne
+    
+      <LayoutOne
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
@@ -34,7 +30,7 @@ const Home = (props) => {
             defect in the quality of the product.
           </p>
         </div>
-      </LayoutOne> */}
+      </LayoutOne>
 
     </Fragment>
   );

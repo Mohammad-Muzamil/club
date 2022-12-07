@@ -4,26 +4,16 @@ import HeaderOne from "../wrappers/header/HeaderOne";
 import FooterOne from "../wrappers/footer/FooterOne";
 
 
-const LayoutOne = ({
-  children,
-  headerContainerClass,
-  headerTop,
-  headerPaddingClass,
-  headerPositionClass,
-  categories,
-}) => {
+const LayoutOne = (props) => {
   return (
 
     <Fragment>
       <div className="d-flex flex-column justify-content-between max-height">
         <HeaderOne
-          layout={headerContainerClass}
-          top={headerTop}
-          headerPaddingClass={headerPaddingClass}
-          headerPositionClass={headerPositionClass}
-          categories={categories}
+        
+
         />
-        {children}
+        {props.children}
         <FooterOne
           backgroundColorClass="bg-black"
           spaceTopClass="pt-100"

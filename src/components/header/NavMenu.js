@@ -1,15 +1,13 @@
-import PropTypes from "prop-types";
+
 import React from "react";
 import { Link } from "react-router-dom";
 
 
-const NavMenu = ({ categories, menuWhiteClass, sidebarMenu }) => {
+const NavMenu = (props) => {
   return (
     <div
       className={` ${
-        sidebarMenu
-          ? "sidebar-menu"
-          : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
+         `main-menu `
       } `}
     >
       <nav>
@@ -19,11 +17,11 @@ const NavMenu = ({ categories, menuWhiteClass, sidebarMenu }) => {
             <ul className="mega-menu mega-menu-padding">
               <li className="w-100">
                 <ul>
-                  {categories.map((val) => (
+             
                     <Link to={process.env.PUBLIC_URL + "/shop"}>
-                      <li>{val.name}</li>
+                      <li>{"Helloo"}</li>
                     </Link>
-                  ))}
+            
                 </ul>
               </li>
             </ul>
@@ -41,11 +39,5 @@ const NavMenu = ({ categories, menuWhiteClass, sidebarMenu }) => {
   );
 };
 
-NavMenu.propTypes = {
-  menuWhiteClass: PropTypes.string,
-  sidebarMenu: PropTypes.bool,
-  strings: PropTypes.object,
-  categories: PropTypes.array
-};
 export default NavMenu;
 

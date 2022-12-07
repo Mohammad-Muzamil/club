@@ -1,9 +1,8 @@
 
-import React, {  lazy } from "react";
+import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/pages/home/Home"
-// const Home = lazy(() => import("./pages/home/Home"));
 
 
 
