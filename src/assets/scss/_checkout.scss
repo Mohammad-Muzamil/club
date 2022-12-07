@@ -1,0 +1,335 @@
+/*------- 21. Checkout page  -----------*/
+.heading {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+}
+.billing-info-wrap {
+  .same-billing-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    .checkbox {
+      width: 13px;
+      height: 13px;
+      margin-right: 7px;
+      accent-color: #000;
+    }
+    
+  }
+  h3 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    margin-bottom: 25px;
+    color: #000000;
+  }
+  .billing-info,
+  .billing-select {
+    label {
+      margin: 0 0 7px;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #212529;
+    }
+    input {
+      font-size: 14px;
+      padding-right: 10px;
+      padding-left: 20px;
+      border-radius: 5px;
+      height: 36px;
+      color: #495057;
+      border: 1px solid #ced4da;
+      background: transparent none repeat scroll 0 0;
+    }
+    input.billing-address {
+      margin-bottom: 10px;
+    }
+  }
+  .billing-select {
+    select {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+
+      height: 36px;
+      padding: 2px 20px;
+      border-radius: 5px;
+
+      background: rgba(0, 0, 0, 0) url("../../assets/img/icon-img/dropdown.png")
+        no-repeat scroll right 18px center;
+
+      cursor: pointer;
+
+      color: #495057;
+      border: 1px solid #ced4da;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+  }
+  .checkout-account {
+    display: flex;
+    align-items: center;
+    input {
+      display: inline-block;
+      float: left;
+
+      width: 10px;
+      height: 10px;
+
+      border: 1px solid #9fa0a2;
+    }
+    span {
+      font-weight: 400;
+
+      margin: 0 0 0 12px;
+
+      color: #333;
+    }
+  }
+  .checkout-account-toggle {
+    input {
+      font-size: 14px;
+
+      margin: 0 0 20px;
+      padding-right: 10px;
+      padding-left: 20px;
+
+      color: #333;
+      border: 1px solid #e6e6e6;
+      background: transparent none repeat scroll 0 0;
+    }
+    button.checkout-btn {
+      font-weight: 500;
+
+      z-index: 9;
+
+      padding: 10px 30px;
+
+      cursor: pointer;
+      text-transform: uppercase;
+
+      color: #fff;
+      border: medium none;
+      border-radius: 50px;
+      background-color: $theme-color;
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+  .additional-info-wrap {
+    h4 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 21px;
+      margin-bottom: 25px;
+      color: #000000;
+    }
+    .additional-info {
+      label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+      }
+      textarea {
+        font-size: 14px;
+
+        height: 138px;
+        padding: 17px 20px;
+
+        color: #333;
+        border: 1px solid #e6e6e6;
+        background: transparent none repeat scroll 0 0;
+      }
+    }
+  }
+  .different-address {
+    display: none;
+  }
+}
+
+.your-order-area {
+  @media #{$md-layout} {
+    margin-top: 30px;
+  }
+  @media #{$xs-layout} {
+    margin-top: 30px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+
+    margin: 0 0 20px;
+
+    color: #000;
+  }
+  .your-order-wrap {
+    // padding: 38px 45px 44px;
+    border: 0.5px solid #000000;
+    border-radius: 10px;
+    // @media #{$lg-layout} {
+    //   padding: 30px 20px 36px;
+    // }
+    // @media #{$xs-layout} {
+    //   padding: 30px 20px 36px;
+    // }
+    .your-order-product-info {
+      .your-order-top {
+        ul {
+          display: flex;
+          justify-content: space-between;
+          padding: 14px 40px 15px 10px;
+          li {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+          }
+        }
+      }
+      .your-order-middle {
+        // margin: 29px 0;
+        padding: 10px 40px 15px 17px;
+        border-top: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+        ul {
+          display: flex;
+          justify-content: space-between;
+          li {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+          }
+        }
+      }
+      // .your-order-bottom {
+      //   ul {
+      //     display: flex;
+      //     align-items: center;
+      //     justify-content: space-between;
+      //     li {
+      //       font-family: 'Poppins';
+      //       font-style: normal;
+      //       font-weight: 600;
+      //       font-size: 14px;
+      //       color: #111827;
+      //     }
+      //     li.your-order-shipping {
+      //       font-size: 16px;
+      //       font-weight: 400;
+
+      //       color: #212121;
+      //     }
+      //   }
+      // }
+      .your-order-total {
+        padding: 10px 40px 15px 17px;
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          li.order-total {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            color: #111827;
+          }
+          li {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            color: #111827;
+          }
+        }
+      }
+    }
+  }
+  .payment-accordion {
+    margin: 0 0 16px;
+    &:last-child {
+      margin: 0 0 0;
+    }
+    h4 {
+      font-size: 16px;
+
+      margin: 0;
+
+      color: #212121;
+      a {
+        position: relative;
+
+        display: block;
+
+        color: #212121;
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+    .panel-body {
+      padding: 5px 0 0 0;
+      p {
+        font-size: 14px;
+
+        padding: 0 0 0 10px;
+
+        color: #333;
+      }
+    }
+  }
+  .place-order > a,
+  .place-order > button {
+    font-weight: 500;
+    line-height: 1;
+
+    z-index: 9;
+
+    display: block;
+
+    width: 100%;
+    padding: 18px 20px;
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    background-color: #292929;
+    // &:hover {
+    //   background-color: #333;
+    // }
+  }
+}
+
+.checkout-area {
+  @media #{$xs-layout} {
+    &.pb-100 {
+      padding-bottom: 60px;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+.explore {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 21px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.ImageText {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .HomePageProduct {
+    margin-bottom: 30px;
+
+    .ImageText {
+      font-size: 20px;
+
+      margin-top: 10px;
+    }
+  }
+}
+
+.Our-Promise {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+
+  .promise {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 42px;
+    line-height: 21px;
+    .mobile-margin{
+      background-color: red;
+    }
+  
+  }
+
+
+}
+@media screen and (max-width: 767px) {
+.blog-sm-margin{
+    margin-bottom: 20px;
+}
+}
+.Image-Size {
+  width: 64px;
+  height: 64px;
+}
+
+.Stisfaction-Gurrante {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+  margin-top: 41px;
+}
+
+.description {
+  @media screen and (min-width: 1215px) {
+    width: 900px;
+  }
+
+  width: 80%;
+  margin-top: 32px;
+}
+
+.Create-Image {
+  width: 279px;
+  height: 279px;
+}

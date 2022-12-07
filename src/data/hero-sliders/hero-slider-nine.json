@@ -1,0 +1,17 @@
+
+[
+  {
+    "id": 1,
+    "title": "Sale Off 40%",
+    "subtitle": "Summer Offer 2020 Collection",
+    "image": "../../assets/img/slider/demoimg.png",
+    "url": "/shop-grid-standard"
+  },
+  {
+    "id": 2,
+    "title": "Sale Off 20%",
+    "subtitle": "Art You Love At Your DoorStep",
+    "image": "../../assets/img/slider/demoimg.png",
+    "url": "/shop-grid-standard"
+  }
+]

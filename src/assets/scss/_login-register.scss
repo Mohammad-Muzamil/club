@@ -1,0 +1,153 @@
+/*------ 24. login register Page  --------*/
+
+.login-register-wrapper {
+  .login-register-tab-list {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h4 {
+      font-family: 'Poppins';
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 35px;
+      margin: 0px;
+    }
+
+  }
+
+  .login-form-container {
+    // background: transparent none repeat scroll 0 0;
+    // box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 80px;
+    text-align: left;
+
+    @media #{$lg-layout} {
+      padding: 50px;
+    }
+
+    @media #{$xs-layout} {
+      padding: 40px 15px;
+    }
+
+    .login-register-form {
+      .wrong-credentials {
+        color: #DA1100;
+        max-width: 50ch;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+      }
+
+      .header-text {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+        color: #000000;
+      }
+
+      form {
+        p {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 400;
+          color: #000000;
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        input {
+          background-color: transparent;
+          border: 1px solid #CED4DA;
+          border-radius: 5px;
+          color: #333;
+          font-size: 14px;
+          height: 45px;
+          margin-bottom: 30px;
+          padding: 0 15px;
+        }
+
+        input[type="checkbox"] {
+          height: 15px;
+          margin: 0;
+          position: relative;
+          top: 1px;
+          width: 17px;
+          margin-right: 7px;
+        }
+
+        .button-box {
+          .login-toggle-btn {
+            padding: 10px 0 19px;
+
+            label {
+              color: #242424;
+              font-size: 15px;
+              font-weight: 400;
+
+              @media #{$xs-layout} {
+                font-size: 14px;
+              }
+            }
+
+            a {
+              color: #242424;
+              text-decoration-line: underline;
+              float: right;
+              font-family: 'Poppins';
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 30px;
+
+              @media #{$xs-layout} {
+                font-size: 14px;
+              }
+
+              transition: all 0.3s ease 0s;
+            }
+          }
+
+          button {
+            background-color: #292929;
+            width: 130px;
+            height: 46px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 30px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+
+          }
+
+          .create-account-text {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 30px;
+            text-align: center;
+            margin-top: 17px;
+            text-decoration-line: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.login-register-area {
+  @media #{$xs-layout} {
+    &.pb-100 {
+      padding-bottom: 60px;
+    }
+  }
+}
