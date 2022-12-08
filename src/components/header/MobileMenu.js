@@ -1,69 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MobileMenuSearch from "./sub-components/MobileSearch";
 import MobileNavMenu from "./sub-components/MobileNavMenu";
 import MobileWidgets from "./sub-components/MobileWidgets";
 
+import MainLogo from "../../assets/img/logo/Logo.png"
+import Cart from "../../assets/img/icons/Cart.png"
+import search from "../../assets/img/icons/search.png"
+import Menu from "../../assets/img/icons/menu.png"
+
 const MobileMenu = () => {
-  useEffect(() => {
-    const offCanvasNav = document.querySelector("#offcanvas-navigation");
-    const offCanvasNavSubMenu = offCanvasNav.querySelectorAll(".sub-menu");
-    const anchorLinks = offCanvasNav.querySelectorAll("a");
-
-    for (let i = 0; i < offCanvasNavSubMenu.length; i++) {
-      offCanvasNavSubMenu[i].insertAdjacentHTML(
-        "beforebegin",
-        "<span class='menu-expand'><i></i></span>"
-      );
-    }
-
-    const menuExpand = offCanvasNav.querySelectorAll(".menu-expand");
-    const numMenuExpand = menuExpand.length;
-
-    for (let i = 0; i < numMenuExpand; i++) {
-      menuExpand[i].addEventListener("click", e => {
-        sideMenuExpand(e);
-      });
-    }
-
-    for (let i = 0; i < anchorLinks.length; i++) {
-      anchorLinks[i].addEventListener("click", () => {
-        closeMobileMenu();
-      });
-    }
-  });
-
-  const sideMenuExpand = e => {
-    e.currentTarget.parentElement.classList.toggle("active");
-  };
-
-  const closeMobileMenu = () => {
-    const offcanvasMobileMenu = document.querySelector(
-      "#offcanvas-mobile-menu"
-    );
-    offcanvasMobileMenu.classList.remove("active");
-  };
+    const [open, setopen] = useState(false);
 
   return (
-    <div className="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
-      <button
-        className="offcanvas-menu-close"
-        id="mobile-menu-close-trigger"
-        onClick={() => closeMobileMenu()}
-      >
-        <i className="pe-7s-close"></i>
-      </button>
-      <div className="offcanvas-wrapper">
-        <div className="offcanvas-inner-content">
-          {/* mobile search */}
-          <MobileMenuSearch />
+    <div className="mobile-menu">
+      <div className="d-flex flex-row justify-content-between">
+      <img className="mobile-logo" src={MainLogo}/>
 
-          {/* mobile nav menu */}
-          <MobileNavMenu />
+      <div className="d-flex flex-row mobile-icons">
+        <img src={search}/>
+        <img src={Cart}/>
 
 
-          {/* mobile widgets */}
-          <MobileWidgets />
-        </div>
+        <img 
+        onClick={()=> setopen(true)}
+        src={Menu}/>
+      </div>
+      </div>
+      <div
+      
+      style={{left: open ? 0 : '100vw'}}
+      className={` ${open ? "d-block" : "d-none"} Side-Menu`}>
+        <p
+        onClick={()=> setopen(false)}
+        >hell</p>
       </div>
     </div>
   );

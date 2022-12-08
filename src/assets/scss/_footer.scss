@@ -273,6 +273,71 @@
 
 .footer-area {
   position: relative;
+  background-image: url("../../assets/img/Background/footerbackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .footer-start{
+      img{
+        width: 274px;
+        height: 278px;
+      }
+
+      @media screen and (max-width: 1024px ) {
+        img{
+          width: 180px;
+          height: 184px;
+        }
+      }
+
+      p{
+        font-family: 'Mont';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 21px;
+        color: #FFFFFF;
+      }
+      .email-support{
+        font-family: 'Mont';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 21px;
+        color: #FFFFFF;
+      }
+
+      .paymentIcons{
+        display: flex;
+
+        @media screen and (max-width: 1024px ) {
+          flex-direction: column;
+        }
+        flex-direction: row;
+        img{
+          width: 58px;
+          height: 40px;
+          margin-right: 20px;
+          margin-bottom: 20px;
+        }
+      }
+      
+  }
+
+  .footer-end{
+    padding: 0 0 0 40px;
+    p{
+      font-family: 'Mont';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 26px;
+      display: flex;
+      align-items: center;
+      text-align: justify;
+      color: #FFFFFF;
+    }
+  }
   &.ml-10 {
     margin-left: 0;
   }

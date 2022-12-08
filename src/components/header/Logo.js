@@ -4,10 +4,13 @@ import MainLogo from "../../assets/img/logo/Logo.png"
 const Logo = (props) => {
   return (
     <div 
-    className={`${"logoClass"}`}>
+    className={"Header-logo"}>
       <Link to={process.env.PUBLIC_URL + "/"}>
-        <img alt="" className="w-100"  src={MainLogo} />
+        <img alt=""   src={MainLogo} />
       </Link>
+
+
+      <p className="m-0 p-0">Hype Kicks</p>
     </div>
   );
 };

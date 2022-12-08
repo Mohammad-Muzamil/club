@@ -20,6 +20,7 @@ const Home = (props) => {
           <p className="Stisfaction-Gurrante text-center mb-0">
             Satisfaction Gurantee
           </p>
+
           <p className="description">
             PrintShop makes sure to quality assure every product that you
             purchase before dispatching it. PrintShop will notify you whenever
