@@ -6,6 +6,7 @@ import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
 import HomeIcon from "../../assets/img/icons/home.png";
+import RightarrowWhite from "../../assets/img/icons/rightarrowwhite.png"
 const BrandProducts = (props) => {
   return (
     <Fragment>
@@ -15,14 +16,14 @@ const BrandProducts = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <div className="brandlogo-onProduct pb-80">
+            <div className="d-flex flex-row justify-content-center align-items-center brandlogo-onProduct pb-80">
               {window.location.pathname === "brands-products" ? (
                 <img className="logo" src={NikeLogo} />
               ) : (
                 <>
                   <img className="homeIcon" src={HomeIcon} />
                   <p className="brand-name">Nike</p>
-                  <p className="arrow">{"->"}</p>
+                  <img className="arrow" src={RightarrowWhite}/>
                   <p className="bold-text">Adidas Falcon Shoes </p>
                 </>
               )}

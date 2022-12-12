@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/pages/home/Home";
 import Brands from "./pages/brands/brands";
 import BrandProducts from "./pages/brand-products/brand-products";
+import Product from "./pages/product/product";
 
 const App = (props) => {
   return (
@@ -13,6 +14,7 @@ const App = (props) => {
         <Route path="/brands" element={<Brands />}></Route>
         <Route path="/brands-products" element={<BrandProducts />}></Route>
         <Route path="/specific-brand-products" element={<BrandProducts />}></Route>
+        <Route path="/product" element={<Product />}></Route>
       </Routes>
     </BrowserRouter>
   );
