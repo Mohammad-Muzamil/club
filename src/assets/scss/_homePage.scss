@@ -1,3 +1,10 @@
+.mobile-menu {
+  .main-menu nav ul {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+}
 .centerIcon{
 
   @media screen and (max-width: 992px) {
