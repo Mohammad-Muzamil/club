@@ -19,7 +19,20 @@ html,
 body {
   height: 100%;
 }
-
+.BackgroundPicture{
+  background-image: url(../../assets/img/Background/footerbackground.png);
+  background: position 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.page-info-text{
+  font-family: 'Ethnocentric';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  color: #fff;
+  line-height: 48px;
+}
 body {
   font-family: $poppins;
   font-size: 14px;
@@ -872,7 +885,7 @@ a:hover {
   padding-right: 140px;
 }
 
-.pr-155 {
+.pr-150 {
   padding-right: 155px;
 }
 
