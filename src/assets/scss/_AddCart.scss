@@ -1,0 +1,217 @@
+.header-text {
+    display: flex;
+    flex-direction: row;
+
+    .bold {
+        font-family: 'Ethnocentric';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        color: #E5E4E4;
+        margin-right: 30px;
+    }
+
+    .light {
+        font-weight: 600;
+        font-size: 32px;
+        color: #E5E4E4;
+    }
+}
+
+.cart-item-view {
+    width: 100%;
+    background: #F5F5F5;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 60px 20px 60px 20px;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 990px) {
+        padding: 17px 5px 22px 5px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+
+    }
+
+    img {
+        width: 10%;
+        height: 10%;
+        object-fit: contain;
+        align-self: center;
+    }
+
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40%;
+        padding-left: 20px;
+
+
+        .product-name {
+            font-family: 'Ethnocentric';
+            font-weight: 400;
+            font-size: 24px;
+            color: #3F3636;
+            margin: 0px;
+
+            @media screen and (max-width: 990px) {
+                font-size: 8px;
+
+            }
+        }
+
+        .product-size {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            font-size: 24px;
+            color: #3F3636;
+
+            p {
+                margin-right: 20px;
+
+            }
+
+            @media screen and (max-width: 990px) {
+                font-size: 12px;
+
+            }
+        }
+
+    }
+
+    .product-stats-view {
+        width: 50%;
+
+        display: flex;
+        flex-direction: row;
+
+        .price-view {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            width: 33%;
+
+            height: 100%;
+
+            .price {
+                font-weight: 700;
+                font-size: 28px;
+                color: #3F3636;
+                text-align: center;
+                margin: 0px;
+
+                @media screen and (max-width: 990px) {
+                    font-size: 10px;
+
+                }
+            }
+
+            .amount {
+                font-weight: 400;
+                font-size: 24px;
+                color: #3F3636;
+                text-align: center;
+                margin: 0px;
+
+                @media screen and (max-width: 990px) {
+                    font-size: 12px;
+
+                }
+            }
+
+            .total-amount {
+                font-weight: 800;
+                font-size: 32px;
+                text-align: center;
+                margin: 0px;
+                color: #FE7831;
+
+                @media screen and (max-width: 990px) {
+                    font-size: 12px;
+
+                }
+            }
+
+            .quantity-enter-view {
+                display: flex;
+                flex-direction: row;
+                align-self: center;
+                align-items: center;
+                justify-content: center;
+
+
+                .arith {
+                    font-weight: 600;
+                    font-size: 48px;
+                    color: #3F3636;
+                    margin: 0px;
+
+                    @media screen and (max-width: 990px) {
+                        font-size: 12px;
+
+                    }
+                }
+
+                .quantity-val {
+                    font-weight: 400;
+                    font-size: 30px;
+                    margin: 0 30px 0 30px;
+                    color: #FE7831;
+
+                    @media screen and (max-width: 990px) {
+                        font-size: 14px;
+                        margin: 0 10px 0 10px;
+
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.seperator {
+
+    border-bottom: 1px solid #9C9C9C;
+}
+
+.row-view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    .bold {
+
+        font-weight: 700;
+        font-size: 32px;
+        color: #F5F5F5;
+        margin: 0px;
+    }
+
+    .light {
+        font-weight: 600;
+        font-size: 32px;
+        color: #F5F5F5;
+        margin: 0px;
+    }
+
+    .Eth-bold{
+        font-family: 'Ethnocentric';
+        font-size: 32px;
+        font-weight: 400;
+        color: #F5F5F5;
+        margin: 0px;
+    }
+    .Eth-bold-orange{
+        font-family: 'Ethnocentric';
+        font-size: 32px;
+        font-weight: 400;
+        color: #FE7831;
+        margin: 0px;
+    }
+
+}

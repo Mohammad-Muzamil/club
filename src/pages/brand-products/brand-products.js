@@ -7,7 +7,9 @@ import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
 import HomeIcon from "../../assets/img/icons/home.png";
 import RightarrowWhite from "../../assets/img/icons/rightarrowwhite.png"
+import HeaderTwo from "../../wrappers/header/HeaderTwo";
 const BrandProducts = (props) => {
+  console.log(window.location.pathname)
   return (
     <Fragment>
       <LayoutOne
@@ -16,18 +18,19 @@ const BrandProducts = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <div className="d-flex flex-row justify-content-center align-items-center brandlogo-onProduct pb-80">
-              {window.location.pathname === "brands-products" ? (
-                <img className="logo" src={NikeLogo} />
+            
+              {window.location.pathname === "/brands-products" ? (
+                <div className="brand-logo pb-80">
+                   <img className="logo" src={NikeLogo} />
+                 </div> 
+               
               ) : (
-                <>
-                  <img className="homeIcon" src={HomeIcon} />
-                  <p className="brand-name">Nike</p>
-                  <img className="arrow" src={RightarrowWhite}/>
-                  <p className="bold-text">Adidas Falcon Shoes </p>
-                </>
+                <HeaderTwo 
+                brand={"Nike"}
+                name={"Adidas Falcon Shoes "}
+                center={true}/>
               )}
-            </div>
+          
 
             <div className="row">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((val) => (
