@@ -1,46 +1,10 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment} from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import "react-multi-carousel/lib/styles.css";
+import send from "../../assets/img/buttons/send.png";
 
 const ReturnPolicy = (props) => {
-  const nextSlide = useRef();
-  const prevSlide = useRef();
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-  const CustomRightArrow = ({ onClick, ...rest }) => {
-    const {
-      onMove,
-      carouselState: { currentSlide, deviceType }
-    } = rest;
-    // onMove means if dragging or swiping in progress.
-    return <button onClick={() => onClick()} />;
-  };
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-    const { carouselState: { currentSlide } } = rest;
-    return (
-      <div className="carousel-button-group">
-        <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} ref={prevSlide} />
-        <button onClick={() => next()} ref={nextSlide} />
-      </div>
-    );
-  };
+  
   return (
     <Fragment>
       <LayoutOne
@@ -48,28 +12,24 @@ const ReturnPolicy = (props) => {
         headerPaddingClass="header-padding-2"
       >
 
-        <div className="Slider-Area pt-100 pb-100 pr-30">
-          <div className="container pl-50">
-            <div className="row justify-content-between">
-                <p className="heading-text">Return Policy</p>
-            </div>
-          </div>
+        <div className="BackgroundPicture pt-100 pb-100">
+          <div className="container">
+           
+                <p className="heading-text pb-30">Return Policy</p>
+         
+         
 
-          <div className="container pl-70 pt-40 pr-30">
-            <div className="row justify-content-between">
+        
+       
                 <p className="paragraph-text">
                 Welcome to our self-service Exchange open 24/5. Register your exchange and process your return by following the steps below. Make sure you send all your order information                
                 </p>
-            </div>
-          </div>
+          
 
-          <div className="container pl-50">
-            <div className="row justify-content-between">
-              <div className="line pt-50"></div>
-            </div>
-          </div>
+              <div className="line pt-50 mb-50"></div>
+         
 
-        <form action="/action_page.php" className="container pl-50 pt-10">
+        <form action="/action_page.php" >
             <div className="input-flex">
                 <div className="form-group">
                     <label for="name" className="paragraph-text required">Your Name</label>
@@ -85,8 +45,9 @@ const ReturnPolicy = (props) => {
             <input type="text" id="subject" name="subject" required/><br></br>
             <label for="issue" className="paragraph-text required">Drop Your Issue</label>
             <textarea id="issue" name="issue" required/><br></br>
-            <input type="submit" value="Submit"/>
+            <img className="send-btn" src={send} />
         </form>
+        </div>
         </div>
       </LayoutOne>
     </Fragment>

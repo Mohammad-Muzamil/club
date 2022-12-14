@@ -278,9 +278,21 @@
   background-repeat: no-repeat;
   background-size: cover;
   .footer-start{
+
+    .main-logo{
+      
       img{
         width: 274px;
         height: 278px;
+      }
+      @media screen and (max-width: 550px ) {
+        display: flex;
+        justify-content: center;
+        img{
+          width: 180px;
+          height: 184px;
+          margin-bottom: 20px;
+        }
       }
 
       @media screen and (max-width: 1024px ) {
@@ -289,6 +301,8 @@
           height: 184px;
         }
       }
+    }
+     
 
       p{
         font-family: 'Mont';

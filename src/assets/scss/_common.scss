@@ -19,12 +19,86 @@ html,
 body {
   height: 100%;
 }
+
+
 .BackgroundPicture{
   background-image: url(../../assets/img/Background/footerbackground.png);
   background: position 200px;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.heading-text {
+  font-family: 'Ethnocentric';
+  font-weight: 400;
+  font-size: 40px;
+  color: #E5E4E4;
+  margin: 0px;
+
+  @media screen and (max-width: 500px) {
+      font-size: 20px;
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 30px;
+
+  }
+
+
+}
+.subheading-text {
+  font-family: 'Ethnocentric';
+  font-weight: 400;
+  font-size: 32px;
+  color: #F5F5F5;
+  margin: 0px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 30px;
+
+    }
+}
+
+.paragraph-text {
+  font-family: 'Mont';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;    
+  color: #E5E4E4;
+  margin: 0px;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 16px;
+
+    }
+}
+
+.subparagraph-text {
+  font-family: 'Mont';
+  font-weight: 600;
+  font-size: 20px;
+  color: #E5E4E4;
+  margin: 0px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 16px;
+
+    }
+
+}
+
+
 .page-info-text{
   font-family: 'Ethnocentric';
   font-style: normal;
@@ -32,7 +106,11 @@ body {
   font-size: 40px;
   color: #fff;
   line-height: 48px;
+  margin: 0px;
 }
+
+
+
 body {
   font-family: $poppins;
   font-size: 14px;

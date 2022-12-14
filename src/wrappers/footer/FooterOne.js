@@ -25,7 +25,14 @@ const FooterOne = (props) => {
       <div className="container">
         <div className="row">
           <div className="col-xl-3 col-lg-3 col-sm-4 footer-start">
-            <img src={MainLogo} />
+            <div
+            className="main-logo"
+            >
+              <img 
+            src={MainLogo} />
+
+            </div>
+            
 
             <p>
               Design amazing digital experiences that create more happy in the world.
