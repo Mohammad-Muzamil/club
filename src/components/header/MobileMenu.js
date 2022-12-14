@@ -12,29 +12,25 @@ const MobileMenu = () => {
     const [open, setopen] = useState(false);
 
   return (
-    <div className="mobile-menu">
-      <div className="d-flex flex-row justify-content-between">
-      <img className="mobile-logo" src={MainLogo}/>
+    <>
+      <div className="mobile-menu">
+        <div className="d-flex flex-row justify-content-between">
+        <img className="mobile-logo" src={MainLogo}/>
 
-      <div className="d-flex flex-row mobile-icons">
-        <img src={search}/>
-        <img src={Cart}/>
-
-
-        <img 
-        onClick={()=> setopen(true)}
-        src={Menu}/>
+        <div className="d-flex flex-row mobile-icons">
+          <img src={search}/>
+          <img src={Cart}/>
+          <img onClick={()=> setopen(true)} src={Menu} data-toggle="collapse" data-target="#menu"  />
+        </div>
+        </div>
+        {/* <div style={{left: open ? 0 : '100vw'}} className={` ${open ? "d-block" : "d-none"} Side-Menu`}>
+          <p onClick={()=> setopen(false)} >hell</p>  
+        </div> */}
       </div>
+      <div  className="collapse" id="menu"  >
+        <p onClick={()=> setopen(false)} style={{ minHeigth:'400px !important', backgroundColor: 'red' }} >hell</p>  
       </div>
-      <div
-      
-      style={{left: open ? 0 : '100vw'}}
-      className={` ${open ? "d-block" : "d-none"} Side-Menu`}>
-        <p
-        onClick={()=> setopen(false)}
-        >hell</p>
-      </div>
-    </div>
+    </>
   );
 };
 
