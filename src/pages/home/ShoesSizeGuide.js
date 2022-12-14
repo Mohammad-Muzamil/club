@@ -11,23 +11,18 @@ const ShoeSizeGuide = (props) => {
         headerPaddingClass="header-padding-2"
       >
 
-        <div className="BackgroundPicture pt-100 pb-100 pr-30">
-          <div className="container pl-50">
-            <div className="row justify-content-between">
+        <div className="BackgroundPicture pt-100 pb-100">
+          <div className="container">
+          
                 <p className="heading-text">Shoes Size Guide</p>
-            </div>
-          </div>
+          
+          
 
-          <div className="container pl-60 pt-80">
-            <div className="row justify-content-between">
                 <p className="subheading-text genderLabel" >
                 Mans
                 </p>
-            </div>
-          </div>
+        
 
-          <div className="container pl-60 pt-40">
-            <div className="row justify-content-between">
                 <table>
                 <tr className="sizeStandards" >
                     <th>US</th>
@@ -36,17 +31,11 @@ const ShoeSizeGuide = (props) => {
                     <th>CM</th>
                 </tr>
                 </table>
-            </div>
-          </div>
+      
 
-        <div className="container pl-50">
-            <div className="row justify-content-between">
                 <div className="line pt-20"></div>
-            </div>
-        </div>
+      
 
-        <div className="container pl-60 pt-40">
-            <div className="row justify-content-between">
                 <table>
                 <tr>
                     <td>6</td>
@@ -175,19 +164,15 @@ const ShoeSizeGuide = (props) => {
                     <td>35</td>
                 </tr>
                 </table>
-            </div>
-          </div>
+      
 
-          <div className="container pl-60 pt-80">
-            <div className="row justify-content-between">
+
                 <p className="subheading-text genderLabel" >
                 Women
                 </p>
-            </div>
-          </div>
+      
 
-          <div className="container pl-60 pt-40">
-            <div className="row justify-content-between">
+
                 <table>
                 <tr className="sizeStandards" >
                     <th>US</th>
@@ -196,17 +181,12 @@ const ShoeSizeGuide = (props) => {
                     <th>CM</th>
                 </tr>
                 </table>
-            </div>
-          </div>
+        
 
-        <div className="container pl-50">
-            <div className="row justify-content-between">
                 <div className="line pt-20"></div>
-            </div>
-        </div>
+      
 
-        <div className="container pl-60 pt-40">
-            <div className="row justify-content-between">
+
                 <table>
                 <tr>
                     <td>4</td>
@@ -360,8 +340,8 @@ const ShoeSizeGuide = (props) => {
                 </tr>
                 </table>
             </div>
-          </div>
-        </div>
+            </div>
+      
       </LayoutOne>
     </Fragment>
   );

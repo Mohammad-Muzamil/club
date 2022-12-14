@@ -21,6 +21,8 @@ body {
 }
 
 
+// Common Text
+
 .BackgroundPicture{
   background-image: url(../../assets/img/Background/footerbackground.png);
   background: position 200px;
@@ -97,6 +99,50 @@ body {
     }
 
 }
+
+
+//  Show Size CSS
+
+
+.sizeStandards {
+  font-family: 'Ethnocentric';
+  font-style: normal;
+  padding: 8px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 48.4px;
+  color: #FE7831;
+}
+
+table {
+  border: 1px;
+  width: 100%;
+  text-align: center;
+}
+td {
+  font-family: 'Mont';
+  padding: 20px;
+  margin: 0px;
+  font-weight: 800;
+  font-size: 20px;
+  color: #E5E4E4;
+  text-align: center;
+}
+
+// td {
+//   font-family: 'Mont';
+//   padding: 0px;
+//   padding-left: 30px;
+//   padding-right: 8px;
+//   padding-top: 30px;
+//   margin: 0px;
+//   font-style: normal;
+//   font-weight: 800;
+//   font-size: 20px;
+//   line-height: 26.2px;
+//   color: #E5E4E4;
+//   text-align: center;
+// }
 
 
 .page-info-text{
