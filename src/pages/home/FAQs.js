@@ -3,45 +3,7 @@ import LayoutOne from "../../layouts/LayoutOne";
 import "react-multi-carousel/lib/styles.css";
 import Polygon from "../../assets/img/icons/Polygon4.svg"
 
-const Faqs = (props) => {
-  const nextSlide = useRef();
-  const prevSlide = useRef();
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-  const CustomRightArrow = ({ onClick, ...rest }) => {
-    const {
-      onMove,
-      carouselState: { currentSlide, deviceType }
-    } = rest;
-    // onMove means if dragging or swiping in progress.
-    return <button onClick={() => onClick()} />;
-  };
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-    const { carouselState: { currentSlide } } = rest;
-    return (
-      <div className="carousel-button-group">
-        <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} ref={prevSlide} />
-        <button onClick={() => next()} ref={nextSlide} />
-      </div>
-    );
-  };
+const Faqs = (props) => { 
   return (
     <Fragment>
       <LayoutOne

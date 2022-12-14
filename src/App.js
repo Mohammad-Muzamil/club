@@ -31,31 +31,12 @@ const App = (props) => {
         <Route path="/paymentdetails" element={<PaymentDetails />}></Route>
         <Route path="/contactus" element={<ContactUs />}></Route>
         <Route path="/aboutus" element={<AboutUs />}></Route>
-
-
-      <Route path="/payments" 
-      element={<Payments/>}>
-      </Route>
-      
-      <Route path="/faqs" 
-      element={<Faqs/>}>
-      </Route>
-
-      <Route path="/privacypolicy" 
-      element={<PrivacyPolicy/>}>
-      </Route>
-
-      <Route path="/returnpolicy" 
-      element={<ReturnPolicy/>}>
-      </Route>
-
-      <Route path="/termsofservices" 
-      element={<TermsOfServices/>}>
-      </Route>
-
-      <Route path="/shoesizeguide" 
-      element={<ShoeSizeGuide/>}>
-      </Route>
+        <Route path="/payments" element={<Payments />}></Route>
+        <Route path="/faqs" element={<Faqs />}></Route>
+        <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
+        <Route path="/returnpolicy" element={<ReturnPolicy />}></Route>
+        <Route path="/termsofservices" element={<TermsOfServices />}></Route>
+        <Route path="/shoesizeguide" element={<ShoeSizeGuide />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -247,6 +247,13 @@ input[type=text]:focus {
         height: 6px;
         padding-left: 10px;
         padding-bottom: 80px;
+        @media screen and (min-width: 992px) and (max-width: 1200px) {
+           background-color: red;
+    
+        }
+    
+
+
     }
 
     .subheading-text {
