@@ -1,71 +1,3 @@
-
-.carousel-button-group{
- display: none;
-}
-.ml-25pc{
-  margin-left: 30%;
-}
-.grey-text{
-  color: #a2a2a2;
-}
-.mobile-menu {
-  .main-menu nav ul {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-  }
-}
-
-.ourStory {
-  padding-left: 0px;
-  .heading{
-    background-image: url('../../assets/img/our-story-bg-img.png');
-    background-size: cover;
-    margin-bottom: -13%;
-    padding: 48px 128px 130px 69px;
-    min-height: 320px;
-    border-radius: 20px;
-
-    h3{
-      font-family: 'Ethnocentric';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 36px;
-      line-height: 43px;
-      color: #FFFFFF;
-    }
-    p{
-      font-family: 'Mont';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 32px;
-      display: flex;
-      align-items: center;
-      color: #9C9C9C;
-    }
-  }
-  .img-section{
-    img{
-      width: 100%;
-      min-height: 43vh;
-      object-fit: cover;
-    }
-  }
-  .btn-group{
-    justify-content: start;
-    z-index: 12;
-    top: -65vh;
-
-    img{
-      width: 351px;
-      height: 100%;
-      object-fit: auto;
-      cursor: pointer;
-    }
-    
-  }
-}
 .centerIcon{
 
   @media screen and (max-width: 992px) {
@@ -112,7 +44,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 7em 0em;
+  
 
   .slider-text{
 
@@ -122,7 +54,6 @@
       padding: 8px;
       font-weight: 400;
       font-size: 56px;
-      line-height: 60px;
       color: rgba(245, 245, 245, 1);
     }
     .lower-text{
@@ -132,13 +63,13 @@
       font-weight: 700;
       font-size: 24px;
       color: #9C9C9C;
-      padding-bottom: 72px;    
+    
     }
   }
 
   .slider-btn{
-    text-align: end;
-    padding-right: 3.5em;
+    display: flex;
+    flex-direction: row;
     img{
       width: 38px;
       height: 38px;
@@ -149,9 +80,11 @@
 
 .ViewItem{
 
+    width: 450px !important;
 
     @media screen and (max-width: 992px) {
-      // width: 200px !important;
+      width: 200px !important;
+      background-color: red;
     }
 
     .ItemView{
@@ -159,9 +92,18 @@
       background-color: #fff;
       border-radius: 10px;
       .item-image{
-        width: 100%;
-        height: auto;
-        margin-top: auto;
+        width: 350px;
+        height: 350px;
+        margin-top: 20px;
+        @media screen and (max-width: 992px) {
+          width: 100px;
+          height: 110px;
+          margin-top: 10px;
+        }
+      }
+      @media screen and (max-width: 992px) {
+        width: 156px;
+        height: 226px;
       }
     }
 
@@ -210,194 +152,3 @@
     }  
 
 }
-/*Tablet Media Query*/
-
-@media only screen and (max-width: 768px){
-  .Slider-Area{
-    .slider-text{
-      .upper-text{
-        font-size: 40px;
-        line-height: 48px;
-        margin-bottom: 5px;
-      }
-      .lower-text{
-        font-size: 20px;
-        line-height: 24px;
-      }
-    }
-  }
-}
-
-/* Media Query for Mobile device start */
-@media only screen and (max-width: 481px) {
-
-  .ourStory {
-    padding-left: 0px;
-    .heading{
-      background-image: url('../../assets/img/our-story-bg-img.png');
-      background-size: cover;
-      margin-bottom: -127px;
-      padding: 48px 128px 130px 69px;
-      min-height: 150px;
-      border-radius: 20px;
-  
-      h3{
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 14px;
-      }
-      p{
-        font-style: normal;
-        font-weight: 600;
-        font-size: 10px;
-        line-height: 13px;
-      }
-    }
-    .img-section{
-      img{
-        width: 100%;
-        min-height: 43vh;
-        object-fit: cover;
-      }
-    }
-    .btn-group{
-      justify-content: start;
-      z-index: 12;
-      top: -65vh;
-  
-      img{
-        width: 351px;
-        height: 100%;
-        object-fit: auto;
-        cursor: pointer;
-      }
-      
-    }
-  }
-
-
-  .Slider-Area{
-    background-image: url("../../assets/img/Background/footerbackground.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 30px 0px;
-
-    .slider-sec{
-      .col-xs-6{
-        width: 50%;
-      }
-      
-      .col-sec{
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-      }
-      .slider-desp{
-        .lower-text{
-          font-family: 'Mont';
-          padding: 8px;
-          font-style: normal;
-          font-weight: 700;
-          font-size: 14px;
-          color: #9C9C9C;
-        }
-      }
-      .slider-btn{
-        display: flex;
-        flex-direction: row;
-        img{
-          width: 38px;
-          height: 38px;
-        }
-      }
-    }
-    .slider-text{
-      padding-left: 15px;
-      .upper-text{
-        font-family: 'Ethnocentric';
-        font-style: normal;
-        padding: 8px;
-        line-height: 24px;
-        font-weight: 400;
-        font-size: 20px;
-        color: rgba(245, 245, 245, 1);
-      }
-      .lower-text{
-        display: none;
-      }
-    }
-    .slider-ctrl{
-      .slider-btn{
-        display: none;
-      }
-    }
-    
-  
-    
-    .ViewItem{
-
-      // width: 200px !important;
-  
-      .ItemView{
-        width: 95%;
-        height: auto;
-        margin-right: 3em;
-        background-color: #fff;
-        border-radius: 10px;
-        .item-image{
-          width: 80%;
-          height: auto;
-          margin-top: 10px;
-        }
-      }
-  
-  
-      .item-description{
-        padding: 0 11px 0 11px;
-        .item-rating-view{
-          display: flex;
-          flex-direction: row;
-          .star{
-            width: 10.33px;
-            height: 10.33px;
-            margin-right: 5px;
-          }
-        }
-  
-        .item-info{
-          margin: 12px 0 0 0;
-          font-family: 'Mont';
-          font-style: normal;
-          font-weight: 700;
-          font-size: 10px;
-          line-height: 13px;
-          color: #1B1919;
-          width: auto;
-        }
-  
-        .price-view{
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding: 10px 0 00px 0;
-          .price-text{
-            font-family: 'Ethnocentric';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 17px;
-            color: #050505;
-          }
-          .right-arrow{
-            width: 19px;
-            height: 16px;
-          }
-        }
-      }
-  
-    }
-  }
-
-}
-/* Media Query for Mobile device end */
