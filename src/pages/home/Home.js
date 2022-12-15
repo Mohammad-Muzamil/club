@@ -298,16 +298,17 @@ const Home = (props) => {
         </div>
         <div class="container-fluid ourStory">
             <div class="row">
-              <div class="col-md-8 offset-md-2 col-sm-10 heading">
+              <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
                 <h3>WHY IS SO <span className="grey-text">CHEAP</span>?</h3>
                 <p>Don't worry we have answers to all of your questions. Click on below button.</p>
               </div>
-                <div class="col-md-11 col-sm-12 img-section">
+                <div class="col-lg-11 col-md-12 col-sm-12 img-section">
                   <img src={ourStory}  />
+                  <img src={btnBg} className="read-story-btn" />
                 </div>
-                <div class="col-8 btn-group">
+                {/* <div class="col-8 btn-group">
                   <img src={btnBg} />
-                </div>
+                </div> */}
             </div>
           </div>
       </LayoutOne>
