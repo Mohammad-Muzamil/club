@@ -5,6 +5,7 @@ import Shoe from "../../assets/img/shoes/product1.png";
 import CartIcon from "../../assets/img/icons/shipping-cart.png"
 import Cross from "../../assets/img/icons/cross.png"
 import Proceedpayment from "../../assets/img/buttons/proceedpayment.png"
+import { Link } from "react-router-dom";
 
 const CheckOut = (props) => {
 
@@ -151,7 +152,9 @@ const CheckOut = (props) => {
                     <div
                     className="proceed-btn col-xl-8 col-lg-8 col-md-12 col-sm-12"
                     >
+                           <Link to={process.env.PUBLIC_URL + "/paymentdetails"}>
                     <img src={Proceedpayment}/>
+                    </Link>
                     </div>
 
                     <div

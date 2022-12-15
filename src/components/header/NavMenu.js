@@ -11,7 +11,7 @@ const NavMenu = (props) => {
       <nav>
         <ul className="mt-0">
           <li >
-            <Link to={process.env.PUBLIC_URL + "/shop"}>Home</Link>
+            <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
 
           </li>
 
@@ -19,7 +19,7 @@ const NavMenu = (props) => {
 
 
           <li >
-            <Link to={process.env.PUBLIC_URL + "/Create"}>Brand</Link>
+            <Link to={process.env.PUBLIC_URL + "/brands"}>Brand</Link>
             <ul className="mega-menu mega-menu-padding">
               <li className="w-100">
                 <ul>
@@ -42,8 +42,24 @@ const NavMenu = (props) => {
               <li className="w-100">
                 <ul>
 
-                  <Link to={process.env.PUBLIC_URL + "/shop"}>
-                    <li>{"Helloo"}</li>
+                  <Link to={process.env.PUBLIC_URL + "/payments"}>
+                    <li>{"Payments"}</li>
+                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/faqs"}>
+                    <li>{"FAQs"}</li>
+                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/privacypolicy"}>
+                    <li>{"Privacy Policy"}</li>
+                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/returnpolicy"}>
+                    <li>{"Return Policy"}</li>
+                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/termsofservices"}>
+                    <li>{"Term and Services"}</li>
+                  </Link>
+
+                  <Link to={process.env.PUBLIC_URL + "/shoesizeguide"}>
+                    <li>{"Shoe Size Guide"}</li>
                   </Link>
 
                 </ul>
@@ -53,10 +69,10 @@ const NavMenu = (props) => {
 
           </li>
           <li >
-            <Link to={process.env.PUBLIC_URL + "/about"}>About Us</Link>
+            <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
           </li>
           <li >
-            <Link to={process.env.PUBLIC_URL + "/about"}>Contatct Us</Link>
+            <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
           </li>
           <li >
             <Link to={process.env.PUBLIC_URL + "/about"}>Affiliate Program</Link>

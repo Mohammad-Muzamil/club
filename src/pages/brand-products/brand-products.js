@@ -5,11 +5,11 @@ import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
-import HomeIcon from "../../assets/img/icons/home.png";
-import RightarrowWhite from "../../assets/img/icons/rightarrowwhite.png"
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
+import { Link } from "react-router-dom";
+
 const BrandProducts = (props) => {
-  console.log(window.location.pathname)
+
   return (
     <Fragment>
       <LayoutOne
@@ -34,7 +34,11 @@ const BrandProducts = (props) => {
 
             <div className="row">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((val) => (
+
+          
                 <div className="col-xl-4 col-lg-4 col-6 p-3">
+
+                 <Link to={window.location.pathname === "/brands-products" ? process.env.PUBLIC_URL + "/specific-brand-products" : process.env.PUBLIC_URL + "/product"}>
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">
@@ -54,7 +58,9 @@ const BrandProducts = (props) => {
                       </div>
                     </div>
                   </div>
+                  </Link>
                 </div>
+              
               ))}
             </div>
           </div>

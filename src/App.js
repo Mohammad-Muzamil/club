@@ -15,7 +15,8 @@ import Faqs from "../src/pages/home/FAQs"
 import PrivacyPolicy from "../src/pages/home/PrivacyPolicy"
 import ReturnPolicy from "../src/pages/home/ReturnPolicy"
 import TermsOfServices from "../src/pages/home/TermsOfServices"
-import ShoeSizeGuide from "../src/pages/home/ShoesSizeGuide"
+import ShoeSizeGuide from "../src/pages/home/ShoesSizeGuide";
+
 
 const App = (props) => {
   return (
@@ -26,7 +27,7 @@ const App = (props) => {
         <Route path="/brands-products" element={<BrandProducts />}></Route>
         <Route path="/specific-brand-products" element={<BrandProducts />}></Route>
         <Route path="/product" element={<Product />}></Route>
-        <Route path="/add-cart" element={<AddCart />}></Route>
+        <Route path="/cart" element={<AddCart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
         <Route path="/paymentdetails" element={<PaymentDetails />}></Route>
         <Route path="/contactus" element={<ContactUs />}></Route>
