@@ -1,4 +1,4 @@
-@import url('https://fonts.cdnfonts.com/css/mont');
+/* @import url('https://fonts.cdnfonts.com/css/mont'); */
 @import url('https://fonts.cdnfonts.com/css/ethnocentric');
 
 body {
@@ -20,7 +20,24 @@ code {
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' 
 } */
-
-.carousel-button-group{
-  opacity: 0;
+@font-face {
+  font-family: 'Mont';
+  src: 
+      local('./assets/fonts/Mont Semi Bold'), 
+      local('./assets/fonts/Mont-Semi-Bold'),
+      url('./assets/fonts/Mont-SemiBold.woff2') format('woff2'),
+      url('./assets/fonts/Mont-SemiBold.woff') format('woff'),
+      url('./assets/fonts/Mont-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Ethnocentric';
+  src: 
+      url('./assets/fonts/ethnocentric-rg.ttf') format('truetype'),
+      url('./assets/fonts/ethnocentric-rg-it.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
