@@ -4,6 +4,7 @@
   border-bottom: 1px solid #E1E1E1;
   position: relative;
   background-color: #050505;
+
   &.header-absolute {
     position: absolute;
     z-index: 99;
@@ -22,9 +23,9 @@
 }
 }
 
-.webView{
+.webView {
 
-  @media screen and (max-width: 992px ) {
+  @media screen and (max-width: 992px) {
     display: none;
   }
 }
@@ -206,7 +207,7 @@
   nav {
     ul {
       display: block;
-      
+
       margin-top: -5px;
 
       text-align: center;
@@ -216,7 +217,8 @@
         display: inline-block;
 
         padding: 0 50px 0 0;
-        .dropdown-img{
+
+        .dropdown-img {
           width: 10px;
           height: 5px;
           margin-left: 13px;
@@ -401,12 +403,16 @@
         }
 
         >a {
-          font-size: 15px;
-          font-weight: 500;
+
+          font-family: 'Mont';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          color: #FFFFFF;
           line-height: 94px;
           display: inline-block;
           letter-spacing: 0.8px;
-          color: #FFFFFF;
+
 
           i {
             font-size: 15px;
@@ -516,14 +522,15 @@
   justify-content: flex-end;
   margin-top: 32px;
 
-  .social-icon{
-    img{
+  .social-icon {
+    img {
       width: 23px;
       height: 23px;
       margin-right: 32px;
 
     }
-    .drop-down{
+
+    .drop-down {
       width: 10px;
       height: 5px;
     }
@@ -2573,33 +2580,35 @@
   width: 18;
 }
 
-.mobile-menu{
-    display: none;
-    flex-direction: row;
-    padding: 0 25px 0 25px;
+.mobile-menu {
+  display: none;
+  flex-direction: row;
+  padding: 0 25px 0 25px;
 
-    .mobile-logo{
-      width: 42px;
-      height: 40px;
+  .mobile-logo {
+    width: 42px;
+    height: 40px;
+  }
+
+  .mobile-icons {
+    align-items: center;
+
+    img {
+      width: 19px;
+      height: 19px;
+      object-fit: contain;
+      margin-right: 28px;
     }
 
-    .mobile-icons{
-      align-items: center;
-      img{
-        width: 19px;
-        height: 19px;
-        object-fit: contain;
-        margin-right: 28px;
-      }
+  }
 
-    }
-    @media screen and (max-width: 992px ) {
-      display: block;
-    }
+  @media screen and (max-width: 992px) {
+    display: block;
+  }
 
-  .Side-Menu{
+  .Side-Menu {
     transition: all 1s ease-in-out;
-    position:absolute;
+    position: absolute;
     height: 100vh;
     width: 100vw;
     background-color: red;

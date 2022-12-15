@@ -1,117 +1,104 @@
 .payment-heading {
-    font-family: 'Ethnocentric';
-    font-weight: 400;
-    font-size: 40px;
-    color: #E5E4E4;
-    display: block;
+  font-family: "Ethnocentric";
+  font-weight: 400;
+  font-size: 40px;
+  color: #e5e4e4;
+  display: block;
 
-    @media screen and (max-width: 500px) {
-        display: none;
-
-    }
-
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .genderLabel {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
-
-
-
 
 .points-text {
-    font-family: 'Mont';
-    font-weight: 700;
-    font-size: 24px;
-    color: #E5E4E4;
-    @media screen and (max-width: 500px) {
-        font-size: 14px;
-        }
-    
-        @media screen and (min-width: 500px) and (max-width: 990px) {
-        font-size: 16px;
-    
-        }
+  font-family: "Mont";
+  font-weight: 700;
+  font-size: 24px;
+  color: #e5e4e4;
+
+  @media screen and (max-width: 500px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 16px;
+  }
 }
 
-
-
 p {
-    text-align: justify;
-    text-justify: inter-word;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .line {
-    width: 100%;
-    height: 40px;
-    border-bottom: 1px solid rgb(255, 255, 255);
-    position: relative;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  position: relative;
 }
 
 .services-heading-text {
+  font-family: "Ethnocentric";
+  font-weight: 400;
+  font-size: 40px;
+  color: #fe7831;
+  line-height: 150%;
+  align-items: center;
+  text-align: center;
 
-    font-family: 'Ethnocentric';
-    font-weight: 400;
-    font-size: 40px;
-    color: #FE7831;
-    line-height: 150%;
-    align-items: center;
-    text-align: center;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 
-    @media screen and (max-width: 500px) {
-        font-size: 12px;
-        }
-    
-        @media screen and (min-width: 500px) and (max-width: 990px) {
-        font-size: 22px;
-    
-        }
+  @media screen and (min-width: 500px) and (max-width: 990px) {
+    font-size: 22px;
+  }
 }
 
 .sizeStandards {
-    font-family: 'Ethnocentric';
-    font-style: normal;
-    padding: 8px;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 48.4px;
-    color: #FE7831;
+  font-family: "Ethnocentric";
+  font-style: normal;
+  padding: 8px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 48.4px;
+  color: #fe7831;
 }
 
 textarea {
-    width: 100%;
-    height: 200px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #f8f8f8;
-    resize: none;
+  width: 100%;
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 
 textarea:focus {
-    background-color: rgb(255, 255, 255);
-    border: #ccc;
+  background-color: rgb(255, 255, 255);
+  border: #ccc;
 }
 
-input[type=text] {
-    width: 100%;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+input[type="text"] {
+  width: 100%;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
-
 
 .send-btn {
-    width: 100%;
-    height: 76px;
-    margin-top: 50px;
+  width: 100%;
+  height: 76px;
+  margin-top: 50px;
 
-    @media screen and (max-width: 500px) {
-        height: 47px;
-
-    }
-
+  @media screen and (max-width: 500px) {
+    height: 47px;
+  }
 }

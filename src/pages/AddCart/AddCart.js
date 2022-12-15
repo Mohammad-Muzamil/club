@@ -13,7 +13,7 @@ const AddCart = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <div className="header-text">
+            <div className="header-text pb-30">
               <p className="bold">My Cart</p>
               <p className="light">(3 Items)</p>
             </div>
@@ -69,7 +69,7 @@ const AddCart = (props) => {
               </div>
             ))}
 
-            <div className="seperator" />
+            <div className="seperator pt-5" />
             <div className="row-view">
               <p className="bold">Subtotal</p>
               <p className="light">$1080</p>
@@ -87,7 +87,7 @@ const AddCart = (props) => {
               <p className="Eth-bold-orange">$1140</p>
             </div>
             <Link to={process.env.PUBLIC_URL + "/checkout"}>
-              <img className="w-100 pt-60" src={CheckOut} />
+              <img className="check-out-btn pt-60" src={CheckOut} />
             </Link>
           </div>
         </div>

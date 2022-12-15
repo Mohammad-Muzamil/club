@@ -33,8 +33,8 @@
       width: 27px;
       height: 30px;
       object-fit: contain;
-      margin-right: 8px;
-      @media screen and (max-width: 990px) {
+      margin-right: 20px;
+      @media screen and (max-width: 500px) {
         width: 15px;
         height: 16px;
         object-fit: contain;
@@ -48,13 +48,21 @@
       text-decoration-line: underline;
       color: #FDFDFD;
       margin: 0 8px 0 0;
-      @media screen and (max-width: 990px) {
+
+
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 500px) {
         font-size: 14px;
-    }
+      }
+      
+    
     }
     .arrow{
-      width: 32px;
-      height: 32px;
+      width: 22 px;
+      height: 22px;
       object-fit: contain;
       margin: 0 8px 0 0;
 
@@ -71,9 +79,13 @@
       font-weight: 700;
       font-size: 24px;
       color: #FDFDFD;
-      @media screen and (max-width: 990px) {
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 500px) {
         font-size: 12px;
-    }
+      }
     }
   
 }
@@ -89,10 +101,15 @@
         margin-top: 70px;
         object-fit: contain;
         @media screen and (max-width: 992px) {
-          width: 100%;
-          height: 200px;
-          margin-top: 10px;
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
         }
+        @media screen and (max-width: 500px) {
+          width: 100%;
+          height: 150px;
+          margin-top: 10px;
+      }
       }
       
 
@@ -110,6 +127,10 @@
             height: 20px;
             object-fit: contain;
             margin-right: 5px;
+            @media screen and (max-width: 500px) {
+              width: 15px;
+              height: 15px;
+          }
           }
         }
   
@@ -129,12 +150,23 @@
           flex-direction: row;
           justify-content: space-between;
           padding: 24px 0 20px 0;
+          @media screen and (max-width: 500px) {
+            padding: 20px 0 15px 0;
+        }
           .price-text{
             font-family: 'Ethnocentric';
             font-style: normal;
             font-weight: 400;
             font-size: 32px;
             color: #050505;
+            margin: 0px;
+            @media screen and (max-width: 992px) {
+              font-size: 22px;
+          }
+
+            @media screen and (max-width: 500px) {
+              font-size: 14px;
+          }
           }
           .right-arrow{
             width: 19px;
