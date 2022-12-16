@@ -4,6 +4,8 @@
   border-bottom: 1px solid #E1E1E1;
   position: relative;
   background-color: #050505;
+  border-color: #050505;
+  
   &.header-absolute {
     position: absolute;
     z-index: 99;
@@ -403,7 +405,7 @@
         >a {
           font-size: 15px;
           font-weight: 500;
-          line-height: 94px;
+          line-height: 40px;
           display: inline-block;
           letter-spacing: 0.8px;
           color: #FFFFFF;
@@ -2578,6 +2580,9 @@
     flex-direction: row;
     padding: 0 25px 0 25px;
 
+    #menu{
+      margin-top: 2.5em;
+    }
     .mobile-logo{
       width: 42px;
       height: 40px;
