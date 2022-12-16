@@ -4,7 +4,8 @@
   border-bottom: 1px solid #E1E1E1;
   position: relative;
   background-color: #050505;
-
+  border-color: #050505;
+  
   &.header-absolute {
     position: absolute;
     z-index: 99;
@@ -403,13 +404,12 @@
         }
 
         >a {
-
           font-family: 'Mont';
           font-style: normal;
-          font-weight: 700;
-          font-size: 16px;
+          font-weight: 500;
+          font-size: 15px;
           color: #FFFFFF;
-          line-height: 94px;
+          line-height: 40px;
           display: inline-block;
           letter-spacing: 0.8px;
 
@@ -2585,10 +2585,13 @@
   flex-direction: row;
   padding: 0 25px 0 25px;
 
-  .mobile-logo {
-    width: 42px;
-    height: 40px;
-  }
+    #menu{
+      margin-top: 2.5em;
+    }
+    .mobile-logo{
+      width: 42px;
+      height: 40px;
+    }
 
   .mobile-icons {
     align-items: center;

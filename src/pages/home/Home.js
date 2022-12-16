@@ -13,6 +13,9 @@ import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import ourStory from "../../assets/img/our-story.png";
 import btnBg from "../../assets/img/btn-bg.png";
+import heroImg from "../../assets/img/shoe-img.png";
+import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
+import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 
 const Home = (props) => {
   const nextSlide = useRef();
@@ -36,6 +39,25 @@ const Home = (props) => {
       items: 1,
     },
   };
+  const heroSection = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  }
   const CustomRightArrow = ({ onClick, ...rest }) => {
     const {
       onMove,
@@ -53,13 +75,124 @@ const Home = (props) => {
       </div>
     );
   };
+
+
+  const CustomDot = ({ onClick, ...rest }) => {
+    const {
+      onMove,
+      index,
+      active,
+      carouselState: { currentSlide, deviceType }
+    } = rest;
+    const carouselItems = ["", "", ""];
+    // onMove means if dragging or swiping in progress.
+    // active is provided by this lib for checking if the item is active or not.
+    return (
+      <span
+        className={`control-btn ${active ? "active" : "inactive"}`}
+        onClick={() => onClick()}
+      >
+        {React.Children.toArray(carouselItems)[index]}
+      </span>
+    );
+  };
   return (
     <Fragment>
       <LayoutOne
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="container pt-100 pb-100">
+        <div className="container-fluid hero-section">
+          <div className="row">
+            <div className="col-md-12 pm-l-0" >
+              <Carousel 
+              responsive={heroSection} 
+              showDots={true}
+              arrows={false}
+              customDot={<CustomDot />}
+              >
+                {/* slide start */}
+                <div className="row justify-content-center ">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0" >
+                    <h1>AIR 32</h1>
+                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
+                    <div class="slider-img">
+                      <img src={heroImg}  />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div>
+                {/* slide end */}
+                
+                {/* slide start */}
+                <div className="row justify-content-center">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
+                    <h1>AIR 32</h1>
+                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
+                    <div class="slider-img">
+                      <img src={heroImg}  />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div>
+                {/* slide end */}
+
+                {/* slide start */}
+                <div className="row justify-content-center">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
+                    <h1>AIR 32</h1>
+                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
+                    <div class="slider-img">
+                      <img src={heroImg}  />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />  
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />  
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div>
+                {/* slide end */}
+              </Carousel>
+            </div>
+          </div>
+        </div>
+        <div className="container pt-100 pb-100 services">
           <div className="row">
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
               <img src={Secure} />
