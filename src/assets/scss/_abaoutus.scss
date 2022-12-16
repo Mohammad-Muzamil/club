@@ -1,228 +1,287 @@
 body {
-    font-family: 'Mont';
+  font-family: "Mont";
 }
 
-
 .about-us {
-
-    font-family: 'Ethnocentric';
-    font-weight: 400;
-    font-size: 40px;
-    color: #E5E4E4;
+  font-family: "Ethnocentric";
+  font-weight: 400;
+  font-size: 40px;
+  color: #e5e4e4;
+  margin: 0px;
 }
 
 .ceo-section {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding-top: 26px !important;
 }
 
 .world-wide {
-    font-family: 'Ethnocentric';
-    margin: 10px 0 0 0;
-    font-weight: 400;
-    font-size: 40px;
-    text-align: center;
-    color: #F5F5F5;
-
-    @media screen and (max-width: 990px) {
-        font-size: 12px;
-        margin: 0 0 0 0;
-    }
+  font-family: "Ethnocentric";
+  margin: 10px 0 0 0;
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+  color: #f5f5f5;
 }
 
-
-
 .white-background {
+  background-image: url(../img/Background/whitebackground.png);
 
-    background-image: url(../img/Background/whitebackground.png);
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  padding: 300px 100px 100px 100px;
 
+  @media screen and (min-width: 992px) and (max-width: 1200px) {
+    padding: 300px 70px 100px 70px;
+  }
 
-    background-size: cover;
+  @media screen and (min-width: 500px) and (max-width: 990px) {
+    padding: 300px 30px 100px 30px;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 150px 20px 100px 20px;
+  }
+
+  .portion1 {
+    background-color: #050505;
     width: 100%;
-    min-height: 100vh;
-    padding: 300px 100px 100px 100px;
 
-    @media screen and (min-width: 992px) and (max-width: 1200px) {
-        padding: 300px 70px 100px 70px;
+    padding: 24px;
 
+    .bold {
+      font-family: "Ethnocentric";
+      font-weight: 400;
+      font-size: 24px;
+      color: #e5e4e4;
+      margin: 0,0,0,10px;
     }
 
-    @media screen and (min-width: 500px) and (max-width: 990px) {
-        padding: 300px 30px 100px 30px;
+    .light {
+      font-weight: 600;
+      font-size: 16px;
+      color: #e5e4e4;
+      margin: 0px;
+    }
+  }
 
+  .video-img {
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .portion2 {
+    background-color: #050505;
+    width: 100%;
+    min-height: 70vh;
+    padding: 24px;
+
+    .bold {
+      font-family: "Ethnocentric";
+      font-weight: 400;
+      font-size: 24px;
+      color: #e5e4e4;
+      margin: 0,0,0,10px;
     }
 
-    @media screen and (max-width: 500px) {
-        padding: 150px 20px 100px 20px;
+    .light {
+      margin-top: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #e5e4e4;
+      margin: 0px;
+    }
+  }
 
+  .video-img2 {
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 80%;
+      object-fit: cover;
     }
 
+    button {
+      width: 100%;
+      height: 71px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #050505;
+      border-radius: 5px;
+      margin-top: 30px;
+      border: none;
 
+      p {
+        font-family: "Ethnocentric";
+        font-weight: 400;
+        font-size: 20px;
+        color: #e5e4e4;
+        text-align: center;
+        margin: 0px;
+      }
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 170%;
+      color: #3f3636;
+
+      margin: 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .about-us {
+    font-size: 20px;
+  }
+
+  .world-wide {
+    font-size: 20px;
+    margin:0px;
+  }
+  .white-background {
     .portion1 {
-        background-color: #050505;
-        width: 100%;
+      margin-bottom: 20px;
 
+      .bold {
+        font-size: 16px;
+      }
 
-        padding: 24px;
-
-
-        @media screen and (max-width: 990px) {
-            margin-bottom: 20px;
-        }
-
-
-
-        .bold {
-            font-family: 'Ethnocentric';
-            font-weight: 400;
-            font-size: 24px;
-            color: #E5E4E4;
-
-            @media screen and (max-width: 990px) {
-                font-size: 16px;
-            }
-
-        }
-
-        .light {
-
-            font-weight: 600;
-            font-size: 16px;
-            color: #E5E4E4;
-
-            @media screen and (max-width: 990px) {
-                font-size: 12px;
-            }
-        }
-    }
-
-    .video-img {
-        height: 100%;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-
-        }
-
+      .light {
+        font-size: 12px;
+      }
     }
 
     .portion2 {
-        background-color: #050505;
-        width: 100%;
-        min-height: 70vh;
-        padding: 24px;
+      .bold {
+        font-size: 16px;
+      }
 
-
-        .bold {
-            font-family: 'Ethnocentric';
-            font-weight: 400;
-            font-size: 24px;
-            color: #E5E4E4;
-        }
-
-        .light {
-            margin-top: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            color: #E5E4E4;
-        }
-
-
+      .light {
+        font-size: 12px;
+      }
     }
 
     .video-img2 {
-        height: 100%;
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        @media screen and (max-width: 990px) {
-            padding-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+      img {
+        height: 75%;
+      }
 
-
-        }
-
-        img {
-            width: 100%;
-            height: 80%;
-            object-fit: cover;
-
-            @media screen and (max-width: 990px) {
-                height: 75%;
-            }
-
-        }
-
-        button {
-            width: 100%;
-            height: 71px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #050505;
-            border-radius: 5px;
-            margin-top: 30px;
-            border: none;
-
-            @media screen and (max-width: 500px) {
-                width: 75%;
-                height: 37px;
-            }
-
-            @media screen and (min-width: 500px) and (max-width: 990px) {
-                width: 75%;
-                height: 50px;
-
-            }
-
-            p {
-                font-family: 'Ethnocentric';
-                font-weight: 400;
-                font-size: 20px;
-                color: #E5E4E4;
-                text-align: center;
-                margin: 0px;
-
-                @media screen and (min-width: 500px) and (max-width: 990px) {
-                    font-size: 16px;
-                    margin: 0px;
-                }
-
-                @media screen and (max-width: 500px) {
-                    font-size: 10px;
-                    margin: 0px;
-
-
-                }
-            }
-        }
+      button {
+        width: 75%;
+        height: 45px;
 
         p {
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 170%;
-            color: #3F3636;
-
-            @media screen and (max-width: 500px) {
-                width: 75%;
-                font-size: 8px;
-                margin-top: 8px;
-                text-align: center;
-            }
-
-            @media screen and (min-width: 500px) and (max-width: 990px) {
-                width: 75%;
-                font-size: 14px;
-                margin-top: 8px;
-                text-align: center;
-            }
+          font-size: 12px;
+          width: 100%;
         }
+      }
 
-
-
+      p {
+        width: 75%;
+        font-size: 10px;
+        margin-top: 8px;
+        text-align: center;
+      }
     }
+  }
+}
+@media screen and (max-width: 500px) {
+  .about-us {
+    font-size: 12px;
+  }
+  .world-wide {
+    font-size: 12px;
+  }
+
+  .white-background {
+    .portion1 {
+      .bold {
+        font-size: 14px;
+      }
+
+      .light {
+        font-size: 10px;
+      }
+    }
+
+    .portion2 {
+      .bold {
+        font-size: 14px;
+      }
+
+      .light {
+        font-size: 10px;
+      }
+    }
+
+    .video-img2 {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        height: 80%;
+      }
+
+      button {
+        width: 80%;
+        height: 37px;
+
+        p {
+          font-size: 10px;
+        }
+      }
+
+      p {
+        font-size: 8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .white-background {
+    .portion1 {
+      .bold {
+        font-size: 10px;
+      }
+    }
+
+    .portion2 {
+      .bold {
+        font-size: 10px;
+      }
+    }
+
+    .video-img2 {
+      button {
+        p {
+          font-size: 8px;
+        }
+      }
+
+      p {
+        font-size: 8px;
+      }
+    }
+  }
 }

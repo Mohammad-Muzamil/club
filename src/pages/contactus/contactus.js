@@ -13,7 +13,7 @@ const ContactUs = (props) => {
           <div className="container">
             <p className="contact-us">Contact us</p>
             <p className="help-text-heading pt-100">CAN WE HELP?</p>
-            <p className="help-text pb-100">
+            <p className="help-text pb-100 pt-30">
               Office support is available 5/24, we wish you a new and successful
               experience in our store. Make sure we are here to help you with
               any problem you encounter in the Store. BooLopo support Team
@@ -63,10 +63,10 @@ const ContactUs = (props) => {
               <div className="contact-us-info col-lg-4 col-md-12 col-sm-12">
                 <p className="bold-heading">Store Adress</p>
 
-                <p className="light-text">
-                  L-20, Universal Plaza, L Block, DHA Phase
-                  4,Lahore.Punjab,Pakistan.
-                </p>
+                <p className="light-text mb-1">L-20, Universal Plaza, L Block,</p>
+
+                <p className="light-text mb-1">DHA Phase</p>
+                <p className="light-text">4,Lahore.Punjab,Pakistan.</p>
 
                 <p className="bold-heading">Opning hours</p>
 

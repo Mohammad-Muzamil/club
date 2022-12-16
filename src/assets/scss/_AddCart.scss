@@ -171,11 +171,16 @@ body {
 
 .check-out-btn{
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 140px;
 }
 
 @media screen and (max-width: 990px) {
+
+  .check-out-btn{
+    width: 100%;
+    height: 120px;
+}
+
   .cart-item-view {
     padding: 17px 5px 22px 5px;
     margin-bottom: 15px;
@@ -218,6 +223,11 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+
+  .check-out-btn{
+    width: 100%;
+    height: 100px;
+}
   .header-text {
     .bold {
       font-size: 20px;
@@ -288,7 +298,7 @@ body {
 
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 400px) {
   .cart-item-view {
     padding: 17px 5px 22px 5px;
     margin-bottom: 15px;

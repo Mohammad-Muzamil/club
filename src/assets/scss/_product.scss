@@ -26,13 +26,13 @@ body {
 
 .item-more-picture {
   width: 200px;
-  height: 150px;
+  height: 200px;
   background-color: #fff;
   border-radius: 10px;
 
   img {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
 }
@@ -195,15 +195,9 @@ body {
 
 
   .item-more-picture {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-  
-    img {
-      width: 90%;
-      height: 90%;
-      object-fit: contain;
-    }
+    padding: 10px;
+    width: 150px;
+    height: 150px;
   }
 
   .item-description-area {
@@ -231,5 +225,11 @@ body {
         display: block;
       }
     }
+  }
+
+  .item-more-picture {
+    padding: 7px;
+    width: 100px;
+    height: 100px;
   }
 }

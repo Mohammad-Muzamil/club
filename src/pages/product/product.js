@@ -19,7 +19,7 @@ const product = (props) => {
           <div className="container">
             <HeaderTwo brand={"Nike"} name={"Adidas Falcon Shoes"} />
             <p className="categories-text pb-70">Adidas Falcon Shoes </p>
-            <div className="row">
+            <div className="row m-0">
               <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="item-picture-view ">
                   <img className="Product-Image" src={Product1} />
