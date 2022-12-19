@@ -2,10 +2,7 @@ import {
     SET_CATEGORY
   } from "../actions/categoryActions";
   
-  const initState = {
-    userDetail: "",
-    userToken: "",
-  };
+  const initState = [];
   
   const userReducer = (state = initState, action) => {
     switch (action.type) {

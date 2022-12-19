@@ -45,7 +45,7 @@ const CheckOut = (props) => {
 
             <div className="seperator pt-30" />
             <div className="row m-0">
-              <div className="Address-Area col-xl-8 col-lg-8 col-md-12 col-sm-12">
+              <div className="Address-Area col-xl-7 col-lg-7 col-md-12 col-sm-12">
                 <div className="input-area row m-0 justify-content-between">
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
                     <p>Name</p>
@@ -94,7 +94,7 @@ const CheckOut = (props) => {
                 </div>
               </div>
 
-              <div className="Cart-Items col-xl-4 col-lg-4 col-md-12 col-sm-12">
+              <div className="Cart-Items col-xl-5 col-lg-5 col-md-12 col-sm-12">
                 <div className="row m-0">
                   <p className="my-cart">My cart</p>
                   <p className="total-items">(3 Items)</p>

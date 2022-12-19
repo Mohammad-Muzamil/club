@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
@@ -7,8 +7,20 @@ import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import { Link } from "react-router-dom";
+import {Brand_Products} from "../../helpers/api";
 
 const BrandProducts = (props) => {
+
+  const BrandProductsData = async ()=>{
+    await Brand_Products().then(response =>{
+      console.log(response);
+    });
+  }
+
+  useEffect(()=>{
+    // BrandData();
+    },[])
+
 
   return (
     <Fragment>

@@ -16,6 +16,7 @@ import PrivacyPolicy from "../src/pages/home/PrivacyPolicy"
 import ReturnPolicy from "../src/pages/home/ReturnPolicy"
 import TermsOfServices from "../src/pages/home/TermsOfServices"
 import ShoeSizeGuide from "../src/pages/home/ShoesSizeGuide";
+import { connect } from "react-redux";
 
 
 const App = (props) => {
@@ -43,4 +44,4 @@ const App = (props) => {
   );
 };
 
-export default App;
+export default connect()(App);

@@ -9,13 +9,21 @@
       font-weight: 700;
       font-size: 20px;
       line-height: 26px;
+      margin-bottom: 16px;
       color: #F5F5F5
     }
   }
   .footer-list {
     ul {
       li {
-        margin: 0 0 11px;
+
+        display: flex;
+        margin: 0 0 12px;
+        img{
+          width: 20px;
+          height: 20px;
+          margin-right: 16px;
+        }
         &:last-child {
           margin: 0 0 0;
         }
@@ -484,6 +492,7 @@
     }
   }
 }
+
 .footer-bottom {
   position: relative;
   z-index: 9;

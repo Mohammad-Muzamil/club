@@ -1,8 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Yeezy from "../../assets/img/shoes/yeezy.png";
 import { Link } from "react-router-dom";
+import {AllBrands} from "../../helpers/api";
+
+
 const Brands = (props) => {
+
+  const BrandData = async ()=>{
+    await AllBrands().then(response =>{
+      console.log(response);
+    });
+  }
+
+  useEffect(()=>{
+      // BrandData();
+  },[])
+
+
+
   return (
     <Fragment>
       <LayoutOne

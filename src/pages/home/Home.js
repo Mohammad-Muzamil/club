@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Secure from "../../assets/img/icons/secure.png";
 import truck from "../../assets/img/icons/truck.png";
@@ -16,6 +16,7 @@ import btnBg from "../../assets/img/btn-bg.png";
 import heroImg from "../../assets/img/shoe-img.png";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
+import {Cover_Products, Populer_Picks} from "../../helpers/api";
 
 const Home = (props) => {
   const nextSlide = useRef();
@@ -76,7 +77,6 @@ const Home = (props) => {
     );
   };
 
-
   const CustomDot = ({ onClick, ...rest }) => {
     const {
       onMove,
@@ -96,6 +96,21 @@ const Home = (props) => {
       </span>
     );
   };
+  const HomePageData = async ()=>{
+    await Cover_Products().then(response=>{
+     console.log("Cover",response);
+    });
+
+    // await Populer_Picks().then(response=>{
+    //   console.log("Populer",response);
+    //  });
+
+  }
+  useEffect(()=>{
+
+    HomePageData();
+
+  },[])
   return (
     <Fragment>
       <LayoutOne
