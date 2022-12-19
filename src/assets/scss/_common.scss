@@ -137,6 +137,10 @@ td {
   font-size: 20px;
   color: #e5e4e4;
   text-align: center;
+  @media screen and (max-width: 500px) {
+    padding: 10px;
+   }
+
 }
 
 // td {

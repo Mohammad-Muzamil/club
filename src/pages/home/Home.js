@@ -16,11 +16,13 @@ import btnBg from "../../assets/img/btn-bg.png";
 import heroImg from "../../assets/img/shoe-img.png";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
-import {Cover_Products, Populer_Picks} from "../../helpers/api";
+import { Cover_Products, Populer_Picks } from "../../helpers/api";
 
 const Home = (props) => {
   const nextSlide = useRef();
   const prevSlide = useRef();
+  const [converData, setcoverData] = useState([]);
+  const [popularData, setpopularData] = useState([]);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -44,34 +46,40 @@ const Home = (props) => {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 1
+      items: 1,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 1
+      items: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  }
+      items: 1,
+    },
+  };
   const CustomRightArrow = ({ onClick, ...rest }) => {
     const {
       onMove,
-      carouselState: { currentSlide, deviceType }
+      carouselState: { currentSlide, deviceType },
     } = rest;
     // onMove means if dragging or swiping in progress.
     return <button onClick={() => onClick()} />;
   };
   const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-    const { carouselState: { currentSlide } } = rest;
+    const {
+      carouselState: { currentSlide },
+    } = rest;
     return (
       <div className="carousel-button-group">
-        <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} ref={prevSlide} />
+        <button
+          className={currentSlide === 0 ? "disable" : ""}
+          onClick={() => previous()}
+          ref={prevSlide}
+        />
         <button onClick={() => next()} ref={nextSlide} />
       </div>
     );
@@ -82,7 +90,7 @@ const Home = (props) => {
       onMove,
       index,
       active,
-      carouselState: { currentSlide, deviceType }
+      carouselState: { currentSlide, deviceType },
     } = rest;
     const carouselItems = ["", "", ""];
     // onMove means if dragging or swiping in progress.
@@ -96,21 +104,30 @@ const Home = (props) => {
       </span>
     );
   };
-  const HomePageData = async ()=>{
-    await Cover_Products().then(response=>{
-     console.log("Cover",response);
+
+  const HomePageData = async () => {
+    await Cover_Products().then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        setcoverData(response.data);
+      } else {
+        alert("Something went Wrong");
+      }
     });
 
-    // await Populer_Picks().then(response=>{
-    //   console.log("Populer",response);
-    //  });
+    await Populer_Picks().then((response) => {
+      console.log("Populer", response);
 
-  }
-  useEffect(()=>{
-
+      if (response.status === 200) {
+        setpopularData(response.data);
+      } else {
+        alert("Something went Wrong");
+      }
+    });
+  };
+  useEffect(() => {
     HomePageData();
-
-  },[])
+  }, []);
   return (
     <Fragment>
       <LayoutOne
@@ -119,82 +136,61 @@ const Home = (props) => {
       >
         <div className="container-fluid hero-section">
           <div className="row">
-            <div className="col-md-12 pm-l-0" >
-              <Carousel 
-              responsive={heroSection} 
-              showDots={true}
-              arrows={false}
-              customDot={<CustomDot />}
+            <div className="col-md-12 pm-l-0">
+              <Carousel
+                responsive={heroSection}
+                showDots={true}
+                arrows={false}
+                customDot={<CustomDot />}
               >
                 {/* slide start */}
-                <div className="row justify-content-center ">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0" >
-                    <h1>AIR 32</h1>
-                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
-                    <div class="slider-img">
-                      <img src={heroImg}  />
+                {converData.map((val) => (
+                  <div className="row justify-content-center ">
+                    <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
+                      <h1>{val.name}</h1>
+                      <p>{val.long_description}</p>
+                      <div class="slider-img">
+                        <img src={heroImg} />
+                      </div>
+                      <div className="btn-div">
+                        <button>
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          &nbsp;SHOP NOW&nbsp;
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                        </button>
+                      </div>
                     </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div>
-                {/* slide end */}
-                
-                {/* slide start */}
-                <div className="row justify-content-center">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
-                    <h1>AIR 32</h1>
-                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
-                    <div class="slider-img">
-                      <img src={heroImg}  />
-                    </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
-                      </button>
+                    <div className="col-lg-5 col-md-5 second-sec">
+                      <img src={heroImg} />
                     </div>
                   </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div>
+                ))}
                 {/* slide end */}
 
-                {/* slide start */}
-                <div className="row justify-content-center">
+                {/* <div className="row justify-content-center">
                   <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
                     <h1>AIR 32</h1>
-                    <p>The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe combines a lightweight contoured nylon plate for firm grip.</p>
+                    <p>
+                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
+                      combines a lightweight contoured nylon plate for firm
+                      grip.
+                    </p>
                     <div class="slider-img">
-                      <img src={heroImg}  />
+                      <img src={heroImg} />
                     </div>
                     <div className="btn-div">
                       <button>
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
-                        <img src={btnArrowLt} />  
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
                         &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
-                        <img src={btnArrowGt} />  
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
                       </button>
                     </div>
                   </div>
@@ -202,7 +198,36 @@ const Home = (props) => {
                     <img src={heroImg} />
                   </div>
                 </div>
-                {/* slide end */}
+             
+
+           
+                  <div className="row justify-content-center">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
+                    <h1>AIR 32</h1>
+                    <p>
+                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
+                      combines a lightweight contoured nylon plate for firm
+                      grip.
+                    </p>
+                    <div class="slider-img">
+                      <img src={heroImg} />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div> */}
               </Carousel>
             </div>
           </div>
@@ -231,29 +256,43 @@ const Home = (props) => {
         <div className="Slider-Area  mb-5">
           <div className="container">
             <div className="row justify-content-between slider-ctrl">
-              <div className="col-sm-8 slider-text" >
+              <div className="col-sm-8 slider-text">
                 <p className="upper-text">Popular Picks</p>
                 <p className="lower-text">
                   Our popular picks for most favorited Nike Men’s & Women’s
                   shoes.
                 </p>
               </div>
-              <div className="col-sm-4 slider-btn" >
-                <img className="mr-10" src={leftbutton} onClick={() => prevSlide.current.click() }  />
-                <img src={rightbutton} onClick={() => nextSlide.current.click() }  />
+              <div className="col-sm-4 slider-btn">
+                <img
+                  className="mr-10"
+                  src={leftbutton}
+                  onClick={() => prevSlide.current.click()}
+                />
+                <img
+                  src={rightbutton}
+                  onClick={() => nextSlide.current.click()}
+                />
               </div>
             </div>
             <div className="row slider-sec">
               <div className="col-xs-6 d-sm-none col-sec">
-                <div class="slider-desp" >
+                <div class="slider-desp">
                   <p className="lower-text">
                     Our popular picks for most favorited Nike Men’s & Women’s
                     shoes.
                   </p>
                 </div>
                 <div className="slider-btn">
-                  <img className="mr-10" src={leftbutton} onClick={() => prevSlide.current.click() }  />
-                  <img src={rightbutton} onClick={() => nextSlide.current.click() }  />
+                  <img
+                    className="mr-10"
+                    src={leftbutton}
+                    onClick={() => prevSlide.current.click()}
+                  />
+                  <img
+                    src={rightbutton}
+                    onClick={() => nextSlide.current.click()}
+                  />
                 </div>
               </div>
               <div className="col-xs-6 col-md-12">
@@ -267,6 +306,46 @@ const Home = (props) => {
                   renderButtonGroupOutside={true}
                   customButtonGroup={<ButtonGroup />}
                 >
+                  {popularData.map((val) => (
+                    <div className="ItemView">
+                      <img className="item-image" src={Shoes} />
+                      <div className="item-description">
+                        <div className="item-rating-view">
+                          <img className="star" src={yellowstar} />
+                          <img className="star" src={yellowstar} />
+                          <img className="star" src={yellowstar} />
+                          <img className="star" src={yellowstar} />
+                          <img className="star" src={star} />
+                        </div>
+                        <p className="item-info">
+                         {val.short_description}
+                        </p>
+                        <div className="price-view">
+                          <p className="price-text">$120.50</p>
+                          <img className="right-arrow" src={righarrow} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* <div className="ItemView">
+                    <img className="item-image" src={Shoes} />
+                    <div className="item-description">
+                      <div className="item-rating-view">
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={star} />
+                      </div>
+                      <p className="item-info">
+                        Adidas Falcon Shoes for men - 2021 Edition
+                      </p>
+                      <div className="price-view">
+                        <p className="price-text">$120.50</p>
+                        <img className="right-arrow" src={righarrow} />
+                      </div>
+                    </div>
+                  </div>
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">
@@ -287,7 +366,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -306,7 +385,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -325,7 +404,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -344,7 +423,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -363,7 +442,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -382,7 +461,7 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={Shoes} />
                     <div className="item-description">
                       <div className="item-rating-view">
                         <img className="star" src={yellowstar} />
@@ -399,66 +478,32 @@ const Home = (props) => {
                         <img className="right-arrow" src={righarrow} />
                       </div>
                     </div>
-                  </div>
-                  <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                  <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
+                  </div> */}
                 </Carousel>
               </div>
             </div>
           </div>
-          
         </div>
         <div class="container-fluid ourStory">
-            <div class="row">
-              <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
-                <h3>WHY IS SO <span className="grey-text">CHEAP</span>?</h3>
-                <p>Don't worry we have answers to all of your questions. Click on below button.</p>
-              </div>
-                <div class="col-lg-11 col-md-12 col-sm-12 img-section">
-                  <img src={ourStory}  />
-                  <img src={btnBg} className="read-story-btn" />
-                </div>
-                {/* <div class="col-8 btn-group">
+          <div class="row">
+            <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
+              <h3>
+                WHY IS SO <span className="grey-text">CHEAP</span>?
+              </h3>
+              <p>
+                Don't worry we have answers to all of your questions. Click on
+                below button.
+              </p>
+            </div>
+            <div class="col-lg-11 col-md-12 col-sm-12 img-section">
+              <img src={ourStory} />
+              <img src={btnBg} className="read-story-btn" />
+            </div>
+            {/* <div class="col-8 btn-group">
                   <img src={btnBg} />
                 </div> */}
-            </div>
           </div>
+        </div>
       </LayoutOne>
     </Fragment>
   );

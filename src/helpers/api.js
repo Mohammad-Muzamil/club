@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function Cover_Products() {
   var config = {
     method: 'GET',
-    url: `${'http://f6a2-110-39-152-222.ngrok.io/hype-kicks'}/product/cover_products`,
+    url: `${process.env.REACT_APP_LOCAL_API}/product/cover_products`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -24,7 +24,7 @@ export async function Cover_Products() {
 export async function Populer_Picks() {
   var config = {
     method: 'get',
-    url: `${'http://2eba-110-39-152-222.ngrok.io'}/product/get_all_Product/`,
+    url: `${process.env.REACT_APP_LOCAL_API}/product/popular_picks`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -44,7 +44,7 @@ export async function Populer_Picks() {
 export async function AllBrands() {
   var config = {
     method: 'get',
-    url: `${process.env.REACT_APP_LOCAL_API}product/brands/`,
+    url: `${process.env.REACT_APP_LOCAL_API}/product/brands`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -64,7 +64,7 @@ export async function AllBrands() {
 export async function Brand_Products(brand_id) {
   var config = {
     method: 'get',
-    url: `${process.env.REACT_APP_LOCAL_API}product/${brand_id}/products`,
+    url: `${process.env.REACT_APP_LOCAL_API}/product/${brand_id}/products`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

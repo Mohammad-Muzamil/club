@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect,useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
@@ -8,17 +8,27 @@ import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import { Link } from "react-router-dom";
 import {Brand_Products} from "../../helpers/api";
+import { useLocation } from "react-router-dom";
+
 
 const BrandProducts = (props) => {
-
+  const location = useLocation();
+  const [brand_Products, setbrand_Products] = useState();
+  console.log(location.state);
   const BrandProductsData = async ()=>{
-    await Brand_Products().then(response =>{
+    
+    await Brand_Products(location.state).then(response =>{
       console.log(response);
+      if(response.status === 200){
+        setbrand_Products(response.data)
+      }else{
+        alert("Something Went Wrong");
+      }
     });
   }
 
   useEffect(()=>{
-    // BrandData();
+    BrandProductsData();
     },[])
 
 

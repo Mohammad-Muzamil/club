@@ -3,7 +3,9 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 const AddCart = (props) => {
+  console.log(props.cartItems);
   const [quantity, setquantity] = useState(0);
   return (
     <Fragment>
@@ -95,5 +97,9 @@ const AddCart = (props) => {
     </Fragment>
   );
 };
-
-export default AddCart;
+const mapStateToProps = (state) => {
+  return {
+    cartItems: state.cartData,
+  };
+};
+export default connect(mapStateToProps)(AddCart);

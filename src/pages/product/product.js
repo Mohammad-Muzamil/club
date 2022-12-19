@@ -7,8 +7,14 @@ import righarrow from "../../assets/img/icons/rightarrow.png";
 import Product1 from "../../assets/img/shoes/product1.png";
 import AddCartBtn from "../../assets/img/buttons/addCartBtn.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
+import { addToCart } from "../../redux/actions/cartActions";
+import { connect } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const product = (props) => {
+
+
   return (
     <Fragment>
       <LayoutOne
@@ -101,8 +107,10 @@ const product = (props) => {
                   </div>
                 </div>
 
-                <img className="add-cart-btn" src={AddCartBtn} />
-              </div>
+                <img 
+                onClick={()=> props.addToCart({id:1,qauntity:1},toast)}
+                className="add-cart-btn" src={AddCartBtn} />
+              </div>  
             </div>
 
             <p className="may-like-txt pt-100">You May Also Like</p>
@@ -134,9 +142,29 @@ const product = (props) => {
             </div>
           </div>
         </div>
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
       </LayoutOne>
     </Fragment>
   );
 };
 
-export default product;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (item, addToast) => {
+      dispatch(addToCart(item, addToast));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(product);
+

@@ -1,23 +1,27 @@
 import React, { Fragment, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Yeezy from "../../assets/img/shoes/yeezy.png";
-import { Link } from "react-router-dom";
-import {AllBrands} from "../../helpers/api";
-
+import { Link, useNavigate } from "react-router-dom";
+import { AllBrands } from "../../helpers/api";
 
 const Brands = (props) => {
+  const navigate = useNavigate();
+  const [brands, setbrands] = useState([]);
 
-  const BrandData = async ()=>{
-    await AllBrands().then(response =>{
+  const BrandData = async () => {
+    await AllBrands().then((response) => {
       console.log(response);
+      if (response.status === 200) {
+        setbrands(response.data);
+      } else {
+        alert("Something went wrong");
+      }
     });
-  }
+  };
 
-  useEffect(()=>{
-      // BrandData();
-  },[])
-
-
+  useEffect(() => {
+    BrandData();
+  }, []);
 
   return (
     <Fragment>
@@ -29,14 +33,16 @@ const Brands = (props) => {
           <div className="container">
             <p className="page-info-text pb-100 ">Brands</p>
             <div className="row">
-              {[1, 2, 3, 4, 5, 6].map((val) => (
-
-                  <div className="col-xl-4 col-lg-4 col-6 mb-1 p-1">
-                       <Link to={process.env.PUBLIC_URL + "/brands-products"}>
-                    <img className="brandLogo" src={Yeezy} />
-                    </Link>
-                  </div>
+              {brands.map((val) => (
+                <div className="col-xl-4 col-lg-4 col-6 mb-1 p-1">
+                  <Link
+                    to={process.env.PUBLIC_URL + "/brands-products"}
+                    state={val.id}
              
+                  >
+                    <img className="brandLogo" src={Yeezy} />
+                  </Link>
+                </div>
               ))}
             </div>
           </div>

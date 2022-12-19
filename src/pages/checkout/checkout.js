@@ -35,14 +35,6 @@ const CheckOut = (props) => {
               </div>
             </div>
 
-
-
-
-
-
-
-
-
             <div className="seperator pt-30" />
             <div className="row m-0">
               <div className="Address-Area col-xl-7 col-lg-7 col-md-12 col-sm-12">
@@ -121,9 +113,7 @@ const CheckOut = (props) => {
             <div className="row m-0 pt-50">
               <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 <Link to={process.env.PUBLIC_URL + "/paymentdetails"}>
-                  <img 
-                  className="proceed-btn "
-                  src={Proceedpayment} />
+                  <img className="proceed-btn " src={Proceedpayment} />
                 </Link>
               </div>
 

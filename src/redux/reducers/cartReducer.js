@@ -14,7 +14,7 @@ const cartReducer = (state = initState, action) => {
   product = action.payload;
 
   if (action.type === ADD_TO_CART) {
-
+    
     const cartItem = cartItems.filter(
       item => item.id === product.id
     )[0];

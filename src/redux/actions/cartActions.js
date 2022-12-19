@@ -8,7 +8,7 @@ export const DELETE_ALL_FROM_CART = "DELETE_ALL_FROM_CART";
 export const addToCart = (item, addToast) => {
   return (dispatch) => {
     if (addToast) {
-      addToast("Added To Cart", { appearance: "success", autoDismiss: true });
+      addToast("Added To Cart", { appearance: "success"});
     }
     dispatch({
       type: ADD_TO_CART,
