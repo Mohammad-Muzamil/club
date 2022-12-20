@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import Proceedpayment from "../../assets/img/buttons/proceedpayment.png"
+import BaseButton from "../../assets/img/buttons/basebutton.png"
 
 const PaymentDetails = (props) => {
 
@@ -84,10 +85,13 @@ const PaymentDetails = (props) => {
                         </div>
 
                         <div className="seperator pt-100" />
-
-                        <img
+                        <div className="BaseButton">
+                            <p> Proceed to Pay</p>
+                               
+                        </div>
+                        {/* <img
                             className="proceed-payment"
-                            src={Proceedpayment} />
+                            src={BaseButton} /> */}
                     </div>
                 </div>
             </LayoutOne>

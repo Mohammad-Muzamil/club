@@ -21,7 +21,25 @@ body {
 }
 
 // Common Text
+.BaseButton{
 
+  background-image: url(../../assets/img/buttons/basebutton.png);
+  background: position center;
+  background-repeat: no-repeat;
+  height: 76px;
+  background-size: contain;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p{
+    font-family: 'Ethnocentric';
+    font-weight: 400;
+    font-size: 30px;
+    color:#050505 ;
+  }
+
+}
 .BackgroundPicture {
   background-image: url(../../assets/img/Background/footerbackground.png);
   background: position center;

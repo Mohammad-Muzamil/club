@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
@@ -9,11 +9,12 @@ import AddCartBtn from "../../assets/img/buttons/addCartBtn.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import { addToCart } from "../../redux/actions/cartActions";
 import { connect } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const product = (props) => {
-
+const Product = (props) => {
+  const [quantity, setquantity] = useState(0);
+  const notify = toast();
 
   return (
     <Fragment>
@@ -40,9 +41,6 @@ const product = (props) => {
                   </div>
                 </div>
               </div>
-
-
-
 
               <div className="item-description-area col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="m-0 row justify-content-between align-items-center description-view">
@@ -95,22 +93,67 @@ const product = (props) => {
                 <p className="quantity">Quantity</p>
 
                 <div className="d-flex flex-row quantity-selector-view mt-4">
-                  <div className="minus-view">
+                  <div
+                    onClick={() => {
+                      if (quantity === 0) {
+                        toast.warning("Quantity cannot be less than 0", {
+                          position: "top-right",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                        });
+                      } else {
+                        toast.success("Quantity decreased", {
+                          position: "top-right",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                        });
+                        setquantity(quantity - 1);
+                      }
+                    }}
+                    className="minus-view"
+                  >
                     <p>-</p>
                   </div>
 
                   <div className="value-view">
-                    <p>0</p>
+                    <p>{quantity}</p>
                   </div>
-                  <div className="minus-view">
+                  <div
+                    onClick={() => {
+                      toast.success("Quantity increased", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      });
+                      setquantity(quantity + 1);
+                    }}
+                    className="minus-view"
+                  >
                     <p>+</p>
                   </div>
                 </div>
 
-                <img 
-                onClick={()=> props.addToCart({id:1,qauntity:1},toast)}
-                className="add-cart-btn" src={AddCartBtn} />
-              </div>  
+                <img
+                  // onClick={()=> props.addToCart({id:1,qauntity:quantity},toast)}
+                  className="add-cart-btn"
+                  src={AddCartBtn}
+                />
+              </div>
             </div>
 
             <p className="may-like-txt pt-100">You May Also Like</p>
@@ -143,16 +186,16 @@ const product = (props) => {
           </div>
         </div>
         <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
         />
       </LayoutOne>
     </Fragment>
@@ -166,5 +209,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(null, mapDispatchToProps)(product);
-
+export default connect(null, mapDispatchToProps)(Product);
