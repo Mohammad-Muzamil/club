@@ -4,6 +4,9 @@ import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
+import {addToCart, deleteAllFromCart, IncreaseQuantity, DecreaseQuantity, deleteFromCart } from "../../redux/actions/cartActions"
+
 const AddCart = (props) => {
   console.log(props.cartItems);
   const [quantity, setquantity] = useState(0);
@@ -20,7 +23,7 @@ const AddCart = (props) => {
               <p className="light">(3 Items)</p>
             </div>
 
-            {[1, 2, 3, 4].map((val) => (
+            {props.cartItems.map((val) => (
               <div className="cart-item-view">
                 <img src={Shoe} />
 
@@ -42,20 +45,20 @@ const AddCart = (props) => {
                     <div className="quantity-enter-view">
                       <p
                         onClick={() => {
-                          if (quantity === 0) {
+                          if (val.Cartquantity === 0) {
                             alert("Quantity Cannot be 0");
                           } else {
-                            setquantity(quantity - 1);
+                            props.DecreaseQuantityCart(val)
                           }
                         }}
                         className="arith"
                       >
                         -
                       </p>
-                      <p className="quantity-val">{quantity}</p>
+                      <p className="quantity-val">{val.Cartquantity}</p>
                       <p
                         onClick={() => {
-                          setquantity(quantity + 1);
+                          props.increaseQuantityCart(val);
                         }}
                         className="arith"
                       >
@@ -102,4 +105,19 @@ const mapStateToProps = (state) => {
     cartItems: state.cartData,
   };
 };
-export default connect(mapStateToProps)(AddCart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    DecreaseQuantityCart: (item, addToast) => {
+      dispatch(DecreaseQuantity(item, addToast));
+    },
+    increaseQuantityCart: (item, addToast) => {
+      dispatch(IncreaseQuantity(item, addToast));
+    },
+    addToCart: (item, addToast, quantityCount) => {
+      dispatch(addToCart(item, addToast, quantityCount));
+    },
+
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCart);

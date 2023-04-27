@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Product = (props) => {
   const [quantity, setquantity] = useState(0);
-  const notify = toast();
 
   return (
     <Fragment>

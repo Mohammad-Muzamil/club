@@ -7,7 +7,7 @@ import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import { Link } from "react-router-dom";
-import {Brand_Products} from "../../helpers/api";
+import {Brand_Products , Product_Variants} from "../../helpers/api";
 import { useLocation } from "react-router-dom";
 
 
@@ -17,19 +17,38 @@ const BrandProducts = (props) => {
   console.log(location.state);
   const BrandProductsData = async ()=>{
     
-    await Brand_Products(location.state).then(response =>{
-      console.log(response);
-      if(response.status === 200){
-        setbrand_Products(response.data)
-      }else{
-        alert("Something Went Wrong");
-      }
-    });
+
+    if (window.location.pathname === '/brands-products'){
+      await Brand_Products(location.state).then(response =>{
+        console.log(response);
+        if(response.status === 200){
+          setbrand_Products(response.data)
+        }else{
+          alert("Something Went Wrong");
+        }
+      });
+    }else{
+      console.log(location.state);
+  
+      await Product_Variants(location.state).then(response =>{
+        console.log(response);
+        if(response.status === 200){
+          setbrand_Products([1,2,3])
+        }else{
+          alert("Something Went Wrong");
+        }
+      });
+    }
+  
+
+
+
+
   }
 
   useEffect(()=>{
     BrandProductsData();
-    },[])
+    },[window.location.pathname])
 
 
   return (
@@ -55,12 +74,14 @@ const BrandProducts = (props) => {
           
 
             <div className="row">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((val) => (
+              {brand_Products &&   brand_Products.map((val) => (
 
           
                 <div className="col-xl-4 col-lg-4 col-6 p-3">
 
-                 <Link to={window.location.pathname === "/brands-products" ? process.env.PUBLIC_URL + "/specific-brand-products" : process.env.PUBLIC_URL + "/product"}>
+                 <Link to={window.location.pathname === "/brands-products" ? process.env.PUBLIC_URL + "/specific-brand-products" : process.env.PUBLIC_URL + "/product"}
+                 state={window.location.pathname === "/brands-products"  ? location.state : val}
+                 >
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">

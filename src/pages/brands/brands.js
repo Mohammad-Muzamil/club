@@ -33,11 +33,11 @@ const Brands = (props) => {
           <div className="container">
             <p className="page-info-text pb-100 ">Brands</p>
             <div className="row">
-              {brands.map((val) => (
+              {brands &&  brands.map((val) => (
                 <div className="col-xl-4 col-lg-4 col-6 mb-1 p-1">
                   <Link
                     to={process.env.PUBLIC_URL + "/brands-products"}
-                    state={val.id}
+                    state={val.uuid}
              
                   >
                     <img className="brandLogo" src={Yeezy} />
