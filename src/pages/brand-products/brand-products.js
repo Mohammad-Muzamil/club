@@ -31,7 +31,7 @@ const BrandProducts = (props) => {
       console.log(location.state);
   
       await Product_Variants(location.state).then(response =>{
-        console.log(response);
+        console.log("Product Varient", response.data);
         if(response.status === 200){
           setbrand_Products([1,2,3])
         }else{
