@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
@@ -11,9 +11,33 @@ import { addToCart } from "../../redux/actions/cartActions";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Single_Product_Variants } from "../../helpers/api";
+import { useParams } from "react-router-dom";
+import { Success, Warning } from "../../helpers/NotifiyToasters";
 
 const Product = (props) => {
-  const [quantity, setquantity] = useState(0);
+  const [quantity, setquantity] = useState(1);
+
+  const [product, setProduct] = useState({});
+
+  const { product_id } = useParams();
+
+  console.log(product_id);
+
+  const GetProduct = async () => {
+    await Single_Product_Variants(product_id).then((response) => {
+      console.log("Product Single Varient", response.data);
+      if (response.status === 200) {
+        setProduct(response.data);
+      } else {
+        alert("Something Went Wrong");
+      }
+    });
+  };
+
+  useEffect(() => {
+    GetProduct();
+  }, []);
 
   return (
     <Fragment>
@@ -24,7 +48,7 @@ const Product = (props) => {
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
             <HeaderTwo brand={"Nike"} name={"Adidas Falcon Shoes"} />
-            <p className="categories-text pb-70">Adidas Falcon Shoes </p>
+            <p className="categories-text pb-70">{product.thumbnail} </p>
             <div className="row m-0">
               <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="item-picture-view ">
@@ -52,16 +76,10 @@ const Product = (props) => {
                     <img className="star" src={star} />
                   </div>
                 </div>
-                <p className="item-description">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.{" "}
-                </p>
+                <p className="item-description">{product.long_description}</p>
                 <p className="price-tag">
                   <p className="price-hider">Price:</p>
-                  15.29$
+                  {product.price}$
                 </p>
                 <p className="size-tag">Size</p>
                 <div className="row mr-0 ml-0 mt-4">
@@ -94,28 +112,10 @@ const Product = (props) => {
                 <div className="d-flex flex-row quantity-selector-view mt-4">
                   <div
                     onClick={() => {
-                      if (quantity === 0) {
-                        toast.warning("Quantity cannot be less than 0", {
-                          position: "top-right",
-                          autoClose: 5000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        });
+                      if (quantity === 1) {
+                        Warning("Quantity cannot be less than 0");
                       } else {
-                        toast.success("Quantity decreased", {
-                          position: "top-right",
-                          autoClose: 5000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        });
+                        Success("Quantity decreased");
                         setquantity(quantity - 1);
                       }
                     }}
@@ -129,17 +129,14 @@ const Product = (props) => {
                   </div>
                   <div
                     onClick={() => {
-                      toast.success("Quantity increased", {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                      });
-                      setquantity(quantity + 1);
+                      if (product.stock_count === quantity) {
+                        Warning(
+                          `We only have ${product.stock_count} item left`
+                        );
+                      } else {
+                        Success("Quantity increased");
+                        setquantity(quantity + 1);
+                      }
                     }}
                     className="minus-view"
                   >
@@ -148,7 +145,9 @@ const Product = (props) => {
                 </div>
 
                 <img
-                  // onClick={()=> props.addToCart({id:1,qauntity:quantity},toast)}
+                  onClick={() =>
+                    props.addToCart({ ...product, Cartquantity: quantity })
+                  }
                   className="add-cart-btn"
                   src={AddCartBtn}
                 />

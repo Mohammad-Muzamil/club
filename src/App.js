@@ -25,9 +25,9 @@ const App = (props) => {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/brands" element={<Brands />}></Route>
-        <Route path="/brands-products" element={<BrandProducts />}></Route>
-        <Route path="/specific-brand-products" element={<BrandProducts />}></Route>
-        <Route path="/product" element={<Product />}></Route>
+        <Route path="/brands-products/:product_id" element={<BrandProducts />}></Route>
+        <Route path="/specific-brand-products/:productvarient_id" element={<BrandProducts />}></Route>
+        <Route path="/product/:product_id" element={<Product />}></Route>
         <Route path="/cart" element={<AddCart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
         <Route path="/paymentdetails" element={<PaymentDetails />}></Route>

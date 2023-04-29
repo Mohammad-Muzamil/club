@@ -16,10 +16,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { save, load } from "redux-localstorage-simple";
 import { Provider } from "react-redux";
-import { fetchProducts } from "./redux/actions/productActions";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./redux/reducers/rootReducer";
-import products from "./data/productData";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = createStore(
@@ -27,7 +25,7 @@ const store = createStore(
   load(),
   composeWithDevTools(applyMiddleware(thunk, save()))
 );
-store.dispatch(fetchProducts(products));
+// store.dispatch();
 root.render(
   <Provider store={store}>
   <App />

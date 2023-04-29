@@ -6,20 +6,20 @@ import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
-import { Link } from "react-router-dom";
 import {Brand_Products , Product_Variants} from "../../helpers/api";
-import { useLocation } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 const BrandProducts = (props) => {
-  const location = useLocation();
+  const {product_id, productvarient_id} = useParams();
   const [brand_Products, setbrand_Products] = useState();
-  console.log(location.state);
+ 
   const BrandProductsData = async ()=>{
-    
 
-    if (window.location.pathname === '/brands-products'){
-      await Brand_Products(location.state).then(response =>{
+
+    if (window.location.pathname === `/brands-products/${product_id}`){
+      console.log("Brand ID",product_id);
+      await Brand_Products(product_id).then(response =>{
         console.log(response);
         if(response.status === 200){
           setbrand_Products(response.data)
@@ -28,12 +28,12 @@ const BrandProducts = (props) => {
         }
       });
     }else{
-      console.log(location.state);
+      console.log("Product Varient ID", productvarient_id);
   
-      await Product_Variants(location.state).then(response =>{
+      await Product_Variants(productvarient_id).then(response =>{
         console.log("Product Varient", response.data);
         if(response.status === 200){
-          setbrand_Products([1,2,3])
+          setbrand_Products(response.data)
         }else{
           alert("Something Went Wrong");
         }
@@ -60,15 +60,15 @@ const BrandProducts = (props) => {
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
             
-              {window.location.pathname === "/brands-products" ? (
+              {window.location.pathname === `/brands-products/${product_id}` ? (
                 <div className="brand-logo pb-80">
                    <img className="logo" src={NikeLogo} />
                  </div> 
                
               ) : (
                 <HeaderTwo 
-                brand={"Nike"}
-                name={"Adidas Falcon Shoes "}
+                brand={brand_Products[0].product.brand && brand_Products[0].product.brand.name}
+                name={brand_Products[0].product && brand_Products[0].product.name}
                 center={true}/>
               )}
           
@@ -79,8 +79,7 @@ const BrandProducts = (props) => {
           
                 <div className="col-xl-4 col-lg-4 col-6 p-3">
 
-                 <Link to={window.location.pathname === "/brands-products" ? process.env.PUBLIC_URL + "/specific-brand-products" : process.env.PUBLIC_URL + "/product"}
-                 state={window.location.pathname === "/brands-products"  ? location.state : val}
+                 <Link to={window.location.pathname === `/brands-products/${product_id}` ? process.env.PUBLIC_URL + `/specific-brand-products/${val.uuid}` : process.env.PUBLIC_URL + `/product/${val.uuid}`}
                  >
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
@@ -93,10 +92,10 @@ const BrandProducts = (props) => {
                         <img className="star" src={star} />
                       </div>
                       <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
+                        {val.short_description}
                       </p>
                       <div className="price-view">
-                        <p className="price-text">$120.50</p>
+                        <p className="price-text">${val.price}</p>
                         <img className="right-arrow" src={righarrow} />
                       </div>
                     </div>

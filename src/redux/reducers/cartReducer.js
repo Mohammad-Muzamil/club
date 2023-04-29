@@ -6,6 +6,7 @@ import {
   INCREASE_QUANTITY,
   DECREASE_QUANTITY
 } from "../actions/cartActions";
+import { Warning, Success } from "../../helpers/NotifiyToasters";
 
 const initState = [];
 
@@ -16,13 +17,15 @@ const cartReducer = (state = initState, action) => {
   if (action.type === ADD_TO_CART) {
     
     const cartItem = cartItems.filter(
-      item => item.id === product.id
+      item => item.uuid === product.uuid
     )[0];
     if (cartItem === undefined) {
       console.log("new Items");
+      Success("Item Added to Cart")
       return [...cartItems, product];
     } else {
       console.log("Item Already");
+      Warning("Item Already Exits")
       return cartItems;
     }
   }
@@ -30,24 +33,23 @@ const cartReducer = (state = initState, action) => {
   if (action.type === INCREASE_QUANTITY) {  
 
     cartItems.map(val =>{
-      if (val.id ===product.id){
+      if (val.uuid ===product.uuid){
           val.Cartquantity = val.Cartquantity + 1
       }
     });
-    console.log(cartItems);
+    return cartItems;
   }
 
   if (action.type === DECREASE_QUANTITY) {
       
       cartItems.map(val =>{
-        if (val.id ===product.id){
-            val.Cartquantity = val.Cartquantity - 1
+        if (val.uuid ===product.uuid){
+          let temp = val.Cartquantity - 1;
+          val.Cartquantity = null;
+          val.Cartquantity = temp;
         }
-      });
-
-      console.log(cartItems);
-    
-
+      }); 
+      return cartItems;   
   }
 
   if (action.type === DELETE_FROM_CART) {

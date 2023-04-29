@@ -36,8 +36,7 @@ const Brands = (props) => {
               {brands &&  brands.map((val) => (
                 <div className="col-xl-4 col-lg-4 col-6 mb-1 p-1">
                   <Link
-                    to={process.env.PUBLIC_URL + "/brands-products"}
-                    state={val.uuid}
+                    to={process.env.PUBLIC_URL + `/brands-products/${val.uuid}`}
              
                   >
                     <img className="brandLogo" src={Yeezy} />

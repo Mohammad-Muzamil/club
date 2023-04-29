@@ -1,15 +1,40 @@
 import React, { Fragment, useState } from "react";
+import { bindActionCreators } from 'redux';
+
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useDeepCompareEffect from 'use-deep-compare-effect'
+import {addToCart, IncreaseQuantity, DecreaseQuantity } from "../../redux/actions/cartActions"
 
-import {addToCart, deleteAllFromCart, IncreaseQuantity, DecreaseQuantity, deleteFromCart } from "../../redux/actions/cartActions"
+const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
 
-const AddCart = (props) => {
-  console.log(props.cartItems);
-  const [quantity, setquantity] = useState(0);
+  const [Data, setData] = useState([]);
+
+  // useDeepCompareEffect(
+  //   () => {
+  //     // make an HTTP request or whatever with the query and variables
+  //     // optionally return a cleanup function if necessary
+  //   },
+  //   setData(cartItems)
+    
+  //   [cartItems],
+  // )
+
+
+  const SubtotalFunction = ()=>{
+    let totalAmount = 0
+      cartItems.forEach(element => {
+        let singleProductAmount = element.price * element.Cartquantity;
+        totalAmount = totalAmount + singleProductAmount
+      });
+
+      return totalAmount;
+  }
   return (
     <Fragment>
       <LayoutOne
@@ -20,45 +45,54 @@ const AddCart = (props) => {
           <div className="container">
             <div className="header-text pb-30">
               <p className="bold">My Cart</p>
-              <p className="light">(3 Items)</p>
+              <p className="light">({cartItems.length} Items)</p>
             </div>
 
-            {props.cartItems.map((val) => (
-              <div className="cart-item-view">
-                <img src={Shoe} />
+            {cartItems.map((val, key) => {
+              
+              return(
+              <div 
+              key={key}
+              className="cart-item-view">
+              <img src={Shoe} />
 
                 <div className="product-info">
-                  <p className="product-name">Adidas falcon shoes</p>
-                  <p className="product-size">
+                  <p className="product-name">{val.name}</p>
+                  <div className="product-size">
                     <p>Red</p> 42/7
-                  </p>
+                  </div>
                 </div>
 
                 <div className="product-stats-view">
                   <div className="price-view">
                     <p className="price">Price</p>
-                    <p className="amount">$360</p>
+                    <p className="amount">${val.price}</p>
                   </div>
 
-                  <div className="price-view">
+                  <div 
+                    className="price-view">
                     <p className="price">Quantity</p>
                     <div className="quantity-enter-view">
                       <p
                         onClick={() => {
-                          if (val.Cartquantity === 0) {
+                          if (val.Cartquantity === 1) {
                             alert("Quantity Cannot be 0");
                           } else {
-                            props.DecreaseQuantityCart(val)
+                            DecreaseQuantityCart(val)
                           }
+
                         }}
                         className="arith"
                       >
                         -
                       </p>
+                      
                       <p className="quantity-val">{val.Cartquantity}</p>
                       <p
                         onClick={() => {
-                          props.increaseQuantityCart(val);
+                          increaseQuantityCart(val);
+
+                          console.log("New",  cartItems) 
                         }}
                         className="arith"
                       >
@@ -68,16 +102,16 @@ const AddCart = (props) => {
                   </div>
                   <div className="price-view">
                     <p className="price">Subtotal</p>
-                    <p className="total-amount">$360</p>
+                    <p className="total-amount">${val.Cartquantity * val.price}</p>
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
 
             <div className="seperator pt-5" />
             <div className="row-view">
               <p className="bold">Subtotal</p>
-              <p className="light">$1080</p>
+              <p className="light">${SubtotalFunction()}</p>
             </div>
 
             <div className="row-view">
@@ -89,35 +123,60 @@ const AddCart = (props) => {
 
             <div className="row-view pt-30">
               <p className="Eth-bold">Total</p>
-              <p className="Eth-bold-orange">$1140</p>
+              <p className="Eth-bold-orange">${SubtotalFunction() + 60}</p>
             </div>
             <Link to={process.env.PUBLIC_URL + "/checkout"}>
               <img className="check-out-btn pt-60" src={CheckOut} />
             </Link>
           </div>
         </div>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+
       </LayoutOne>
     </Fragment>
   );
 };
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartData,
+    cartItems: state.cartData.cartItems,
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {
-    DecreaseQuantityCart: (item, addToast) => {
-      dispatch(DecreaseQuantity(item, addToast));
+  return bindActionCreators({
+    DecreaseQuantityCart: (item) => {
+      dispatch(DecreaseQuantity(item));
     },
-    increaseQuantityCart: (item, addToast) => {
-      dispatch(IncreaseQuantity(item, addToast));
+    increaseQuantityCart: (item) => {
+      dispatch(IncreaseQuantity(item));
     },
-    addToCart: (item, addToast, quantityCount) => {
-      dispatch(addToCart(item, addToast, quantityCount));
+    addToCart: (item, quantityCount) => {
+      dispatch(addToCart(item, quantityCount));
+    }
+  }, dispatch)
+  /*return {
+    DecreaseQuantityCart: (item) => {
+      dispatch(DecreaseQuantity(item));
+    },
+    increaseQuantityCart: (item) => {
+      dispatch(IncreaseQuantity(item));
+    },
+    addToCart: (item, quantityCount) => {
+      dispatch(addToCart(item, quantityCount));
     },
 
-  };
+  };*/
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCart);

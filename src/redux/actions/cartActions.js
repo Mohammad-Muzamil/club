@@ -1,5 +1,5 @@
 
-import {Success, Error} from "../../helpers/NotifiyToasters"
+import {Success, Error, Warning} from "../../helpers/NotifiyToasters"
 
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
@@ -9,7 +9,6 @@ export const DELETE_ALL_FROM_CART = "DELETE_ALL_FROM_CART";
 //add to cart
 export const addToCart = (item) => {
   return (dispatch) => {
-    Success("Quantity increased")
     dispatch({
       type: ADD_TO_CART,
       payload: item,
@@ -19,30 +18,32 @@ export const addToCart = (item) => {
 //delete from cart
 export const deleteFromCart = (item) => {
   return (dispatch) => {
-    Success("Delete from the Cart")
+    Success("Item Deleted from the Cart")
     dispatch({ type: DELETE_FROM_CART, payload: item });
   };
 };
 
 export const IncreaseQuantity = (item) => {
   return (dispatch) => {
-    if (item.quantity === item.Cartquantity) {
-
-    
-      Error(item)
-    } else {
-     Success("Quantity increased")
+    if (item.stock_count === item.Cartquantity) {
+      Warning(`We only have ${item.stock_count} amount left `)
+      
+    }else{
+      Success("Quantity increased")
       dispatch({ type: INCREASE_QUANTITY, payload: item });
     }
+
+   
   };
 };
 
-export const DecreaseQuantity = (item, addToast) => {
+export const DecreaseQuantity = (item) => {
   return (dispatch) => {
     if (item.Cartquantity < 2) {
-      Success("Quantity increased")
-    } else {
       Error(item)
+    } else {
+      Success("Quantity Decreased")
+      
       dispatch({ type: DECREASE_QUANTITY, payload: item });
     }
   };
