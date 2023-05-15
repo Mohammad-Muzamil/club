@@ -8,22 +8,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useDeepCompareEffect from 'use-deep-compare-effect'
 import {addToCart, IncreaseQuantity, DecreaseQuantity } from "../../redux/actions/cartActions"
 
 const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
 
   const [Data, setData] = useState([]);
-
-  // useDeepCompareEffect(
-  //   () => {
-  //     // make an HTTP request or whatever with the query and variables
-  //     // optionally return a cleanup function if necessary
-  //   },
-  //   setData(cartItems)
-    
-  //   [cartItems],
-  // )
 
 
   const SubtotalFunction = ()=>{
