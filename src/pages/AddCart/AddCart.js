@@ -139,7 +139,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
 };
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartData.cartItems,
+    cartItems: state.cartData,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -153,19 +153,7 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (item, quantityCount) => {
       dispatch(addToCart(item, quantityCount));
     }
-  }, dispatch)
-  /*return {
-    DecreaseQuantityCart: (item) => {
-      dispatch(DecreaseQuantity(item));
-    },
-    increaseQuantityCart: (item) => {
-      dispatch(IncreaseQuantity(item));
-    },
-    addToCart: (item, quantityCount) => {
-      dispatch(addToCart(item, quantityCount));
-    },
-
-  };*/
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCart);

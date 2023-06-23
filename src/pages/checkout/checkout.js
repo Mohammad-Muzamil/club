@@ -6,8 +6,10 @@ import CartIcon from "../../assets/img/icons/shipping-cart.png";
 import Cross from "../../assets/img/icons/cross.png";
 import Proceedpayment from "../../assets/img/buttons/proceedpayment.png";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const CheckOut = (props) => {
+
   return (
     <Fragment>
       <LayoutOne
@@ -94,7 +96,7 @@ const CheckOut = (props) => {
                 <div className="seperator  pt-20 mb-50" />
 
                 <div className="All-Cart-Items">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((val) => (
+                  {props.cartItems.map((val) => (
                     <div className="itemView">
                       <img src={Shoe} />
                       <div className="item-description">
@@ -130,5 +132,12 @@ const CheckOut = (props) => {
     </Fragment>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    cartItems: state.cartData,
+  };
+};
 
-export default CheckOut;
+
+export default connect(mapStateToProps)(CheckOut);
+

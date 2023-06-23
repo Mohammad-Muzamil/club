@@ -12,7 +12,7 @@ import { useParams, Link } from "react-router-dom";
 
 const BrandProducts = (props) => {
   const {product_id, productvarient_id} = useParams();
-  const [brand_Products, setbrand_Products] = useState();
+  const [brand_Products, setbrand_Products] = useState([]);
  
   const BrandProductsData = async ()=>{
 
@@ -26,10 +26,9 @@ const BrandProducts = (props) => {
         }else{
           alert("Something Went Wrong");
         }
-      });
+      }); 
     }else{
       console.log("Product Varient ID", productvarient_id);
-  
       await Product_Variants(productvarient_id).then(response =>{
         console.log("Product Varient", response.data);
         if(response.status === 200){
@@ -66,10 +65,12 @@ const BrandProducts = (props) => {
                  </div> 
                
               ) : (
-                <HeaderTwo 
-                brand={brand_Products[0].product.brand && brand_Products[0].product.brand.name}
-                name={brand_Products[0].product && brand_Products[0].product.name}
-                center={true}/>
+                // <HeaderTwo 
+                // brand={brand_Products[0].product && brand_Products[0].product.brand.name}
+                // name={brand_Products[0].product && brand_Products[0].product.name}
+                // center={true}/>
+                null
+              
               )}
           
 
