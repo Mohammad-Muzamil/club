@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function Cover_Products() {
   var config = {
-    method: 'GET',
+    method: 'get',
     url: `${process.env.REACT_APP_LOCAL_API}/products/cover_products`,
     headers: {
       'Content-Type': 'application/json',
