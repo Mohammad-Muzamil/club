@@ -34,7 +34,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
           <div className="container">
             <div className="header-text pb-30">
               <p className="bold">My Cart</p>
-              <p className="light">({cartItems.length} Items)</p>
+              <p className="light pt-2">({cartItems.length} Items)</p>
             </div>
 
             {cartItems.map((val, key) => {

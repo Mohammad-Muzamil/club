@@ -2,6 +2,21 @@ body {
   font-family: "Mont";
 }
 
+
+.text-on-image {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  font-family: "Ethnocentric";
+  font-weight: 400;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-left: 40px;
+
+}
+
+
 .checkout-text {
   font-family: "Ethnocentric";
   font-weight: 400;
@@ -223,6 +238,18 @@ body {
 }
 
 @media screen and (max-width: 990px) {
+  .text-on-image {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    font-family: "Ethnocentric";
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-left: 0px;
+  
+  }
   .round {
     height: 25px;
     width: 25px;
@@ -278,6 +305,18 @@ body {
 
 @media screen and (max-width: 500px) {
 
+  .text-on-image {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    font-family: "Ethnocentric";
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-left: 0px;
+  
+  }
   .checkout-text {
   
     font-size: 20px;

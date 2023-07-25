@@ -171,7 +171,7 @@ const Home = (props) => {
                 ))}
                 {/* slide end */}
 
-                {/* <div className="row justify-content-center">
+                <div className="row justify-content-center">
                   <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
                     <h1>AIR 32</h1>
                     <p>
@@ -198,6 +198,38 @@ const Home = (props) => {
                     <img src={heroImg} />
                   </div>
                 </div>
+
+
+
+
+                <div className="row justify-content-center">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
+                    <h1>AIR 32</h1>
+                    <p>
+                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
+                      combines a lightweight contoured nylon plate for firm
+                      grip.
+                    </p>
+                    <div class="slider-img">
+                      <img src={heroImg} />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div>
+             
              
 
            
@@ -227,7 +259,7 @@ const Home = (props) => {
                   <div className="col-lg-5 col-md-5 second-sec">
                     <img src={heroImg} />
                   </div>
-                </div> */}
+                </div>
               </Carousel>
             </div>
           </div>
@@ -235,13 +267,13 @@ const Home = (props) => {
         <div className="container pt-100 pb-100 services">
           <div className="row">
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={Secure} />
+              <img src={truck} />
               <p className="first-text">Free</p>
               <p className="second-text"> Shipping Worldwide</p>
             </div>
 
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={truck} />
+              <img src={Secure} />
               <p className="first-text">100%</p>
               <p className="second-text"> Safe & Secure Checkout</p>
             </div>
@@ -327,25 +359,8 @@ const Home = (props) => {
                       </div>
                     </div>
                   ))}
-                  {/* <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
+
+
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">
@@ -478,7 +493,28 @@ const Home = (props) => {
                         <img className="right-arrow" src={righarrow} />
                       </div>
                     </div>
-                  </div> */}
+                  </div>
+                  <div className="ItemView">
+                    <img className="item-image" src={Shoes} />
+                    <div className="item-description">
+                      <div className="item-rating-view">
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={yellowstar} />
+                        <img className="star" src={star} />
+                      </div>
+                      <p className="item-info">
+                        Adidas Falcon Shoes for men - 2021 Edition
+                      </p>
+                      <div className="price-view">
+                        <p className="price-text">$120.50</p>
+                        <img className="right-arrow" src={righarrow} />
+                      </div>
+                    </div>
+                  </div>
+
+                  
                 </Carousel>
               </div>
             </div>
@@ -499,9 +535,22 @@ const Home = (props) => {
               <img src={ourStory} />
               <img src={btnBg} className="read-story-btn" />
             </div>
-            {/* <div class="col-8 btn-group">
-                  <img src={btnBg} />
-                </div> */}
+            <div class="col-8 btn-group">
+                  {/* <img src={btnBg} /> */}
+          
+                </div>
+              {/* <div className=" container-fluid bg-success mt-5 mb-5  " >
+                <div className="row d-flex justify-content-around">    
+                <div className="bg-dark" style={{height:'300px',width:'500px' }}>
+
+                </div>
+                <div className="bg-dark" style={{height:'300px',width:'500px'}}>
+                </div>
+
+
+                </div>
+
+              </div> */}
           </div>
         </div>
       </LayoutOne>

@@ -4,7 +4,7 @@ import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import Shoe from "../../assets/img/shoes/product1.png";
 import CartIcon from "../../assets/img/icons/shipping-cart.png";
 import Cross from "../../assets/img/icons/cross.png";
-import Proceedpayment from "../../assets/img/buttons/proceedpayment.png";
+import baseButton from "../../assets/img/buttons/basebutton.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -23,18 +23,18 @@ const CheckOut = (props) => {
 
             <div className="row m-0 justify-content-between">
               <div className="d-flex flex-row align-items-center">
-                <div className="orange-background round">
+                {/* <div className="orange-background round">
                   <p>1</p>
-                </div>
+                </div> */}
                 <div className="orange-text text">Shipping Address</div>
               </div>
 
-              <div className="d-flex flex-row align-items-center">
+              {/* <div className="d-flex flex-row align-items-center">
                 <div className="grey-background round">
                   <p>2</p>
                 </div>
                 <div className="grey-text text">Payment Details</div>
-              </div>
+              </div> */}
             </div>
 
             <div className="seperator pt-30" />
@@ -113,9 +113,10 @@ const CheckOut = (props) => {
             </div>
 
             <div className="row m-0 pt-50">
-              <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12">
+              <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12"style={{position: 'relative',display: 'inline-block'}} >
                 <Link to={process.env.PUBLIC_URL + "/paymentdetails"}>
-                  <img className="proceed-btn " src={Proceedpayment} />
+                  <img className="proceed-btn " src={baseButton} />
+                  <p className="text-on-image" style={{width:'70%'}}>Submit Order</p>
                 </Link>
               </div>
 
