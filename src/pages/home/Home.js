@@ -17,6 +17,16 @@ import heroImg from "../../assets/img/shoe-img.png";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import { Cover_Products, Populer_Picks } from "../../helpers/api";
+import TestonomialCarousel from "../../components/testnomial/testnomial_carousel";
+
+
+
+
+
+
+
+
+
 
 const Home = (props) => {
   const nextSlide = useRef();
@@ -521,41 +531,34 @@ const Home = (props) => {
           </div>
         </div>
         <div class="container-fluid ourStory">
-          <div class="row">
-            <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
-              <h3>
-                WHY IS SO <span className="grey-text">CHEAP</span>?
-              </h3>
-              <p>
-                Don't worry we have answers to all of your questions. Click on
-                below button.
-              </p>
+            <div class="row">
+              <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
+                <h3>
+                  WHY IS SO <span className="grey-text">CHEAP</span>?
+                </h3>
+                <p>
+                  Don't worry we have answers to all of your questions. Click on
+                  below button.
+                </p>
+              </div>
+              <div class="col-lg-11 col-md-12 col-sm-12 img-section">
+                <img src={ourStory} />
+                <img src={btnBg} className="read-story-btn" />
+              </div>
+              <div class="col-8 btn-group">
+                    {/* <img src={btnBg} /> */}
+            
+              </div>
+              {/* testonomial portion */}
+              <TestonomialCarousel/>
             </div>
-            <div class="col-lg-11 col-md-12 col-sm-12 img-section">
-              <img src={ourStory} />
-              <img src={btnBg} className="read-story-btn" />
-            </div>
-            <div class="col-8 btn-group">
-                  {/* <img src={btnBg} /> */}
-          
-                </div>
-              {/* <div className=" container-fluid bg-success mt-5 mb-5  " >
-                <div className="row d-flex justify-content-around">    
-                <div className="bg-dark" style={{height:'300px',width:'500px' }}>
-
-                </div>
-                <div className="bg-dark" style={{height:'300px',width:'500px'}}>
-                </div>
-
-
-                </div>
-
-              </div> */}
-          </div>
         </div>
       </LayoutOne>
     </Fragment>
   );
 };
+
+
+
 
 export default Home;

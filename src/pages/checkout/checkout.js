@@ -8,7 +8,51 @@ import baseButton from "../../assets/img/buttons/basebutton.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { useNavigate } from 'react-router-dom'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 const CheckOut = (props) => {
+
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const isOrderSuccessful = false;
+  const handleSubmitOrder = () => {
+    // Assuming you have the order ID after submitting the order
+    const orderId = 'ABC123'; // Replace with your actual order ID
+
+    // Redirect to the homepage
+    navigate('/'); // Use navigate instead of history.push
+
+    // Show the toast with the order ID
+    if (isOrderSuccessful) {
+    toast.success( <div>
+      <p style={{ marginBottom: '4px' }}>Order submitted Successfully!!</p>
+      <p ><b>Order ID</b>: {orderId}</p>
+    </div>, {
+      position: 'top-right',
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }else{
+    toast.error('Order failed. Please try again.', {
+      position: 'top-right',
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+
+};
+
+ 
+
+ 
 
   return (
     <Fragment>
@@ -71,7 +115,7 @@ const CheckOut = (props) => {
                   </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Postel code</p>
+                    <p>Postal code</p>
                     <input />
                   </div>
                 </div>
@@ -112,12 +156,12 @@ const CheckOut = (props) => {
               </div>
             </div>
 
-            <div className="row m-0 pt-50">
+            <div className="row m-0 pt-50" onClick={handleSubmitOrder}>
               <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12"style={{position: 'relative',display: 'inline-block'}} >
-                <Link to={process.env.PUBLIC_URL + "/paymentdetails"}>
-                  <img className="proceed-btn " src={baseButton} />
+                {/* <Link to={process.env.PUBLIC_URL + "/paymentdetails"}> */}
+                  <img className="proceed-btn " src={baseButton}   />
                   <p className="text-on-image" style={{width:'70%'}}>Submit Order</p>
-                </Link>
+                {/* </Link> */}
               </div>
 
               <div className="d-flex align-items-center col-xl-4 col-lg-4 col-md-12 col-sm-12 total-head">

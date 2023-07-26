@@ -17,6 +17,8 @@ import ReturnPolicy from "../src/pages/home/ReturnPolicy"
 import TermsOfServices from "../src/pages/home/TermsOfServices"
 import ShoeSizeGuide from "../src/pages/home/ShoesSizeGuide";
 import { connect } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = (props) => {
@@ -40,6 +42,7 @@ const App = (props) => {
         <Route path="/termsofservices" element={<TermsOfServices />}></Route>
         <Route path="/shoesizeguide" element={<ShoeSizeGuide />}></Route>
       </Routes>
+      <ToastContainer /> 
     </BrowserRouter>
   );
 };
