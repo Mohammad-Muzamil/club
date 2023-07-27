@@ -18,17 +18,11 @@ import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import { Cover_Products, Populer_Picks } from "../../helpers/api";
 import TestonomialCarousel from "../../components/testnomial/testnomial_carousel";
-
-
-
-
-
-
-
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = (props) => {
+
   const nextSlide = useRef();
   const prevSlide = useRef();
   const [converData, setcoverData] = useState([]);
@@ -121,7 +115,15 @@ const Home = (props) => {
       if (response.status === 200) {
         setcoverData(response.data);
       } else {
-        alert("Something went Wrong");
+        // alert("Something went Wrong");
+
+        toast.error('Cover Products Data Not Loaded', {
+          position: 'top-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       }
     });
 
@@ -131,7 +133,14 @@ const Home = (props) => {
       if (response.status === 200) {
         setpopularData(response.data);
       } else {
-        alert("Something went Wrong");
+        // alert("Something went Wrong");
+        toast.error('Populars picks Data Not Loaded', {
+          position: 'top-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       }
     });
   };
