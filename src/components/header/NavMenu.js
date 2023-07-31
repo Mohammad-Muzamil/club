@@ -1,8 +1,29 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import dropdown from "../../assets/img/icons/dropdown.png";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AllBrands } from"../../helpers/api";
 
 const NavMenu = (props) => {
+  const [brandData, setbrandData] = useState([]);
+   AllBrands().then((response)=>{
+    if (response.status== 200)
+    {
+      console.log("brand;list is here " );
+      console.log(response.data);
+      setbrandData(response.data);
+    }
+    else{
+      toast.error('Brands Data Not Loaded', {
+        position: 'top-right',
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+  }
+  });
   return (
     <div className={` ${`main-menu `} `}>
       <nav>
@@ -16,16 +37,21 @@ const NavMenu = (props) => {
             <ul className="mega-menu mega-menu-padding">
               <li className="w-100">
                 <ul>
-                  <Link to={process.env.PUBLIC_URL + "/shop"}>
-                    <li>{"Helloo"}</li>
+                 { brandData.map(data => (
+                  // <Link to={process.env.PUBLIC_URL + "/shop"}>
+                  <Link to={process.env.PUBLIC_URL + '/brands-products/${data.uuid}'}>
+                    {/* <li>{"Helloo"}</li> */}
+                    <li>{data.name}</li>
                   </Link>
+                  ))
+                 }
                 </ul>
               </li>
             </ul>
             <img className="dropdown-img" src={dropdown} />
           </li>
 
-          {/* <li>
+          <li>
             <Link>Help</Link>
             <ul className="mega-menu mega-menu-padding">
               <li className="w-100">
@@ -53,7 +79,7 @@ const NavMenu = (props) => {
               </li>
             </ul>
             <img className="dropdown-img" src={dropdown} />
-          </li> */}
+          </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
           </li>

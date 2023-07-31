@@ -27,6 +27,7 @@ const Home = (props) => {
   const prevSlide = useRef();
   const [converData, setcoverData] = useState([]);
   const [popularData, setpopularData] = useState([]);
+  
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -110,6 +111,9 @@ const Home = (props) => {
   };
 
   const HomePageData = async () => {
+
+  
+
     await Cover_Products().then((response) => {
       console.log(response);
       if (response.status === 200) {
@@ -190,7 +194,38 @@ const Home = (props) => {
                 ))}
                 {/* slide end */}
 
-                <div className="row justify-content-center">
+                {/* <div className="row justify-content-center">
+                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
+                    <h1>AIR 32</h1>
+                    <p>
+                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
+                      combines a lightweight contoured nylon plate for firm
+                      grip.
+                    </p>
+                    <div class="slider-img">
+                      <img src={heroImg} />
+                    </div>
+                    <div className="btn-div">
+                      <button>
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        <img src={btnArrowLt} />
+                        &nbsp;SHOP NOW&nbsp;
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                        <img src={btnArrowGt} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-lg-5 col-md-5 second-sec">
+                    <img src={heroImg} />
+                  </div>
+                </div> */}
+
+
+
+
+                {/* <div className="row justify-content-center">
                   <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
                     <h1>AIR 32</h1>
                     <p>
@@ -217,42 +252,11 @@ const Home = (props) => {
                     <img src={heroImg} />
                   </div>
                 </div>
-
-
-
-
-                <div className="row justify-content-center">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
-                    <h1>AIR 32</h1>
-                    <p>
-                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
-                      combines a lightweight contoured nylon plate for firm
-                      grip.
-                    </p>
-                    <div class="slider-img">
-                      <img src={heroImg} />
-                    </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div>
-             
+              */}
              
 
            
-                  <div className="row justify-content-center">
+                  {/* <div className="row justify-content-center">
                   <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
                     <h1>AIR 32</h1>
                     <p>
@@ -278,7 +282,7 @@ const Home = (props) => {
                   <div className="col-lg-5 col-md-5 second-sec">
                     <img src={heroImg} />
                   </div>
-                </div>
+                </div> */}
               </Carousel>
             </div>
           </div>
