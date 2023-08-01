@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import dropdown from "../../assets/img/icons/dropdown.png";
 import { toast } from 'react-toastify';
@@ -7,23 +7,17 @@ import { AllBrands } from"../../helpers/api";
 
 const NavMenu = (props) => {
   const [brandData, setbrandData] = useState([]);
-   AllBrands().then((response)=>{
-    if (response.status== 200)
-    {
-      console.log("brand;list is here " );
-      console.log(response.data);
-      setbrandData(response.data);
-    }
-    else{
-      toast.error('Brands Data Not Loaded', {
-        position: 'top-right',
-        autoClose: 3000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-  }
-  });
+  useEffect(() => {
+    AllBrands().then((response) => {
+      if (response.status === 200) {
+        setbrandData(response.data);
+      } else {
+        toast.error('Brands Data Not Loaded', {
+          // ...
+        });
+      }
+    });
+  }, []);
   return (
     <div className={` ${`main-menu `} `}>
       <nav>
@@ -39,8 +33,7 @@ const NavMenu = (props) => {
                 <ul>
                  { brandData.map(data => (
                   // <Link to={process.env.PUBLIC_URL + "/shop"}>
-                  <Link to={process.env.PUBLIC_URL + '/brands-products/${data.uuid}'}>
-                    {/* <li>{"Helloo"}</li> */}
+                  <Link to={process.env.PUBLIC_URL + `/brands-products/${data.uuid}`}>
                     <li>{data.name}</li>
                   </Link>
                   ))

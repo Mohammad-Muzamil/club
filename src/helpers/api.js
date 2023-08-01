@@ -51,7 +51,7 @@ export async function AllBrands() {
     },
   };
 
-  const GetResponse = await axios(config)
+  const GetResponse = await  axios(config)
     .then(function (response) {
       return response;
     })
