@@ -79,11 +79,7 @@ const NavMenu = (props) => {
           <li>
             <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
           </li>
-          <li>
-            <Link to={process.env.PUBLIC_URL + "/about"}>
-              Affiliate Program
-            </Link>
-          </li>
+          
         </ul>
       </nav>
     </div>

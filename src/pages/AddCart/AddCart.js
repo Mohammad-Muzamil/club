@@ -9,12 +9,17 @@ import { connect } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {addToCart, IncreaseQuantity, DecreaseQuantity } from "../../redux/actions/cartActions"
+import cross from "../../assets/img/icons/cross.png"
 
 const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
-
+  const [vouchercoder, setvouchercode]=useState("");
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const [Data, setData] = useState([]);
 
 
+  const handleVoucherCodeChange = (event) => {
+    setvouchercode(event.target.value);
+  };
   const SubtotalFunction = ()=>{
     let totalAmount = 0
       cartItems.forEach(element => {
@@ -43,6 +48,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
               <div 
               key={key}
               className="cart-item-view">
+            
               <img src={Shoe} />
 
                 <div className="product-info">
@@ -94,31 +100,31 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                     <p className="total-amount">${val.Cartquantity * val.price}</p>
                   </div>
                 </div>
+                <img className="crossbtn" src={cross}  style={{ height: isMobile ? '8px' : '8px', width: isMobile ? '10px' : '15px' }} />
               </div>
             )})}
 
             <div className="seperator pt-5" />
-            <div className="row-view">
-              <p className="bold">Subtotal</p>
-              <p className="light">${SubtotalFunction()}</p>
-            </div>
+              <div className="row-view">
+                <p className="light">Add Voucher Code</p>
+                <input type="text" 
+                 className="col-lg-3 col-6 "
+                 value={vouchercoder}
+                 onChange={handleVoucherCodeChange}
+                 />
+      
+              </div>
 
-            <div className="row-view">
-              <p className="bold">Delivery</p>
-              <p className="light">$60</p>
-            </div>
 
-            <div className="seperator pt-60" />
-
-            <div className="row-view pt-30">
-              <p className="Eth-bold">Total</p>
-              <p className="Eth-bold-orange">${SubtotalFunction() + 60}</p>
+                <div className="row-view pt-30">
+                  <p className="Eth-bold">Total</p>
+                  <p className="Eth-bold-orange">${SubtotalFunction() + 60}</p>
+                </div>
+                <Link to={vouchercoder===""? process.env.PUBLIC_URL + "/checkout":process.env.PUBLIC_URL + "/checkout"+`/${vouchercoder}`}>
+                  <img className="check-out-btn pt-60" src={CheckOut} />
+                </Link>
+              </div>
             </div>
-            <Link to={process.env.PUBLIC_URL + "/checkout"}>
-              <img className="check-out-btn pt-60" src={CheckOut} />
-            </Link>
-          </div>
-        </div>
 
         <ToastContainer
           position="top-right"

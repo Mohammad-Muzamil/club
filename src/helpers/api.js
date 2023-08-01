@@ -85,7 +85,7 @@ export async function Brand_Products(brand_id) {
 export async function Product_Variants(product_id) {
   var config = {
     method: 'get',
-    url: `${process.env.REACT_APP_LOCAL_API}/products/product/product_variants/${product_id}/`,
+    url: `${process.env.REACT_APP_LOCAL_API}/products/product_variants/${product_id}/`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

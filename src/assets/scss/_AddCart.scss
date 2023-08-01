@@ -2,6 +2,18 @@ body {
   font-family: "Mont";
 }
 
+.crossbtn
+{
+  margin-top:-170px
+ 
+}
+@media screen and (max-width:990px) {
+    .crossbtn{
+      margin-top: -55px;
+      height: 5px;
+      width: 5px;
+    }
+}
 .header-text {
   display: flex;
   flex-direction: row;
@@ -141,14 +153,14 @@ body {
   margin-top: 30px;
   .bold {
     font-weight: 700;
-    font-size: 32px;
+    font-size: 25px;
     color: #f5f5f5;
     margin: 0px;
   }
 
   .light {
     font-weight: 600;
-    font-size: 32px;
+    font-size: 25px;
     color: #f5f5f5;
     margin: 0px;
   }

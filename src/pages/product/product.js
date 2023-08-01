@@ -14,14 +14,41 @@ import "react-toastify/dist/ReactToastify.css";
 import { Single_Product_Variants } from "../../helpers/api";
 import { useParams } from "react-router-dom";
 import { Success, Warning } from "../../helpers/NotifiyToasters";
+import Rating from "../../components/rating/rating";
+import { Cover_Products} from "../../helpers/api";
+
+
+
+
 
 const Product = (props) => {
+  const [converData, setcoverData] = useState([]);
   const [quantity, setquantity] = useState(1);
 
   const [product, setProduct] = useState({});
 
   const { product_id } = useParams();
 
+  const coverdatapopulate= async ()=>{
+    await Cover_Products().then((response) => {
+      console.log("here is response ",response.data);
+      if (response.status === 200) {
+        setcoverData(response.data);
+      } else {
+  
+        toast.error('Cover Products Data Not Loaded', {
+          position: 'top-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    });
+  }
+  useEffect(() => {
+    coverdatapopulate();
+  }, []);
   console.log(product_id);
 
   const GetProduct = async () => {
@@ -47,7 +74,7 @@ const Product = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <HeaderTwo brand={"Nike"} name={"Adidas Falcon Shoes"} />
+            <HeaderTwo brand={product.product.brand.name} name={product.product.name} />
             <p className="categories-text pb-70">{product.thumbnail} </p>
             <div className="row m-0">
               <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -69,11 +96,9 @@ const Product = (props) => {
                 <div className="m-0 row justify-content-between align-items-center description-view">
                   <p className="description-heading">Discription</p>
                   <div className="m-0 row">
-                    <img className="star" src={yellowstar} />
-                    <img className="star" src={yellowstar} />
-                    <img className="star" src={yellowstar} />
-                    <img className="star" src={yellowstar} />
-                    <img className="star" src={star} />
+                    <div style={{marginTop:'-20px'}}>
+                    <Rating rating={2} height={20} width={20}></Rating>
+                    </div>
                   </div>
                 </div>
                 <p className="item-description">{product.long_description}</p>
@@ -88,23 +113,23 @@ const Product = (props) => {
                   </div>
 
                   <div className="size-item-view">
-                    <p>40/6</p>
+                    <p>41/7</p>
                   </div>
 
                   <div className="size-item-view">
-                    <p>40/6</p>
+                    <p>42/8</p>
                   </div>
 
                   <div className="size-item-view">
-                    <p>40/6</p>
+                    <p>43/9</p>
                   </div>
 
                   <div className="size-item-view">
-                    <p>40/6</p>
+                    <p>44/10</p>
                   </div>
 
                   <div className="size-item-view">
-                    <p>40/6</p>
+                    <p>45/11</p>
                   </div>
                 </div>
                 <p className="quantity">Quantity</p>
@@ -157,23 +182,17 @@ const Product = (props) => {
             <p className="may-like-txt pt-100">You May Also Like</p>
 
             <div className="row">
-              {[1, 2, 3].map((val) => (
+              {converData.map((val) => (
                 <div className="col-xl-4 col-lg-4 col-6 mb-4">
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
+                    <Rating rating={3} height={13} width={13}/>
                       <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
+                        {val.short_description}
                       </p>
                       <div className="price-view">
-                        <p className="price-text">$120.50</p>
+                        <p className="price-text">${val.price}</p>
                         <img className="right-arrow" src={righarrow} />
                       </div>
                     </div>

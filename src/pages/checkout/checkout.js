@@ -17,6 +17,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CheckOut = (props) => {
 
+  const SubtotalFunction = ()=>{
+    let totalAmount = 0
+      props.cartItems.forEach(element => {
+        let singleProductAmount = element.price * element.Cartquantity;
+        totalAmount = totalAmount + singleProductAmount
+      });
+
+      return totalAmount;
+  }
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const isOrderSuccessful = false;
   const handleSubmitOrder = () => {
@@ -130,6 +139,8 @@ const CheckOut = (props) => {
                     <textarea />
                   </div>
                 </div>
+                <div className="seperator  col-12" />
+
               </div>
 
               <div className="Cart-Items col-xl-5 col-lg-5 col-md-12 col-sm-12">
@@ -152,22 +163,43 @@ const CheckOut = (props) => {
                       <img className="cross-icon" src={Cross} />
                     </div>
                   ))}
+               
                 </div>
-              </div>
-            </div>
+                  <div>
+                    <div className="seperator pt-5" />
+                      <div className="row-view">
+                        <p className="bold">Subtotal</p>
+                        <p className="light">${SubtotalFunction()}</p>
+                      </div>
+                      <div className="row-view">
+                        <p className="bold">Delivery</p>
+                        <p className="light">$60</p>
+                      </div>
+                    <div className="seperator pt-4" />
+                  </div>
 
-            <div className="row m-0 pt-50" onClick={handleSubmitOrder}>
-              <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12"style={{position: 'relative',display: 'inline-block'}} >
-                {/* <Link to={process.env.PUBLIC_URL + "/paymentdetails"}> */}
+              </div>
+          
+
+            </div>
+           
+
+              
+
+               
+           
+
+            <div className="row m-0 pt-50">
+              <div className="btn-view col-xl-8 col-lg-8 col-md-12 col-sm-12"style={{position: 'relative',display: 'inline-block'}} onClick={handleSubmitOrder}  >
                   <img className="proceed-btn " src={baseButton}   />
                   <p className="text-on-image" style={{width:'70%'}}>Submit Order</p>
-                {/* </Link> */}
+           
               </div>
 
               <div className="d-flex align-items-center col-xl-4 col-lg-4 col-md-12 col-sm-12 total-head">
-                <div className="row justify-content-between total-view">
+                <div className="row justify-content-between total-view" >
                   <p className="total">Total</p>
-                  <p className="price">$1140</p>
+                  <p className="price">${SubtotalFunction()+60}</p>
                 </div>
               </div>
             </div>

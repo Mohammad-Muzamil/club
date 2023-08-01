@@ -20,6 +20,7 @@ import { Cover_Products, Populer_Picks } from "../../helpers/api";
 import TestonomialCarousel from "../../components/testnomial/testnomial_carousel";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Rating from "../../components/rating/rating";
 
 const Home = (props) => {
 
@@ -365,178 +366,17 @@ const Home = (props) => {
                     <div className="ItemView">
                       <img className="item-image" src={Shoes} />
                       <div className="item-description">
-                        <div className="item-rating-view">
-                          <img className="star" src={yellowstar} />
-                          <img className="star" src={yellowstar} />
-                          <img className="star" src={yellowstar} />
-                          <img className="star" src={yellowstar} />
-                          <img className="star" src={star} />
-                        </div>
-                        <p className="item-info">
+                      <Rating rating={3} height={13} width={13}/>
+                        <p className="item-info" style={{paddingTop:'10px'}}>
                          {val.short_description}
                         </p>
-                        <div className="price-view">
-                          <p className="price-text">$120.50</p>
-                          <img className="right-arrow" src={righarrow} />
+                        <div className="price-view" >
+                          <p className="price-text">${val.price}</p>
+                          <img className="right-arrow" src={righarrow}/>
                         </div>
                       </div>
                     </div>
                   ))}
-
-
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
-                    <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
-                      <p className="item-info">
-                        Adidas Falcon Shoes for men - 2021 Edition
-                      </p>
-                      <div className="price-view">
-                        <p className="price-text">$120.50</p>
-                        <img className="right-arrow" src={righarrow} />
-                      </div>
-                    </div>
-                  </div>
-
                   
                 </Carousel>
               </div>

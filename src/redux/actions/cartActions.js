@@ -15,6 +15,7 @@ export const addToCart = (item) => {
     });
   };
 };
+
 //delete from cart
 export const deleteFromCart = (item) => {
   return (dispatch) => {

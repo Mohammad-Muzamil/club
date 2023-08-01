@@ -33,7 +33,7 @@ const TestonomialCarousel = () => {
                 <img style={{width:'80px', height:'80px', borderRadius:'50%'}} src={card.imagescr}/>
                 <h3 style={{fontWeight:"bolder", fontFamily: 'Ethnocentric'}}>{card.name}</h3>
                 <Rating rating={card.rating}/>
-                <span className="description-testnomial" style={{paddingTop:'15px' ,marginLeft:'35px', marginRight:'35px', fontFamily: 'Mont', textAlign:'center', fontWeight:'100px'}}>"{card.comment}"</span>
+                <span className="description-testnomial" style={{paddingTop:'25px' ,marginLeft:'35px', marginRight:'35px', fontFamily: 'Mont', textAlign:'center', fontWeight:'100px'}}>"{card.comment}"</span>
               </div>
             </div>
           ))}

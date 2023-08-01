@@ -32,6 +32,7 @@ const App = (props) => {
         <Route path="/product/:product_id" element={<Product />}></Route>
         <Route path="/cart" element={<AddCart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
+        <Route path="/checkout/:voucher_code" element={<CheckOut />}></Route>
         <Route path="/paymentdetails" element={<PaymentDetails />}></Route>
         <Route path="/contactus" element={<ContactUs />}></Route>
         <Route path="/aboutus" element={<AboutUs />}></Route>

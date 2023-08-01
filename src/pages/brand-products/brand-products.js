@@ -8,6 +8,7 @@ import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import {Brand_Products , Product_Variants} from "../../helpers/api";
 import { useParams, Link } from "react-router-dom";
+import Rating from "../../components/rating/rating";
 
 
 const BrandProducts = (props) => {
@@ -34,7 +35,7 @@ const BrandProducts = (props) => {
         if(response.status === 200){
           setbrand_Products(response.data)
         }else{
-          alert("Something Went Wrong");
+          alert("Something Went Wrong  ider sy ata ha ");
         }
       });
     }
@@ -85,13 +86,7 @@ const BrandProducts = (props) => {
                   <div className="ItemView">
                     <img className="item-image" src={Shoes} />
                     <div className="item-description">
-                      <div className="item-rating-view">
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={yellowstar} />
-                        <img className="star" src={star} />
-                      </div>
+                      <Rating rating={3} height={13} width={13}/>
                       <p className="item-info">
                         {val.short_description}
                       </p>
