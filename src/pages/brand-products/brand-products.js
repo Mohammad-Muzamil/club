@@ -84,12 +84,18 @@ const BrandProducts = (props) => {
                  <Link to={window.location.pathname === `/brands-products/${product_id}` ? process.env.PUBLIC_URL + `/specific-brand-products/${val.uuid}` : process.env.PUBLIC_URL + `/product/${val.uuid}`}
                  >
                   <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={process.env.REACT_APP_LOCAL_API+val.thumbnail} />
                     <div className="item-description">
-                      <Rating rating={3} height={13} width={13}/>
-                      <p className="item-info">
+                      <Rating rating={val.rating} height={13} width={13}/>
+                      {/* <p className="item-info">
                         {val.short_description}
-                      </p>
+                      </p> */}
+                        <p className="item-info" style={{paddingTop:'7px'}}>
+                         {val.name}
+                        </p>
+                        <p className="" style={{paddingTop:'10px', marginBottom:'-10px',fontSize:'16px',fontWeight:'100px',color:'#454545'}} >
+                         {val.short_description}
+                        </p>
                       <div className="price-view">
                         <p className="price-text">${val.price}</p>
                         <img className="right-arrow" src={righarrow} />

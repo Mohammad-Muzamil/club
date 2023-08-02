@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
 import { bindActionCreators } from 'redux';
-
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
@@ -10,16 +9,49 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {addToCart, IncreaseQuantity, DecreaseQuantity } from "../../redux/actions/cartActions"
 import cross from "../../assets/img/icons/cross.png"
+import {verify_voucher_code } from "../../helpers/api";
+import { useSelector, useDispatch } from "react-redux";
+import { setDiscount } from "../../redux/actions/discountAction";
+
+
+
+
+
+
+
 
 const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
+  const dispatch = useDispatch();
+  // dispatch(setDiscount(100));
+
   const [vouchercoder, setvouchercode]=useState("");
+  const [vouchercodervalid, setisvouchercodevalid]=useState(true);
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const [Data, setData] = useState([]);
 
-
   const handleVoucherCodeChange = (event) => {
     setvouchercode(event.target.value);
+    if (event.event.value===''){
+      setisvouchercodevalid(true);
+    }
   };
+
+  const  move_to_next_page=async()=>{
+    if (vouchercoder!="")
+    {
+      await verify_voucher_code(vouchercoder).then( (response)=>{
+        if (response.status!=200)
+        {
+          setisvouchercodevalid(false);
+          return;
+        }
+        alert(response.data.discount);
+      });
+    } 
+    alert("i am here ");
+    window.location.href = process.env.PUBLIC_URL + "/checkout";
+  }
+
   const SubtotalFunction = ()=>{
     let totalAmount = 0
       cartItems.forEach(element => {
@@ -107,12 +139,15 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
             <div className="seperator pt-5" />
               <div className="row-view">
                 <p className="light">Add Voucher Code</p>
-                <input type="text" 
-                 className="col-lg-3 col-6 "
-                 value={vouchercoder}
-                 onChange={handleVoucherCodeChange}
-                 />
-      
+                  
+                    <input type="text" 
+                    className="col-lg-3 col-5 h-3 "
+                    value={vouchercoder}
+                    onChange={handleVoucherCodeChange}
+                    />
+              </div>
+              <div className="container-fluid d-flex justify-content-end">
+                  <p className="code-text" >{vouchercodervalid==true ?"": "Invalid Code"} </p>
               </div>
 
 
@@ -120,9 +155,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                   <p className="Eth-bold">Total</p>
                   <p className="Eth-bold-orange">${SubtotalFunction() + 60}</p>
                 </div>
-                <Link to={vouchercoder===""? process.env.PUBLIC_URL + "/checkout":process.env.PUBLIC_URL + "/checkout"+`/${vouchercoder}`}>
-                  <img className="check-out-btn pt-60" src={CheckOut} />
-                </Link>
+                  <img className="check-out-btn pt-60" src={CheckOut} onClick={move_to_next_page} />
               </div>
             </div>
 

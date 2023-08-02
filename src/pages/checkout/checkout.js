@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import Shoe from "../../assets/img/shoes/product1.png";
@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const CheckOut = (props) => {
-
+  const [discount, setdiscount]=useState(0);
   const SubtotalFunction = ()=>{
     let totalAmount = 0
       props.cartItems.forEach(element => {
@@ -112,15 +112,21 @@ const CheckOut = (props) => {
                   </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Fax Number</p>
+                    <p>State</p>
                     <input />
                   </div>
                 </div>
+        
 
                 <div className="input-area row m-0 justify-content-between">
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>State</p>
-                    <input />
+                    <p>Country</p>
+                    <select  style={{backgroundColor:'#f5f5f5', borderRadius:'3px', height:'50px', width:'100%',border: "1px solid #3f3636"}}>
+                      <option></option>
+                      <option>Pakistan</option>
+                      <option>USA</option>
+                      <option>India</option>
+                    </select>
                   </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
@@ -133,7 +139,6 @@ const CheckOut = (props) => {
                   <div className="single-input col-lg-12 col-md-12 col-sm-12">
                     <div className="row justify-content-between m-0">
                       <p>Shipping address</p>
-                      <p className="underline">Saved Addresses</p>
                     </div>
 
                     <textarea />
@@ -172,6 +177,10 @@ const CheckOut = (props) => {
                         <p className="light">${SubtotalFunction()}</p>
                       </div>
                       <div className="row-view">
+                        <p className="bold">Discount</p>
+                        <p className="light">${discount}</p>
+                      </div>
+                      <div className="row-view">
                         <p className="bold">Delivery</p>
                         <p className="light">$60</p>
                       </div>
@@ -199,7 +208,7 @@ const CheckOut = (props) => {
               <div className="d-flex align-items-center col-xl-4 col-lg-4 col-md-12 col-sm-12 total-head">
                 <div className="row justify-content-between total-view" >
                   <p className="total">Total</p>
-                  <p className="price">${SubtotalFunction()+60}</p>
+                  <p className="price">${SubtotalFunction()+60-discount}</p>
                 </div>
               </div>
             </div>

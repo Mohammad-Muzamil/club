@@ -174,7 +174,8 @@ const Home = (props) => {
                       <h1>{val.name}</h1>
                       <p>{val.long_description}</p>
                       <div class="slider-img">
-                        <img src={heroImg} />
+                        <img src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} />
+                        
                       </div>
                       <div className="btn-div">
                         <button>
@@ -194,96 +195,6 @@ const Home = (props) => {
                   </div>
                 ))}
                 {/* slide end */}
-
-                {/* <div className="row justify-content-center">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
-                    <h1>AIR 32</h1>
-                    <p>
-                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
-                      combines a lightweight contoured nylon plate for firm
-                      grip.
-                    </p>
-                    <div class="slider-img">
-                      <img src={heroImg} />
-                    </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div> */}
-
-
-
-
-                {/* <div className="row justify-content-center">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
-                    <h1>AIR 32</h1>
-                    <p>
-                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
-                      combines a lightweight contoured nylon plate for firm
-                      grip.
-                    </p>
-                    <div class="slider-img">
-                      <img src={heroImg} />
-                    </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div>
-              */}
-             
-
-           
-                  {/* <div className="row justify-content-center">
-                  <div className="col-lg-5 col-md-5 col-sm-12 first-sec">
-                    <h1>AIR 32</h1>
-                    <p>
-                      The Men’s Nike AIR Zoom Pegasus 32 is a sports shoe
-                      combines a lightweight contoured nylon plate for firm
-                      grip.
-                    </p>
-                    <div class="slider-img">
-                      <img src={heroImg} />
-                    </div>
-                    <div className="btn-div">
-                      <button>
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        <img src={btnArrowLt} />
-                        &nbsp;SHOP NOW&nbsp;
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                        <img src={btnArrowGt} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-5 second-sec">
-                    <img src={heroImg} />
-                  </div>
-                </div> */}
               </Carousel>
             </div>
           </div>
@@ -364,12 +275,17 @@ const Home = (props) => {
                 >
                   {popularData.map((val) => (
                     <div className="ItemView">
-                      <img className="item-image" src={Shoes} />
+                      {process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail}
+                      <img className="item-image" src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} />
                       <div className="item-description">
-                      <Rating rating={3} height={13} width={13}/>
-                        <p className="item-info" style={{paddingTop:'10px'}}>
+                        <Rating rating={1} height={13} width={13}/>
+                        <p className="item-info" style={{paddingTop:'7px'}}>
+                         {val.name}
+                        </p>
+                        <p className="" style={{paddingTop:'10px', marginBottom:'-10px',fontSize:'16px',fontWeight:'100px',color:'#454545'}} >
                          {val.short_description}
                         </p>
+
                         <div className="price-view" >
                           <p className="price-text">${val.price}</p>
                           <img className="right-arrow" src={righarrow}/>

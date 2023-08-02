@@ -10,6 +10,9 @@ import { Warning, Success } from "../../helpers/NotifiyToasters";
 
 const initState = [];
 
+// const discountvalue=0;
+
+
 const cartReducer = (state = initState, action) => {
   const cartItems = state,
   product = action.payload;

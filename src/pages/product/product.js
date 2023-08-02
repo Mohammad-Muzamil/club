@@ -15,7 +15,7 @@ import { Single_Product_Variants } from "../../helpers/api";
 import { useParams } from "react-router-dom";
 import { Success, Warning } from "../../helpers/NotifiyToasters";
 import Rating from "../../components/rating/rating";
-import { Cover_Products} from "../../helpers/api";
+import { Cover_Products, get_size} from "../../helpers/api";
 
 
 
@@ -24,11 +24,30 @@ import { Cover_Products} from "../../helpers/api";
 const Product = (props) => {
   const [converData, setcoverData] = useState([]);
   const [quantity, setquantity] = useState(1);
+  const[size, setsize]=useState([]);
 
   const [product, setProduct] = useState({});
 
   const { product_id } = useParams();
 
+  const populatesize=async ()=>{
+  await get_size().then((response)=>{
+    if (response.status==200)
+    {
+      setsize(response.data)
+    }
+    else
+    {
+      toast.error('sizes Data Not Loaded', {
+        position: 'top-right',
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  });
+  }
   const coverdatapopulate= async ()=>{
     await Cover_Products().then((response) => {
       console.log("here is response ",response.data);
@@ -48,6 +67,7 @@ const Product = (props) => {
   }
   useEffect(() => {
     coverdatapopulate();
+    populatesize();
   }, []);
   console.log(product_id);
 
@@ -74,12 +94,13 @@ const Product = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <HeaderTwo brand={product.product.brand.name} name={product.product.name} />
-            <p className="categories-text pb-70">{product.thumbnail} </p>
+            {/* <HeaderTwo brand={product.product.brand.name} name={product.name} /> */}
+            <p className="categories-text pb-70">{product.name} </p>
             <div className="row m-0">
               <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="item-picture-view ">
-                  <img className="Product-Image" src={Product1} />
+           
+                  <img className="Product-Image" src= {process.env.REACT_APP_LOCAL_API+ product.thumbnail} />
                 </div>
 
                 <div className="d-flex flex-row justify-content-between">
@@ -97,7 +118,7 @@ const Product = (props) => {
                   <p className="description-heading">Discription</p>
                   <div className="m-0 row">
                     <div style={{marginTop:'-20px'}}>
-                    <Rating rating={2} height={20} width={20}></Rating>
+                    <Rating rating={product.rating} height={20} width={20}></Rating>
                     </div>
                   </div>
                 </div>
@@ -106,31 +127,14 @@ const Product = (props) => {
                   <p className="price-hider">Price:</p>
                   {product.price}$
                 </p>
-                <p className="size-tag">Size</p>
+                <p className="size-tag"></p>
                 <div className="row mr-0 ml-0 mt-4">
-                  <div className="size-item-view">
-                    <p>40/6</p>
-                  </div>
+                  {size.map((val)=>(
+                      <div className="size-item-view">
+                        <p>{val.name}/{val.name-34}</p>
+                      </div>
 
-                  <div className="size-item-view">
-                    <p>41/7</p>
-                  </div>
-
-                  <div className="size-item-view">
-                    <p>42/8</p>
-                  </div>
-
-                  <div className="size-item-view">
-                    <p>43/9</p>
-                  </div>
-
-                  <div className="size-item-view">
-                    <p>44/10</p>
-                  </div>
-
-                  <div className="size-item-view">
-                    <p>45/11</p>
-                  </div>
+                  ))}
                 </div>
                 <p className="quantity">Quantity</p>
 
@@ -185,12 +189,15 @@ const Product = (props) => {
               {converData.map((val) => (
                 <div className="col-xl-4 col-lg-4 col-6 mb-4">
                   <div className="ItemView">
-                    <img className="item-image" src={Shoes} />
+                    <img className="item-image" src={process.env.REACT_APP_LOCAL_API+val.thumbnail} />
                     <div className="item-description">
-                    <Rating rating={3} height={13} width={13}/>
-                      <p className="item-info">
-                        {val.short_description}
-                      </p>
+                    <Rating rating={val.rating} height={13} width={13}/>
+                        <p className="item-info" style={{paddingTop:'7px'}}>
+                            {val.name}
+                        </p>
+                        <p className="" style={{paddingTop:'10px', marginBottom:'-10px',fontSize:'16px',fontWeight:'100px',color:'#454545'}} >
+                         {val.short_description}
+                        </p>
                       <div className="price-view">
                         <p className="price-text">${val.price}</p>
                         <img className="right-arrow" src={righarrow} />

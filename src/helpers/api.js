@@ -21,6 +21,8 @@ export async function Cover_Products() {
 }
 
 
+
+
 export async function Populer_Picks() {
   var config = {
     method: 'get',
@@ -123,4 +125,43 @@ export async function Single_Product_Variants(product_id) {
   return GetResponse;
 }
 
+export  async function verify_voucher_code(uuid) {
+  var config = {
+    method: 'get',
+    url: `${process.env.REACT_APP_LOCAL_API}/Users/voucher/${uuid}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await  axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+
+}
+export  async function get_size() {
+  var config = {
+    method: 'get',
+    url: `${process.env.REACT_APP_LOCAL_API}/products/option/`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await  axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
 
