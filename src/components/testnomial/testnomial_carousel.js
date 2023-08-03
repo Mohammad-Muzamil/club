@@ -1,10 +1,12 @@
 import Slider from "react-slick";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery } from "react-responsive";
 import testing from "../../assets/img/testing/testing-cartoon.jpg";
 import Rating from "../rating/rating";
+import { get_testinomials } from "../../helpers/api";
+import { Throw_Error } from "../../helpers/NotifiyToasters";
 
 
 
@@ -16,24 +18,33 @@ const TestonomialCarousel = () => {
       slidesToShow: isMobile ? 1 : 2, // One card per slide on mobile, two cards per slide on larger screens
       slidesToScroll: isMobile ? 1 : 2, // One card at a time on mobile, two cards at a time on larger screens
     };
-    const cards = [
-      { id: 1, rating:4, name: "Shafiqa Iqbal",imagescr: testing, comment: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " },
-      { id: 2, rating:5, name: "Arslan Ahmad",imagescr:  testing, comment: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " },
-      { id: 3, rating:1, name: "Shafiqa Iqbal",imagescr: testing, comment:"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " },
-      { id: 4, rating:2, name: "Arslan Ahmad",imagescr:  testing, comment: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " },
-      { id: 5, rating:4, name: "Shafiqa Iqbal",imagescr: testing, comment:"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " },
-      { id: 6, rating:3, name: "Arslan Ahmad",imagescr:  testing, comment: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " }
-    ]
+    const [testonomail, set_testinomail]= useState([]);
+
+    const populate_testonomial=async ()=>{
+      await get_testinomials().then((response)=>{
+        if (response.status==200)
+        {
+            set_testinomail(response.data);
+        }else{
+            Throw_Error(
+              "Testinomials not loaded"
+            );
+        }    
+        });
+    }
+    useEffect(()=>{
+      populate_testonomial();
+    },[])
     return (
       <div  style={{width:'86%', marginBottom:'80px', marginTop:'55px', marginLeft:'25px' }}>
         <Slider {...settings} >
-          {cards.map((card) => (
-            <div key={card.id}>
+          {testonomail.map((card) => (
+            <div>
               <div className="card" style={{display:'flex', flexDirection:'column' , alignItems:'center' , border:'none', marginBottom:'50px'}}>
-                <img style={{width:'80px', height:'80px', borderRadius:'50%'}} src={card.imagescr}/>
-                <h3 style={{fontWeight:"bolder", fontFamily: 'Ethnocentric'}}>{card.name}</h3>
+                <img style={{width:'80px', height:'80px', borderRadius:'50%'}} src={process.env.REACT_APP_LOCAL_API+card.display_image}/>
+                <h3 style={{fontWeight:"bolder", fontFamily: 'Ethnocentric'}}>{card.customer_name}</h3>
                 <Rating rating={card.rating}/>
-                <span className="description-testnomial" style={{paddingTop:'25px' ,marginLeft:'35px', marginRight:'35px', fontFamily: 'Mont', textAlign:'center', fontWeight:'100px'}}>"{card.comment}"</span>
+                <span className="description-testnomial" style={{paddingTop:'25px' ,marginLeft:'35px', marginRight:'35px', fontFamily: 'Mont', textAlign:'center', fontWeight:'100px'}}>"{card.message}"</span>
               </div>
             </div>
           ))}

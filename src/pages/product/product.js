@@ -13,78 +13,80 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Single_Product_Variants } from "../../helpers/api";
 import { useParams } from "react-router-dom";
-import { Success, Warning } from "../../helpers/NotifiyToasters";
+import { Success, Warning, Throw_Error } from "../../helpers/NotifiyToasters";
 import Rating from "../../components/rating/rating";
-import { Cover_Products, get_size} from "../../helpers/api";
+import { Cover_Products, get_size,get_varaiant_images} from "../../helpers/api";
 
 
 
 
 
 const Product = (props) => {
+  const { product_id } = useParams();
   const [converData, setcoverData] = useState([]);
+  const [product_image, set_product_image]=useState("");
   const [quantity, setquantity] = useState(1);
   const[size, setsize]=useState([]);
-
   const [product, setProduct] = useState({});
+  const [variant_images, set_varaint_images]=useState([]);
+  const [shoes_size, set_shoe_size]= useState(0);
+  const [selectedSize, setSelectedSize] = useState(null);
 
-  const { product_id } = useParams();
+  const handleSizeClick = (val) => {
+    setSelectedSize(val);
+  };
 
+  const populatevaraintimages= async (suuid)=>{
+    await get_varaiant_images(suuid).then( (response)=>{
+      if (response.status==200){
+      set_varaint_images(response.data)}
+    else{
+      Throw_Error("varaint images data not loaded");}
+    })
+  }
   const populatesize=async ()=>{
   await get_size().then((response)=>{
-    if (response.status==200)
-    {
-      setsize(response.data)
-    }
-    else
-    {
-      toast.error('sizes Data Not Loaded', {
-        position: 'top-right',
-        autoClose: 3000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    }
+    if (response.status==200){
+      setsize(response.data)}
+    else{
+      Throw_Error('sizes Data Not Loaded');}
   });
   }
   const coverdatapopulate= async ()=>{
     await Cover_Products().then((response) => {
-      console.log("here is response ",response.data);
       if (response.status === 200) {
         setcoverData(response.data);
       } else {
   
-        toast.error('Cover Products Data Not Loaded', {
-          position: 'top-right',
-          autoClose: 3000,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+          Throw_Error('Cover Products Data Not Loaded');
       }
     });
   }
+  const handleImageClick = (imagePath) => {
+    set_product_image(imagePath);
+   };
+ 
   useEffect(() => {
+    GetProduct();
     coverdatapopulate();
     populatesize();
+   
   }, []);
-  console.log(product_id);
 
   const GetProduct = async () => {
     await Single_Product_Variants(product_id).then((response) => {
       console.log("Product Single Varient", response.data);
       if (response.status === 200) {
         setProduct(response.data);
+        set_product_image(response.data.thumbnail);
+        populatevaraintimages(response.data.uuid);
+     
       } else {
         alert("Something Went Wrong");
       }
     });
   };
 
-  useEffect(() => {
-    GetProduct();
-  }, []);
 
   return (
     <Fragment>
@@ -99,17 +101,19 @@ const Product = (props) => {
             <div className="row m-0">
               <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="item-picture-view ">
-           
-                  <img className="Product-Image" src= {process.env.REACT_APP_LOCAL_API+ product.thumbnail} />
+                  <img  className="Product-Image" src= { process.env.REACT_APP_LOCAL_API+product_image} />
                 </div>
 
                 <div className="d-flex flex-row justify-content-between">
-                  <div className="item-more-picture">
-                    <img src={Product1} />
+                  {
+                    variant_images.map((val)=>(
+                      <div className="item-more-picture">
+                    <img src={process.env.REACT_APP_LOCAL_API+val.image_path} 
+                    onClick={() => handleImageClick(val.image_path)}
+                    />
                   </div>
-                  <div className="item-more-picture">
-                    <img src={Product1} />
-                  </div>
+                     ) )
+                  }
                 </div>
               </div>
 
@@ -127,10 +131,15 @@ const Product = (props) => {
                   <p className="price-hider">Price:</p>
                   {product.price}$
                 </p>
-                <p className="size-tag"></p>
+                <p className="size-tag">Size (EU)</p>
                 <div className="row mr-0 ml-0 mt-4">
                   {size.map((val)=>(
-                      <div className="size-item-view">
+                      <div
+                       className="size-item-view "
+                       key={val.name}
+                       style={val.name === selectedSize ? { border: "4px solid #FE7831" } : { border: "4px solid #f5f5f5" }}
+                       onClick={() => handleSizeClick(val.name)}
+                      >
                         <p>{val.name}/{val.name-34}</p>
                       </div>
 

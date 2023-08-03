@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState, useSyncExternalStore } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import Shoe from "../../assets/img/shoes/product1.png";
@@ -7,16 +7,39 @@ import Cross from "../../assets/img/icons/cross.png";
 import baseButton from "../../assets/img/buttons/basebutton.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setDiscount } from "../../redux/actions/discountAction";
 import { useNavigate } from 'react-router-dom'; 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { get_countries_list } from "../../helpers/api";
+import { Throw_Error } from "../../helpers/NotifiyToasters";
 
 
 
 
 const CheckOut = (props) => {
-  const [discount, setdiscount]=useState(0);
+  const [shippingDetails, setShippingDetails] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    state: "",
+    country: "",
+    postal_code:"",
+    shipping_address:""
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    state: "",
+    country: "",
+    postal_code:"",
+    shipping_address:""
+  });
+  const [discount, setdiscount]=useState(useSelector((state) => state.discount));
+  const [dilivery, set_divilery]=useState(0);
+  const [countries, set_countries]= useState([]);
   const SubtotalFunction = ()=>{
     let totalAmount = 0
       props.cartItems.forEach(element => {
@@ -26,16 +49,52 @@ const CheckOut = (props) => {
 
       return totalAmount;
   }
+
+  const totalprice=()=>{
+     return parseInt([(SubtotalFunction()+dilivery) ]-[(SubtotalFunction())*(discount==0?100:discount/100)]);
+  }
+
+  const setdeliveryprices=(event)=>{
+    const selectedCountryData = countries.find((country) => country.country === event.target.value);
+    if (selectedCountryData) {
+    set_divilery(selectedCountryData.price);
+    setShippingDetails((prevContactDetails) => ({
+      ...prevContactDetails,
+      ["country"]: selectedCountryData.country,
+    }));
+    } else {
+      set_divilery(0);
+    }
+  }
+
+  const populate_country_list= async ()=>{
+    await get_countries_list().then((response)=>{
+      if (response.status==200)
+      {
+          set_countries(response.data)}
+      else{
+            Throw_Error("Countries data not loaded ")
+      }
+    })
+    }
+    useEffect(() => {
+    populate_country_list();
+    }, []);
+
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const isOrderSuccessful = false;
   const handleSubmitOrder = () => {
-    // Assuming you have the order ID after submitting the order
+    checkerrors();
+    const keyValuePairs = Object.entries(shippingDetails);
+    const nonEmptyPairs = keyValuePairs.filter(([key, value]) => value === "");
+    const numberOfKeys = Object.keys(nonEmptyPairs).length;
+    if (numberOfKeys > 0) {
+      return;
+    }
     const orderId = 'ABC123'; // Replace with your actual order ID
+    // navigate('/'); // Use navigate instead of history.push
 
-    // Redirect to the homepage
-    navigate('/'); // Use navigate instead of history.push
-
-    // Show the toast with the order ID
+  
     if (isOrderSuccessful) {
     toast.success( <div>
       <p style={{ marginBottom: '4px' }}>Order submitted Successfully!!</p>
@@ -59,6 +118,27 @@ const CheckOut = (props) => {
 
 };
 
+const checkerrors=()=>{
+  const fields = ["name", "email",  "phone_number","state","country", "postal_code","shipping_address"  ];
+  fields.forEach((field) => {
+    if (!shippingDetails[field].trim()) {
+      errors[field] = `k`;
+      Throw_Error(`Please Enter the ${field}`);
+    } else {
+      errors[field] = "";
+      setErrors((error)=>({...errors,field:""}))
+    }
+});
+}
+
+const handleChange = (e) => {
+  const { name, value} = e.target;
+  setShippingDetails((prevContactDetails) => ({
+    ...prevContactDetails,
+    [name]: value,
+  }));
+}
+
  
 
  
@@ -76,18 +156,9 @@ const CheckOut = (props) => {
 
             <div className="row m-0 justify-content-between">
               <div className="d-flex flex-row align-items-center">
-                {/* <div className="orange-background round">
-                  <p>1</p>
-                </div> */}
+               
                 <div className="orange-text text">Shipping Address</div>
               </div>
-
-              {/* <div className="d-flex flex-row align-items-center">
-                <div className="grey-background round">
-                  <p>2</p>
-                </div>
-                <div className="grey-text text">Payment Details</div>
-              </div> */}
             </div>
 
             <div className="seperator pt-30" />
@@ -95,53 +166,95 @@ const CheckOut = (props) => {
               <div className="Address-Area col-xl-7 col-lg-7 col-md-12 col-sm-12">
                 <div className="input-area row m-0 justify-content-between">
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Name</p>
-                    <input />
+                    <p>Name { shippingDetails.name ==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                    <input
+                     type="text"
+                     name="name"
+                     value={shippingDetails.name}
+                     onChange={handleChange}
+                     required
+                    
+                    />
                   </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>E-Mail</p>
-                    <input />
+                    <p>E-Mail{ shippingDetails.email==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                    <input
+                     type="text"
+                     name="email"
+                     value={shippingDetails.email}
+                     onChange={handleChange}
+                     required
+                      />
                   </div>
                 </div>
 
                 <div className="input-area row m-0 justify-content-between">
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Phone Number</p>
-                    <input />
+                    <p>Phone Number { shippingDetails.phone_number==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                    <input 
+                     type="text"
+                     name="phone_number"
+                     value={shippingDetails.phone_number}
+                     onChange={handleChange}
+                     required
+                     />
                   </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>State</p>
-                    <input />
+                    <p>State { shippingDetails.state==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                
+                    <input
+                      type="text"
+                      name="state"
+                      value={shippingDetails.state}
+                      onChange={handleChange}
+                      required
+                      />
                   </div>
                 </div>
         
 
                 <div className="input-area row m-0 justify-content-between">
-                  <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Country</p>
-                    <select  style={{backgroundColor:'#f5f5f5', borderRadius:'3px', height:'50px', width:'100%',border: "1px solid #3f3636"}}>
-                      <option></option>
-                      <option>Pakistan</option>
-                      <option>USA</option>
-                      <option>India</option>
-                    </select>
-                  </div>
+                      
+                      <div className="single-input col-lg-5 col-md-12 col-sm-12">
+                          <p>Country{ shippingDetails.country==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                        
+                            <select onChange={setdeliveryprices} name="country" style={{backgroundColor:'#f5f5f5', borderRadius:'3px', height:'50px', width:'100%',border: "1px solid #3f3636"}}>
+                            <option value=""></option>
+                            {
+                              countries.map((val)=>(
+                                <option value={val.country}>{val.country}</option>
+                              ))
+                            }
+                          </select>
+                        </div>
 
                   <div className="single-input col-lg-5 col-md-12 col-sm-12">
-                    <p>Postal code</p>
-                    <input />
+                    <p>Postal code {shippingDetails.postal_code==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
+                   
+                    <input
+                     type="text"
+                     name="postal_code"
+                     value={shippingDetails.postal_code}
+                     onChange={handleChange}
+                     required
+                      />
                   </div>
                 </div>
 
                 <div className="input-area">
                   <div className="single-input col-lg-12 col-md-12 col-sm-12">
                     <div className="row justify-content-between m-0">
-                      <p>Shipping address</p>
+                      <p>Shipping address { shippingDetails.shipping_address==""  &&<span style={{color:'#FE7831'}}>*</span>}</p>
                     </div>
+                   
 
-                    <textarea />
+                    <textarea
+                     name= "shipping_address"
+                     onChange={handleChange}
+                     required
+                     />
                   </div>
                 </div>
                 <div className="seperator  col-12" />
@@ -151,17 +264,17 @@ const CheckOut = (props) => {
               <div className="Cart-Items col-xl-5 col-lg-5 col-md-12 col-sm-12">
                 <div className="row m-0">
                   <p className="my-cart">My cart</p>
-                  <p className="total-items">(3 Items)</p>
+                  <p className="total-items">({props.cartItems.length} Items)</p>
                 </div>
                 <div className="seperator  pt-20 mb-50" />
 
                 <div className="All-Cart-Items">
                   {props.cartItems.map((val) => (
                     <div className="itemView">
-                      <img src={Shoe} />
+                      <img src={process.env.REACT_APP_LOCAL_API+val.thumbnail} />
                       <div className="item-description">
-                        <p className="product-name">Adidas falcon shoes</p>
-                        <p className="product-price">$720</p>
+                        <p className="product-name">{val.name}</p>
+                        <p className="product-price">${val.price}</p>
                         <img src={CartIcon} />
                       </div>
 
@@ -178,11 +291,11 @@ const CheckOut = (props) => {
                       </div>
                       <div className="row-view">
                         <p className="bold">Discount</p>
-                        <p className="light">${discount}</p>
+                        <p className="light">{discount}%</p>
                       </div>
                       <div className="row-view">
                         <p className="bold">Delivery</p>
-                        <p className="light">$60</p>
+                        <p className="light">${dilivery}</p>
                       </div>
                     <div className="seperator pt-4" />
                   </div>
@@ -208,7 +321,7 @@ const CheckOut = (props) => {
               <div className="d-flex align-items-center col-xl-4 col-lg-4 col-md-12 col-sm-12 total-head">
                 <div className="row justify-content-between total-view" >
                   <p className="total">Total</p>
-                  <p className="price">${SubtotalFunction()+60-discount}</p>
+                  <p className="price">${totalprice()}</p>
                 </div>
               </div>
             </div>

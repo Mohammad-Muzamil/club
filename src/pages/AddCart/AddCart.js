@@ -1,17 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { bindActionCreators } from 'redux';
 import LayoutOne from "../../layouts/LayoutOne";
 import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {addToCart, IncreaseQuantity, DecreaseQuantity } from "../../redux/actions/cartActions"
 import cross from "../../assets/img/icons/cross.png"
 import {verify_voucher_code } from "../../helpers/api";
 import { useSelector, useDispatch } from "react-redux";
+import { Success, Warning,Throw_Error,Error } from "../../helpers/NotifiyToasters";
 import { setDiscount } from "../../redux/actions/discountAction";
+import { deleteFromCart } from "../../redux/actions/cartActions";
+import { data } from "jquery";
+
 
 
 
@@ -22,35 +26,43 @@ import { setDiscount } from "../../redux/actions/discountAction";
 
 const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
   const dispatch = useDispatch();
-  // dispatch(setDiscount(100));
+
 
   const [vouchercoder, setvouchercode]=useState("");
   const [vouchercodervalid, setisvouchercodevalid]=useState(true);
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const [Data, setData] = useState([]);
-
+  
   const handleVoucherCodeChange = (event) => {
     setvouchercode(event.target.value);
-    if (event.event.value===''){
+    if (event.target.value===''){
       setisvouchercodevalid(true);
     }
   };
 
-  const  move_to_next_page=async()=>{
-    if (vouchercoder!="")
-    {
-      await verify_voucher_code(vouchercoder).then( (response)=>{
-        if (response.status!=200)
-        {
+  const remove_product=(val)=>{
+   
+    dispatch( deleteFromCart(val.product));
+  }
+  const move_to_next_page = async () => {
+    if (vouchercoder !== "") {
+      try {
+        const response = await verify_voucher_code(vouchercoder);
+        if (response.status === 200) {
+          dispatch(setDiscount(response.data.discount));
+        } else {
           setisvouchercodevalid(false);
           return;
         }
-        alert(response.data.discount);
-      });
-    } 
-    alert("i am here ");
+      } catch (error) {
+        console.error("Error occurred while verifying voucher code:", error);
+        return;
+      }
+    }
+  
+    // Redirect to the checkout page after voucher verification (if applicable) or without voucher
     window.location.href = process.env.PUBLIC_URL + "/checkout";
-  }
+  };
 
   const SubtotalFunction = ()=>{
     let totalAmount = 0
@@ -81,7 +93,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
               key={key}
               className="cart-item-view">
             
-              <img src={Shoe} />
+              <img src={process.env.REACT_APP_LOCAL_API+val.thumbnail} />
 
                 <div className="product-info">
                   <p className="product-name">{val.name}</p>
@@ -103,7 +115,8 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                       <p
                         onClick={() => {
                           if (val.Cartquantity === 1) {
-                            alert("Quantity Cannot be 0");
+                            
+                            Warning("Quantity Cannot be 0");
                           } else {
                             DecreaseQuantityCart(val)
                           }
@@ -118,8 +131,6 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                       <p
                         onClick={() => {
                           increaseQuantityCart(val);
-
-                          console.log("New",  cartItems) 
                         }}
                         className="arith"
                       >
@@ -132,7 +143,9 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                     <p className="total-amount">${val.Cartquantity * val.price}</p>
                   </div>
                 </div>
-                <img className="crossbtn" src={cross}  style={{ height: isMobile ? '8px' : '8px', width: isMobile ? '10px' : '15px' }} />
+                <img className="crossbtn" src={cross}
+                  onClick={()=>remove_product(val)}
+                  style={{ height: isMobile ? '8px' : '8px', width: isMobile ? '10px' : '15px' }} />
               </div>
             )})}
 
