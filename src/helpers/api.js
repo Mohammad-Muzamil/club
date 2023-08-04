@@ -225,3 +225,24 @@ export  async function get_testinomials() {
   return GetResponse;
 }
 
+export  async function submit_order(data) {
+  var config = {
+    method: 'post',
+    url: `${process.env.REACT_APP_LOCAL_API}/order/testimonial/`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: data,
+  };
+
+  const GetResponse = await  axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+

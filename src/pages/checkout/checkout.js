@@ -12,7 +12,7 @@ import { setDiscount } from "../../redux/actions/discountAction";
 import { useNavigate } from 'react-router-dom'; 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { get_countries_list } from "../../helpers/api";
+import { get_countries_list, submit_order } from "../../helpers/api";
 import { Throw_Error } from "../../helpers/NotifiyToasters";
 import { deleteFromCart } from "../../redux/actions/cartActions";
 
@@ -21,9 +21,12 @@ import { deleteFromCart } from "../../redux/actions/cartActions";
 
 
 const CheckOut = (props) => {
+  const [orderId, setorderId]=useState("");
+  const [submit_data, set_submitted_data]=useState({});
+  const [discount, setdiscount]=useState(useSelector((state) => state.discount));
+  const [dilivery, set_divilery]=useState(0);
+  const [countries, set_countries]= useState([]);
   const dispatch= useDispatch();
-  console.log("console is here");
-  console.log(props.cartItems)
   const [shippingDetails, setShippingDetails] = useState({
     name: "",
     email: "",
@@ -42,9 +45,7 @@ const CheckOut = (props) => {
     postal_code:"",
     shipping_address:""
   });
-  const [discount, setdiscount]=useState(useSelector((state) => state.discount));
-  const [dilivery, set_divilery]=useState(0);
-  const [countries, set_countries]= useState([]);
+
   const SubtotalFunction = ()=>{
     let totalAmount = 0
       props.cartItems.forEach(element => {
@@ -87,21 +88,39 @@ const CheckOut = (props) => {
     }, []);
 
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const isOrderSuccessful = true;
+  const isOrderSuccessful = false;
   const handleSubmitOrder = () => {
     checkerrors();
     const keyValuePairs = Object.entries(shippingDetails);
     const nonEmptyPairs = keyValuePairs.filter(([key, value]) => value === "");
     const numberOfKeys = Object.keys(nonEmptyPairs).length;
-    if (numberOfKeys > 0) {
+    if (numberOfKeys > 0 || props.cartItems.length == 0 ) {
       return;
     }
-    const orderId = 'ABC123'; // Replace with your actual order ID
+    
+    set_submitted_data({products:props.cartItems, shipping:shippingDetails});
+    // cal the api for and set the order id
+    const submit_order_to_server=async ()=>{
+      await submit_order(submit_data).then((response)=>{
+        if (response.status ==200)
+        {
+              isOrderSuccessful=true;
+              setorderId(response.data.order_id);
+        }
+        else
+        {
+            return;
+        }
+      });
+    }
+
+
+   // Replace with your actual order ID
     navigate('/'); // Use navigate instead of history.push
 
   
     if (isOrderSuccessful) {
-    toast.success( <div>
+     toast.success( <div>
       <p style={{ marginBottom: '4px' }}>Order submitted Successfully!!</p>
       <p ><b>Order ID</b>: {orderId}</p>
     </div>, {

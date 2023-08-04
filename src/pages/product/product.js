@@ -18,9 +18,6 @@ import Rating from "../../components/rating/rating";
 import { Cover_Products, get_size,get_varaiant_images} from "../../helpers/api";
 
 
-
-
-
 const Product = (props) => {
   const { product_id } = useParams();
   const [converData, setcoverData] = useState([]);
@@ -30,7 +27,7 @@ const Product = (props) => {
   const [product, setProduct] = useState({});
   const [variant_images, set_varaint_images]=useState([]);
   const [shoes_size, set_shoe_size]= useState(0);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState({});
 
   const handleSizeClick = (val) => {
     setSelectedSize(val);
@@ -46,6 +43,7 @@ const Product = (props) => {
   }
   const populatesize=async ()=>{
   await get_size().then((response)=>{
+
     if (response.status==200){
       setsize(response.data)}
     else{
@@ -137,8 +135,8 @@ const Product = (props) => {
                       <div
                        className="size-item-view "
                        key={val.name}
-                       style={val.name === selectedSize ? { border: "4px solid #FE7831" } : { border: "4px solid #f5f5f5" }}
-                       onClick={() => handleSizeClick(val.name)}
+                       style={val.name === selectedSize.name ? { border: "4px solid #FE7831" } : { border: "4px solid #f5f5f5" }}
+                       onClick={() => handleSizeClick(val)}
                       >
                         <p>{val.name}/{val.name-34}</p>
                       </div>
@@ -184,7 +182,7 @@ const Product = (props) => {
 
                 <img
                   onClick={() =>
-                    props.addToCart({ ...product, Cartquantity: quantity })
+                    props.addToCart({ ...product, Cartquantity: quantity,size:selectedSize })
                   }
                   className="add-cart-btn"
                   src={AddCartBtn}

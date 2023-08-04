@@ -26,8 +26,6 @@ import { data } from "jquery";
 
 const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
   const dispatch = useDispatch();
-
-
   const [vouchercoder, setvouchercode]=useState("");
   const [vouchercodervalid, setisvouchercodevalid]=useState(true);
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
