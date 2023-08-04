@@ -22,12 +22,12 @@ export const addToCart = (item) => {
 
 //delete from cart
 export const deleteFromCart = (item) => {
-  // return (dispatch) => {
-  //   Success("Item Deleted from the Cart")
-  //   dispatch({ type: DELETE_FROM_CART, payload: item });
-  // };
-  return { type: DELETE_FROM_CART, 
-    payload: item };
+  return (dispatch) => {
+    Success("Item Deleted from the Cart")
+    dispatch({ type: DELETE_FROM_CART, payload: item });
+  };
+  // return { type: DELETE_FROM_CART, 
+  //   payload: item };
 };
 
 export const IncreaseQuantity = (item) => {

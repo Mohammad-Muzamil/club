@@ -57,7 +57,7 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === DELETE_FROM_CART) {
     const remainingItems = (cartItems, product) =>
-      cartItems.filter(cartItem => cartItem.id !== product.id);
+      cartItems.filter(cartItem => cartItem.product.uuid !== product.uuid);
     return remainingItems(cartItems, product);
   }
 

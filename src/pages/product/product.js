@@ -99,12 +99,12 @@ const Product = (props) => {
             {/* <HeaderTwo brand={product.product.brand.name} name={product.name} /> */}
             <p className="categories-text pb-70">{product.name} </p>
             <div className="row m-0">
-              <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="d-flex flex-column justify-content-between col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" >
                 <div className="item-picture-view ">
                   <img  className="Product-Image" src= { process.env.REACT_APP_LOCAL_API+product_image} />
                 </div>
 
-                <div className="d-flex flex-row justify-content-between">
+                <div className="d-flex flex-row justify-content-between" style={{columnGap:"8px"}}>
                   {
                     variant_images.map((val)=>(
                       <div className="item-more-picture">

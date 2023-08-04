@@ -40,10 +40,6 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
     }
   };
 
-  const remove_product=(val)=>{
-   
-    dispatch( deleteFromCart(val.product));
-  }
   const move_to_next_page = async () => {
     if (vouchercoder !== "") {
       try {
@@ -144,8 +140,8 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
                   </div>
                 </div>
                 <img className="crossbtn" src={cross}
-                  onClick={()=>remove_product(val)}
-                  style={{ height: isMobile ? '8px' : '8px', width: isMobile ? '10px' : '15px' }} />
+                  onClick={()=>dispatch( deleteFromCart(val.product))}
+                  style={{ height: isMobile ? '8px' : '10px', width: isMobile ? '10px' : '18px' }} />
               </div>
             )})}
 
@@ -166,7 +162,7 @@ const AddCart = ({cartItems,DecreaseQuantityCart,increaseQuantityCart }) => {
 
                 <div className="row-view pt-30">
                   <p className="Eth-bold">Total</p>
-                  <p className="Eth-bold-orange">${SubtotalFunction() + 60}</p>
+                  <p className="Eth-bold-orange">${SubtotalFunction()}</p>
                 </div>
                   <img className="check-out-btn pt-60" src={CheckOut} onClick={move_to_next_page} />
               </div>

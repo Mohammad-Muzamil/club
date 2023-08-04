@@ -21,6 +21,7 @@ import TestonomialCarousel from "../../components/testnomial/testnomial_carousel
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Rating from "../../components/rating/rating";
+import Loading from "../../helpers/loader";
 
 const Home = (props) => {
 
@@ -219,7 +220,6 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-
         <div className="Slider-Area  mb-5">
           <div className="container">
             <div className="row justify-content-between slider-ctrl">
@@ -275,8 +275,8 @@ const Home = (props) => {
                 >
                   {popularData.map((val) => (
                     <div className="ItemView">
-                      {process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail}
-                      <img className="item-image" src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} />
+                      <img className="item-image" src={Shoes} />
+                      {/* <img className="item-image" src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} /> */}
                       <div className="item-description">
                         <Rating rating={1} height={13} width={13}/>
                         <p className="item-info" style={{paddingTop:'7px'}}>

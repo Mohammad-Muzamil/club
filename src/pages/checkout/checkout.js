@@ -14,11 +14,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { get_countries_list } from "../../helpers/api";
 import { Throw_Error } from "../../helpers/NotifiyToasters";
+import { deleteFromCart } from "../../redux/actions/cartActions";
+
 
 
 
 
 const CheckOut = (props) => {
+  const dispatch= useDispatch();
+  console.log("console is here");
+  console.log(props.cartItems)
   const [shippingDetails, setShippingDetails] = useState({
     name: "",
     email: "",
@@ -82,7 +87,7 @@ const CheckOut = (props) => {
     }, []);
 
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const isOrderSuccessful = false;
+  const isOrderSuccessful = true;
   const handleSubmitOrder = () => {
     checkerrors();
     const keyValuePairs = Object.entries(shippingDetails);
@@ -92,7 +97,7 @@ const CheckOut = (props) => {
       return;
     }
     const orderId = 'ABC123'; // Replace with your actual order ID
-    // navigate('/'); // Use navigate instead of history.push
+    navigate('/'); // Use navigate instead of history.push
 
   
     if (isOrderSuccessful) {
@@ -278,7 +283,7 @@ const handleChange = (e) => {
                         <img src={CartIcon} />
                       </div>
 
-                      <img className="cross-icon" src={Cross} />
+                      <img className="cross-icon" src={Cross}   onClick={()=>dispatch( deleteFromCart(val.product))} />
                     </div>
                   ))}
                
