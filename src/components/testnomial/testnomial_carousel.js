@@ -24,7 +24,7 @@ const TestonomialCarousel = () => {
       await get_testinomials().then((response)=>{
         if (response.status==200)
         {
-            set_testinomail(response.data);
+            // set_testinomail(response.data);
         }else{
             Throw_Error(
               "Testinomials not loaded"

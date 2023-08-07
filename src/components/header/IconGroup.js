@@ -54,7 +54,7 @@ const IconGroup = (props) => {
 
 
 
-
+{/* 
       <div className="same-style header-compare">
         <div class="dropdown">
           <Link to={process.env.PUBLIC_URL + "/cart"}>
@@ -67,7 +67,7 @@ const IconGroup = (props) => {
             />
           </Link>
         </div>
-      </div>
+      </div> */}
 
 
       <div className="same-style d-block d-lg-none">

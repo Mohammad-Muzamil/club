@@ -27,7 +27,7 @@ const NavMenu = (props) => {
           </li>
 
           <li>
-            <Link to={process.env.PUBLIC_URL + "/brands"}>Brand</Link>
+            <Link to={process.env.PUBLIC_URL + "/brands"}>Branches</Link>
             <ul className="mega-menu mega-menu-padding">
               <li className="w-100">
                 <ul>

@@ -25,11 +25,6 @@ const SocialMediaGroup = (props) => {
       <div className="social-icon">
         <img src={Telegram}/>
       </div>
-        
-
-      <div className="social-icon">
-        <img className="drop-down" src={dropdown}/>
-      </div>
 
     </div>
   );

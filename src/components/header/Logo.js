@@ -10,7 +10,7 @@ const Logo = (props) => {
       </Link>
 
 
-      <p className="m-0 p-0">Hype Kicks</p>
+      <p className="m-0 p-0">NYKA</p>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import MobileNavMenu from "./sub-components/MobileNavMenu";
 import MobileWidgets from "./sub-components/MobileWidgets";
 
 import MainLogo from "../../assets/img/logo/Logo.png"
-import Cart from "../../assets/img/icons/Cart.png"
+import avatar from "../../assets/img/icons/Avatar.png"
 import search from "../../assets/img/icons/search.png"
 import Menu from "../../assets/img/icons/menu.png"
 import dropdown from "../../assets/img/icons/dropdown.png"
@@ -22,7 +22,20 @@ const MobileMenu = () => {
 
         <div className="d-flex flex-row mobile-icons">
           <img src={search}/>
-          <img src={Cart}/>
+          <img src={avatar}  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+          <div class="dropdown-menu">
+            <Link to={{ pathname: process.env.PUBLIC_URL + "/my-account" }}>
+              <li>Profile</li>
+            </Link>
+            <Link
+              to={{ pathname: process.env.PUBLIC_URL }}
+
+            >
+              <li>LogOut</li>
+            </Link>
+
+
+          </div>
           <img onClick={()=> setopen(true)} src={Menu} data-toggle="collapse" data-target="#menu"  />
         </div>
         </div>
@@ -37,14 +50,12 @@ const MobileMenu = () => {
                   <Link to={process.env.PUBLIC_URL + "/shop"}>Home</Link>
                 </li>
                 <li classname="na" >
-                  <Link  data-toggle="collapse" data-target="#brand-collapse"  >Brand</Link>
+                  <Link  data-toggle="collapse" data-target="#brand-collapse"  >Branches</Link>
 				  <img className="dropdown-img" src={dropdown} />
                   <div class="collapse" aria-labelledby="navbarDropdown" id="brand-collapse">
                     <ul>
-                      <li><Link>Nike</Link></li>
-                      <li><Link>ACE</Link></li>
-                      <li><Link>Sketcher</Link></li>
-                      <li><Link>Rebook</Link></li>
+                      <li><Link>National Youth ACademy</Link></li>
+                      <li><Link>Youth Karate Academy</Link></li>
                     </ul>
                   </div>
                 </li>
@@ -62,13 +73,13 @@ const MobileMenu = () => {
                   <img className="dropdown-img" src={dropdown} />
                 </li>
                 <li >
+                  <Link to={process.env.PUBLIC_URL + "/about"}>Gallery</Link>
+                </li>
+                <li >
                   <Link to={process.env.PUBLIC_URL + "/about"}>About Us</Link>
                 </li>
                 <li >
                   <Link to={process.env.PUBLIC_URL + "/about"}>Contatct Us</Link>
-                </li>
-                <li >
-                  <Link to={process.env.PUBLIC_URL + "/about"}>Affiliate Program</Link>
                 </li>
               </ul>
             </nav>  

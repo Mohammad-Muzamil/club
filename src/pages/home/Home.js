@@ -12,6 +12,7 @@ import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import ourStory from "../../assets/img/our-story.png";
+import newstory from "../../assets/img/new-story.jpg";
 import btnBg from "../../assets/img/btn-bg.png";
 import heroImg from "../../assets/img/shoe-img.png";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
@@ -224,10 +225,9 @@ const Home = (props) => {
           <div className="container">
             <div className="row justify-content-between slider-ctrl">
               <div className="col-sm-8 slider-text">
-                <p className="upper-text">Popular Picks</p>
+                <p className="upper-text">Popular Players</p>
                 <p className="lower-text">
-                  Our popular picks for most favorited Nike Men’s & Women’s
-                  shoes.
+                  Our popular players for most favorited Tournaments
                 </p>
               </div>
               <div className="col-sm-4 slider-btn">
