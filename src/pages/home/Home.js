@@ -184,7 +184,7 @@ const Home = (props) => {
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
-                          &nbsp;SHOP NOW&nbsp;
+                          &nbsp;Read More&nbsp;
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
