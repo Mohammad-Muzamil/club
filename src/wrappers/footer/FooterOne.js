@@ -8,6 +8,7 @@ import Telegram from "../../assets/img/socialmedia/telegram.png";
 import FaceBook from "../../assets/img/socialmedia/facebook.png";
 import mail from "../../assets/img/socialmedia/mail.png";
 import Instagram from "../../assets/img/socialmedia/instagram.png";
+import clublogo from "../../assets/img/icons/clublogo.png";
 
 const FooterOne = (props) => {
   return (
@@ -24,15 +25,14 @@ const FooterOne = (props) => {
         <div className="row">
           <div className="col-xl-4 col-lg-4 col-sm-4 footer-start">
             <div className="main-logo">
-              <img src={MainLogo} />
+              <img src={clublogo} />
             </div>
 
             <p>
-              Design amazing digital experiences that create more happy in the
-              world.
+            Delivering exceptional user support to ensure seamless experiences and satisfaction.
             </p>
 
-            <p className="email-support">support@hypekicks.com</p>
+            <p className="email-support">NYKAF@gmail.com</p>
 
             <div className="paymentIcons">
               <img src={Payment1} />
@@ -44,23 +44,21 @@ const FooterOne = (props) => {
 
           <div className="row footer-end col-xl-8 col-lg-8 col-sm-8 m-0">
             <p>
-              Our shoes are listed as <b className="bold">‘UA’ </b>stand for{" "}
-              <b className="bold">Unauthorized Authentic.</b>
-              Unauthorized Authentic Means That They Were Made In The Same Place
-              And With The Same Materials As The Original Product, But Sold By
-              Someone Else.
+              Our Clubs are listed as <b className="bold">‘PKF’ </b>stand for{" "}
+              <b className="bold">Pakistan Karate Federation&nbsp;</b>
+               best clubs. Where champions are forged and greatness is realized, empowering every player to reach new heights in their martial arts journey.
             </p>
 
             <div className={"col-xl-3 col-lg-3 col-sm-4 p-0"}>
               <div className="footer-widget mb-30">
                 <div className="footer-title">
-                  <h3>Socail Media</h3>
+                  <h3>Social Media</h3>
                 </div>
                 <div className="footer-list">
                   <ul>
                     <li>
                       <img src={Telegram} />
-                      <Link to={process.env.PUBLIC_URL + "/"}>Telegram</Link>
+                      <Link to={process.env.PUBLIC_URL + "/"}>Youtube</Link>
                     </li>
                     <li>
                       <img src={Instagram} />
@@ -188,7 +186,7 @@ const FooterOne = (props) => {
         </div>
       </div>
       <div className="footer-copyright">
-        <p>© 2077 Untitled UI. All rights reserved.</p>
+        <p>© 2023 Untitled UI. All rights reserved.</p>
       </div>
     </footer>
   );

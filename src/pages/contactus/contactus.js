@@ -76,11 +76,9 @@ const ContactUs = () => {
     <div className="BackgroundPicture pt-100 pb-100">
              <div className="container">
                <p className="contact-us">Contact us</p>
-               <p className="help-text-heading pt-100">CAN WE HELP?</p>
+               <p className="help-text-heading pt-80">CAN WE HELP?</p>
                <p className="help-text pb-100 pt-30">
-                 Office support is available 5/24, we wish you a new and successful
-                 experience in our store. Make sure we are here to help you with
-                 any problem you encounter in the Store. BooLopo support Team
+               Yes, we are here to help! Our office support is available 24/7, and we want to ensure that you have a fantastic and successful experience in our Academy.
                </p>
     
           <div className="row m-0 justify-content-between">
@@ -151,31 +149,32 @@ const ContactUs = () => {
                   checked={contactDetails.subscribe}
                   onChange={handleChange}
                 />
-                <p>Please keep me updated on new collections.</p>
+                <p>Please keep me updated.</p>
               </div>
 
               <img src={Send} alt="Send" onClick={sendContactData} />
             </div>
           
             <div className="contact-us-info col-lg-4 col-md-12 col-sm-12">
-              <p className="bold-heading">Store Adress</p>
+              <p className="bold-heading">Office Adress</p>
 
-              <p className="light-text mb-1">L-20, Universal Plaza, L Block,</p>
+              <p className="light-text mb-1">Samnabad Sports Complex</p>
 
-              <p className="light-text mb-1">DHA Phase</p>
-              <p className="light-text">4,Lahore.Punjab,Pakistan.</p>
+              <p className="light-text mb-1">Faisalabad</p>
+              <p className="light-text">Pakistan</p>
 
               <p className="bold-heading">Opning hours</p>
 
-              <p className="light-text">Active 5/24</p>
+              <p className="light-text">Girls 5 to 7 PM</p>
+              <p className="light-text" style={{marginTop:'-100px'}}>Boys 7 to 9 PM</p>
 
               <p className="bold-heading">Telephone</p>
 
-              <p className="light-text">+92 336 5563138</p>
+              <p className="light-text">+92 300 7675885</p>
 
               <p className="bold-heading">E-mail</p>
 
-              <p className="light-text">asharatiq11@gmail.com8</p>
+              <p className="light-text">nykaf@gmail.com</p>
             </div>
         </div>
       </div>

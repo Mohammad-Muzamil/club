@@ -16,8 +16,8 @@ const AboutUs = (props) => {
 
             <img src={CeoSection} className="ceo-section pt-100" />
 
-            <p className="world-wide">EST. 2018</p>
-            <p className="world-wide">WORLDWIDE DELIVERY</p>
+            <p className="world-wide">NAtional Youth </p>
+            <p className="world-wide">Karate  Academies</p>
 
             <div className="container white-background">
               <div className="row  m-0 justify-content-between">
@@ -25,22 +25,7 @@ const AboutUs = (props) => {
                   <div className="portion1">
                     <p className="bold">How it all started</p>
                     <p className="light">
-                      Our site launched in July 2018, we aim to be the foremost
-                      trusted seller within the market. We have already sent
-                      thousands of pairs of top-quality UA replica sneakers to
-                      our customers. We have built a gentle and trusty
-                      relationship with every customer, as our customers are the
-                      highest priority of our business. We greatly value the
-                      requirements and suggestions of our customers. Via email,
-                      WhatsApp, and Instagram, you’ll receive prompt and
-                      courteous services from our consultants, who are going to
-                      be at your service until you discover the right products
-                      you wish. Meanwhile, we offer automatic order tracking
-                      after service because serving our customers is the
-                      greatest concern of our business.We assure our customers
-                      of reliable quotations, prompt deliveries, and stable
-                      supplies. We are constantly working to enhance our
-                      products, services.
+                      Sensei Majid Butt's journey in starting a karate academy was nothing short of remarkable and filled with perseverance. Despite facing numerous challenges, he pursued his dream with unwavering determination. Starting from humble beginnings, Sensei Majid poured his heart and soul into creating a space where karate enthusiasts could learn and grow.Sensei Majid style was marked by his passion and commitment. He not only imparted the physical techniques of karate but also instilled discipline, respect, and resilience in his students. His caring and nurturing approach fostered a strong sense of camaraderie among the students, creating a tightly-knit karate community.
                     </p>
                   </div>
                 </div>
@@ -61,8 +46,7 @@ const AboutUs = (props) => {
                     </button>
 
                     <p>
-                      Remember to show off your new purchase on insta bytagging
-                      us and get $20 off your next order.
+                     
                     </p>
                   </div>
                 </div>
@@ -70,41 +54,16 @@ const AboutUs = (props) => {
                 <div className="col-lg-6 col-md-12 col-sm-12">
                   <div className="portion2">
                     <p className="bold">
-                      An excessive amount (If not TONS) of leftovers would
-                      either be dumped or burned away.
+                    How he prepared players to reach new heights of success.
                     </p>
                     <p className="light">
-                      All our products are of high quality and made of authentic
-                      materials, the pictures on our sites are real photos of
-                      samples in our warehouses, that were taken by ourselves.
-                      Due to the conditions of sunshine and background, they
-                      could look a touch different from what they really
-                      neutralize in the important world. The item you will
-                      receive will be identical to the item shown in the
-                      picture. Each item is inspected before shipment to make
-                      sure the very best quality standards. Quality and good
-                      service are our primary priority. You need to understand
-                      that, the factory here keeps improving the sneakers’
-                      details, we add updated version date whenever on the item
-                      page. Please carefully check the pics and videos updated
-                      date on the item page, know well which version you’ve got
-                      ordered. We hope to offer you 100% satisfaction while you
-                      patronize our store. We believe in liability, and that we
-                      run our business supported a good reputation and mutual
-                      benefits. All goods on our website are provided of top
-                      quality. We assure our customers of reliable quotations,
-                      prompt deliveries, and stable supplies. We are constantly
-                      working to enhance our products, services, and website to
-                      form your shopping experience better and better. We wish
-                      you a pleasant shopping!We assure our customers of
-                      reliable quotations, prompt deliveries, and stable
-                      supplies. We are constantly working to enhance our
-                      products, services, and website to form your shopping
-                      experience better and better. We wish you a pleasant
-                      shopping!We assure our customers of reliable quotations,
-                      prompt deliveries, and stable supplies. We are constantly
-                      working to enhance our products, services, and website to
-                      form your shopping experience .
+                    As the academy grew, Sensei Butt continued to invest in his students' development, refining his curriculum and training programs. He sought to push their limits, challenging them to reach new heights in their karate journey. His guidance and mentorship were instrumental in shaping talented individuals into skilled karate athletes.
+
+                    Through his relentless efforts, Sensei Butt's academy started producing remarkable results. Several of his students displayed exceptional talent and dedication, making their mark in regional and national-level competitions. Over time, his academy became renowned for producing top-notch karate players.
+
+                    Now, the hard work and dedication have borne fruit, with some of Sensei Butt's finest students representing Pakistan at the highest level - the National Team. Their achievements on the international stage are a testament to Sensei Majid coaching prowess and the values he instilled in them.
+
+                    Sensei Majid Butt's journey from starting a karate academy with determination to grooming players who proudly compete at the National Team level is an inspiring story of passion, perseverance, and unwavering belief in the power of karate to transform lives. His legacy continues to shine through his students' achievements, and his academy stands as a beacon of hope and opportunity for future generations of karateka in Pakistan
                     </p>
                   </div>
                 </div>

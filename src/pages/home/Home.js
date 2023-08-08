@@ -2,6 +2,8 @@ import React, { Fragment, useRef, useState, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Secure from "../../assets/img/icons/secure.png";
 import truck from "../../assets/img/icons/truck.png";
+import branch from "../../assets/img/icons/branch.png";
+import training from "../../assets/img/icons/training.png";
 import timer from "../../assets/img/icons/timer.png";
 import rightbutton from "../../assets/img/buttons/arrow-square-right.png";
 import leftbutton from "../../assets/img/buttons/arrow-square-left.png";
@@ -10,8 +12,13 @@ import "react-multi-carousel/lib/styles.css";
 import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
+import cover_image from "../../assets/img/icons/cover_image1.png";
+import cover_image2 from "../../assets/img/icons/cover_image2.png";
+import cover_image3 from "../../assets/img/icons/cover_image3.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
 import ourStory from "../../assets/img/our-story.png";
+import myStory from "../../assets/img/mystory.png";
+import mblStory from "../../assets/img/mbl-story.png";
 import newstory from "../../assets/img/new-story.jpg";
 import btnBg from "../../assets/img/btn-bg.png";
 import heroImg from "../../assets/img/shoe-img.png";
@@ -25,7 +32,22 @@ import Rating from "../../components/rating/rating";
 import Loading from "../../helpers/loader";
 
 const Home = (props) => {
+  const [imageSrc, setImageSrc] = useState(myStory);
 
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setImageSrc(mblStory);
+    } else {
+      setImageSrc(myStory);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const nextSlide = useRef();
   const prevSlide = useRef();
   const [converData, setcoverData] = useState([]);
@@ -197,6 +219,84 @@ const Home = (props) => {
                   </div>
                 ))}
                 {/* slide end */}
+                <div className="row justify-content-center ">
+                    <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
+             
+                      <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
+                      <p >( Vince Lombardi )</p>
+                  
+                      <div class="slider-img">
+                        <img src={cover_image} />
+                        
+                      </div>
+                      <div className="btn-div">
+                        <button>
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          &nbsp;Read More&nbsp;
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-lg-5 col-md-5 second-sec">
+                      <img src={cover_image} />
+                    </div>
+                  </div>
+                <div className="row justify-content-center ">
+                    <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
+             
+                      <h1>Sports is where <spam style={{color:"orange"}}>dedication</spam>, passion, and unity propel <spam style={{color:"orange"}}>greatness</spam> forward</h1>
+                      <p >( Masatoshi )</p>
+                  
+                      <div class="slider-img">
+                        <img src={cover_image2} />
+                        
+                      </div>
+                      <div className="btn-div">
+                        <button>
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          &nbsp;Read More&nbsp;
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-lg-5 col-md-5 second-sec">
+                      <img src={cover_image2}  />
+                    </div>
+                  </div>
+                <div className="row justify-content-center ">
+                    <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
+             
+                      <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
+                      <p >( Vince Lombardi )</p>
+                  
+                      <div class="slider-img">
+                        <img src={cover_image3} />
+                        
+                      </div>
+                      <div className="btn-div">
+                        <button>
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          <img src={btnArrowLt} />
+                          &nbsp;Read More&nbsp;
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                          <img src={btnArrowGt} />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-lg-5 col-md-5 second-sec">
+                      <img src={cover_image3} />
+                    </div>
+                  </div>
               </Carousel>
             </div>
           </div>
@@ -204,15 +304,15 @@ const Home = (props) => {
         <div className="container pt-100 pb-100 services">
           <div className="row">
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={truck} />
+              <img src={training} />
               <p className="first-text">Free</p>
-              <p className="second-text"> Shipping Worldwide</p>
+              <p className="second-text"> 1 Day Training </p>
             </div>
 
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={Secure} />
-              <p className="first-text">100%</p>
-              <p className="second-text"> Safe & Secure Checkout</p>
+              <img src={branch}/>
+              <p className="first-text">3+</p>
+              <p className="second-text"> Branches</p>
             </div>
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
               <img src={timer} />
@@ -246,8 +346,7 @@ const Home = (props) => {
               <div className="col-xs-6 d-sm-none col-sec">
                 <div class="slider-desp">
                   <p className="lower-text">
-                    Our popular picks for most favorited Nike Men’s & Women’s
-                    shoes.
+                  ur popular players for most favorited Tournaments
                   </p>
                 </div>
                 <div className="slider-btn">
@@ -300,18 +399,18 @@ const Home = (props) => {
           </div>
         </div>
         <div class="container-fluid ourStory">
-            <div class="row">
+            <div class="row ">
               <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
                 <h3>
-                  WHY IS SO <span className="grey-text">CHEAP</span>?
+                  WHY IS KARATE SO <span className="grey-text">IMPORTANT</span>?
                 </h3>
-                <p>
-                  Don't worry we have answers to all of your questions. Click on
-                  below button.
+                <p style={{paddingTop:'10PX'}}>
+                  
+                  Karate is important for you because it will help you improve your physical fitness, enhance your mental discipline, and teach you valuable self-defense skills.
                 </p>
               </div>
               <div class="col-lg-11 col-md-12 col-sm-12 img-section">
-                <img src={ourStory} />
+                <img src={imageSrc} className="inner-img" />
                 <img src={btnBg} className="read-story-btn" />
               </div>
               <div class="col-8 btn-group">
@@ -322,6 +421,11 @@ const Home = (props) => {
               <TestonomialCarousel/>
             </div>
         </div>
+
+
+
+
+
       </LayoutOne>
     </Fragment>
   );
