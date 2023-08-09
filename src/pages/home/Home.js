@@ -30,6 +30,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Rating from "../../components/rating/rating";
 import Loading from "../../helpers/loader";
+import Videos from "../../components/video_section/videos";
 
 const Home = (props) => {
   const [imageSrc, setImageSrc] = useState(myStory);
@@ -301,26 +302,10 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="container pt-100 pb-100 services">
-          <div className="row">
-            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={training} />
-              <p className="first-text">Free</p>
-              <p className="second-text"> 1 Day Training </p>
-            </div>
-
-            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={branch}/>
-              <p className="first-text">3+</p>
-              <p className="second-text"> Branches</p>
-            </div>
-            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
-              <img src={timer} />
-              <p className="first-text">24/7</p>
-              <p className="second-text"> Dedicated Support</p>
-            </div>
-          </div>
+        <div>
+        <Videos/>
         </div>
+     
         <div className="Slider-Area  mb-5">
           <div className="container">
             <div className="row justify-content-between slider-ctrl">
@@ -398,6 +383,26 @@ const Home = (props) => {
             </div>
           </div>
         </div>
+        <div className="container pt-100 pb-100 services">
+          <div className="row">
+            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
+              <img src={training} />
+              <p className="first-text">Free</p>
+              <p className="second-text"> 1 Day Training </p>
+            </div>
+
+            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
+              <img src={branch}/>
+              <p className="first-text">3+</p>
+              <p className="second-text"> Branches</p>
+            </div>
+            <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
+              <img src={timer} />
+              <p className="first-text">24/7</p>
+              <p className="second-text"> Dedicated Support</p>
+            </div>
+          </div>
+        </div>
         <div class="container-fluid ourStory">
             <div class="row ">
               <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
@@ -421,6 +426,8 @@ const Home = (props) => {
               <TestonomialCarousel/>
             </div>
         </div>
+
+        
 
 
 
