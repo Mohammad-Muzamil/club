@@ -33,6 +33,9 @@ import Loading from "../../helpers/loader";
 import Videos from "../../components/video_section/videos";
 import Coach from "../../components/coach_section/coach";
 import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
+import AffiliatedAssociations from "../../components/association_slider/association_slider";
+
+import App from "../../components/timer/timer";
 
 const Home = (props) => {
   const [imageSrc, setImageSrc] = useState(myStory);
@@ -427,6 +430,7 @@ const Home = (props) => {
               {/* testonomial portion */}
               <Coach/>
               <Upcomming_Event/>
+              <AffiliatedAssociations/>
               <TestonomialCarousel/>
             </div>
         </div>

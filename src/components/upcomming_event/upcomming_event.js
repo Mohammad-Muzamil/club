@@ -1,28 +1,34 @@
 import React from 'react'
 import "../../assets/css/upcomming_event.css"
 import { Wave } from "react-animated-text";
+import national_games from "../../assets/img/nationalgames.jpg"
+import Timer from '../timer/timer';
 
 
- const Wave1=()=> {
+ const Wave1=(prop)=> {
   return (
-    <div style={{ fontSize: "18px"}}>
-       <Wave text="UPCOMMING EVENT" effect="fadeOut" effectChange={1.0} />
+    <div style={{ fontSize: "28px"}}>
+       <Wave text={prop.name}effect="fadeOut" effectChange={0.5} />
     </div>
   )
 }
 
 
 const Upcomming_Event=()=> {
-  return (
+ 
+     return (
     <div className="team-holder theme-padding">
     <div className="container">
        <div className="main-heading-holder">
           <div className="main-heading sytle-2">
-                <h2 className="word " ><Wave1></Wave1></h2>
+                <h2 className="word " >Events</h2>
           </div>
+          <div className='col-5' >
+                      <Timer/>
+                  </div>
                 <div className="w-100 checking " style={{ display: "flex", flexDirection: "row", flexWrap:" wrap"}}>
                    <div className="col-md-5 col-lg-5 col-sm-12 mt-lg-5">
-                      <h1>NATIONAL GAMES 2023</h1>
+                      <h1>  <Wave1 name="National Games 2023"/></h1>
                       <p style={{textAlign: "justify"}}>
                          We are all set to hold the 34th edition of the National Games in Quetta from May 15. The arrangements are being given the final touches. Hopefully, it would be one of the best Games ever to be held in Pakistan
                       </p>
@@ -33,7 +39,7 @@ const Upcomming_Event=()=> {
                    <div className="col-md-7 col-lg-7 col-12">
                       <div className="about_box">
                          <div className="image_1">
-                            <img src={{}} style={{height: "300px", width: "100%"}}/>
+                            <img src={national_games} style={{height: "300px", width: "100%"}}/>
                          </div>
                       </div>
                    </div>

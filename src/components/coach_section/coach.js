@@ -26,11 +26,11 @@ const Img=(prop)=>{
   <div className="container">
      <div className="main-heading-holder">
         <div className="main-heading sytle-2">
-           <h2> Our Coaches</h2>
+           <h2> Coaches</h2>
         </div>
      </div>
      <div id="team-slider">
-        <div className="container d-flex  small-screen " >
+        <div className="container d-flex  small-screen " style={{paddingLeft:"35px"}} >
             <Img number="1" img={majid} type="Chief Coach" name="Majid Butt"/>
             <Img number="2" img={yasir} type="Chief Coach" name="Yasir Arafat"/>
             <Img number="3" img={shahbaz_ahmad} type="Coach" name="Shahbaz Ahmad"/>

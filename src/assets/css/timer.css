@@ -1,0 +1,13 @@
+.timer-container {
+    display: flex;
+    justify-content: space-around;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 40px;
+    width: 100%;
+  }
+  
+  .time {
+    font-size: 25px;
+  }
+  
