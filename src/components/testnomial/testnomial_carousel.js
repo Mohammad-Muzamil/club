@@ -33,8 +33,16 @@ const TestonomialCarousel = () => {
         });
     }
     useEffect(()=>{
-      populate_testonomial();
+      set_testinomail([
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"},
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"},
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"},
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"},
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"},
+        {display_image:"jjkjkjk",customer_name:"Muzamil Amin", rating:4,message:"hghjgjgjgjgjgjgjgjgjgjgjgjgjgjgututuyoioioijlkmlkkhjg"}
+      ])
     },[])
+ 
     return (
       <div  style={{width:'86%', marginBottom:'80px', marginTop:'55px', marginLeft:'25px' }}>
         <Slider {...settings} >
