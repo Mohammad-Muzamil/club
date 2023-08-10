@@ -1,0 +1,142 @@
+@media screen and  (max-width: 767px) {
+    .small-screen{
+     display: flex;
+     flex-direction: column;
+     row-gap: 15px;
+    align-items: center;
+    padding-left: 35px;
+    }
+}
+
+
+.zoomable-img:hover {
+    transform: scale(1.05); /* Slightly scale up the image on hover */
+}
+.team-holder {
+float: left;
+width: 100%;
+padding-top: 30px;
+padding-bottom: 5px;
+}
+.theme-padding.middle-bg {
+float: left;
+width: 100%;
+}
+.theme-padding.middle-bg {
+padding-top: 100px;
+padding-bottom: 100px;
+background-repeat: no-repeat;
+background-position: top center;
+position: relative;
+background-size: cover;
+background-attachment: fixed;
+box-shadow: 0 0 100px -80px rgba(0,0,0,0.8);
+min-height: 515px;
+}
+.main-heading-holder {
+text-align: center;
+padding-bottom: 0;
+padding-top: 30px;
+float: left;
+width: 100%;
+}
+.main-heading {
+display: inline-block;
+text-align: center;
+width: 100%;
+margin-bottom: 35px;
+}
+.main-heading.sytle-2 h2::before, .main-heading.sytle-2 h2::after {
+content: "";
+width: 86px;
+top: 50%;
+position: absolute;
+border-bottom: 4px solid #1b73cd;
+}
+.main-heading.sytle-2 h2::before {
+right: 100%;
+}
+.main-heading.sytle-2 h2::after {
+left: 100%;
+}
+.main-heading.sytle-2 h2 {
+position: relative;
+display: inline-block;
+padding: 0 20px;
+text-transform: capitalize;
+font-weight: 600;
+color: #111;
+line-height: 21px;
+font-size: 30px;
+}
+.team-column {
+position: relative;
+float: left;
+overflow: hidden;
+transition: ease all 1s;
+}
+.player-name {
+position: absolute;
+background: #000;
+text-align: left;
+bottom: 0;
+width: 100%;
+padding: 15px 20px;
+}
+.player-name h5 {
+margin: 0;
+color: #fff;
+font-size: 16px;
+float: left;
+margin: 0;
+padding: 0;
+}
+.player-name .player-number {
+border-radius: 0;
+top: 0;
+right: 0;
+left: auto;
+height: 100%;
+line-height: 58px;
+background: #d8302f;
+color: #fff;
+width: 48px;
+border: 0;
+position: absolute;
+text-align: center;
+font-size: 24px;
+font-weight: 600;
+}
+.team-column {
+position: relative;
+float: left;
+overflow: hidden;
+transition: ease all 1s;
+}
+.player-name h5 {
+margin: 0;
+color: #fff;
+font-size: 16px;
+}
+.player-name .desination-2 {
+position: absolute;
+bottom: 100%;
+left: 0;
+background: #d8302f;
+z-index: 1;
+padding: 3px 20px 2px;
+text-transform: capitalize;
+color: #FFF;
+font-size: 14px;
+font-weight: 400;
+}
+.player-name .desination-2::before {
+content: "";
+position: absolute;
+left: 100%;
+top: 1px;
+width: 0;
+height: 0;
+border-bottom: 30px solid #d8302f;
+border-right: 20px solid transparent;
+}

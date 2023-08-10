@@ -31,6 +31,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Rating from "../../components/rating/rating";
 import Loading from "../../helpers/loader";
 import Videos from "../../components/video_section/videos";
+import Coach from "../../components/coach_section/coach";
+import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
 
 const Home = (props) => {
   const [imageSrc, setImageSrc] = useState(myStory);
@@ -423,6 +425,8 @@ const Home = (props) => {
             
               </div>
               {/* testonomial portion */}
+              <Coach/>
+              <Upcomming_Event/>
               <TestonomialCarousel/>
             </div>
         </div>
