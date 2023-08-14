@@ -29,15 +29,17 @@ const IconGroup = (props) => {
 
       <div className="same-style header-compare">
         <div class="dropdown">
+          <Link to={process.env.PUBLIC_URL + "/login"} >
           <img
             src={Avatar}
             type="button"
             className="navBarLogo dropdown-toggle"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           />
+          </Link>
 
-          <div class="dropdown-menu">
-            <Link to={{ pathname: process.env.PUBLIC_URL + "/my-account" }}>
+          {/* <div class="dropdown-menu">
+            <Link to={{ pathname: process.env.PUBLIC_URL + "/login" }}>
               <li>Profile</li>
             </Link>
             <Link
@@ -46,9 +48,7 @@ const IconGroup = (props) => {
             >
               <li>LogOut</li>
             </Link>
-
-
-          </div>
+          </div> */}
         </div>
       </div>
 

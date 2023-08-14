@@ -3,6 +3,8 @@ import React from 'react'
 import "../../assets/css/videos.css"
 import kumite from "../../assets/videos/kumite.mp4"
 import kata from "../../assets/videos/kata.mp4"
+import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
+import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 
  const Videos=()=> {
   return (
@@ -12,9 +14,10 @@ import kata from "../../assets/videos/kata.mp4"
           <div className="col-md-6">
              <div className="about_taital_main">
                 <div className="about_taital">Your Choice</div>
-                <p className="about_text"  style={{ marginTop: '-10px', textAlign: 'justify' }}>Karate is a Japanese martial art whose physical aspects seek the development of defensive and counterattacking body movements.
+                <p className="about_text"  style={{ marginTop: '-10px', textAlign: 'justify' , fontFamily: 'Mont'}}>Karate is a Japanese martial art whose physical aspects seek the development of defensive and counterattacking body movements.
                     The themes of traditional karate training are fighting and self-defense, though its mental and moral aspects target the overall improvement of the individual.</p>
                 <div className="read_more_bt_1"><a href="#">Learn More</a></div>
+           
              </div>
           </div>
           <div className="col-md-6">

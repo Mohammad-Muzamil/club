@@ -34,6 +34,7 @@ import Videos from "../../components/video_section/videos";
 import Coach from "../../components/coach_section/coach";
 import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
 import AffiliatedAssociations from "../../components/association_slider/association_slider";
+import Gallery from "../../components/gallery/gallery";
 
 import App from "../../components/timer/timer";
 
@@ -229,7 +230,7 @@ const Home = (props) => {
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
              
                       <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
-                      <p >( Vince Lombardi )</p>
+                      <p ></p>
                   
                       <div class="slider-img">
                         <img src={cover_image} />
@@ -255,7 +256,7 @@ const Home = (props) => {
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
              
                       <h1>Sports is where <spam style={{color:"orange"}}>dedication</spam>, passion, and unity propel <spam style={{color:"orange"}}>greatness</spam> forward</h1>
-                      <p >( Masatoshi )</p>
+                      <p ></p>
                   
                       <div class="slider-img">
                         <img src={cover_image2} />
@@ -281,7 +282,7 @@ const Home = (props) => {
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
              
                       <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
-                      <p >( Vince Lombardi )</p>
+                      <p ></p>
                   
                       <div class="slider-img">
                         <img src={cover_image3} />
@@ -432,6 +433,7 @@ const Home = (props) => {
               <Upcomming_Event/>
               <AffiliatedAssociations/>
               <TestonomialCarousel/>
+              <Gallery/>
             </div>
         </div>
 

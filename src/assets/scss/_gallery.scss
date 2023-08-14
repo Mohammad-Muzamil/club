@@ -1,0 +1,192 @@
+.brandLogo{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lightgallery{
+  width: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+}
+.checking{
+  display: flex;
+  flex-direction: row;
+}
+.brand-logo{
+  display: flex;
+  justify-content: center;
+  
+  .logo{
+    width: 320px;
+    height: 166px;
+  
+    @media screen and (max-width: 990px) {
+      width: 82px;
+      height: 42px;
+      object-fit: contain;
+  }
+}
+}
+
+.header-with-brand{
+    
+
+    @media screen and (max-width: 990px) {
+      justify-content: center;
+  }
+  
+    .homeIcon{
+      width: 27px;
+      height: 30px;
+      object-fit: contain;
+      margin-right: 20px;
+      @media screen and (max-width: 500px) {
+        width: 15px;
+        height: 16px;
+        object-fit: contain;
+    }
+    }
+    .brand-name{
+      font-family: 'Mont';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      text-decoration-line: underline;
+      color: #FDFDFD;
+      margin: 0 8px 0 0;
+
+
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 500px) {
+        font-size: 14px;
+      }
+      
+    
+    }
+    .arrow{
+      width: 22 px;
+      height: 22px;
+      object-fit: contain;
+      margin: 0 8px 0 0;
+
+      @media screen and (max-width: 990px) {
+        width: 14px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    }
+    .bold-text{
+      font-family: 'Mont';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      color: #FDFDFD;
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 500px) {
+        font-size: 12px;
+      }
+    }
+  
+}
+
+.ItemView{
+    width: 100%;
+    height: 100%;
+      background-color: #fff;
+      border-radius: 10px;
+      .item-image{
+        width: 100%;
+        height: 300px;
+        margin-top: 70px;
+        object-fit: contain;
+        @media screen and (max-width: 992px) {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+        }
+        @media screen and (max-width: 500px) {
+          width: 100%;
+          height: 150px;
+          margin-top: 10px;
+      }
+      }
+      
+
+      .item-description{
+        padding: 0 30px 0 30px;
+
+        @media screen and (max-width: 992px) {
+            padding: 0 10px 0 10px;
+          }
+        .item-rating-view{
+          display: flex;
+          flex-direction: row;
+          .star{
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            margin-right: 5px;
+            @media screen and (max-width: 500px) {
+              width: 15px;
+              height: 15px;
+          }
+          }
+        }
+  
+        .item-info{
+          margin: 24px 0 0 0;
+          font-family: 'Mont';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 18px;
+          color: #050505;
+          width: 90%;
+  
+        }
+  
+        .price-view{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 24px 0 20px 0;
+          @media screen and (max-width: 500px) {
+            padding: 20px 0 15px 0;
+        }
+          .price-text{
+            font-family: 'Ethnocentric';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+            color: #050505;
+            margin: 0px;
+            @media screen and (max-width: 992px) {
+              font-size: 22px;
+          }
+
+            @media screen and (max-width: 500px) {
+              font-size: 14px;
+          }
+          }
+          .right-arrow{
+            width: 19px;
+            height: 16px;
+          }
+        }
+      }  
+
+
+
+    }
+
+
+
+

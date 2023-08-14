@@ -2,7 +2,7 @@ import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/pages/home/Home";
-import Brands from "./pages/brands/brands";
+import Gallery from "./pages/gallery/gallery";
 import BrandProducts from "./pages/brand-products/brand-products";
 import Product from "./pages/product/product";
 import AddCart from "./pages/AddCart/AddCart";
@@ -12,10 +12,9 @@ import ContactUs from "./pages/contactus/contactus";
 import AboutUs from "./pages/aboutus/aboutus";
 import Payments from "../src/pages/home/Payments"
 import Faqs from "../src/pages/home/FAQs"
-import PrivacyPolicy from "../src/pages/home/PrivacyPolicy"
-import ReturnPolicy from "../src/pages/home/ReturnPolicy"
-import TermsOfServices from "../src/pages/home/TermsOfServices"
-import ShoeSizeGuide from "../src/pages/home/ShoesSizeGuide";
+import Login from "./pages/login/login";
+import OTP from "./pages/otp/otp";
+import ForgetPassword from "./pages/forget_password/forget_password";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +25,7 @@ const App = (props) => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/brands" element={<Brands />}></Route>
+        <Route path="/gallery" element={<Gallery />}></Route>
         <Route path="/brands-products/:product_id" element={<BrandProducts />}></Route>
         <Route path="/specific-brand-products/:productvarient_id" element={<BrandProducts />}></Route>
         <Route path="/product/:product_id" element={<Product />}></Route>
@@ -38,10 +37,9 @@ const App = (props) => {
         <Route path="/aboutus" element={<AboutUs />}></Route>
         <Route path="/payments" element={<Payments />}></Route>
         <Route path="/faqs" element={<Faqs />}></Route>
-        <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
-        <Route path="/returnpolicy" element={<ReturnPolicy />}></Route>
-        <Route path="/termsofservices" element={<TermsOfServices />}></Route>
-        <Route path="/shoesizeguide" element={<ShoeSizeGuide />}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/forgetpassword" element={<ForgetPassword/>}></Route>
+        <Route path="/otp" element={<OTP/>}></Route>
       </Routes>
       <ToastContainer /> 
     </BrowserRouter>

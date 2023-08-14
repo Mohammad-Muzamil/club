@@ -4,6 +4,63 @@
     object-fit: contain;
 }
 
+.login-container{
+    background-color: #FFFFFF;
+    height: 370px;
+    font-family: 'Mont';
+    border-radius: 7px;
+    h1{
+        font-family: 'Ethnocentric';
+        text-align: center;
+        padding-top: 20px;
+    }
+    p{
+        color: gray;
+    }
+    .or-container
+    {
+        display: flex;
+        justify-content: center;
+        color: gray;
+        font-size: 20px;
+        font-family: 'Ethnocentric';
+        margin-top: -25px;
+    }
+   
+    .input-container{
+        padding: 10px;
+        h3{
+            font-family: 'mont';
+            font-size: 15px;
+        }
+        input,select{
+            border-radius: 3px;
+            background-color: none;
+        }
+        span{
+            color: orange;
+            font-size: 12px;
+            margin-bottom: -13px;
+            font-family: 'Ethnocentric';
+
+        }
+        button{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            background-image: url("../../assets/img/Background/btn-bg.png");
+            background-size: cover;
+            padding: 20px 20px;
+            border-radius: 8px;
+            font-family: 'Ethnocentric';
+            margin-bottom: 20px;
+           border:2px solid white;
+          }
+         
+    }
+}
+
 
 
 .brand-logo{
@@ -175,10 +232,4 @@
         }
       }  
 
-
-
     }
-
-
-
-

@@ -2,7 +2,27 @@
     .about_box {
          margin-left: 77px;
     }
+    .name_of_ann{
+      display: flex;
+      justify-content: end;
+      }
+ 
   }
+ 
+
+@media screen and (max-width:768px) {
+  .team-holder {
+margin-top: -50px;
+    }
+    .timer
+    {
+      margin-top: -20px;
+      margin-left: 106px;
+      margin-bottom: 10px;
+
+    }
+   
+}
  
   .about_box {
 width: 100%;

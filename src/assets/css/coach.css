@@ -5,6 +5,17 @@
      row-gap: 15px;
     align-items: center;
     }
+    .main-heading.sytle-2 h2 {
+        position: relative;
+        display: inline-block;
+        padding: 0 20px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #111;
+        line-height: 21px;
+        font-size: 30px;
+        font-family: 'mont';
+        }
 }
 
 
@@ -45,6 +56,9 @@ text-align: center;
 width: 100%;
 margin-bottom: 35px;
 }
+/* .main-heading.sytle-2 h2{
+    font-family: 'Ethnocentric';
+} */
 .main-heading.sytle-2 h2::before, .main-heading.sytle-2 h2::after {
 content: "";
 width: 86px;
@@ -67,6 +81,7 @@ font-weight: 600;
 color: #111;
 line-height: 21px;
 font-size: 30px;
+
 }
 .team-column {
 position: relative;
@@ -81,6 +96,7 @@ text-align: left;
 bottom: 0;
 width: 100%;
 padding: 15px 20px;
+
 }
 .player-name h5 {
 margin: 0;
