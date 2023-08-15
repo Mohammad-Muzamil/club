@@ -27,7 +27,7 @@ const Login = (props) => {
            
             <div className="row d-flex justify-content-center " >
             
-            <div className="col-lg-6 col-12 col-md-6 login-container">
+            <div className="col-lg-6 col-12 col-md-6 login-container1">
                 <div className="w-100 ">
                     <h1>LOGIN</h1>
                 <p className="text-center pt-2">Welcome back! Please enter your details</p>
@@ -36,20 +36,20 @@ const Login = (props) => {
                     <img src={login} style={{height:'100px', width:'100px'}}/>
                 </div>
                 <div className="w-100 mt-2">
-                    <div className="input-container">
+                    <div className="input-container1">
                         <h3>Email<span style={{color:"orange"}}>*</span></h3> 
                         <input type="email"/>
                         <p  style={{color:"orange"}}>Invalid Email</p>
                     </div>
-                    <div className="input-container">
+                    <div className="input-container1">
                         <h3>Password<span style={{color:"orange"}}>*</span></h3> 
                         <input type="email"/>
                         <p  style={{color:"orange"}}>Invalid Password</p>
                     </div>
-                    <div className="input-container d-flex w-100" style={{justifyContent:'flex-end'}}>
+                    <div className="input-container1 d-flex w-100" style={{justifyContent:'flex-end'}}>
                         <span> Forget Password</span>
                     </div>
-                    <div className="input-container ">
+                    <div className="input-container1 ">
                        <button className="col-12" >
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
@@ -62,7 +62,7 @@ const Login = (props) => {
                     </div>
                     
                 </div>
-                <div className=" or-container">
+                <div className=" or-container1">
                     <div>-------------</div>
                     <div>&nbsp;&nbsp;OR&nbsp;&nbsp;</div>
                     <div>-------------</div>

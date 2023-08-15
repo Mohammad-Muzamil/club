@@ -4,9 +4,9 @@
     object-fit: contain;
 }
 
-.login-container1{
+.login-container2{
     background-color: #FFFFFF;
-    height: 800px;
+    // height: 370px;
     font-family: 'Mont';
     border-radius: 7px;
     h1{
@@ -14,10 +14,27 @@
         text-align: center;
         padding-top: 20px;
     }
+    .otp-field{
+        height: 80px;
+        width: 60px;
+        font-size: 35px;
+        text-align: center;
+        font-family: 'Ethnocentric';
+        @media  (max-width:990px) {
+            
+                height: 50px;
+                width: 40px;
+                font-size: 25px;
+                padding-left: -10px;
+        }
+    }
+    .resend-code:hover{
+        cursor: pointer;
+    }
     p{
         color: gray;
     }
-    .or-container1
+    .or-container
     {
         display: flex;
         justify-content: center;
@@ -26,19 +43,8 @@
         font-family: 'Ethnocentric';
         margin-top: -25px;
     }
-    .new-btn{
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        text-align: center;
-        background-size: cover;
-        padding: 20px 20px;
-        border-radius: 8px;
-        font-family: 'Ethnocentric';
-        margin-bottom: 20px;
-       border:2px solid white;
-    }
-    .input-container1{
+   
+    .input-container{
         padding: 10px;
         h3{
             font-family: 'mont';
@@ -65,7 +71,7 @@
             padding: 20px 20px;
             border-radius: 8px;
             font-family: 'Ethnocentric';
-            margin-bottom: 40px;
+            margin-bottom: 20px;
            border:2px solid white;
           }
          
@@ -242,7 +248,5 @@
           }
         }
       }  
-
-
 
     }

@@ -30,7 +30,7 @@ const ForgetPassword = (props) => {
             <div className="col-lg-6 col-12 col-md-6 login-container">
                 <div className="w-100 mt-2 ">
                     <h1>CHECK YOUR EMAIL</h1>
-                <p className="text-center pt-2" style={{fontFamily:"Mont"}}>We have sent an OTP to ****@*****.com</p>
+                <p className="text-center pt-2" style={{fontFamily:"Mont"}}></p>
                 </div>
                 <div className="w-100 mt-3">
                     <div className="input-container">

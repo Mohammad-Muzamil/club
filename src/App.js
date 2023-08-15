@@ -15,6 +15,7 @@ import Faqs from "../src/pages/home/FAQs"
 import Login from "./pages/login/login";
 import OTP from "./pages/otp/otp";
 import ForgetPassword from "./pages/forget_password/forget_password";
+import SignUp from "./pages/signup/signup";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,6 +41,7 @@ const App = (props) => {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/forgetpassword" element={<ForgetPassword/>}></Route>
         <Route path="/otp" element={<OTP/>}></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
       </Routes>
       <ToastContainer /> 
     </BrowserRouter>
