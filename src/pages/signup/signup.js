@@ -11,8 +11,14 @@ import googleicon from "../../assets/img/googleicon.png"
 
 import '../../assets/css/blurredbackground.css';
 
+
+
+
+
 function BlurredBackgroundModal() {
     const [showModal, setShowModal] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleCloseModal = () => {
         setShowModal(false);
@@ -20,6 +26,22 @@ function BlurredBackgroundModal() {
 
     const handleOpenModal = () => {
         setShowModal(true);
+    };
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleImageSelect = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
+
+    const handleSaveChanges = () => {
+        console.log('Saving changes:', inputValue);
+        handleCloseModal();
     };
 
     return (
@@ -35,13 +57,22 @@ function BlurredBackgroundModal() {
                             <button className="close-modal-btn" onClick={handleCloseModal}>
                                 &times;
                             </button>
-                            <h2>Modal Title</h2>
-                            <p>This is the modal content.</p>
+                            <h2>Select Image</h2>
+                            <div className="image-container">
+                                {selectedImage && <img src={selectedImage} alt="Selected" />}
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageSelect}
+                            />
                             <div className="modal-buttons">
                                 <button className="close-btn" onClick={handleCloseModal}>
                                     Close
                                 </button>
-                                <button className="save-btn">Save Changes</button>
+                                <button className="save-btn" onClick={handleSaveChanges}>
+                                    Save Changes
+                                </button>
                             </div>
                         </div>
                     </div>

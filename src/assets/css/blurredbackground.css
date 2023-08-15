@@ -1,4 +1,6 @@
 /* BlurredBackgroundModal.css */
+
+/* Styles for the modal demo */
 .modal-demo {
     display: flex;
     justify-content: center;
@@ -34,11 +36,14 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 80%; /* Responsive width */
+    width: 500px; /* Set a fixed width */
 }
 
 /* Modal content */
 .modal-content {
     position: relative;
+    padding: 20px;
 }
 
 /* Close button */
@@ -51,6 +56,33 @@
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* Modal input */
+.modal-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Image container */
+.image-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* File input for image upload */
+input[type="file"] {
+    margin-top: 10px;
 }
 
 /* Modal buttons */
