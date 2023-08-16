@@ -156,6 +156,15 @@ const MultiPartForm = () => {
 
 
 const SignUp = (props) => {
+    const [currentPart, setCurrentPart] = useState(2);
+
+    const handleNext = () => {
+        setCurrentPart(currentPart + 1);
+    };
+
+    const handlePrevious = () => {
+        setCurrentPart(currentPart - 1);
+    };
   return (
     <Fragment>
       <LayoutOne
@@ -163,10 +172,23 @@ const SignUp = (props) => {
         headerPaddingClass="header-padding-2"
       >
         <div className="BackgroundPicture pt-100 pb-100 d-flex justify-content-center">
-            <div className="col-lg-7  bg-white col-10" style={{height:"400px"}} >
-                <div>
-
+            <div className="col-lg-4  bg-white col-10"  >
+                <div className="d-flex col-12 mt-3 justify-content-around">
+                    <div className="col-lg-5 d-flex justify-content-center" style={{height:"40px" ,fontFamily: "Ethnocentric",borderBottom:"1px solid black"}}>
+                            Personal Details
+                    </div>
+                    <div className="col-lg-5 d-flex justify-content-center" style={{height:"40px", fontFamily: "Ethnocentric",borderBottom:"1px solid black"}}>
+                           <p> Parents Details</p>
+                    </div>
                 </div>
+                {currentPart === 1 &&<div className={`col-12 bg-success mt-3`} style={{height:"300px"}}>
+                    div 1
+                    <button onClick={handleNext}>next</button>
+                </div>}
+                {currentPart === 2 &&<div className={`col-12 bg-success mt-3`} style={{height:"300px"}}>
+                    div 2
+                    <button onClick={handlePrevious}>pre</button>
+                </div>}
             </div>
         </div>
       </LayoutOne>
