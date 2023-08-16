@@ -51,11 +51,12 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 24px;
+    font-size: 34px;
     color: #333;
     background: none;
     border: none;
     cursor: pointer;
+    font-family: "Ethnocentric"
 }
 
 /* Modal input */
@@ -73,11 +74,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+ 
 }
 
 .image-container img {
-    max-width: 100%;
-    height: auto;
+    height: 250px;
+    width: 200px;
 }
 
 /* File input for image upload */
@@ -93,18 +95,93 @@ input[type="file"] {
 }
 
 .close-btn {
-    background-color: #ccc;
-    color: #fff;
+    color: black;
     border: none;
     padding: 8px 16px;
     margin-right: 10px;
     cursor: pointer;
+    font-size: 18px;
+    background-image : url("../../assets/img/Background/btn-bg.png");
+
 }
 
 .save-btn {
-    background-color: #007bff;
-    color: #fff;
+    /* background-color: #007bff; */
+   color: black;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
+    width: 200px;
+    font-family: "Ethnocentric";
+    font-size: 20px;
+    background-image : url("../../assets/img/Background/btn-bg.png");
+    border-radius: 5px;
+}
+.headingmain{
+    font-size: 30px;
+}
+.alertmsg{
+    font-family: "mont";
+    font-size: 20px;
+    color: green;
+}
+@media screen and (max-width:768px){
+    .headingmain{
+        font-size: 15px;
+    }
+    .close-modal-btn {
+        font-size: 28px;
+      
+        top: 3px;
+        right: 5px;
+    }
+    .alertmsg{
+
+        font-size: 12px;
+    }
+    .modal-container {
+        max-width: 90%; /* Responsive width */
+    }
+    .save-btn {
+        background-color: #007bff;
+        color: black;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        width: 150px;
+    }
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+}
+
+.step.active {
+    background-color: #007bff;
+    color: #fff;
 }
