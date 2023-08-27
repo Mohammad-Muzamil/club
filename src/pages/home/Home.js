@@ -35,6 +35,8 @@ import Coach from "../../components/coach_section/coach";
 import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
 import AffiliatedAssociations from "../../components/association_slider/association_slider";
 import Gallery from "../../components/gallery/gallery";
+import zafar from"../../assets/gallery/zafar-removebg-preview.png"
+
 
 import App from "../../components/timer/timer";
 
@@ -165,29 +167,19 @@ const Home = (props) => {
         });
       }
     });
-
-    // await Populer_Picks().then((response) => {
-    //   console.log("Populer", response);
-
-    //   if (response.status === 200) {
-    //     setpopularData(response.data);
-    //   } else {
-    //     // alert("Something went Wrong");
-    //     toast.error('Populars picks Data Not Loaded', {
-    //       position: 'top-right',
-    //       autoClose: 3000,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //     });
-    //   }
-    // });
   };
   useEffect(() => {
     HomePageData();
   }, []);
-
-
+  
+  
+  const popular_player=[
+    {name:"ZAFAR IQBAL", img:zafar, department:"WAPDA PLAYER"},
+    {name:"SHAHBAZ AHMAD", img:zafar, department:"WAPDA PLAYER"},
+    {name:"SHAHBAZ SALEEM", img:zafar, department:"WAPDA PLAYER"},
+    {name:"HARIS NADEEM", img:zafar, department:"HEC PLAYER"},
+    {name:"MUZAMIL AMIN", img:zafar, department:"HEC PLAYER"},
+  ]
 
   return (
     <Fragment>
@@ -341,7 +333,7 @@ const Home = (props) => {
               </div>
             </div>
             <div className="row slider-sec">
-              <div className="col-xs-6 d-sm-none col-sec">
+              <div className="col-xs-12 d-sm-none col-sec">
                 <div className="slider-desp">
                   <p className="lower-text">
                   ur popular players for most favorited Tournaments
@@ -359,7 +351,7 @@ const Home = (props) => {
                   />
                 </div>
               </div>
-              <div className="col-xs-6 col-md-12">
+              <div className="col-xs-12 col-md-12">
                 <Carousel
                   arrows={false}
                   containerClass="carousel-container"
@@ -370,26 +362,31 @@ const Home = (props) => {
                   renderButtonGroupOutside={true}
                   customButtonGroup={<ButtonGroup />}
                 >
-                  {popularData.map((val) => (
-                    <div className="ItemView">
-                      <img className="item-image" src={Shoes} />
-                      {/* <img className="item-image" src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} /> */}
+                 
+                {popular_player.map( (player)=>(
+
+                      
+                      <div className="ItemView">
+                      <img className="item-image" src={player.img} style={{width:"100%", height:"300px", marginBottom:"30px", marginTop:"30px"}}  />
                       <div className="item-description">
-                        <Rating rating={1} height={13} width={13}/>
-                        <p className="item-info" style={{paddingTop:'7px'}}>
-                         {val.name}
+                        <Rating rating={5} height={13} width={13}/>
+                        <p className="item-info" style={{paddingTop:'7px',fontFamily:"Ethnocentric"}}>
+                         {player.name}
                         </p>
-                        <p className="" style={{paddingTop:'10px', marginBottom:'-10px',fontSize:'16px',fontWeight:'100px',color:'#454545'}} >
-                         {val.short_description}
+                        <p className="" style={{paddingTop:'5px', marginBottom:'-10px',color:'#454545', fontSize:"14px"}} >
+                         {player.department}
                         </p>
 
                         <div className="price-view" >
-                          <p className="price-text">${val.price}</p>
-                          <img className="right-arrow" src={righarrow}/>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    </div>))}
+                    
+                    
+             
+                     
+
+
                   
                 </Carousel>
               </div>
@@ -440,7 +437,7 @@ const Home = (props) => {
               <Coach/>
               <Upcomming_Event/>
               <AffiliatedAssociations/>
-              {/* <Gallery/> */}
+           
             </div>
         </div>
       </LayoutOne>

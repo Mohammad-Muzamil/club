@@ -47,7 +47,7 @@ const Login = (props) => {
                         <p  style={{color:"orange"}}>Invalid Password</p>
                     </div>
                     <div className="input-container1 d-flex w-100" style={{justifyContent:'flex-end'}}>
-                        <span> Forget Password</span>
+                       <Link to={process.env.PUBLIC_URL+"/forgetpassword"}> <span> Forget Password</span></Link>
                     </div>
                     <div className="input-container1 ">
                        <button className="col-12" >
@@ -75,7 +75,7 @@ const Login = (props) => {
                     </button>
                 </div>
                 <div className=" d-flex justify-content-center" style={{marginTop:"-20px"}}>
-                    <p>Don't have account? <span style={{fontFamily:'Ethnocentric'}}> SIGN UP</span></p>
+                    <p>Don't have account? <span style={{fontFamily:'Ethnocentric', cursor:"pointer"}}> <Link to={"/signup"}> SIGN UP</Link></span></p>
                 </div>
             </div>
             </div>

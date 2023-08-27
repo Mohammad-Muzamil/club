@@ -3,6 +3,7 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Send from "../../assets/img/buttons/send.png";
 import axios from "axios";
 import { Throw_Error, Success } from "../../helpers/NotifiyToasters";
+import { useMediaQuery } from "react-responsive";
 
 const send_contactus_data=async (apiEndpoint,formData)=>{
   const response = await axios.post(apiEndpoint, formData);
@@ -10,6 +11,7 @@ const send_contactus_data=async (apiEndpoint,formData)=>{
 }
 
 const ContactUs = () => {
+  const isMobiledevice = useMediaQuery({ maxWidth:767 });
   const [contactDetails, setContactDetails] = useState({
     name: "",
     email: "",
@@ -23,7 +25,6 @@ const ContactUs = () => {
     subject: "",
     message: "",
   });
-
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -43,7 +44,6 @@ const ContactUs = () => {
         setErrors((error)=>({...errors,field:""}))
       }
     });
-
     const keyValuePairs = Object.entries(contactDetails);
     const nonEmptyPairs = keyValuePairs.filter(([key, value]) => value === "");
     const numberOfKeys = Object.keys(nonEmptyPairs).length;
@@ -142,17 +142,17 @@ const ContactUs = () => {
 
         
 
-              <div className="row m-0 check-box-view align-items-center">
-                <input
+              <div className="row m-0 check-box-view align-items-center" >
+                <input style={{marginTop:"-50px"}}
                   type="checkbox"
                   name="subscribe"
                   checked={contactDetails.subscribe}
                   onChange={handleChange}
                 />
-                <p>Please keep me updated.</p>
+                <p style={{marginTop:"-50px"}}>Please keep me updated.</p>
               </div>
 
-              <img src={Send} alt="Send" onClick={sendContactData} />
+              <img src={Send} alt="Send" onClick={sendContactData} style={{marginTop: isMobiledevice?"-5px":""}} />
             </div>
           
             <div className="contact-us-info col-lg-4 col-md-12 col-sm-12">
@@ -166,7 +166,7 @@ const ContactUs = () => {
               <p className="bold-heading">Opning hours</p>
 
               <p className="light-text">Girls 5 to 7 PM</p>
-              <p className="light-text" style={{marginTop:'-100px'}}>Boys 7 to 9 PM</p>
+              <p className="light-text" style={{marginTop:isMobiledevice? "-30px": '-100px'}}>Boys 7 to 9 PM</p>
 
               <p className="bold-heading">Telephone</p>
 

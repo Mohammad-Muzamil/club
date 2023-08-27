@@ -67,9 +67,9 @@ const MobileMenu = () => {
                       <Link to={process.env.PUBLIC_URL + "/faqs"}>
                         <li>{"FAQs"}</li>
                       </Link>
-                      <Link to={process.env.PUBLIC_URL}>
+                      <a href={"https://www.wkf.net/structure-statutes-rules"}>
                         <li>{"Rules"}</li>
-                      </Link>
+                      </a>
                       </ul>
                     </li>
                   </ul>

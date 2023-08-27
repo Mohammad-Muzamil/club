@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import CeoSection from "../../assets/img/Background/ceosection.png";
-import Image1 from "../../assets/img/aboutus/image1.png";
+import img_2 from "../../assets/img/aboutus/img_2.png";
+import img_1 from "../../assets/img/aboutus/img_1.png";
 
 const AboutUs = (props) => {
   return (
@@ -32,7 +33,7 @@ const AboutUs = (props) => {
 
                 <div className="col-lg-6 col-md-12 col-sm-12">
                   <div className="video-img">
-                    <img src={Image1} />
+                    <img src={img_1} />
                   </div>
                 </div>
               </div>
@@ -40,7 +41,7 @@ const AboutUs = (props) => {
               <div className="row  m-0 justify-content-between pt-30">
                 <div className="col-lg-6 col-md-12 col-sm-12">
                   <div className="video-img2">
-                    <img src={Image1} />
+                    <img src={img_2} />
                     <button>
                       <p>Follow us on instagram</p>
                     </button>
