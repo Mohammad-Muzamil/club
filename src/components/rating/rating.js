@@ -65,7 +65,7 @@ const Rating = ({ rating, width = 13, height = 13 }) => {
   };
 
   return (
-    <div style={{ display: "flex", paddingTop: '5px' }}>
+    <div style={{ display: "flex", paddingTop: '0px' , marginTop:"-8px" }}>
       {renderStars()}
     </div>
   );

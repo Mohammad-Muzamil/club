@@ -39,6 +39,8 @@ import Gallery from "../../components/gallery/gallery";
 import App from "../../components/timer/timer";
 
 const Home = (props) => {
+
+  
   const [imageSrc, setImageSrc] = useState(myStory);
 
   const handleResize = () => {
@@ -147,10 +149,11 @@ const Home = (props) => {
   
 
     await Cover_Products().then((response) => {
-      console.log(response);
       if (response.status === 200) {
-        setcoverData(response.data);
+        alert(response.data.message);
+        // setcoverData(response.data);
       } else {
+        console.log("runnnn2");
         // alert("Something went Wrong");
 
         toast.error('Cover Products Data Not Loaded', {
@@ -163,26 +166,29 @@ const Home = (props) => {
       }
     });
 
-    await Populer_Picks().then((response) => {
-      console.log("Populer", response);
+    // await Populer_Picks().then((response) => {
+    //   console.log("Populer", response);
 
-      if (response.status === 200) {
-        setpopularData(response.data);
-      } else {
-        // alert("Something went Wrong");
-        toast.error('Populars picks Data Not Loaded', {
-          position: 'top-right',
-          autoClose: 3000,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      }
-    });
+    //   if (response.status === 200) {
+    //     setpopularData(response.data);
+    //   } else {
+    //     // alert("Something went Wrong");
+    //     toast.error('Populars picks Data Not Loaded', {
+    //       position: 'top-right',
+    //       autoClose: 3000,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //     });
+    //   }
+    // });
   };
   useEffect(() => {
     HomePageData();
   }, []);
+
+
+
   return (
     <Fragment>
       <LayoutOne
@@ -204,8 +210,9 @@ const Home = (props) => {
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
                       <h1>{val.name}</h1>
                       <p>{val.long_description}</p>
-                      <div class="slider-img">
-                        <img src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} />
+                      <div className="slider-img">
+                        {/* <img src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} /> */}
+                        <img src={`//${window.location.host}/${val.thumbnail}`} />
                         
                       </div>
                       <div className="btn-div">
@@ -232,7 +239,7 @@ const Home = (props) => {
                       <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
                       <p ></p>
                   
-                      <div class="slider-img">
+                      <div className="slider-img">
                         <img src={cover_image} />
                         
                       </div>
@@ -258,7 +265,7 @@ const Home = (props) => {
                       <h1>Sports is where <spam style={{color:"orange"}}>dedication</spam>, passion, and unity propel <spam style={{color:"orange"}}>greatness</spam> forward</h1>
                       <p ></p>
                   
-                      <div class="slider-img">
+                      <div className="slider-img">
                         <img src={cover_image2} />
                         
                       </div>
@@ -284,7 +291,7 @@ const Home = (props) => {
                       <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
                       <p ></p>
                   
-                      <div class="slider-img">
+                      <div className="slider-img">
                         <img src={cover_image3} />
                         
                       </div>
@@ -335,7 +342,7 @@ const Home = (props) => {
             </div>
             <div className="row slider-sec">
               <div className="col-xs-6 d-sm-none col-sec">
-                <div class="slider-desp">
+                <div className="slider-desp">
                   <p className="lower-text">
                   ur popular players for most favorited Tournaments
                   </p>
@@ -389,7 +396,7 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="container pt-100 pb-100 services">
+        <div className="container  pb-100 services">
           <div className="row">
             <div className="d-flex flex-column align-items-center col-xl-4 col-lg-4 cold-12 centerIcon">
               <img src={training} />
@@ -409,9 +416,9 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div class="container-fluid ourStory">
-            <div class="row ">
-              <div class="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
+        <div className="container-fluid ourStory">
+            <div className="row ">
+              <div className="col-md-8 offset-md-2 offset-sm-2 col-sm-8 col-xs-10 heading">
                 <h3>
                   WHY IS KARATE SO <span className="grey-text">IMPORTANT</span>?
                 </h3>
@@ -420,29 +427,22 @@ const Home = (props) => {
                   Karate is important for you because it will help you improve your physical fitness, enhance your mental discipline, and teach you valuable self-defense skills.
                 </p>
               </div>
-              <div class="col-lg-11 col-md-12 col-sm-12 img-section">
+              <div className="col-lg-11 col-md-12 col-sm-12 img-section">
                 <img src={imageSrc} className="inner-img" />
                 <img src={btnBg} className="read-story-btn" />
               </div>
-              <div class="col-8 btn-group">
+              <div className="col-8 btn-group">
                     {/* <img src={btnBg} /> */}
             
               </div>
-              {/* testonomial portion */}
+         
+              <TestonomialCarousel/>
               <Coach/>
               <Upcomming_Event/>
               <AffiliatedAssociations/>
-              <TestonomialCarousel/>
-              <Gallery/>
+              {/* <Gallery/> */}
             </div>
         </div>
-
-        
-
-
-
-
-
       </LayoutOne>
     </Fragment>
   );

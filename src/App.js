@@ -14,8 +14,10 @@ import Payments from "../src/pages/home/Payments"
 import Faqs from "../src/pages/home/FAQs"
 import Login from "./pages/login/login";
 import OTP from "./pages/otp/otp";
+import Page404 from "../src/pages/page404/Page404";
 import ForgetPassword from "./pages/forget_password/forget_password";
 import SignUp from "./pages/signup/signup";
+import Testing from "./pages/Testing";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +44,8 @@ const App = (props) => {
         <Route path="/forgetpassword" element={<ForgetPassword/>}></Route>
         <Route path="/otp" element={<OTP/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/testing" element={<Testing/>}></Route>
+        <Route path="*" element={<Page404/>}></Route>
       </Routes>
       <ToastContainer /> 
     </BrowserRouter>

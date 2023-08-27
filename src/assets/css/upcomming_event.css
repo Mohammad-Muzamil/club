@@ -1,7 +1,5 @@
 @media (min-width: 992px) {
-    .about_box {
-         margin-left: 77px;
-    }
+   
     .name_of_ann{
       display: flex;
       justify-content: end;
@@ -11,6 +9,7 @@
  
 
 @media screen and (max-width:768px) {
+
   .team-holder {
 margin-top: -50px;
     }

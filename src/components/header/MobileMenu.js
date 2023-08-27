@@ -24,7 +24,7 @@ const MobileMenu = () => {
         <div className="d-flex flex-row mobile-icons">
           <img src={search}/>
           <img src={avatar}  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
-          <div class="dropdown-menu">
+          <div className="dropdown-menu">
             <Link to={{ pathname: process.env.PUBLIC_URL + "/my-account" }}>
               <li>Profile</li>
             </Link>
@@ -44,7 +44,7 @@ const MobileMenu = () => {
           <p onClick={()=> setopen(false)} >hell</p>  
         </div> */}
         <div  className="collapse" id="menu"  >
-          <div class="main-menu">
+          <div className="main-menu">
               <nav>
               <ul className="mt-0">
                 <li >
@@ -53,7 +53,7 @@ const MobileMenu = () => {
                 <li classname="na" >
                   <Link  data-toggle="collapse" data-target="#brand-collapse"  >Branches</Link>
 				  <img className="dropdown-img" src={dropdown} />
-                  <div class="collapse" aria-labelledby="navbarDropdown" id="brand-collapse">
+                  <div className="collapse" aria-labelledby="navbarDropdown" id="brand-collapse">
                     <ul>
                     
                     </ul>

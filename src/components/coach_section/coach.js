@@ -22,7 +22,7 @@ const Img=(prop)=>{
 
  const Coach=()=> {
   return (
-    <div className="team-holder theme-padding">
+    <div className="team-holder theme-padding" style={{marginTop:"-30px"}} >
   <div className="container">
      <div className="main-heading-holder">
         <div className="main-heading sytle-2">

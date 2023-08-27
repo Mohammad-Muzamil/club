@@ -17,7 +17,7 @@ import Timer from '../timer/timer';
 const Upcomming_Event=()=> {
  
      return (
-    <div className="team-holder theme-padding">
+    <div className="team-holder theme-padding" style={{marginBottom:"-80px"}}>
     <div className="container">
        <div className="main-heading-holder">
           <div className="main-heading sytle-2">
@@ -37,9 +37,9 @@ const Upcomming_Event=()=> {
                       </div>
                    </div>
                    <div className="col-md-7 col-lg-7 col-12">
-                      <div className="about_box">
+                      <div className="about_box " style={{marginLeft:"-1px"}}>
                          <div className="image_1">
-                            <img src={national_games} style={{height: "300px", width: "100%"}}/>
+                            <img src={national_games} style={{maxHeight:"300px", width: "100%"}}/>
                          </div>
                       </div>
                    </div>

@@ -19,7 +19,7 @@ const IconGroup = (props) => {
 
 
       <div className="same-style header-compare">
-        <div class="dropdown">
+        <div className="dropdown">
           <Link to={process.env.PUBLIC_URL + "/wishlist"}>
             <img className="navBarLogo" src={search} />
           </Link>
@@ -28,7 +28,7 @@ const IconGroup = (props) => {
 
 
       <div className="same-style header-compare">
-        <div class="dropdown">
+        <div className="dropdown">
           <Link to={process.env.PUBLIC_URL + "/login"} >
           <img
             src={Avatar}
@@ -38,7 +38,7 @@ const IconGroup = (props) => {
           />
           </Link>
 
-          {/* <div class="dropdown-menu">
+          {/* <div className="dropdown-menu">
             <Link to={{ pathname: process.env.PUBLIC_URL + "/login" }}>
               <li>Profile</li>
             </Link>
@@ -54,20 +54,6 @@ const IconGroup = (props) => {
 
 
 
-{/* 
-      <div className="same-style header-compare">
-        <div class="dropdown">
-          <Link to={process.env.PUBLIC_URL + "/cart"}>
-            <img
-              className="navBarLogo dropdown-toggle"
-              src={Cart}
-              type="button"
-              data-toggle="dropdown"
-              aria-expanded="false"
-            />
-          </Link>
-        </div>
-      </div> */}
 
 
       <div className="same-style d-block d-lg-none">

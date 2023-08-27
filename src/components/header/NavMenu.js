@@ -7,17 +7,17 @@ import { AllBrands } from"../../helpers/api";
 
 const NavMenu = (props) => {
   const [brandData, setbrandData] = useState([]);
-  useEffect(() => {
-    AllBrands().then((response) => {
-      if (response.status === 200) {
-        setbrandData(response.data);
-      } else {
-        toast.error('Brands Data Not Loaded', {
-          // ...
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   AllBrands().then((response) => {
+  //     if (response.status === 200) {
+  //       setbrandData(response.data);
+  //     } else {
+  //       toast.error('Brands Data Not Loaded', {
+  //         // ...
+  //       });
+  //     }
+  //   });
+  // }, []);
   return (
     <div className={` ${`main-menu `} `}>
       <nav>

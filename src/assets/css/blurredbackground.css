@@ -101,6 +101,7 @@ input[type="file"] {
     margin-right: 10px;
     cursor: pointer;
     font-size: 18px;
+   
     background-image : url("../../assets/img/Background/btn-bg.png");
 
 }
@@ -114,6 +115,7 @@ input[type="file"] {
     width: 200px;
     font-family: "Ethnocentric";
     font-size: 20px;
+    
     background-image : url("../../assets/img/Background/btn-bg.png");
     border-radius: 5px;
 }

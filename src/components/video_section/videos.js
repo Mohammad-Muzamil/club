@@ -21,7 +21,7 @@ import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
              </div>
           </div>
           <div className="col-md-6">
-             <div className="about_box">
+             <div className="about_box" style={{ marginLeft:"-1px"}}>
                 <div className="image_1">
                    <video id="myVideo" controls style={{width: "100%"}}>
                       <source src={kumite} type="video/mp4"/>
@@ -29,7 +29,7 @@ import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
                 </div>
                 <h4 className="making_text">Kumite</h4>
              </div>
-             <div className="about_box_2">
+             <div className="about_box_2" style={{marginTop:"5px"}}>
                 <div className="image_1">
                    <video id="myVideo" controls style={{width: "100%"}}>
                       <source src={kata} type="video/mp4"/>

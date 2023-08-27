@@ -22,7 +22,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 
-function BlurredBackgroundModal() {
+function BlurredBackgroundModal({ onImageSelect }) {
     const [showModal, setShowModal] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
@@ -50,6 +50,7 @@ function BlurredBackgroundModal() {
         const file = e.target.files[0];
         if (file) {
             setSelectedImage(URL.createObjectURL(file));
+            onImageSelect(URL.createObjectURL(file));
         }
     };
 
@@ -101,9 +102,7 @@ function BlurredBackgroundModal() {
                                      Upload
                                 </button>
                                 
-                                {/* <button className="save-btn" onClick={handleSaveChanges}>
-                                    Save Changes
-                                </button> */}
+                               
                             </div>
                         </div>
                     </div>
@@ -115,47 +114,6 @@ function BlurredBackgroundModal() {
 
 
 
-const MultiPartForm = () => {
-    const [currentPart, setCurrentPart] = useState(1);
-
-    const handleNext = () => {
-        setCurrentPart(currentPart + 1);
-    };
-
-    const handlePrevious = () => {
-        setCurrentPart(currentPart - 1);
-    };
-   
-
-    return (
-        <div className="form-container">
-            <div className="form">
-                <div className="steps">
-                    <div className={`step ${currentPart === 1 ? 'active' : ''}`}>Step 1</div>
-                    <div className={`step ${currentPart === 2 ? 'active' : ''}`}>Step 2</div>
-                    <div className={`step ${currentPart === 3 ? 'active' : ''}`}>Step 3</div>
-                </div>
-                <div className={`form-part ${currentPart === 1 ? 'active' : ''}`}>
-                    <h2>Part 1</h2>
-                    {/* Your form fields for Part 1 */}
-                    <button onClick={handleNext}>Next</button>
-                </div>
-                <div className={`form-part ${currentPart === 2 ? 'active' : ''}`}>
-                    <h2>Part 2</h2>
-                    {/* Your form fields for Part 2 */}
-                    <button onClick={handlePrevious}>Previous</button>
-                    <button onClick={handleNext}>Next</button>
-                </div>
-                <div className={`form-part ${currentPart === 3 ? 'active' : ''}`}>
-                    <h2>Part 3</h2>
-                    {/* Your form fields for Part 3 */}
-                    <button onClick={handlePrevious}>Previous</button>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 
 
 
@@ -165,6 +123,32 @@ const MultiPartForm = () => {
 const SignUp = (props) => {
     const [currentPart, setCurrentPart] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
+    const [profilePicture,setProfilePicture]=useState("");
+    const [formData, setFormData] = useState({
+        name: '',
+        fatherName: '',
+        cnic: '',
+        weight: '',
+        dob: '',
+        doj: '',
+        city: '',
+        branch: '',
+        gender: 'male',
+        fatherStatus: 'alive',
+        email: '',
+        playerContact: '',
+        guardianContact: '',
+        fatherContact: '',
+        username: 'dummy',
+        password: '',
+        address: '',
+    });
+    const onSubmit=()=>{
+        alert(formData.name);
+    }
+    const handleImageSelection = (selectedImage) => {
+        setProfilePicture(selectedImage);
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -223,7 +207,7 @@ const SignUp = (props) => {
                                 3
                             </div>
                             <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} >
-                            Submit
+                            Status
                             </div>
                     </div>}
                     {Mobile && currentPart==1 && <div className="d-flex justify-content-start inner-section">
@@ -239,7 +223,7 @@ const SignUp = (props) => {
                                 2
                             </div>
                             <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} >
-                            Contact
+                            Status
                             </div>
                     </div>}
                     {Mobile && currentPart==3 &&<div className="d-flex justify-content-start inner-section">
@@ -256,71 +240,91 @@ const SignUp = (props) => {
                 <div class="row g-3">
                     <div className="col-lg-6 col-12 ">
                         <h5>Name<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="text" required />
+                        <input type="text" required  value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Father Name<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="text" required />
+                        <input type="text" required
+                         value={formData.fatherName}
+                         onChange={(e) => setFormData({ ...formData, fatherName: e.target.value })}
+                         />
                     </div>
                 </div>
                 <div class="row g-3 ">
                     <div className="col-lg-6 col-12  ">
                         <h5>CNIC/B-Form<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="text" required />
+                        <input type="text" required 
+                         value={formData.cnic}
+                         onChange={(e) => setFormData({ ...formData, cnic: e.target.value })}
+                        />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Weight (KG)<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="number" required style={{marginTop:"5px",border:" 1px solid #CCCCCC"}} />
+                        <input type="number" required style={{marginTop:"5px",border:" 1px solid #CCCCCC"}}
+                         value={formData.weight}
+                         onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                         />
                     </div>
                 </div>
                 <div class="row g-3">
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Birth<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="date" required style={{border:" 1px solid #CCCCCC"}} />
+                        <input type="date" required style={{border:" 1px solid #CCCCCC"}}
+                         value={formData.dob}
+                         onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                         />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Joinning<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="date" required style={{border:" 1px solid #CCCCCC"}}/>
+                        <input type="date" required style={{border:" 1px solid #CCCCCC"}}
+                         value={formData.doj}
+                         onChange={(e) => setFormData({ ...formData, doj: e.target.value })}
+                        />
                     </div>
                 </div>
                 <div class="row g-3 " >
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>City<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform" >
-                            <option>Faisalabad</option>
-                            <option>Lahore</option>
+                        <select className="selectform"  value={formData.city}
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })} >
+                            <option value={"faisalabad"}>Faisalabad</option>
+                            <option value={"Lahore"}>Lahore</option>
                         </select>
                     </div>
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5>Branch<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform" >
-                            <option>Faisalabad</option>
-                            <option>Lahore</option>
+                        <select className="selectform"  value={formData.branch}
+                        onChange={(e) => setFormData({ ...formData, branch: e.target.value })} >
+                            <option value={"youth karate academy"}>Faisalabad</option>
+                            
                         </select>
                     </div>
                 </div>
                 <div class="row g-3" >
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Gender<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform" >
-                            <option select >Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
+                        <select className="selectform"  value={formData.gender}
+                        onChange={(e) => setFormData({ ...formData, gender: e.target.value })} >
+                            <option select value={"male"} >Male</option>
+                            <option value={"female"}>Female</option>
+                            <option value={"other"}>Other</option>
                         </select>
                       
                     </div>
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5>Father<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform" >
-                            <option select>Alive</option>
-                            <option>Death</option>
+                        <select className="selectform"  value={formData.fatherStatus}
+                        onChange={(e) => setFormData({ ...formData, fatherStatus: e.target.value })}>
+                            <option select value={"alive"} >Alive</option>
+                            <option value={"death"}>Death</option>
                         </select>
                     </div>
                 </div>
                 <div class="row g-3" >
                     <div className=" col-12" style={{marginTop:"20px"}}>
                     <h5>Player Picture<span style={{color:"orange"}}>*</span></h5>
-                        <BlurredBackgroundModal></BlurredBackgroundModal>
+                        <BlurredBackgroundModal onImageSelect={handleImageSelection} />
                     </div>
                 </div>
              
@@ -333,31 +337,49 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-3">
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>Email<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="email" required />
+                        <input type="email" required  
+                         value={formData.email}
+                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
                     </div>
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>Player Contact Number<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="tel" required />
+                        <input type="tel" required 
+                         value={formData.playerContact}
+                         onChange={(e) => setFormData({ ...formData, playerContact: e.target.value })}
+                        />
                     </div>
                 </div>
                 <div class="row g-3 mt-2">
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Guardian Contact Number (if any)</h5> 
-                        <input type="email"  />
+                        <input type="tel"  
+                         value={formData.guardianContact}
+                         onChange={(e) => setFormData({ ...formData, guardianContact: e.target.value })}
+                        />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Father Contact Number</h5> 
-                        <input type="tel" required />
+                        <input type="tel" required 
+                         value={formData.fatherContact}
+                         onChange={(e) => setFormData({ ...formData, fatherContact: e.target.value })}
+                        />
                     </div>
                 </div>
                 <div class="row g-3 mt-2">
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>username<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="email"  readOnly />
+                        <input type="text"  readOnly 
+                         value={formData.username}
+                         onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                         />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Password<span style={{color:"orange"}}>*</span></h5> 
-                        <input type={showPassword ? 'text' : 'password'} required/>
+                        <input type={showPassword ? 'text' : 'password'} required 
+                         value={formData.password}
+                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                        />
                             
                             <div className="d-flex justify-content-end" style={{paddingRight:"10px", marginTop:"-30px"}}> 
                             {showPassword ? (<FontAwesomeIcon icon={faEyeSlash} onClick={togglePasswordVisibility} />) : (<FontAwesomeIcon icon={faEye} onClick={togglePasswordVisibility}   />)}
@@ -367,7 +389,9 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-3">
                     <div className=" col-12 " style={{marginTop:"10px"}}>
                         <h5>Home Address<span style={{color:"orange"}}>*</span></h5> 
-                        <textarea className="textarea" style={{backgroundColor:"#ECEFF8"}} ></textarea>
+                        <textarea className="textarea" style={{backgroundColor:"#ECEFF8"}} 
+                         value={formData.address}
+                         onChange={(e) => setFormData({ ...formData, address: e.target.value })} ></textarea>
                     </div>
                 </div>
                     <div className="d-flex justify-content-end pt-3 mt-4"style={{columnGap:"7px"}}>
@@ -379,7 +403,7 @@ const SignUp = (props) => {
                     div 3
                     <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
                     <button onClick={handlePrevious}className="pre-btn" >BACK</button>
-                        <button  className="next-btn">Submit</button>
+                        <button  className="next-btn" onClick={onSubmit} >Submit</button>
                     </div>
                 </div>}
             </div>
