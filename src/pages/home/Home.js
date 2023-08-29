@@ -39,6 +39,8 @@ import zafar from"../../assets/gallery/zafar-removebg-preview.png"
 
 import OurClasses from "../../components/our_classes/our_classes";
 
+import FeaturesSection from "../../components/features_section/features_section"
+
 
 import App from "../../components/timer/timer";
 
@@ -440,6 +442,7 @@ const Home = (props) => {
               <Upcomming_Event/>
               <AffiliatedAssociations/>
               <OurClasses/>
+              <FeaturesSection/>
            
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import img_1 from "../../assets/img/aboutus/img_1.png";
 
-import background from "../../assets/img/our-story-bg-img.png"
+import background from "../../assets/img/Background/footerbackground.png"
 const  OurClasses=()=> {
 
 

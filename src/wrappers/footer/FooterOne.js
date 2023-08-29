@@ -33,13 +33,6 @@ const FooterOne = (props) => {
             </p>
 
             <p className="email-support">NYKAF@gmail.com</p>
-
-            <div className="paymentIcons">
-              <img src={Payment1} />
-              <img src={Payment2} />
-              <img src={Payment3} />
-              <img src={Payment4} />
-            </div>
           </div>
 
           <div className="row footer-end col-xl-8 col-lg-8 col-sm-8 m-0">
@@ -77,25 +70,7 @@ const FooterOne = (props) => {
               </div>
             </div>
 
-            <div className={"col-xl-3 col-lg-3 col-sm-4 p-0"}>
-              <div className="footer-widget mb-30">
-                <div className="footer-title">
-                  <h3>Shop</h3>
-                </div>
-                <div className="footer-list">
-                  <ul>
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
-                    </li>
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/brands"}>
-                        Brands
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+  
 
             <div className={"col-xl-3 col-lg-3 col-sm-6 p-0"}>
               <div className="footer-widget mb-30">
@@ -110,13 +85,10 @@ const FooterOne = (props) => {
                       </Link>
                     </li>
                     <li>
-                      <a
-                        href="//www.twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Disclaimer
-                      </a>
+                      <Link to={process.env.PUBLIC_URL + "/gallery"}>
+                        Gallery
+                        </Link>
+                   
                     </li>
                     <li>
 
@@ -126,14 +98,11 @@ const FooterOne = (props) => {
                   
                     </li>
                     <li>
-                      <a
-                        href="//www.youtube.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Affiliate Marketing
-                      </a>
+                      <Link to={process.env.PUBLIC_URL + "/branches"}>
+                        Brnaches
+                      </Link>
                     </li>
+                
                   </ul>
                 </div>
               </div>
@@ -146,38 +115,20 @@ const FooterOne = (props) => {
                 </div>
                 <div className="footer-list">
                   <ul>
+                   
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/returnpolicy"}>
-                        Refund Policy
-                      </Link>
+                      <a href={"https://www.wkf.net/structure-statutes-rules"}>
+                        Rules
+                      </a>
                     </li>
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/privacypolicy"}>
-                        Privacy Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/termsofservices"}>
-                        Terms of Services
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/payments"}>
-                        Payments
-                      </Link>
-                    </li>
-
                     <li>
                       <Link to={process.env.PUBLIC_URL + "/faqs"}>
-                        Shipping FAqs
+                        FAqs
                       </Link>
                     </li>
+                  
 
-                    <li>
-                      <Link to={process.env.PUBLIC_URL + "/shoesizeguide"}>
-                        Size guide
-                      </Link>
-                    </li>
+                   
                   </ul>
                 </div>
               </div>

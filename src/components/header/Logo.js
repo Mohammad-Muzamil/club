@@ -11,7 +11,7 @@ const Logo = (props) => {
       </Link>
 
 
-      <p className="m-0 p-0">DASHBOARD</p>
+      <p className="m-0 p-0">NYKAF</p>
     </div>
   );
 };
