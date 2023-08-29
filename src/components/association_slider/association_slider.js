@@ -91,7 +91,7 @@ function AffiliatedAssociations() {
       <div className="container-fluid" >
         <div className="main-heading-holder">
           <div className="main-heading sytle-2">
-            <h2>Boards</h2>
+            <h2 style={{fontFamily:"Ethnocentric", fontSize:"25px"}}>Boards</h2>
           
           </div>
         </div>

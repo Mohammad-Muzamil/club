@@ -21,7 +21,7 @@ const Upcomming_Event=()=> {
     <div className="container">
        <div className="main-heading-holder">
           <div className="main-heading sytle-2">
-                <h2 className="word " >Events</h2>
+                <h2  style={{fontFamily:"Ethnocentric", fontSize:"25px"}} >Events</h2>
           </div>
           <div className='col-5 timer'  >
                       <Timer/>

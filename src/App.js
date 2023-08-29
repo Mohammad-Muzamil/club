@@ -11,6 +11,8 @@ import PaymentDetails from "./pages/paymentdetails/paymentdetails";
 import ContactUs from "./pages/contactus/contactus";
 import AboutUs from "./pages/aboutus/aboutus";
 import Payments from "../src/pages/home/Payments"
+import CoachHome from "../src/pages/coach_home/coach_home"
+import AdminHome from "../src/pages/admin_home/admin_home"
 import Faqs from "../src/pages/home/FAQs"
 import Login from "./pages/login/login";
 import OTP from "./pages/otp/otp";
@@ -45,6 +47,8 @@ const App = (props) => {
         <Route path="/otp" element={<OTP/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/testing" element={<Testing/>}></Route>
+        <Route path="/coach" element={<CoachHome/>}></Route>
+        <Route path="/admin" element={<AdminHome/>}></Route>
         <Route path="*" element={<Page404/>}></Route>
       </Routes>
       <ToastContainer /> 

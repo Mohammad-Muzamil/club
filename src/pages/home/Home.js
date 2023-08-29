@@ -37,6 +37,8 @@ import AffiliatedAssociations from "../../components/association_slider/associat
 import Gallery from "../../components/gallery/gallery";
 import zafar from"../../assets/gallery/zafar-removebg-preview.png"
 
+import OurClasses from "../../components/our_classes/our_classes";
+
 
 import App from "../../components/timer/timer";
 
@@ -283,8 +285,8 @@ const Home = (props) => {
                       <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
                       <p ></p>
                   
-                      <div className="slider-img">
-                        <img src={cover_image3} />
+                      <div className="slider-img" >
+                        <img src={cover_image3}  />
                         
                       </div>
                       <div className="btn-div">
@@ -437,6 +439,7 @@ const Home = (props) => {
               <Coach/>
               <Upcomming_Event/>
               <AffiliatedAssociations/>
+              <OurClasses/>
            
             </div>
         </div>

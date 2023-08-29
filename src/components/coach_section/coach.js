@@ -26,7 +26,7 @@ const Img=(prop)=>{
   <div className="container">
      <div className="main-heading-holder">
         <div className="main-heading sytle-2">
-           <h2> Coaches</h2>
+           <h2 style={{fontFamily:"Ethnocentric", fontSize:"25px"}} > Coaches</h2>
         </div>
      </div>
      <div id="team-slider">
