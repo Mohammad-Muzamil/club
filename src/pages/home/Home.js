@@ -40,6 +40,8 @@ import zafar from"../../assets/gallery/zafar-removebg-preview.png"
 import OurClasses from "../../components/our_classes/our_classes";
 
 import FeaturesSection from "../../components/features_section/features_section"
+import BMICalculator from "../../components/features_section/bmi"
+import Timetable from "../../components/features_section/time_table"
 
 
 import App from "../../components/timer/timer";
@@ -443,6 +445,8 @@ const Home = (props) => {
               <AffiliatedAssociations/>
               <OurClasses/>
               <FeaturesSection/>
+              <Timetable/>
+              <BMICalculator/>
            
             </div>
         </div>
