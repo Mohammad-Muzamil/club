@@ -73,9 +73,10 @@ width: 94%;
 }
 
 
-.btn_lr{
+.btn_lr, .btn_lr:hover{
 background-color: orange;
 border: none;
 border-radius: 0px;
+height: 48px;
 
 }

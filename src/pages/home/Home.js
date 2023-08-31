@@ -42,6 +42,7 @@ import OurClasses from "../../components/our_classes/our_classes";
 import FeaturesSection from "../../components/features_section/features_section"
 import BMICalculator from "../../components/features_section/bmi"
 import Timetable from "../../components/features_section/time_table"
+import Testinomial_slider from "../../components/features_section/testinomial_slider"
 
 
 import App from "../../components/timer/timer";
@@ -447,6 +448,7 @@ const Home = (props) => {
               <FeaturesSection/>
               <Timetable/>
               <BMICalculator/>
+              <Testinomial_slider/>
            
             </div>
         </div>
