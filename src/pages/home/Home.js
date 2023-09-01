@@ -10,6 +10,8 @@ import leftbutton from "../../assets/img/buttons/arrow-square-left.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
+import { Throw_Error, Warning, Success } from "../../helpers/NotifiyToasters";
+
 import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import cover_image from "../../assets/img/icons/cover_image1.png";
@@ -162,16 +164,9 @@ const Home = (props) => {
         alert(response.data.message);
         // setcoverData(response.data);
       } else {
-        console.log("runnnn2");
+       
         // alert("Something went Wrong");
-
-        toast.error('Cover Products Data Not Loaded', {
-          position: 'top-right',
-          autoClose: 3000,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        Throw_Error("Cover Data Not Updated !! ")
       }
     });
   };
@@ -399,6 +394,8 @@ const Home = (props) => {
                 <h3>
                   WHY IS KARATE SO <span className="grey-text">IMPORTANT</span>?
                 </h3>
+<a target="_blank" href="https://icons8.com/icon/7880/location">Location</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
                 <p style={{paddingTop:'10PX'}}>
                   
                   Karate is important for you because it will help you improve your physical fitness, enhance your mental discipline, and teach you valuable self-defense skills.
@@ -429,7 +426,6 @@ const Home = (props) => {
     </Fragment>
   );
 };
-
 
 
 

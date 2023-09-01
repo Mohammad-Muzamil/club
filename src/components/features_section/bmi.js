@@ -3,6 +3,8 @@ import "../../assets/css/bmi.css"
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { Throw_Error } from '../../helpers/NotifiyToasters';
+
 const BMICalculator = () => {
     const isMobileactive = useMediaQuery({ maxWidth:767 });
     const [weight, setWeight] = useState('');
@@ -19,7 +21,8 @@ const BMICalculator = () => {
           
             const totalHeightMeters = heightFeet * 0.3048; // Convert inches to meters
             const bmi = (weight / (totalHeightMeters ** 2)).toFixed(2);
-            alert(bmi);
+            
+            
             let bmiCategory = "";
             if (age >= 3) {
                 if (bmi < 18.5) {
@@ -39,6 +42,7 @@ const BMICalculator = () => {
     
         } else {
             setBMIResult("Calculate BMI");
+            Throw_Error("Please Enter Correct Data.")
               // ADDtoast for error 
         }
     };
