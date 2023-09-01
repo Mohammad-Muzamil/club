@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AllBrands } from "../../helpers/api";
 import LightGallery from "lightgallery/react/Lightgallery.es5"
 
-import Yeezy from "../../assets/img/shoes/yeezy.png";
-import product1 from "../../assets/img/shoes/product1.png";
+
 
 import pic_1 from "../../assets/gallery/1.jpg";
 import pic_2 from "../../assets/gallery/2.jpg";

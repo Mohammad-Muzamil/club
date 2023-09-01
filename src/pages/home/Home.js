@@ -9,19 +9,19 @@ import rightbutton from "../../assets/img/buttons/arrow-square-right.png";
 import leftbutton from "../../assets/img/buttons/arrow-square-left.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Shoes from "../../assets/img/shoes/shoes.png";
+
 import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import cover_image from "../../assets/img/icons/cover_image1.png";
 import cover_image2 from "../../assets/img/icons/cover_image2.png";
 import cover_image3 from "../../assets/img/icons/cover_image3.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
-import ourStory from "../../assets/img/our-story.png";
+
 import myStory from "../../assets/img/mystory.png";
 import mblStory from "../../assets/img/mbl-story.png";
 import newstory from "../../assets/img/new-story.jpg";
 import btnBg from "../../assets/img/btn-bg.png";
-import heroImg from "../../assets/img/shoe-img.png";
+
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import { Cover_Products, Populer_Picks } from "../../helpers/api";
@@ -203,34 +203,7 @@ const Home = (props) => {
                 arrows={false}
                 customDot={<CustomDot />}
               >
-                {/* slide start */}
-                {converData.map((val) => (
-                  <div className="row justify-content-center ">
-                    <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
-                      <h1>{val.name}</h1>
-                      <p>{val.long_description}</p>
-                      <div className="slider-img">
-                        {/* <img src={process.env.REACT_APP_LOCAL_API+"/"+val.thumbnail} /> */}
-                        <img src={`//${window.location.host}/${val.thumbnail}`} />
-                        
-                      </div>
-                      <div className="btn-div">
-                        <button>
-                          <img src={btnArrowLt} />
-                          <img src={btnArrowLt} />
-                          <img src={btnArrowLt} />
-                          &nbsp;Read More&nbsp;
-                          <img src={btnArrowGt} />
-                          <img src={btnArrowGt} />
-                          <img src={btnArrowGt} />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="col-lg-5 col-md-5 second-sec">
-                      <img src={heroImg} />
-                    </div>
-                  </div>
-                ))}
+              
                 {/* slide end */}
                 <div className="row justify-content-center ">
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">

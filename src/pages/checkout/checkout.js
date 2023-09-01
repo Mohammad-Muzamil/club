@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useSyncExternalStore } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
-import Shoe from "../../assets/img/shoes/product1.png";
+
 import CartIcon from "../../assets/img/icons/shipping-cart.png";
 import Cross from "../../assets/img/icons/cross.png";
 import baseButton from "../../assets/img/buttons/basebutton.png";

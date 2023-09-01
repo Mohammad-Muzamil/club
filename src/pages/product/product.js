@@ -1,10 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
-import Shoes from "../../assets/img/shoes/shoes.png";
 import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
-import Product1 from "../../assets/img/shoes/product1.png";
+
 import AddCartBtn from "../../assets/img/buttons/addCartBtn.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import { addToCart } from "../../redux/actions/cartActions";

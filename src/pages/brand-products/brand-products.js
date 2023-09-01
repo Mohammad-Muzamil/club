@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect,useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
-import Shoes from "../../assets/img/shoes/shoes.png";
+
 import yellowstar from "../../assets/img/icons/yellowstar.png";
 import star from "../../assets/img/icons/star.png";
 import righarrow from "../../assets/img/icons/rightarrow.png";
-import NikeLogo from "../../assets/img/logo/nike.png";
 import HeaderTwo from "../../wrappers/header/HeaderTwo";
 import {Brand_Products , Product_Variants} from "../../helpers/api";
 import { useParams, Link } from "react-router-dom";
@@ -62,7 +61,7 @@ const BrandProducts = (props) => {
             
               {window.location.pathname === `/brands-products/${product_id}` ? (
                 <div className="brand-logo pb-80">
-                   <img className="logo" src={NikeLogo} />
+                   <img className="logo" src={{}} />
                  </div> 
                
               ) : (

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { bindActionCreators } from 'redux';
 import LayoutOne from "../../layouts/LayoutOne";
-import Shoe from "../../assets/img/shoes/product1.png";
 import CheckOut from "../../assets/img/buttons/checkout.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";

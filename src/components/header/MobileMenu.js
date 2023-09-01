@@ -3,7 +3,6 @@ import MobileMenuSearch from "./sub-components/MobileSearch";
 import MobileNavMenu from "./sub-components/MobileNavMenu";
 import MobileWidgets from "./sub-components/MobileWidgets";
 
-import MainLogo from "../../assets/img/logo/Logo.png"
 import avatar from "../../assets/img/icons/Avatar.png"
 import search from "../../assets/img/icons/search.png"
 import Menu from "../../assets/img/icons/menu.png"

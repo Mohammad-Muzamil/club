@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MainLogo from "../../assets/img/logo/Logo.png"
+
 import clublogo from "../../assets/img/icons/clublogo.png"
 const Logo = (props) => {
   return (

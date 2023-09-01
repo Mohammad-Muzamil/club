@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
-import Yeezy from "../../assets/img/shoes/yeezy.png";
-import product1 from "../../assets/img/shoes/product1.png";
+
 import { Link, useNavigate } from "react-router-dom";
 import { AllBrands } from "../../helpers/api";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
@@ -17,7 +16,51 @@ import prof_icon from "../../assets/img/prof-icon.png"
 import camera from "../../assets/img/camera.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import success from "../../assets/img/smaill.gif"
 
+
+
+
+const RenderTime = ({ remainingTime }) => {
+  const currentTime = useRef(remainingTime);
+  const prevTime = useRef(null);
+  const isNewTimeFirstTick = useRef(false);
+  const [, setOneLastRerender] = useState(0);
+
+  if (currentTime.current !== remainingTime) {
+    isNewTimeFirstTick.current = true;
+    prevTime.current = currentTime.current;
+    currentTime.current = remainingTime;
+  } else {
+    isNewTimeFirstTick.current = false;
+  }
+
+  if (remainingTime === 0) {
+    remainingTime="Uploading..";
+    setTimeout(() => {
+      setOneLastRerender((val) => val + 1);
+    }, 20);
+  }
+
+  const isTimeUp = isNewTimeFirstTick.current;
+
+  return (
+    <div className="time-wrapper">
+      <div key={remainingTime} style={{fontSize:"20px"}} className={`time ${isTimeUp ? "up" : ""}`}>
+        {remainingTime}
+      </div>
+      {prevTime.current !== null && (
+        <div
+          key={prevTime.current}
+          className={`time ${!isTimeUp ? "down" : ""}`}
+        >
+          {/* {prevTime.current} */}
+        </div>
+      )}
+    </div>
+  );
+};
 
 
 
@@ -121,7 +164,7 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 
 const SignUp = (props) => {
-    const [currentPart, setCurrentPart] = useState(1);
+    const [currentPart, setCurrentPart] = useState(3);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
     const [formData, setFormData] = useState({
@@ -399,11 +442,27 @@ const SignUp = (props) => {
                         <button onClick={handleNext} className="next-btn">Next</button>
                     </div>
                 </div>}
-                {currentPart === 3 &&<div className={`col-12 mt-3`} style={{height:"300px"}}>
-                    div 3
+                {currentPart === 3 &&<div className={`col-12 mt-3 mb-4`} >
+                <div className="d-flex justify-content-center mt-5 w-100" >
+                <CountdownCircleTimer
+                isPlaying
+                duration={3}
+                colors={["#FFA500"]}
+                colorsTime={[3]}
+                >
+                {RenderTime }
+                
+                </CountdownCircleTimer>
+              
+                </div>
+                <div className="d-flex flex-column " style={{alignItems:"center"}}>
+                <img src={success} style={{height:"200px", width:"250px"}}/>
+                <h4 className="text-success"  style={{fontFamily:"Ethnocentric"}}>Congratulations </h4>
+                <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
+                </div>
                     <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
-                    <button onClick={handlePrevious}className="pre-btn" >BACK</button>
-                        <button  className="next-btn" onClick={onSubmit} >Submit</button>
+                    
+                        <button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button>
                     </div>
                 </div>}
             </div>

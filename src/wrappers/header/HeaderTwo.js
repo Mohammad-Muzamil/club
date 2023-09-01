@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NikeLogo from "../../assets/img/logo/nike.png";
+
 import HomeIcon from "../../assets/img/icons/home.png";
 import RightarrowWhite from "../../assets/img/icons/rightarrowwhite.png"
 

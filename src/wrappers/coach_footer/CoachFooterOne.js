@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-import MainLogo from "../../assets/img/logo/Logo.png";
-import Payment1 from "../../assets/img/paymenticons/Payment1.png";
-import Payment2 from "../../assets/img/paymenticons/Payment2.png";
-import Payment3 from "../../assets/img/paymenticons/Payment3.png";
-import Payment4 from "../../assets/img/paymenticons/Payment4.png";
+
 import Telegram from "../../assets/img/socialmedia/telegram.png";
 import FaceBook from "../../assets/img/socialmedia/facebook.png";
 import mail from "../../assets/img/socialmedia/mail.png";
@@ -35,10 +31,7 @@ const CoachFooterOne = (props) => {
             <p className="email-support">NYKAF@gmail.com</p>
 
             <div className="paymentIcons">
-              <img src={Payment1} />
-              <img src={Payment2} />
-              <img src={Payment3} />
-              <img src={Payment4} />
+             
             </div>
           </div>
 
