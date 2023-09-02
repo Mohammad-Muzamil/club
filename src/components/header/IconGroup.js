@@ -17,44 +17,30 @@ const IconGroup = (props) => {
   return (
     <div className={`header-right-wrap`}>
 
-
+{/* 
       <div className="same-style header-compare">
         <div className="dropdown">
           <Link to={process.env.PUBLIC_URL + "/wishlist"}>
             <img className="navBarLogo" src={search} />
           </Link>
         </div>
-      </div>
+      </div> */}
 
 
       <div className="same-style header-compare">
-        <div className="dropdown">
+        <div className="d-flex">
+        <Link className="text-white" style={{fontSize:"15px", fontFamily:"mont"}} >Login&nbsp;</Link>
           <Link to={process.env.PUBLIC_URL + "/login"} >
           <img
             src={Avatar}
             type="button"
-            className="navBarLogo dropdown-toggle"
-            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            className="navBarLogo "
+          
           />
+
           </Link>
-
-          {/* <div className="dropdown-menu">
-            <Link to={{ pathname: process.env.PUBLIC_URL + "/login" }}>
-              <li>Profile</li>
-            </Link>
-            <Link
-              to={{ pathname: process.env.PUBLIC_URL }}
-
-            >
-              <li>LogOut</li>
-            </Link>
-          </div> */}
         </div>
       </div>
-
-
-
-
 
       <div className="same-style d-block d-lg-none">
         <button

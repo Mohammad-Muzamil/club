@@ -45,9 +45,8 @@ import FeaturesSection from "../../components/features_section/features_section"
 import BMICalculator from "../../components/features_section/bmi"
 import Timetable from "../../components/features_section/time_table"
 import Testinomial_slider from "../../components/features_section/testinomial_slider"
-
-
 import App from "../../components/timer/timer";
+
 
 const Home = (props) => {
 
@@ -410,7 +409,7 @@ const Home = (props) => {
             
               </div>
          
-              <TestonomialCarousel/>
+           
               <Coach/>
               <Upcomming_Event/>
               <AffiliatedAssociations/>

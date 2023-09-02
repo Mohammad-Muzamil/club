@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import success from "../../assets/img/smaill.gif"
+import tryagain from "../../assets/img/tryagain.gif"
 
 
 
@@ -55,7 +56,7 @@ const RenderTime = ({ remainingTime }) => {
           key={prevTime.current}
           className={`time ${!isTimeUp ? "down" : ""}`}
         >
-          {/* {prevTime.current} */}
+     
         </div>
       )}
     </div>
@@ -63,6 +64,20 @@ const RenderTime = ({ remainingTime }) => {
 };
 
 
+function MyCountdownTimer({ currentTime }) {
+    return (
+      <div>
+        <CountdownCircleTimer
+          isPlaying
+          duration={5}
+          colors={['#FFA500']}
+          colorsTime={[3]}
+        >
+          {RenderTime}
+        </CountdownCircleTimer>
+      </div>
+    );
+  }
 
 
 function BlurredBackgroundModal({ onImageSelect }) {
@@ -144,8 +159,6 @@ function BlurredBackgroundModal({ onImageSelect }) {
                                 <button className="save-btn" onClick={openFileInput}>
                                      Upload
                                 </button>
-                                
-                               
                             </div>
                         </div>
                     </div>
@@ -164,9 +177,27 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 
 const SignUp = (props) => {
+    const [currentTime, setCurrentTime] = useState(5);
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+      if (currentTime > 0) {
+        setCurrentTime(currentTime - 1);
+    }
+    else{
+        settimerstatus(false)
+        // if else if show success or error 
+        
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [currentTime]);
     const [currentPart, setCurrentPart] = useState(3);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
+    const [status, setstatus]=useState(false)
+    const [timerstatus, settimerstatus]=useState(true)
     const [formData, setFormData] = useState({
         name: '',
         fatherName: '',
@@ -442,28 +473,47 @@ const SignUp = (props) => {
                         <button onClick={handleNext} className="next-btn">Next</button>
                     </div>
                 </div>}
-                {currentPart === 3 &&<div className={`col-12 mt-3 mb-4`} >
-                <div className="d-flex justify-content-center mt-5 w-100" >
-                <CountdownCircleTimer
-                isPlaying
-                duration={3}
-                colors={["#FFA500"]}
-                colorsTime={[3]}
-                >
-                {RenderTime }
-                
-                </CountdownCircleTimer>
-              
-                </div>
-                <div className="d-flex flex-column " style={{alignItems:"center"}}>
-                <img src={success} style={{height:"200px", width:"250px"}}/>
-                <h4 className="text-success"  style={{fontFamily:"Ethnocentric"}}>Congratulations </h4>
-                <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
-                </div>
-                    <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
+                {currentPart === 3 &&
+                <div className={`col-12 mt-3 mb-4`} >
+                    <div className="d-flex justify-content-center mt-5 w-100" >
+                    {/* <CountdownCircleTimer
+                    isPlaying
+                    duration={3}
+                    colors={["#FFA500"]}
+                    colorsTime={[3]}
+                    >
+                    {RenderTime }      
                     
-                        <button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button>
+                    </CountdownCircleTimer> */}
+                     <MyCountdownTimer currentTime={currentTime} />
+                
                     </div>
+                    { status && !timerstatus && 
+                     <div>
+                         <div className="d-flex flex-column " style={{alignItems:"center"}}>
+                            <img src={success} style={{height:"200px", width:"250px"}}/>
+                            <h4 className="text-success"  style={{fontFamily:"Ethnocentric"}}>Congratulations </h4>
+                            <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
+                        </div>
+                        <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
+                            <button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button>
+                        </div>
+                    </div>}
+                    { !status && !timerstatus &&
+                     <div>
+                         <div className="d-flex flex-column " style={{alignItems:"center"}}>
+                            <img src={tryagain} style={{height:"200px", width:"250px"}}/>
+                            <h3 className="text-danger text-center mt-2"  style={{fontFamily:"Ethnocentric"}}> SORRY FOr INCONVIENCE</h3>
+                            <h5 className="text-danger "style={{fontFamily:"mont"}} > Please Try Again </h5>
+
+                          
+                        </div>
+                        <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
+                            <button  className="pre-btn" style={{width:"300px", height:"40px"}} onClick={handlePrevious} >BACK</button>
+                        </div>
+                    </div>}
+                 
+                   
                 </div>}
             </div>
         </div>

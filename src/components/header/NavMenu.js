@@ -28,40 +28,21 @@ const NavMenu = (props) => {
 
           <li>
             <Link to={process.env.PUBLIC_URL + "/gallery"}>Gallery</Link>
-            {/* <ul className="mega-menu mega-menu-padding">
-              <li className="w-100">
-                <ul>
-                 { brandData.map(data => (
-                  // <Link to={process.env.PUBLIC_URL + "/shop"}>
-                  <Link to={process.env.PUBLIC_URL + `/brands-products/${data.uuid}`}>
-                    <li>{data.name}</li>
-                  </Link>
-                  ))
-                 }
-                </ul>
-              </li>
-            </ul>
-            <img className="dropdown-img" src={dropdown} /> */}
+          
           </li>
 
           <li>
-          <Link to={"#"}>Branches</Link>
-            <ul className="mega-menu mega-menu-padding">
-              <li className="w-100">
-                <ul>
-                 { brandData.map(data => (
-             
-                  <Link to={process.env.PUBLIC_URL + `/Branch-id/${data.uuid}`}>
-                    <li>{data.name}</li>
-                  </Link>
-                  ))
-                 }
-                </ul>
-              </li>
-            </ul>
-            <img className="dropdown-img" src={dropdown} />
+          <Link to={"/branch"}>Branches</Link>
+            
           </li>
 
+         
+          <li>
+            <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
+          </li>
+          <li>
+            <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
+          </li>
           <li>
             <Link>Help</Link>
             <ul className="mega-menu mega-menu-padding">
@@ -78,12 +59,6 @@ const NavMenu = (props) => {
               </li>
             </ul>
             <img className="dropdown-img" src={dropdown} />
-          </li>
-          <li>
-            <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
-          </li>
-          <li>
-            <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
           </li>
           
         </ul>

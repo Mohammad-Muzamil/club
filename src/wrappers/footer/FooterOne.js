@@ -21,7 +21,7 @@ const FooterOne = (props) => {
         <div className="row">
           <div className="col-xl-4 col-lg-4 col-sm-4 footer-start">
             <div className="main-logo">
-              <img src={clublogo} />
+              <img src={clublogo} style={{width:"380px", height:"200px"}} />
             </div>
 
             <p>
@@ -38,7 +38,7 @@ const FooterOne = (props) => {
                best clubs. Where champions are forged and greatness is realized, empowering every player to reach new heights in their martial arts journey.
             </p>
 
-            <div className={"col-xl-3 col-lg-3 col-sm-4 p-0"}>
+            <div className={"col-xl-3 col-lg-3 col-sm-4 p-0 mt-2"}>
               <div className="footer-widget mb-30">
                 <div className="footer-title">
                   <h3>Social Media</h3>
@@ -68,7 +68,7 @@ const FooterOne = (props) => {
 
   
 
-            <div className={"col-xl-3 col-lg-3 col-sm-6 p-0"}>
+            <div className={"col-xl-3 col-lg-3 col-sm-6 p-0 mt-2"}>
               <div className="footer-widget mb-30">
                 <div className="footer-title">
                   <h3>About</h3>
@@ -104,7 +104,7 @@ const FooterOne = (props) => {
               </div>
             </div>
 
-            <div className={"col-xl-3 col-lg-3 col-sm-6 p-0"}>
+            <div className={"col-xl-3 col-lg-3 col-sm-6 p-0 mt-2"}>
               <div className="footer-widget mb-30">
                 <div className="footer-title">
                   <h3>Help</h3>

@@ -72,8 +72,8 @@ const BMICalculator = () => {
                             <div className="form-row w-100">
                                 <input type="number" className="input1" placeholder="  Age"  onChange={(e) => setAge(e.target.value)}/>
                                 <select className="select1   ">
-                                    <option selected value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option style={{color:"black"}} selected value="male">Male</option>
+                                    <option style={{color:"black"}} value="female">Female</option>
                                 </select>
                             </div>
                             <div className="form-row mt-3 w-100">

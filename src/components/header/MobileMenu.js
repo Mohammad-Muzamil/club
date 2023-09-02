@@ -18,10 +18,10 @@ const MobileMenu = () => {
     <>
       <div className="mobile-menu">
         <div className="d-flex flex-row justify-content-between">
-        <img className="mobile-logo" src={clublogo}/>
+        <img className="mobile-logo" src={clublogo} style={{width:"230px", height:"100px"}}/>
 
         <div className="d-flex flex-row mobile-icons">
-          <img src={search}/>
+   
           <img src={avatar}  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
           <div className="dropdown-menu">
             <Link to={{ pathname: process.env.PUBLIC_URL + "/my-account" }}>
@@ -50,13 +50,18 @@ const MobileMenu = () => {
                   <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
                 </li>
                 <li classname="na" >
-                  <Link  data-toggle="collapse" data-target="#brand-collapse"  >Branches</Link>
-				  <img className="dropdown-img" src={dropdown} />
-                  <div className="collapse" aria-labelledby="navbarDropdown" id="brand-collapse">
-                    <ul>
-                    
-                    </ul>
-                  </div>
+                  <Link to={"/branch"} data-toggle="collapse" data-target="#brand-collapse"  >Branches</Link>
+				           
+                </li>
+                
+                <li >
+                  <Link to={process.env.PUBLIC_URL + "/gallery"}>Gallery</Link>
+                </li>
+                <li >
+                  <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
+                </li>
+                <li >
+                  <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
                 </li>
                 <li >
                   <Link to={process.env.PUBLIC_URL}>Help</Link>
@@ -73,15 +78,6 @@ const MobileMenu = () => {
                     </li>
                   </ul>
                   <img className="dropdown-img" src={dropdown} />
-                </li>
-                <li >
-                  <Link to={process.env.PUBLIC_URL + "/gallery"}>Gallery</Link>
-                </li>
-                <li >
-                  <Link to={process.env.PUBLIC_URL + "/aboutus"}>About Us</Link>
-                </li>
-                <li >
-                  <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
                 </li>
               </ul>
             </nav>  

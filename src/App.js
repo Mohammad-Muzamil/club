@@ -19,6 +19,7 @@ import OTP from "./pages/otp/otp";
 import Page404 from "../src/pages/page404/Page404";
 import ForgetPassword from "./pages/forget_password/forget_password";
 import SignUp from "./pages/signup/signup";
+import Branch from "./pages/branch/branch"
 import Testing from "./pages/Testing";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
@@ -46,6 +47,7 @@ const App = (props) => {
         <Route path="/forgetpassword" element={<ForgetPassword/>}></Route>
         <Route path="/otp" element={<OTP/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/branch" element={<Branch/>}></Route>
         <Route path="/testing" element={<Testing/>}></Route>
         <Route path="/coach" element={<CoachHome/>}></Route>
         <Route path="/admin" element={<AdminHome/>}></Route>

@@ -29,18 +29,18 @@ const HeaderOne = (props) => {
         <div className={"container webView"}>
           <div className="row">
             <div className="d-flex col-xl-6 col-lg-6 col-md-6 col-6">
-              <Logo imageUrl="/assets/img/logo/logo.png" logoClass="logo" />
+              <Logo  logoClass="logo" />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-6 ">
               <SocialMediaGroup />
             </div>
           </div>
-          <div className="row">
+          <div className="row" style={{marginTop:"-20px"}}>
 
             <div className="col-xl-10 col-lg-10 d-none d-lg-block">
               <NavMenu />
             </div>
-            <div className="col-xl-2 col-lg-2 col-md-6 col-7">
+            <div className="col-xl-2 col-lg-2 col-md-6 col-7" >
               <IconGroup />
             </div>
           </div>
