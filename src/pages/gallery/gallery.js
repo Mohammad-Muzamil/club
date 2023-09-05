@@ -22,6 +22,7 @@ import pic_13 from "../../assets/gallery/medal.jpg";
 import pic_14 from "../../assets/gallery/inetrnation.jpg";
 import pic_15 from "../../assets/gallery/zafar.jpg";
 import pic_16 from "../../assets/gallery/zafar_medal.jpg";
+import pic_17 from "../../assets/gallery/group.jpg";
 
 import "lightgallery/css/lightgallery.css"
 import "lightgallery/css/lg-zoom.css"
@@ -109,6 +110,9 @@ const Gallery = (props) => {
                       </a>
                       <a href={pic_13}   >
                         <img className="col-xl-4 col-lg-4 col-6 mb-1 p-1"  src={pic_13} style={{width:"350px",height:"350px"}} />
+                      </a>
+                      <a href={pic_17}   >
+                        <img className="col-xl-4 col-lg-4 col-6 mb-1 p-1"  src={pic_17} style={{width:"350px",height:"350px"}} />
                       </a>
                      
                     

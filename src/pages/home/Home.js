@@ -38,6 +38,11 @@ import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
 import AffiliatedAssociations from "../../components/association_slider/association_slider";
 import Gallery from "../../components/gallery/gallery";
 import zafar from"../../assets/gallery/zafar-removebg-preview.png"
+import shahbaz from"../../assets/gallery/shahbaz_p.png"
+import shahzoo from"../../assets/gallery/shazoo.png"
+import haris from"../../assets/gallery/harris.png"
+import nomi from"../../assets/gallery/nomi.png"
+import muzamil from"../../assets/gallery/muzamil.png"
 
 import OurClasses from "../../components/our_classes/our_classes";
 
@@ -176,10 +181,11 @@ const Home = (props) => {
   
   const popular_player=[
     {name:"ZAFAR IQBAL", img:zafar, department:"WAPDA PLAYER"},
-    {name:"SHAHBAZ AHMAD", img:zafar, department:"WAPDA PLAYER"},
-    {name:"SHAHBAZ SALEEM", img:zafar, department:"WAPDA PLAYER"},
-    {name:"HARIS NADEEM", img:zafar, department:"HEC PLAYER"},
-    {name:"MUZAMIL AMIN", img:zafar, department:"HEC PLAYER"},
+    {name:"SHAHBAZ AHMAD", img:shahbaz, department:"WAPDA PLAYER"},
+    {name:"SHAHBAZ SALEEM", img:shahzoo, department:"WAPDA PLAYER"},
+    {name:"HARIS NADEEM", img:haris, department:"HEC PLAYER"},
+    {name:"MUZAMIL AMIN", img:muzamil, department:"HEC PLAYER"},
+    {name:"Nouman Arshad", img:nomi, department:"HEC PLAYER"},
   ]
 
   return (

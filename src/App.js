@@ -11,8 +11,6 @@ import PaymentDetails from "./pages/paymentdetails/paymentdetails";
 import ContactUs from "./pages/contactus/contactus";
 import AboutUs from "./pages/aboutus/aboutus";
 import Payments from "../src/pages/home/Payments"
-import CoachHome from "../src/pages/coach_home/coach_home"
-import AdminHome from "../src/pages/admin_home/admin_home"
 import Faqs from "../src/pages/home/FAQs"
 import Login from "./pages/login/login";
 import OTP from "./pages/otp/otp";
@@ -25,12 +23,16 @@ import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import CoachHome from "./pages/instructor_panel/CoachHome"
+import CoachChangePassword from "./pages/instructor_panel/CoachChangePassword"
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/coach" element={<CoachHome />}></Route>
+        <Route path="/coach-change-password" element={<CoachChangePassword />}></Route>
         <Route path="/gallery" element={<Gallery />}></Route>
         <Route path="/brands-products/:product_id" element={<BrandProducts />}></Route>
         <Route path="/specific-brand-products/:productvarient_id" element={<BrandProducts />}></Route>
@@ -49,8 +51,6 @@ const App = (props) => {
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/branch" element={<Branch/>}></Route>
         <Route path="/testing" element={<Testing/>}></Route>
-        <Route path="/coach" element={<CoachHome/>}></Route>
-        <Route path="/admin" element={<AdminHome/>}></Route>
         <Route path="*" element={<Page404/>}></Route>
       </Routes>
       <ToastContainer /> 

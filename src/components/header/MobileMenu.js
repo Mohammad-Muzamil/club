@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import MobileMenuSearch from "./sub-components/MobileSearch";
 import MobileNavMenu from "./sub-components/MobileNavMenu";
 import MobileWidgets from "./sub-components/MobileWidgets";
-
 import avatar from "../../assets/img/icons/Avatar.png"
 import search from "../../assets/img/icons/search.png"
 import Menu from "../../assets/img/icons/menu.png"
