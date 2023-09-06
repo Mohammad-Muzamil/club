@@ -17,7 +17,7 @@ const CoachHeader=(props)=> {
   };
   return (
     <>
-    <nav className="navbar navbar-expand  sticky-top px-4 py-0  ml-auto" style={{width:isMobilewidth? "100%": "97%", backgroundColor:"#ececec"}} >
+    <nav className="navbar navbar-expand  sticky-top px-4 py-0  ml-auto col-12" style={{ backgroundColor:"#ececec"}} >
                 <a href="index.html" className="navbar-brand d-flex d-lg-none me-4">
                     <h2 className="text-primary mb-0"><i className="fa fa-hashtag"></i></h2>
                 </a>
