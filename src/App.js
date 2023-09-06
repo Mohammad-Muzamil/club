@@ -25,14 +25,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import CoachHome from "./pages/instructor_panel/CoachHome"
 import CoachChangePassword from "./pages/instructor_panel/CoachChangePassword"
+import CoachProfile from "./pages/instructor_panel/CoachProfile"
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/coach" element={<CoachHome />}></Route>
-        <Route path="/coach-change-password" element={<CoachChangePassword />}></Route>
         <Route path="/gallery" element={<Gallery />}></Route>
         <Route path="/brands-products/:product_id" element={<BrandProducts />}></Route>
         <Route path="/specific-brand-products/:productvarient_id" element={<BrandProducts />}></Route>
@@ -52,6 +51,11 @@ const App = (props) => {
         <Route path="/branch" element={<Branch/>}></Route>
         <Route path="/testing" element={<Testing/>}></Route>
         <Route path="*" element={<Page404/>}></Route>
+          
+        <Route path="/coach" element={<CoachHome />}></Route>
+        <Route path="/coach-change-password" element={<CoachChangePassword />}></Route>        
+        <Route path="/coach-profile" element={<CoachProfile />}></Route>        
+
       </Routes>
       <ToastContainer /> 
     </BrowserRouter>
