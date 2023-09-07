@@ -53,7 +53,7 @@ const CoachAttendance=()=> {
                                 <thead>
                                     <tr style={{borderBottom:"2px solid gray"}}>
                                         <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>#</th>
-                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>Name</th>
+                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>Namez</th>
                                         <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>Status</th>
                                        
                                     </tr>
