@@ -29,6 +29,9 @@ const StudentRow=(prop)=>{
             <td >
             <input style={{height:"20px"}} type='checkBox'/>
             </td>
+            <td >
+            <input style={{height:"20px"}} type='checkBox'/>
+            </td>
         </tr>
     )
 }
@@ -57,8 +60,9 @@ const CoachFightResult=()=> {
                                     <tr style={{borderBottom:"2px solid gray"}}>
                                         <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>#</th>
                                         <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>Name</th>
-                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>{ isMobileactive?"Fight/":"Fight" }</th>
-                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>Kata</th>
+                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>{ isMobileactive?"Ply":"Played" }</th>  
+                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>{ isMobileactive?"F":"Fight" }</th>
+                                        <th scope="col" style={{fontSize:"19px",paddingBottom:"4px"}}>{ isMobileactive?"K":"Kata" }</th>
                                        
                                     </tr>
                                 </thead>

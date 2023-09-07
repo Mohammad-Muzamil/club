@@ -29,7 +29,7 @@ const CoachHeader=(props)=> {
                     <div className="nav-item ">
                     <a href="#" className="nav-link"  >
                         <FontAwesomeIcon icon={faBell} style={{fontSize:"20px"}}  />
-                        <span class="badge badge-dark " style={{borderRadius:"100%"}}>14</span>
+                        <span className="badge badge-dark " style={{borderRadius:"100%"}}>14</span>
                         <span className="d-none d-lg-inline-flex" style={{paddingLeft:"10px"}}>Events</span>
                     </a>
                     </div>
