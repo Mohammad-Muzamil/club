@@ -26,6 +26,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import CoachHome from "./pages/instructor_panel/CoachHome"
 import CoachChangePassword from "./pages/instructor_panel/CoachChangePassword"
 import CoachProfile from "./pages/instructor_panel/CoachProfile"
+import CoachAttendance from "./pages/instructor_panel/CoachAttendance"
+import CoachFightResult from "./pages/instructor_panel/CoachFightResult"
 
 const App = (props) => {
   return (
@@ -55,6 +57,8 @@ const App = (props) => {
         <Route path="/coach" element={<CoachHome />}></Route>
         <Route path="/coach-change-password" element={<CoachChangePassword />}></Route>        
         <Route path="/coach-profile" element={<CoachProfile />}></Route>        
+        <Route path="/coach-attendance" element={<CoachAttendance />}></Route>        
+        <Route path="/coach-fight-result" element={<CoachFightResult />}></Route>        
 
       </Routes>
       <ToastContainer /> 

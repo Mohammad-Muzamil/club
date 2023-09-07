@@ -226,9 +226,9 @@
     top: auto !important;
 }
 
-.bootstrap-datetimepicker-widget .table * {
+/* .bootstrap-datetimepicker-widget .table * {
     border-bottom-width: 0px;
-}
+} */
 
 .bootstrap-datetimepicker-widget .table th {
     font-weight: 500;

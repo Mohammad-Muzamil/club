@@ -40,7 +40,7 @@ const SideBarDropDown=(prop)=>{
 const CoachSideNavBar=(prop)=>{
     const listof_profile=[{ href: '/coach-profile', text: 'Profile' },
       { href: '/coach-change-password', text: 'Change Password' },]
-    const listof_player=[{ href: '/coach-Attendance', text: 'Attendance' },
+    const listof_player=[{ href: '/coach-attendance', text: 'Attendance' },
       { href: '/coach-fight-result', text: 'Fight Result' },]
     const listof_reading=[{ href: '/coach-kumite', text: 'Kumite' },
       { href: '/coach-kata', text: 'Kata' },]
