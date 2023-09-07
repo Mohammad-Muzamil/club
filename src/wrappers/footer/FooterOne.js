@@ -4,9 +4,12 @@ import Telegram from "../../assets/img/socialmedia/telegram.png";
 import FaceBook from "../../assets/img/socialmedia/facebook.png";
 import mail from "../../assets/img/socialmedia/mail.png";
 import Instagram from "../../assets/img/socialmedia/instagram.png";
-import clublogo from "../../assets/img/icons/clublogo.png";
+import clublogo from "../../assets/img/icons/whiteclublogo.png";
+import { useMediaQuery } from "react-responsive";
 
 const FooterOne = (props) => {
+  const isMobileactivess = useMediaQuery({ maxWidth:767 });
+
   return (
     <footer
       className={`footer-area ${
@@ -19,9 +22,9 @@ const FooterOne = (props) => {
     >
       <div className="container">
         <div className="row">
-          <div className="col-xl-4 col-lg-4 col-sm-4 footer-start">
+          <div className="col-xl-5 col-lg-5 col-sm-4  footer-start">
             <div className="main-logo">
-              <img src={clublogo} style={{width:"380px", height:"200px"}} />
+              <img src={clublogo} style={{width:isMobileactivess?"380px": "500px", height:isMobileactivess?"150px":"180px"}} />
             </div>
 
             <p>
@@ -31,7 +34,7 @@ const FooterOne = (props) => {
             <p className="email-support">NYKAF@gmail.com</p>
           </div>
 
-          <div className="row footer-end col-xl-8 col-lg-8 col-sm-8 m-0">
+          <div className="row footer-end col-xl-7 col-lg-7 col-sm-8 m-0">
             <p>
               Our Clubs are listed as <b className="bold">‘PKF’ </b>stand for{" "}
               <b className="bold">Pakistan Karate Federation&nbsp;</b>

@@ -8,7 +8,8 @@ import Menu from "../../assets/img/icons/menu.png"
 import dropdown from "../../assets/img/icons/dropdown.png"
 import NavMenu from "./NavMenu";
 import { Link } from "react-router-dom";
-import clublogo from "../../assets/img/icons/clublogo.png"
+import clublogo from "../../assets/img/icons/whiteclublogo.png"
+
 
 const MobileMenu = () => {
   const [open, setopen] = useState(false);
@@ -17,7 +18,7 @@ const MobileMenu = () => {
     <>
       <div className="mobile-menu">
         <div className="d-flex flex-row justify-content-between">
-        <img className="mobile-logo" src={clublogo} style={{width:"230px", height:"100px"}}/>
+        <img className="mobile-logo" src={clublogo} style={{width:"230px", height:"80px"}}/>
 
         <div className="d-flex flex-row mobile-icons">
    
