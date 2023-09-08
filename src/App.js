@@ -28,6 +28,7 @@ import CoachChangePassword from "./pages/instructor_panel/CoachChangePassword"
 import CoachProfile from "./pages/instructor_panel/CoachProfile"
 import CoachAttendance from "./pages/instructor_panel/CoachAttendance"
 import CoachFightResult from "./pages/instructor_panel/CoachFightResult"
+import CoachApproval from "./pages/instructor_panel/CoachApproval"
 
 const App = (props) => {
   return (
@@ -59,6 +60,7 @@ const App = (props) => {
         <Route path="/coach-profile" element={<CoachProfile />}></Route>        
         <Route path="/coach-attendance" element={<CoachAttendance />}></Route>        
         <Route path="/coach-fight-result" element={<CoachFightResult />}></Route>        
+        <Route path="/coach-approval" element={<CoachApproval />}></Route>        
 
       </Routes>
       <ToastContainer /> 
