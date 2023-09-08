@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import { Error_light, Success_light, Throw_Error } from '../../helpers/NotifiyToasters';
 
 
 import { useEffect } from 'react';
@@ -18,7 +19,23 @@ import "../../assets/css/profile.css"
 
 const ApprovalGenericTemplate=(prop)=> {
     const isMobileactive = useMediaQuery({ maxWidth:767 });
- 
+    const [argument,setargument]=useState("")
+    const OnhandleChange=(event)=>{
+       setargument(event.target.value)
+       console.log(argument);
+    }
+    const accept=()=>{
+    // call the api for approval
+    }
+    const reject=()=>{
+        if(argument==""){
+            Error_light("Give some details why you reject admission")
+        }
+        else{
+            //call the api for sending status
+            Success_light("Successfully rejected ")
+        }
+    }
   return (
 
     <section>
@@ -83,12 +100,11 @@ const ApprovalGenericTemplate=(prop)=> {
                         </div>
                         <div className="card-body pt-0">
                             <div className='w-100' >
-                            {/* <input type="textarea" className='form-control'/> */}
-                            <textarea rows="2" style={{maxHeight:"70px"}}></textarea>
+                            <textarea rows="2" onChange={OnhandleChange} style={{maxHeight:"70px"}}></textarea>
                             </div>
                             <div className='w-100 d-flex justify-content-end mt-2' style={{columnGap:"7px"}}>
-                                <button className='btn btn-danger' >Reject</button>
-                                <button className='btn btn-success' >Approved</button>
+                                <button className='btn btn-danger' onClick={reject} >Reject</button>
+                                <button className='btn btn-success' onClick={accept} >Approved</button>
                             </div>
                         </div>
                         </div>
