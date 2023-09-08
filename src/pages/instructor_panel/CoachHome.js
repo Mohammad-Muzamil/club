@@ -51,7 +51,7 @@ const CoachHome=()=> {
             <div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
                     <div className="col-sm-6 col-xl-3">
-                        <div className="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <div className=" rounded d-flex align-items-center justify-content-between p-4" style={{backgroundColor:"#ECECEC"}} >
                             <FontAwesomeIcon icon={faUsers} style={{fontSize:"50px"}} className='text-primary' /> 
                             <div className="ms-3">
                                 <h5 className="mb-2">Total Players</h5>
@@ -60,7 +60,7 @@ const CoachHome=()=> {
                         </div>
                     </div>
                     <div className="col-sm-6 col-xl-3">
-                        <div className="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <div className=" rounded d-flex align-items-center justify-content-between p-4" style={{backgroundColor:"#ECECEC"}} >
                         <FontAwesomeIcon icon={faUserCheck} style={{fontSize:"50px"}} className='text-primary' /> 
                             <div className="ms-3">
                                 <h5 className="mb-2">Total Present</h5>
@@ -69,7 +69,7 @@ const CoachHome=()=> {
                         </div>
                     </div>
                     <div className="col-sm-6 col-xl-3">
-                        <div className="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <div className=" rounded d-flex align-items-center justify-content-between p-4" style={{backgroundColor:"#ECECEC"}} >
                         <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"50px"}} className='text-primary' /> 
                             <div className="ms-3">
                                 <h5 className="mb-2">New Players</h5>
@@ -78,7 +78,7 @@ const CoachHome=()=> {
                         </div>
                     </div>
                     <div className="col-sm-6 col-xl-3">
-                        <div className="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <div className=" rounded d-flex align-items-center justify-content-between p-4" style={{backgroundColor:"#ECECEC"}} >
                             <FontAwesomeIcon icon={faCity} style={{fontSize:"50px"}} className='text-primary' /> 
                             <div className="ms-3">
                                 <h5 className="mb-2" >Faislabad</h5>
@@ -92,7 +92,7 @@ const CoachHome=()=> {
             <div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
                     <div className="col-sm-12 col-xl-6">
-                        <div className="bg-light text-center rounded p-4">
+                        <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h4 className="mb-0">This Month</h4>
                                 {/* <a href="">Show All</a> */}
@@ -101,7 +101,7 @@ const CoachHome=()=> {
                         </div>
                     </div>
                     <div className="col-sm-12 col-xl-6">
-                        <div className="bg-light text-center rounded p-4">
+                        <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h4 className="mb-0">Monthly Attendane</h4>
                                 {/* <a href=""></a> */}

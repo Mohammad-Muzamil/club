@@ -81,7 +81,7 @@ const CoachChangePassword=()=> {
           <CoachHeader onClickHandler={toggleDrop}/>
             
         <div className='container-fluid   ml-auto mr-auto mt-4 d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"10px"}} >
-            <div className='col-lg-6 col-xl-6 col-12 p-5 'style={{backgroundColor:"#F8F9FA", borderRadius:"6px", order:isMobileactive?"2":"1"}}>
+            <div className='col-lg-6 col-xl-6 col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1"}}>
                              
                 <h3 style={{fontWeight:"bold"}}className='text-primary' ><FontAwesomeIcon icon={faKey} style={{fontSize:"30px", paddingRight:"10px"}} className='text-primary' />Change Password</h3>
                 <div class="form-floating mb-3 mt-4">
@@ -111,7 +111,7 @@ const CoachChangePassword=()=> {
                     <button type="button" class="btn btn-md btn-primary m-2"style={{width:"120px"}} onClick={handleResetClick}>Reset</button>
                 </div>
             </div>
-            <div className='col-lg-6 col-xl-6 col-12 p-5'style={{ backgroundColor:"#F8F9FA",borderRadius:"6px", order:isMobileactive?"1":"2"}}>
+            <div className='col-lg-6 col-xl-6 col-12 p-5'style={{ backgroundColor:"#ECECEC",borderRadius:"6px", order:isMobileactive?"1":"2"}}>
                 <div className="">
                         <h3 className="mb-0 text-danger" style={{fontWeight:"bold"}}>Instructions</h3>
                 </div>

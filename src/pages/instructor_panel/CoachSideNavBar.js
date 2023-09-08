@@ -35,8 +35,6 @@ const SideBarDropDown=(prop)=>{
     </div>
     );
 }
-
-
 const CoachSideNavBar=(prop)=>{
     const listof_profile=[{ href: '/coach-profile', text: 'Profile' },
       { href: '/coach-change-password', text: 'Change Password' },]
@@ -65,12 +63,12 @@ const CoachSideNavBar=(prop)=>{
                     </div>
                     </div>
                     <div className="navbar-nav w-100">
-                        <Link to={"index.html"} className="nav-item nav-link active"><FontAwesomeIcon icon={faHome} style={{paddingRight:"10px"}}/>Dashboard</Link>
+                        <Link to={"/coach"} className="nav-item nav-link active"><FontAwesomeIcon icon={faHome} style={{paddingRight:"10px"}}/>Dashboard</Link>
                         <SideBarDropDown icon={faUser} name="Profile" list_of_subcategories={listof_profile} />
                         <SideBarDropDown icon={faPersonChalkboard} name="Players" list_of_subcategories={listof_player} />
                         <Link to={"/coach-approval"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faCircleExclamation} style={{paddingRight:"10px"}}/>Approvals</Link>
                         <Link to={"/coach-delete-player-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>
-                        <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_player} />
+                        <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_reading} />
                     </div>
                 </nav>
           </div>
