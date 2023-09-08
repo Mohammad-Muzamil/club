@@ -41,13 +41,13 @@ const StudentRow=(prop)=>{
             <th style={{color:"black"}}>{prop.index+1}</th>
             <td style={{color:"black", fontSize: isMobilerow?"12px":"15px"}}>{prop.name}</td>
             <td >
-            <input style={{height:"20px"}} type='checkBox' onChange={onsetPlayed} checked={played} />
+            <input style={{height:"20px"}} type='checkbox' onChange={onsetPlayed} checked={played} />
             </td>
             <td >
-            <input style={{height:"20px"}} type='checkBox'  onChange={onsetFight} checked={fight} />
+            <input style={{height:"20px"}} type='checkbox'  onChange={onsetFight} checked={fight} />
             </td>
             <td >
-            <input style={{height:"20px"}} type='checkBox'  onChange={onsetKata} checked={kata} />
+            <input style={{height:"20px"}} type='checkbox'  onChange={onsetKata} checked={kata} />
             </td>
         </tr>
     )
@@ -84,19 +84,25 @@ const CoachFightResult=()=> {
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
+
   const calling=(id,Fightstatus,katastatus,playedstatus)=>{ 
-    setlistofFightResults(prevList => prevList.map(obj => {
-        if (obj.Id === id) {
+    // console.log(id,Fightstatus,katastatus,playedstatus);
+        const result=listofFightResults.map(obj => {
+        if (obj.Id == id) {
           return { ...obj, playedstatus,Fightstatus,katastatus };
         }
         return obj;
-      }));
+      });
+      setlistofFightResults(result);
   }
-  const testing=()=>{
-    alert("i was called");
-    listofFightResults.map(obj=>{
+
+
+  const sendFightResult=()=>{
+      listofFightResults.map(obj=>{
         console.log(`${obj.Id} ${obj.name} ${obj.playedstatus} ${obj.Fightstatus} ${obj.katastatus}`)
     })
+    // cal the api for sending result
+ 
   }
   
   return (
@@ -134,8 +140,7 @@ const CoachFightResult=()=> {
                         </div>
                     </div>
                     <div className='d-flex justify-content-end w-100 pb-3' style={{columnGap:"10px"}}>
-                        <button className='btn btn-primary' style={{width:"120px"}}><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}} />Submit</button>
-                        <button className='btn btn-primary' style={{width:"120px"}}><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}} onClick={testing} />Submit</button>
+                        <button type='button' className='btn btn-primary' style={{width:"120px"}}onClick={sendFightResult} ><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}}  />Submit</button>
                     </div>
 
           </div>
