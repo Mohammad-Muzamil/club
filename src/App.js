@@ -29,6 +29,7 @@ import CoachProfile from "./pages/instructor_panel/CoachProfile"
 import CoachAttendance from "./pages/instructor_panel/CoachAttendance"
 import CoachFightResult from "./pages/instructor_panel/CoachFightResult"
 import CoachApproval from "./pages/instructor_panel/CoachApproval"
+import CoachDeletePlayerAccount from "./pages/instructor_panel/CoachDeletePlayerAccount"
 
 const App = (props) => {
   return (
@@ -61,6 +62,7 @@ const App = (props) => {
         <Route path="/coach-attendance" element={<CoachAttendance />}></Route>        
         <Route path="/coach-fight-result" element={<CoachFightResult />}></Route>        
         <Route path="/coach-approval" element={<CoachApproval />}></Route>        
+        <Route path="/coach-delete-player-account" element={<CoachDeletePlayerAccount />}></Route>        
 
       </Routes>
       <ToastContainer /> 

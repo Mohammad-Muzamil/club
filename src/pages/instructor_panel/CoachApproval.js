@@ -19,26 +19,15 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Error_light } from '../../helpers/NotifiyToasters';
 import ApprovalGenericTemplate from './ApprovalGenericTemplate';
-
 const CoachChangePassword=()=> { 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
   const [approvalsdata, setapprovaldata]=useState([1,2])
-  const [comment,setcomment]=useState("")
-  const CommentText=(text)=>{
-    setcomment(text)
-    console.log(text);
-  }
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
 
-  const accept=()=>{
 
-  }
-  const reject=()=>{
-
-  }
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
@@ -47,7 +36,7 @@ const CoachChangePassword=()=> {
           <CoachHeader onClickHandler={toggleDrop}/>
             {approvalsdata.map((app,index)=>(
                 <div className='col-12 mt-2 '>
-                    <ApprovalGenericTemplate funcCall={CommentText}/>
+                    <ApprovalGenericTemplate />
                     {index<approvalsdata.length-1 && <hr className='col-11 m-auto'></hr>}
                 </div>
              ))}

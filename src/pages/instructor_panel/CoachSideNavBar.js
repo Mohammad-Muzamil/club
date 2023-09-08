@@ -69,7 +69,7 @@ const CoachSideNavBar=(prop)=>{
                         <SideBarDropDown icon={faUser} name="Profile" list_of_subcategories={listof_profile} />
                         <SideBarDropDown icon={faPersonChalkboard} name="Players" list_of_subcategories={listof_player} />
                         <Link to={"/coach-approval"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faCircleExclamation} style={{paddingRight:"10px"}}/>Approvals</Link>
-                        <Link to={"/coach-delete-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>
+                        <Link to={"/coach-delete-player-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>
                         <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_player} />
                     </div>
                 </nav>
