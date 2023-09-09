@@ -9,11 +9,19 @@ import { useMediaQuery } from 'react-responsive';
 
 const CoachHeader=(props)=> {
   const isMobilewidth = useMediaQuery({ maxWidth:767 });
+  const [iconnam, seticonnam] = useState(faAngleDown);
     const { onClickHandler } = props;
   const [logOpen, setlogOpen] = useState(false);
 
   const logoutDrop = () => {
     setlogOpen(!logOpen);
+    if(logOpen){
+      seticonnam(faAngleDown)
+    }
+    else{
+      seticonnam(faAngleUp)
+
+    }
   };
   return (
     <>
@@ -36,11 +44,11 @@ const CoachHeader=(props)=> {
                     <div className="nav-item" onClick={logoutDrop} >
                     <a href="#" className="nav-link" >
                         <img className="rounded-circle me-lg-2" src={test_img} alt="" style={{ width: '40px', height: '40px' }} />
-                        <span className="d-lg-inline-flex"> {TruncateText("MuhammadMuzamil",8)}</span>
+                        <span className="d-lg-inline-flex"> {TruncateText("MuhammadMuzamil",8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
                     {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="#" className="dropdown-item">My Profile</Link>
-                        <Link to="#" className="dropdown-item">Log Out</Link>
+                        <Link to="/coach-profile" className="dropdown-item">My Profile</Link>
+                        <Link to="/login" className="dropdown-item">Log Out</Link>
                     </div>}
                     </div>
                 </div>

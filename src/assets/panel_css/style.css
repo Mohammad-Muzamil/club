@@ -279,3 +279,31 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+.search-value:hover{
+color: #007BFF;
+border-bottom: 4px solid #007BFF;
+}
+
+.search-value{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 3px solid black;
+    height: 50px;
+    width: 130px;
+    padding: 20px;
+    padding-top: 15px;
+    font-size:20px;
+    background-color:#FFFFFF
+}
+.search-value-active{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #007BFF;
+    border-bottom: 3px solid #007BFF;
+    height: 50px;
+    width: 130px;
+    padding: 20px;
+    padding-top: 15px;
+    font-size:20px;
+    background-color:#FFFFFF
+}

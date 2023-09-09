@@ -15,6 +15,13 @@ import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
 import CoachHeader from './CoachHeader';
+import Belts from '../../components/features_section/Belts';
+import KarateCounting from "../../components/features_section/KarateCounting"
+import Punches from '../../components/features_section/Punches';
+import General from '../../components/features_section/General';
+import Kicks from '../../components/features_section/KIcks';
+import Stance from '../../components/features_section/Stance';
+import Blocks from '../../components/features_section/Blocks';
 
 
 
@@ -22,6 +29,8 @@ const Kumite=()=> {
 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
+  const [number,setnumber]=useState(1);
+
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
@@ -32,11 +41,81 @@ const Kumite=()=> {
 <div className="container-xxl position-relative bg-white d-flex p-0">
     {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
         <div className="content">
-          <CoachHeader onClickHandler={toggleDrop}/>
-          <div className='w-100 h-25' style={{backgroundColor:"#ECECEC"}}>
-
+            <CoachHeader onClickHandler={toggleDrop}/>
+             <div className='w-100 d-flex mt-4 p-3 justify-content-center ' style={{backgroundColor:"#ECECEC",columnGap:"10px",flexWrap:"wrap"}}>
+                <p className={` mt-2 text-center ${number==1?"search-value-active" :"search-value"}`} onClick={()=>setnumber(1)} >ALL</p>
+                <p className={` mt-2 text-center ${number==2?"search-value-active" :"search-value"}`} onClick={()=>setnumber(2)} >BELTS</p>
+                <p className={` mt-2 text-center ${number==3?"search-value-active" :"search-value"}`} onClick={()=>setnumber(3)} >KASHAN</p>
+                <p className={` mt-2 text-center ${number==4?"search-value-active" :"search-value"}`} onClick={()=>setnumber(4)} >BLOCKS</p>
+                <p className={` mt-2 text-center ${number==5?"search-value-active" :"search-value"}`} onClick={()=>setnumber(5)} >KICKS</p>
+                <p className={` mt-2 text-center ${number==6?"search-value-active" :"search-value"}`} onClick={()=>setnumber(6)} >PUNCHES</p>
+                <p className={` mt-2 text-center ${number==7?"search-value-active" :"search-value"}`} onClick={()=>setnumber(7)} >GENERAL</p>
+                
             </div>
+            {number==1&&
+            <div>
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                    <h1 className='pt-3 pl-3 text-primary'>BELTS</h1>
+                    <Belts/>
+                </div>
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                    <h1 className=' pl-3 pt-3  text-primary'>COUNTING</h1>
+                    <KarateCounting/>
+                </div>
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                    <h1 className='pt-3 text-primary'>BLOCKS</h1>
+                    <Blocks/>
+                </div>
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                    <h1 className=' pl-3 pt-3 text-primary'>KICKS</h1>
+                    <Kicks/>
+                </div>
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                    <h1 className=' pl-3 pt-3 text-primary'>PUNCHES</h1>
+                    <Punches/>
+                </div>
             
+                <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                <h1 className=' pl-3 pt-3 text-primary'>GENERAL</h1>
+                    <General/>
+                </div>
+            </div>}
+            {number==2&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+              <h1 className='pt-3 pl-3 text-primary'>BELTS</h1>
+              <Belts/>
+            </div>
+            }
+            {number==3&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                <h1 className=' pl-3 pt-3  text-primary'>COUNTING</h1>
+                <KarateCounting/>
+            </div>
+            }
+            {number==4&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                <h1 className='pt-3 text-primary'>BLOCKS</h1>
+                <Blocks/>
+             </div>
+            }
+            {number==5&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                <h1 className=' pl-3 pt-3 text-primary'>KICKS</h1>
+                <Kicks/>
+            </div>
+            }
+            {number==6&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+                <h1 className=' pl-3 pt-3 text-primary'>PUNCHES</h1>
+                <Punches/>
+            </div>
+            }
+            {number==7&&
+            <div className='w-100 mt-4 pl-lg-5 pr-lg-5 pb-3' style={{backgroundColor:"#ECECEC"}}>
+             <h1 className=' pl-3 pt-3 text-primary'>GENERAL</h1>
+                 <General/>
+            </div>
+            }
      
         
         </div>

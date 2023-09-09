@@ -6,6 +6,7 @@ import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
+import { Throw_Error } from "../../helpers/NotifiyToasters";
 
 
 
@@ -13,6 +14,35 @@ import googleicon from "../../assets/img/googleicon.png"
 
 
 const Login = (props) => {
+  const[username,setusername]=useState(null)
+  const[password,setpassword]=useState(null)
+  const [validuserslist,setvaliduserslist]=useState([])
+  useEffect(()=>{
+    // call the api for users list
+  },[])
+
+  const handlechangeusername=(event)=>{
+    setusername(event.target.value)
+  }
+  const handlechangepassword=(event)=>{
+    setpassword(event.target.value)
+  }
+  const VerifyUser=()=>{
+    if(username==null || password==null ||username==""|| password=="")
+    {
+      Throw_Error("Enter username and password")
+    }
+    let valid=false
+    validuserslist.map(ply=>{
+      if(ply.username==username){
+        valid=true;
+        return;
+      }
+    })
+    if(valid){
+      //call the api 
+    }
+  }
   return (
     <Fragment>
       <LayoutOne
@@ -35,20 +65,19 @@ const Login = (props) => {
                 </div>
                 <div className="w-100 mt-2">
                     <div className="input-container1">
-                        <h3>Email<span style={{color:"orange"}}>*</span></h3> 
-                        <input type="email"/>
-                        <p  style={{color:"orange"}}>Invalid Email</p>
+                        <h3>Username<span style={{color:"orange"}}>*</span></h3> 
+                        <input type="email" onChange={handlechangeusername} />
+                      
                     </div>
                     <div className="input-container1">
                         <h3>Password<span style={{color:"orange"}}>*</span></h3> 
-                        <input type="email"/>
-                        <p  style={{color:"orange"}}>Invalid Password</p>
+                        <input type="password" onChange={handlechangepassword} />
                     </div>
                     <div className="input-container1 d-flex w-100" style={{justifyContent:'flex-end'}}>
                        <Link to={process.env.PUBLIC_URL+"/forgetpassword"}> <span> Forget Password</span></Link>
                     </div>
                     <div className="input-container1 ">
-                       <button className="col-12" >
+                       <button className="col-12" onClick={VerifyUser} >
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />

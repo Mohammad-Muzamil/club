@@ -1,5 +1,27 @@
 import axios from 'axios';
 
+export async function Login_API() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/products/cover_products/`,
+    // url: `//${window.location.host}/api/login`,
+    
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
 export async function Cover_Products() {
   var config = {
     method: 'get',

@@ -24,7 +24,7 @@ const SideBarDropDown=(prop)=>{
     };
     return (
       <div className="nav-item dropdown mt-4">
-      <a href="#" className="nav-link "><FontAwesomeIcon icon={prop.icon} style={{paddingRight:"10px", fontSize:"15px"}} /> {prop.name}<FontAwesomeIcon icon={iconname} style={{ paddingLeft:"20px"}} onClick={toggleDropdown} /></a>
+      <p className="nav-link " style={{cursor:"pointer"}}><FontAwesomeIcon icon={prop.icon} style={{paddingRight:"10px", fontSize:"15px"}} /> {prop.name}<FontAwesomeIcon icon={iconname} style={{ paddingLeft:"20px"}} onClick={toggleDropdown} /></p>
       {isDropdownOpen &&
             <div className=" bg-transparent border-0">
               {prop.list_of_subcategories.map((obj, index) => (
@@ -44,7 +44,6 @@ const CoachSideNavBar=(prop)=>{
       { href: '/coach-kata', text: 'Kata' },]
       return(
         <div className="sidebar pe-4 pb-3">
-          {/* bg-light navbar-light */}
                 <nav className="s-nav navbar ">
                     <div className='d-flex' > 
                       <img src={dashboardlogo}  style={{width:"50px", height:"50px"}}/>
