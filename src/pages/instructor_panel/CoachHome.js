@@ -8,19 +8,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import test_img from "../../assets/test_img.jpg"
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import CoachSideNavBar from "./CoachSideNavBar";
 import TruncateText from '../../helpers/TruncatedText';
-import { Success_light } from '../../helpers/NotifiyToasters';
+import { Success_light, Throw_Error } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
 import CoachHeader from './CoachHeader';
 
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const CoachHome=()=> {
+  const nevigate = useNavigate();
+  const isAuthenticated= useSelector((state) => state.login)
 
+  useEffect(()=>{
+    if (isAuthenticated === ""){
+        nevigate('/login');
+     }
+     else{
+        Success_light("Welcome Nouman asrshad");
+     }
+  },[]);
     const labels = ["January", "February", "March", "April", "May", "June","July","August","September","October","November","December"];
     const data = {
       labels: labels,
@@ -39,9 +51,6 @@ const CoachHome=()=> {
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
-  useEffect(() => {
-    Success_light("Welcome Nouman asrshad");
-}, []); 
 
   return (
     <div className="container-xxl position-relative bg-white d-flex p-0">

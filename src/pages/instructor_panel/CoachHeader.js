@@ -2,17 +2,23 @@ import React from 'react'
 import TruncateText from '../../helpers/TruncatedText';
 import { faBell,faBars,faAngleUp,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import test_img from "../../assets/test_img.jpg"
 import { useMediaQuery } from 'react-responsive';
-
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../redux/actions/LoginActions';
 const CoachHeader=(props)=> {
+  const dispatch1 = useDispatch();
+  const nevigate=useNavigate();
   const isMobilewidth = useMediaQuery({ maxWidth:767 });
   const [iconnam, seticonnam] = useState(faAngleDown);
     const { onClickHandler } = props;
   const [logOpen, setlogOpen] = useState(false);
-
+  const LogoutPage=()=>{
+    dispatch1(setToken(""));
+    nevigate('/login');
+  }
   const logoutDrop = () => {
     setlogOpen(!logOpen);
     if(logOpen){
@@ -47,8 +53,8 @@ const CoachHeader=(props)=> {
                         <span className="d-lg-inline-flex"> {TruncateText("MuhammadMuzamil",8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
                     {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="/coach-profile" className="dropdown-item">My Profile</Link>
-                        <Link to="/login" className="dropdown-item">Log Out</Link>
+                        <Link to="/coach-profile" className="dropdown-item" >My Profile</Link>
+                        <p  className="dropdown-item" onClick={LogoutPage}>Log Out</p>
                     </div>}
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import test_img from "../../assets/test_img.jpg"
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import CoachSideNavBar from "./CoachSideNavBar";
 import TruncateText from '../../helpers/TruncatedText';
@@ -21,8 +21,20 @@ import "../../assets/css/profile.css"
 
 
 import { Error_light } from '../../helpers/NotifiyToasters';
+import { useSelector } from 'react-redux';
 
 const CoachProfile=()=> {
+    const nevigate = useNavigate();
+  const isAuthenticated= useSelector((state) => state.login)
+
+  useEffect(()=>{
+    if (isAuthenticated === ""){
+        nevigate('/login');
+     }
+     else{
+        Success_light("Welcome Nouman asrshad");
+     }
+  },[]);
 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);

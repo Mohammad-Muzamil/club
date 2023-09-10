@@ -7,13 +7,15 @@ import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
 import { Throw_Error } from "../../helpers/NotifiyToasters";
-import { Login_API } from "../../helpers/api";
+import { Login_API,USER_API_SELECTION } from "../../helpers/api";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../redux/actions/LoginActions";
+import { setUser } from "../../redux/actions/userActions";
 
 
 
 const Login = (props) => {
+  const nevigate = useNavigate();
   const dispatch = useDispatch();
   const[username,setusername]=useState(null)
   const[password,setpassword]=useState(null)
@@ -36,6 +38,15 @@ const Login = (props) => {
     fetchData();
   },[])
 
+  const getUser=async(user_id)=>{
+    await USER_API_SELECTION(user_id).then((response)=>{
+      if(response.status==200){
+        dispatch(setUser(response.data));
+        console.log(response.data);
+      }
+    });
+  }
+
   const handlechangeusername=(event)=>{
     setusername(event.target.value)
   }
@@ -51,7 +62,8 @@ const Login = (props) => {
     }
     let valid=false
     validuserslist.map(ply=>{
-      if(ply.username==username){
+      if(ply.username.toString().toLowerCase()==username.toString().toLowerCase()){
+        getUser(ply.id);
         valid=true;
         return;
       }
@@ -62,7 +74,8 @@ const Login = (props) => {
         console.log(response.data.token)
         let token=response.data.token // save into redux 
         dispatch(setToken(token));
-        // alert(session);
+        // set condition to which dashboard you want to negivate
+        nevigate("/coach")
         valid=false
         }
         else{
