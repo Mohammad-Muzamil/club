@@ -19,7 +19,7 @@ const NavMenu = (props) => {
   //   });
   // }, []);
   return (
-    <div className={` ${`main-menu `} `}>
+    <div className={` ${`main-menu`} `}>
       <nav>
         <ul className="mt-0">
           <li>
@@ -42,6 +42,9 @@ const NavMenu = (props) => {
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
+          </li>
+          <li>
+            <Link to={process.env.PUBLIC_URL + "/registration"}>Registration</Link>
           </li>
           <li>
             <Link>Help</Link>

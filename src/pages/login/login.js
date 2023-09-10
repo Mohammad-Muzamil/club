@@ -1,24 +1,39 @@
 import React, { Fragment, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import { Link, useNavigate } from "react-router-dom";
-import { AllBrands } from "../../helpers/api";
+import { ALL_USERS_API, AllBrands } from "../../helpers/api";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
 import { Throw_Error } from "../../helpers/NotifiyToasters";
-
-
-
+import { Login_API } from "../../helpers/api";
+import { useSelector, useDispatch } from "react-redux";
+import { setToken } from "../../redux/actions/LoginActions";
 
 
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   const[username,setusername]=useState(null)
   const[password,setpassword]=useState(null)
   const [validuserslist,setvaliduserslist]=useState([])
+  // const[ session,setsession]=useState( useSelector((state) => state.login)); for getting data from redux
+  const fetchData = async () => {
+    try {
+      const response = await ALL_USERS_API();
+      if (response.status === 200) {
+        setvaliduserslist(response.data);
+        console.log(response.data);
+      } else {
+        setvaliduserslist([]);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   useEffect(()=>{
-    // call the api for users list
+    fetchData();
   },[])
 
   const handlechangeusername=(event)=>{
@@ -27,10 +42,12 @@ const Login = (props) => {
   const handlechangepassword=(event)=>{
     setpassword(event.target.value)
   }
-  const VerifyUser=()=>{
+
+  const VerifyUser=async()=>{
     if(username==null || password==null ||username==""|| password=="")
     {
       Throw_Error("Enter username and password")
+      return;
     }
     let valid=false
     validuserslist.map(ply=>{
@@ -40,9 +57,25 @@ const Login = (props) => {
       }
     })
     if(valid){
-      //call the api 
+      await Login_API(username,password).then((response)=>{
+        if(response.status==200){
+        console.log(response.data.token)
+        let token=response.data.token // save into redux 
+        dispatch(setToken(token));
+        // alert(session);
+        valid=false
+        }
+        else{
+          Throw_Error("Invalid username or password")
+        }
+      });  
     }
+    else if(username!="" && username!=null){
+      Throw_Error("User Not Exist")
+    }
+   
   }
+
   return (
     <Fragment>
       <LayoutOne

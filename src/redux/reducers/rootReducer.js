@@ -2,14 +2,14 @@
 import cartReducer from "./cartReducer";
 import userReducer from "./userinfoReducer";
 import categoriesReducer from "./categoryReducer";
-import discountReducer from "./discountReducer";
+import LoginReducer from "./LoginReducers";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   cartData: cartReducer,
   categories : categoriesReducer,
   userData:userReducer,
-  discount:discountReducer
+  login:LoginReducer
 });
 
 export default rootReducer;

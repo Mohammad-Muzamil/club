@@ -35,7 +35,7 @@ const HeaderOne = (props) => {
               <SocialMediaGroup />
             </div>
           </div>
-          <div className="row" style={{marginTop:"-20px"}}>
+          <div className="row" style={{marginTop:"-5px"}}>
 
             <div className="col-xl-10 col-lg-10 d-none d-lg-block">
               <NavMenu />

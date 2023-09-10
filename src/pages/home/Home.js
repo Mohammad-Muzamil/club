@@ -12,8 +12,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import { Throw_Error, Warning, Success } from "../../helpers/NotifiyToasters";
 
-import yellowstar from "../../assets/img/icons/yellowstar.png";
-import star from "../../assets/img/icons/star.png";
+
 import cover_image from "../../assets/img/icons/cover_image1.png";
 import cover_image2 from "../../assets/img/icons/cover_image2.png";
 import cover_image3 from "../../assets/img/icons/cover_image3.png";
@@ -27,7 +26,6 @@ import btnBg from "../../assets/img/btn-bg.png";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import { Cover_Products, Populer_Picks } from "../../helpers/api";
-import TestonomialCarousel from "../../components/testnomial/testnomial_carousel";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Rating from "../../components/rating/rating";
@@ -36,13 +34,13 @@ import Videos from "../../components/video_section/videos";
 import Coach from "../../components/coach_section/coach";
 import Upcomming_Event from "../../components/upcomming_event/upcomming_event";
 import AffiliatedAssociations from "../../components/association_slider/association_slider";
-import Gallery from "../../components/gallery/gallery";
+
 import zafar from"../../assets/gallery/zafar-removebg-preview.png"
 import shahbaz from"../../assets/gallery/shahbaz_p.png"
 import shahzoo from"../../assets/gallery/shazoo.png"
 import haris from"../../assets/gallery/harris.png"
 import nomi from"../../assets/gallery/nomi.png"
-import muzamil from"../../assets/gallery/muzamil.png"
+import muzamil from"../../assets/gallery/muzamil1.png"
 
 import OurClasses from "../../components/our_classes/our_classes";
 

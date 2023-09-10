@@ -29,7 +29,7 @@ const IconGroup = (props) => {
 
       <div className="same-style header-compare">
         <div className="d-flex">
-        <Link className="text-white" style={{fontSize:"15px", fontFamily:"mont"}} >Login&nbsp;</Link>
+        <Link to={"/login"} className="text-white" style={{fontSize:"15px", fontFamily:"mont"}} >Login&nbsp;</Link>
           <Link to={process.env.PUBLIC_URL + "/login"} >
           <img
             src={Avatar}

@@ -22,20 +22,7 @@ const MobileMenu = () => {
 
         <div className="d-flex flex-row mobile-icons">
    
-          <img src={avatar}  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
-          <div className="dropdown-menu">
-            <Link to={{ pathname: process.env.PUBLIC_URL + "/my-account" }}>
-              <li>Profile</li>
-            </Link>
-            <Link
-              to={{ pathname: process.env.PUBLIC_URL }}
-
-            >
-              <li>LogOut</li>
-            </Link>
-
-
-          </div>
+          <Link to={"/login"}><img src={avatar}  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/></Link>
           <img onClick={()=> setopen(true)} src={Menu} data-toggle="collapse" data-target="#menu"  />
         </div>
         </div>
@@ -62,6 +49,9 @@ const MobileMenu = () => {
                 </li>
                 <li >
                   <Link to={process.env.PUBLIC_URL + "/contactus"}>Contatct Us</Link>
+                </li>
+                <li >
+                  <Link to={process.env.PUBLIC_URL + "/registration"}>Registration</Link>
                 </li>
                 <li >
                   <Link to={process.env.PUBLIC_URL}>Help</Link>

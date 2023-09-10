@@ -7,9 +7,6 @@ import RightBranch from"./right_branch"
 
 
 
-
-
-
 const Branch = (props) => {
   const [iseven, setiseven]=useState(1);
   const [branches, setbaranches]=useState([])
