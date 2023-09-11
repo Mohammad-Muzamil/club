@@ -6,13 +6,40 @@ import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
-
-
-
-
+import { Success, Throw_Error } from "../../helpers/NotifiyToasters";
+import { Forget_Password_OTP } from "../../helpers/api";
 
 
 const ForgetPassword = (props) => {
+  const nevigate=useNavigate();
+  const [email,setemail]=useState("")
+  const[username,setusername]=useState("")
+  const [forget_portion,set_forget_portion]=useState(true);
+
+  const changeHandlEmail=(event)=>{
+    setemail(event.target.value);
+  }
+  const changeHandlUsername=(event)=>{
+    setusername(event.target.value);
+  }
+
+  const SendOTP= async()=>{
+    if(email=="" || username=="")
+    {
+      Throw_Error("Enter Username or Email");
+      return;
+    }
+    await Forget_Password_OTP(username,email).then((response)=>{
+      if(response.status==200){
+        nevigate("/otp");
+        Success("I was Calling API");
+
+      }
+      else{
+        Throw_Error("Try Again")
+      }
+    });
+  }
   return (
     <Fragment>
       <LayoutOne
@@ -27,17 +54,20 @@ const ForgetPassword = (props) => {
             
             <div className="col-lg-6 col-12 col-md-6 login-container">
                 <div className="w-100 mt-2 ">
-                    <h1>CHECK YOUR EMAIL</h1>
+                    <h1>FORGET PASSWORD</h1>
                 <p className="text-center pt-2" style={{fontFamily:"Mont"}}></p>
                 </div>
                 <div className="w-100 mt-3">
                     <div className="input-container">
                         <h3>Email<span style={{color:"orange"}}>*</span></h3> 
-                        <input type="email"/>
-                        <p  style={{color:"orange"}}>Invalid Email</p>
+                        <input type="email" onChange={changeHandlEmail} />
                     </div>
-                    <div className="input-container ">
-                       <button className="col-12" >
+                    <div className="input-container">
+                        <h3>Username<span style={{color:"orange"}}>*</span></h3> 
+                        <input type="text" onChange={changeHandlUsername} />
+                    </div>
+                    <div className="input-container " >
+                       <button className="col-12" onClick={SendOTP} >
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />

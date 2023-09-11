@@ -93,3 +93,29 @@ export async function USER_API_SELECTION(user_id) {
   return GetResponse;
 }
 
+export async function Forget_Password_OTP(user_name,email) {
+  const dataofuser={
+    username:user_name,
+    email:email
+  }
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/forgetpasswordotp`,
+    // url: `//${window.location.host}/products/cover_products`,
+    data:dataofuser,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
