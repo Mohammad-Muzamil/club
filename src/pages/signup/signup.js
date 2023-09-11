@@ -357,7 +357,7 @@ const SignUp = (props) => {
                         />
                     </div>
                 </div>
-                <div class="row g-3 " >
+                <div class="row g-3 mt-1 " >
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>City<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.city}
@@ -375,7 +375,7 @@ const SignUp = (props) => {
                         </select>
                     </div>
                 </div>
-                <div class="row g-3" >
+                <div class="row g-3 mt-1" >
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Gender<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.gender}
@@ -395,7 +395,7 @@ const SignUp = (props) => {
                         </select>
                     </div>
                 </div>
-                <div class="row g-3" >
+                <div class="row g-3 mt-1" >
                     <div className=" col-12" style={{marginTop:"20px"}}>
                     <h5>Player Picture<span style={{color:"orange"}}>*</span></h5>
                         <BlurredBackgroundModal onImageSelect={handleImageSelection} />
@@ -451,7 +451,7 @@ const SignUp = (props) => {
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Password<span style={{color:"orange"}}>*</span></h5> 
                         <input type={showPassword ? 'text' : 'password'} required 
-                         value={formData.password}
+                         value={formData.password} className="mt-2"
                          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         />
                             
@@ -460,7 +460,7 @@ const SignUp = (props) => {
                             </div>
                     </div>
                 </div>
-                <div class="row g-3 mt-3">
+                <div class="row g-3 mt-1">
                     <div className=" col-12 " style={{marginTop:"10px"}}>
                         <h5>Home Address<span style={{color:"orange"}}>*</span></h5> 
                         <textarea className="textarea" style={{backgroundColor:"#ECEFF8"}} 

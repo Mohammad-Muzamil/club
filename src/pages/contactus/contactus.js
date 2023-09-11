@@ -140,17 +140,6 @@ const ContactUs = () => {
                   />
                   </div>
 
-        
-
-              <div className="row m-0 check-box-view align-items-center" >
-                <input style={{marginTop:"-50px"}}
-                  type="checkbox"
-                  name="subscribe"
-                  checked={contactDetails.subscribe}
-                  onChange={handleChange}
-                />
-                <p style={{marginTop:"-50px"}}>Please keep me updated.</p>
-              </div>
 
               <img src={Send} alt="Send" onClick={sendContactData} style={{marginTop: isMobiledevice?"-5px":""}} />
             </div>
