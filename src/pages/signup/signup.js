@@ -328,20 +328,20 @@ const SignUp = (props) => {
                 <div class="row g-3 ">
                     <div className="col-lg-6 col-12  ">
                         <h5>CNIC/B-Form<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="text" required 
+                        <input type="number" required maxLength={13}
                          value={formData.cnic}
                          onChange={(e) => setFormData({ ...formData, cnic: e.target.value })}
                         />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Weight (KG)<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="number" required style={{marginTop:"5px",border:" 1px solid #CCCCCC"}}
+                        <input type="number" required style={{marginTop:"0px",border:" 1px solid #CCCCCC"}}
                          value={formData.weight}
                          onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
                          />
                     </div>
                 </div>
-                <div class="row g-3">
+                <div class="row g-3 mt-1">
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Birth<span style={{color:"orange"}}>*</span></h5> 
                         <input type="date" required style={{border:" 1px solid #CCCCCC"}}
@@ -418,7 +418,7 @@ const SignUp = (props) => {
                     </div>
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>Player Contact Number<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="tel" required 
+                        <input type="tel" required maxLength={11}
                          value={formData.playerContact}
                          onChange={(e) => setFormData({ ...formData, playerContact: e.target.value })}
                         />
@@ -427,14 +427,14 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-2">
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Guardian Contact Number (if any)</h5> 
-                        <input type="tel"  
+                        <input type="tel"  maxLength={11}
                          value={formData.guardianContact}
                          onChange={(e) => setFormData({ ...formData, guardianContact: e.target.value })}
                         />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Father Contact Number</h5> 
-                        <input type="tel" required 
+                        <input type="tel" required maxLength={11}
                          value={formData.fatherContact}
                          onChange={(e) => setFormData({ ...formData, fatherContact: e.target.value })}
                         />
