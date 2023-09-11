@@ -100,7 +100,7 @@ const CoachDeletePlayerAccount=()=> {
                 {listofplayers.map(std=>(
                     <DeletionRow name={std.name}/>
                 ))}
-       
+                
             </div>
         </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
