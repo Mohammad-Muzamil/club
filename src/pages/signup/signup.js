@@ -173,9 +173,19 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 const SignUp = (props) => {
     const [currentTime, setCurrentTime] = useState(5);
+    const[total_branch, set_total_branch]=useState([]);
+    const [randomNumber, setRandomNumber]=useState("");
+
+    const GETBranches=async()=>{
+      await GET_BRANCHES().then((response)=>{
+          if (response.status==200){
+              set_total_branch(response.data)
+          }
+      });
+    }
 
   useEffect(() => {
-
+    GETBranches();
     const interval = setInterval(() => {
       if (currentTime > 0) {
         setCurrentTime(currentTime - 1);
@@ -240,8 +250,7 @@ const SignUp = (props) => {
         setCurrentPart(currentPart - 1);
     };
     const [Mobile, setMobile] = useState(false);
-
-  
+   
 
    
     useEffect(() => {
