@@ -19,6 +19,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import success from "../../assets/img/smaill.gif"
 import tryagain from "../../assets/img/tryagain.gif"
+import { GET_BRANCHES } from "../../helpers/api";
 
 
 
@@ -170,15 +171,8 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 
 
-
-
-
-
-
-
 const SignUp = (props) => {
     const [currentTime, setCurrentTime] = useState(5);
-
   useEffect(() => {
 
     const interval = setInterval(() => {
@@ -193,7 +187,7 @@ const SignUp = (props) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [currentTime]);
-    const [currentPart, setCurrentPart] = useState(3);
+    const [currentPart, setCurrentPart] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
     const [status, setstatus]=useState(false)
@@ -347,7 +341,7 @@ const SignUp = (props) => {
                         <input type="date" required style={{border:" 1px solid #CCCCCC"}}
                          value={formData.dob}
                          onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                         />
+                        />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Joinning<span style={{color:"orange"}}>*</span></h5> 
@@ -362,7 +356,7 @@ const SignUp = (props) => {
                         <h5>City<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })} >
-                            <option value={"faisalabad"}>Faisalabad</option>
+                            <option value={"Faisalabad"}>Faisalabad</option>
                             <option value={"Lahore"}>Lahore</option>
                         </select>
                     </div>
