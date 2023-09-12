@@ -81,8 +81,7 @@ const App = () => {
         <Route path="/branch" element={<Branch />} />
         <Route path="/testing" element={<Testing />} />
         <Route path="*" element={<Page404 />} />
-
-        {/* <Route path="/coach" element={ <ProtectedRoutes path="/coach" element={<CoachHome />} />} /> */}
+        
         <Route path="/coach" element={<CoachHome />} />
         <Route path="/coach-change-password" element={<CoachChangePassword />} />
         <Route path="/coach-profile" element={<CoachProfile />} />

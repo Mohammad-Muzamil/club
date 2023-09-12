@@ -3,10 +3,12 @@ import LayoutOne from "../../layouts/LayoutOne";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import otp from "../../assets/img/otp.jpg";
+import { Success, Success_light, Throw_Error } from "../../helpers/NotifiyToasters";
 
 const OTP = (props) => {
   const inputRefs = useRef([]);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
+  const [inputValue,setInputValue]=useState("");
   const [isTimerRunning, setIsTimerRunning] = useState(true);
 
   useEffect(() => {
@@ -32,23 +34,35 @@ const OTP = (props) => {
   const handleInputChange = (index, value) => {
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
+      // setInputValue([...inputValue, inputValue[index]=value]);
     } else if (!value && index > 0) {
       inputRefs.current[index - 1].focus();
+      // setInputValue([...inputValue, inputValue[index]='']);
     }
   };
 
   const handleResendOTP = () => {
-    setTimer(10);
+    setTimer(60);
     setIsTimerRunning(true);
     inputRefs.current[0].focus();
     inputRefs.current.forEach((ref, index) => {
               ref.value = "";
-              ref.disabled = true; // Disable all fields initially
+              ref.disabled = true;
               if (index === 0) {
-                ref.disabled = false; // Enable the first field
+                ref.disabled = false;
               }
             });
   };
+  const VerifyOTP=()=>{
+     // Initialize an array to store the input values
+  let inputValuesss = "";
+
+  // Iterate through the inputRefs to collect the values
+  inputRefs.current.forEach((ref,index) => {
+    inputValuesss+= (ref.value).toString();
+  });
+  setInputValue(inputValuesss);
+  }
 
   return (
     <Fragment>
@@ -101,7 +115,7 @@ const OTP = (props) => {
                   </div>
                 <div className="w-100 mt-3">
                   <div className="input-container">
-                    <button className="col-12" disabled={!isTimerRunning}>
+                    <button className="col-12" disabled={!isTimerRunning} onClick={VerifyOTP} >
                       <img src={btnArrowLt} alt="Left Arrow" />
                       <img src={btnArrowLt} alt="Left Arrow" />
                       <img src={btnArrowLt} alt="Left Arrow" />
