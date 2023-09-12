@@ -173,7 +173,8 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 const SignUp = (props) => {
     const [currentTime, setCurrentTime] = useState(5);
-  useEffect(() => {
+    const [total_branch, set_total_branch]=useState([])
+    useEffect(() => {
 
     const interval = setInterval(() => {
       if (currentTime > 0) {
@@ -187,6 +188,18 @@ const SignUp = (props) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [currentTime]);
+
+  const branhesloading=async()=>{
+    await GET_BRANCHES().then((response)=>{
+        if (response.status==200){
+            set_total_branch(response.data);
+        }
+    })
+  }
+
+  useEffect(()=>{
+
+  },[])
     const [currentPart, setCurrentPart] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
@@ -364,7 +377,10 @@ const SignUp = (props) => {
                         <h5>Branch<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.branch}
                         onChange={(e) => setFormData({ ...formData, branch: e.target.value })} >
-                            <option value={"youth karate academy"}>Faisalabad</option>
+                            {total_branch.map((brn)=>(
+                            <option value={`${brn.name}`}>{brn.name}</option>
+
+                            ))}
                             
                         </select>
                     </div>
