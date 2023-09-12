@@ -17,7 +17,7 @@ const ForgetPassword = (props) => {
   const nevigate=useNavigate();
   const [email,setemail]=useState("")
   const[username,setusername]=useState("")
-  const[password,setpassword]=useState("Ha3k5rrr")
+  const[password,setpassword]=useState("")
   const [forget_portion,set_forget_portion]=useState(true);
 
   const changeHandlEmail=(event)=>{
@@ -26,11 +26,29 @@ const ForgetPassword = (props) => {
   const changeHandlUsername=(event)=>{
     setusername(event.target.value);
   }
-
+  const changeHandlPassword=(event)=>{
+    setpassword(event.target.value);
+  }
+  const  validatePassword = (password) => {
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return pattern.test(password);
+  };
+  const validateEmail = (email) => {
+    const pattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return pattern.test(email);
+  };
   const SendOTP= async()=>{
-    if(email=="" || username=="")
+    if(email=="" || username=="" )
     {
       Throw_Error("Enter Username or Email");
+      return;
+    }
+    else if(!validatePassword(password)){
+      Throw_Error("Invalid Password");
+      return;
+    }
+    else if (!validateEmail(email)){
+      Throw_Error("Invalid Email");
       return;
     }
     await Forget_Password_OTP(username,email).then((response)=>{
@@ -59,7 +77,7 @@ const ForgetPassword = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            {/* <p className="page-info-text pb-100 ">LOGIN</p> */}
+   
            
             <div className="row d-flex justify-content-center " >
             
@@ -75,7 +93,13 @@ const ForgetPassword = (props) => {
                     </div>
                     <div className="input-container">
                         <h3>Username<span style={{color:"orange"}}>*</span></h3> 
-                        <input type="text" onChange={changeHandlUsername} />
+                        <input type="text" onChange={changeHandlUsername} style={{borderColor:"#ECEFF8"}} />
+                    </div>
+                    <div className="input-container">
+                    
+                        <h3>New Password<span style={{color:"orange"}}>*</span></h3> 
+                        <p style={{color:"orange"}}>(password should contain 1 uppercase, 1 lowercase and 1 digit and minimum length is 8)</p>
+                        <input type="text" onChange={changeHandlPassword} style={{borderColor:"#ECEFF8"}} />
                     </div>
                     <div className="input-container " >
                        <button className="col-12" onClick={SendOTP} >
