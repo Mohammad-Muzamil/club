@@ -237,6 +237,14 @@ const SignUp = (props) => {
     };
     const [Mobile, setMobile] = useState(false);
 
+    const [randomNumber, setRandomNumber] = useState(null);
+    const generateRandomNumber = () => {
+      const min = 10000; // Minimum 5-digit number
+      const max = 99999; // Maximum 5-digit number
+      const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+      setRandomNumber(randomNum);
+    }
+
    
     useEffect(() => {
         const handleResize = () => {
