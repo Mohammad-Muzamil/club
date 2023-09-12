@@ -173,8 +173,8 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 const SignUp = (props) => {
     const [currentTime, setCurrentTime] = useState(5);
-    const [total_branch, set_total_branch]=useState([])
-    useEffect(() => {
+
+  useEffect(() => {
 
     const interval = setInterval(() => {
       if (currentTime > 0) {
@@ -188,41 +188,29 @@ const SignUp = (props) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [currentTime]);
-
-  const branhesloading=async()=>{
-    await GET_BRANCHES().then((response)=>{
-        if (response.status==200){
-            set_total_branch(response.data);
-        }
-    })
-  }
-
-  useEffect(()=>{
-
-  },[])
-    const [currentPart, setCurrentPart] = useState(1);
+    const [currentPart, setCurrentPart] = useState(3);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
     const [status, setstatus]=useState(false)
     const [timerstatus, settimerstatus]=useState(true)
     const [formData, setFormData] = useState({
-        name: '',
-        fatherName: '',
-        cnic: '',
-        weight: '',
-        dob: '',
-        doj: '',
-        city: '',
-        branch: '',
-        gender: 'male',
-        fatherStatus: 'alive',
-        email: '',
-        playerContact: '',
-        guardianContact: '',
-        fatherContact: '',
-        username: 'dummy',
-        password: '',
-        address: '',
+        name: "",
+        fatherName: "",
+        cnic: "",
+        weight: "",
+        dob: "",
+        doj:"",
+        city: "",
+        branch: "",
+        gender: "Male",
+        fatherStatus: "Alive",
+        email: "",
+        playerContact: "",
+        guardianContact: "",
+        fatherContact: "",
+        username:"",
+        password: "",
+        address: "",
     });
     const onSubmit=()=>{
         alert(formData.name);
@@ -236,7 +224,16 @@ const SignUp = (props) => {
     };
 
     const handleNext = () => {
-        setCurrentPart(currentPart + 1);
+        
+        if (formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
+            formData.weight!="" && formData.dob!="" && formData.doj!="" && formData.city!=""&&
+            formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
+        {
+            setCurrentPart(currentPart + 1);
+        }
+        else{
+
+        }
     };
 
     const handlePrevious = () => {
@@ -244,13 +241,7 @@ const SignUp = (props) => {
     };
     const [Mobile, setMobile] = useState(false);
 
-    const [randomNumber, setRandomNumber] = useState(null);
-    const generateRandomNumber = () => {
-      const min = 10000; // Minimum 5-digit number
-      const max = 99999; // Maximum 5-digit number
-      const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-      setRandomNumber(randomNum);
-    }
+  
 
    
     useEffect(() => {
@@ -330,7 +321,7 @@ const SignUp = (props) => {
                     <div className="col-lg-6 col-12 ">
                         <h5>Name<span style={{color:"orange"}}>*</span></h5> 
                         <input type="text" required  value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                            onChange={(e) =>{ setFormData({ ...formData, name: e.target.value, username:"P-"+e.target.value+randomNumber})}} />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Father Name<span style={{color:"orange"}}>*</span></h5> 
@@ -398,9 +389,9 @@ const SignUp = (props) => {
                         <h5>Gender<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.gender}
                         onChange={(e) => setFormData({ ...formData, gender: e.target.value })} >
-                            <option select value={"male"} >Male</option>
-                            <option value={"female"}>Female</option>
-                            <option value={"other"}>Other</option>
+                            <option select value={"Male"} >Male</option>
+                            <option value={"Female"}>Female</option>
+                            <option value={"Other"}>Other</option>
                         </select>
                       
                     </div>
@@ -408,8 +399,8 @@ const SignUp = (props) => {
                         <h5>Father<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.fatherStatus}
                         onChange={(e) => setFormData({ ...formData, fatherStatus: e.target.value })}>
-                            <option select value={"alive"} >Alive</option>
-                            <option value={"death"}>Death</option>
+                            <option select value={"Alive"} >Alive</option>
+                            <option value={"Death"}>Death</option>
                         </select>
                     </div>
                 </div>
