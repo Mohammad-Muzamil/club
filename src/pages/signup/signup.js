@@ -21,6 +21,10 @@ import success from "../../assets/img/smaill.gif"
 import tryagain from "../../assets/img/tryagain.gif"
 import { GET_BRANCHES } from "../../helpers/api";
 
+import isMobile from 'is-mobile';
+import { Throw_Error } from "../../helpers/NotifiyToasters";
+
+
 
 
 
@@ -89,6 +93,7 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
     useEffect(() => {
         setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
+        // setIsMobile(/Mobi|Android|iPhone/i.test(navigator.userAgent));
     }, []);
 
     const handleCloseModal = () => {
@@ -172,9 +177,15 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
 
 const SignUp = (props) => {
-    const [currentTime, setCurrentTime] = useState(5);
+    const [currentTime, setCurrentTime] = useState(7);
     const[total_branch, set_total_branch]=useState([]);
     const [randomNumber, setRandomNumber]=useState("");
+    const generateRandomNumber = () => {
+        const min = 10000; // Minimum 5-digit number
+        const max = 99999; // Maximum 5-digit number
+        const randomNums = Math.floor(Math.random() * (max - min + 1)) + min;
+        setRandomNumber(randomNums.toString())
+      };
 
     const GETBranches=async()=>{
       await GET_BRANCHES().then((response)=>{
@@ -185,6 +196,7 @@ const SignUp = (props) => {
     }
 
   useEffect(() => {
+    generateRandomNumber();
     GETBranches();
     const interval = setInterval(() => {
       if (currentTime > 0) {
@@ -198,10 +210,10 @@ const SignUp = (props) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [currentTime]);
-    const [currentPart, setCurrentPart] = useState(3);
+    const [currentPart, setCurrentPart] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
-    const [status, setstatus]=useState(false)
+    const [status, setstatus]=useState(true)
     const [timerstatus, settimerstatus]=useState(true)
     const [formData, setFormData] = useState({
         name: "",
@@ -211,7 +223,7 @@ const SignUp = (props) => {
         dob: "",
         doj:"",
         city: "",
-        branch: "",
+        branch: "4",
         gender: "Male",
         fatherStatus: "Alive",
         email: "",
@@ -232,30 +244,73 @@ const SignUp = (props) => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    const validateEmail = (email) => {
+        const pattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        return pattern.test(email);
+      };
+    const validatePhoneNumber = (phoneNumber) => {
+        const pattern = /^03\d{9}$/;
+        return pattern.test(phoneNumber);
+      };
+    const  validatePassword = (password) => {
+        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        return pattern.test(password);
+      };  
+    const  validateWeight=(weight)=>{
+        if(weight!="")
+            return false;
+        return parseInt(weight)>5?true:false
+
+    }
 
     const handleNext = () => {
-        
-        if (formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
-            formData.weight!="" && formData.dob!="" && formData.doj!="" && formData.city!=""&&
-            formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
-        {
             setCurrentPart(currentPart + 1);
-        }
-        else{
-
-        }
+        
+        // if (currentPart==1&&formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
+        //     validateWeight(formData.weight) && formData.dob!="" && formData.doj!="" && formData.city!=""&&
+        //     formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
+        // {
+        //     setCurrentPart(currentPart + 1);
+        // }
+        // else if(currentPart==2&& formData.email!="" && formData.playerContact!=""&& formData.password!="" && formData.address!==""){
+        //     if(validatePassword(formData.password) &&  validateEmail(formData.email) && validatePhoneNumber(formData.playerContact) ){
+        //         if (formData.guardianContact!="" && !validatePhoneNumber(formData.guardianContact)){
+        //             Throw_Error("Invalid Player Guardian Contact Number")
+        //         }
+        //         else if (formData.fatherContact!="" &&!validatePhoneNumber(formData.fatherContact)){
+        //             Throw_Error("Invalid Father Contact Number")
+        //         }
+        //         else{
+        //         setCurrentPart(currentPart + 1);
+        //         }
+        //     }
+        //     else if (!validatePassword(formData.password)){
+        //         Throw_Error("Invalid Password")
+        //     }
+        //     else if (! validateEmail(formData.email)){
+        //         Throw_Error("Invalid Email")
+        //     }
+        //     else if (!validatePhoneNumber(formData.playerContact)){
+        //         Throw_Error("Invalid Player Contact Number")
+        //     }
+            
+        // }
+        // else{
+        //     Throw_Error("Kindly Enter Valid Data")
+        // }
     };
 
     const handlePrevious = () => {
         setCurrentPart(currentPart - 1);
     };
     const [Mobile, setMobile] = useState(false);
-   
 
    
     useEffect(() => {
         const handleResize = () => {
             setMobile(/Mobi|Android/i.test(navigator.userAgent));
+            // setMobile(/Mobi|Android|iPhone/i.test(navigator.userAgent));
+
         };
 
         window.addEventListener('resize', handleResize);
@@ -329,13 +384,13 @@ const SignUp = (props) => {
                 <div class="row g-3">
                     <div className="col-lg-6 col-12 ">
                         <h5>Name<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="text" required  value={formData.name}
+                        <input type="text" required  value={formData.name} style={{borderColor:"#ECEFF8"}}
                             onChange={(e) =>{ setFormData({ ...formData, name: e.target.value, username:"P-"+e.target.value+randomNumber})}} />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Father Name<span style={{color:"orange"}}>*</span></h5> 
                         <input type="text" required
-                         value={formData.fatherName}
+                         value={formData.fatherName} style={{borderColor:"#ECEFF8"}}
                          onChange={(e) => setFormData({ ...formData, fatherName: e.target.value })}
                          />
                     </div>
@@ -343,15 +398,15 @@ const SignUp = (props) => {
                 <div class="row g-3 ">
                     <div className="col-lg-6 col-12  ">
                         <h5>CNIC/B-Form<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="number" required maxLength={13}
+                        <input type="tel" maxLength={13} style={{borderColor:"#ECEFF8"}}
                          value={formData.cnic}
                          onChange={(e) => setFormData({ ...formData, cnic: e.target.value })}
                         />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Weight (KG)<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="number" required style={{marginTop:"0px",border:" 1px solid #CCCCCC"}}
-                         value={formData.weight}
+                        <input type="tel" required style={{marginTop:"0px",borderColor:"#ECEFF8"}}
+                         value={formData.weight} maxLength={3} 
                          onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
                          />
                     </div>
@@ -359,14 +414,14 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-1">
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Birth<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="date" required style={{border:" 1px solid #CCCCCC"}}
+                        <input type="date" required style={{borderColor:"#ECEFF8"}}
                          value={formData.dob}
                          onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
                         />
                     </div>
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5 style={{paddingBottom:"3px"}}>Date of Joinning<span style={{color:"orange"}}>*</span></h5> 
-                        <input type="date" required style={{border:" 1px solid #CCCCCC"}}
+                        <input type="date" required style={{borderColor:"#ECEFF8"}}
                          value={formData.doj}
                          onChange={(e) => setFormData({ ...formData, doj: e.target.value })}
                         />
@@ -375,15 +430,15 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-1 " >
                     <div className="col-lg-6 col-12 "style={{marginTop:"10px"}}>
                         <h5>City<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform"  value={formData.city}
+                        <select className="selectform"  value={formData.city} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })} >
                             <option value={"Faisalabad"}>Faisalabad</option>
-                            <option value={"Lahore"}>Lahore</option>
+                     
                         </select>
                     </div>
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5>Branch<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform"  value={formData.branch}
+                        <select className="selectform"  value={formData.branch} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, branch: e.target.value })} >
                             {total_branch.map((brn)=>(
                             <option value={`${brn.name}`}>{brn.name}</option>
@@ -396,7 +451,7 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-1" >
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>Gender<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform"  value={formData.gender}
+                        <select className="selectform"  value={formData.gender} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, gender: e.target.value })} >
                             <option select value={"Male"} >Male</option>
                             <option value={"Female"}>Female</option>
@@ -406,7 +461,7 @@ const SignUp = (props) => {
                     </div>
                     <div className="col-lg-6 col-12" style={{marginTop:"10px"}}>
                         <h5>Father<span style={{color:"orange"}}>*</span></h5> 
-                        <select className="selectform"  value={formData.fatherStatus}
+                        <select className="selectform"  value={formData.fatherStatus} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, fatherStatus: e.target.value })}>
                             <option select value={"Alive"} >Alive</option>
                             <option value={"Death"}>Death</option>
@@ -462,7 +517,7 @@ const SignUp = (props) => {
                     <div className="col-lg-6 col-12 " style={{marginTop:"10px"}}>
                         <h5>username<span style={{color:"orange"}}>*</span></h5> 
                         <input type="text"  readOnly 
-                         value={formData.username}
+                         value={formData.username} style={{borderColor:"#ECEFF8"}}
                          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                          />
                     </div>
@@ -470,7 +525,7 @@ const SignUp = (props) => {
                         <h5>Password<span style={{color:"orange"}}>*</span></h5> 
                         <input type={showPassword ? 'text' : 'password'} required 
                          value={formData.password} className="mt-2"
-                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                         onChange={(e) =>{ setFormData({ ...formData, password: e.target.value });}}
                         />
                             
                             <div className="d-flex justify-content-end" style={{paddingRight:"10px", marginTop:"-30px"}}> 
@@ -481,8 +536,8 @@ const SignUp = (props) => {
                 <div class="row g-3 mt-1">
                     <div className=" col-12 " style={{marginTop:"10px"}}>
                         <h5>Home Address<span style={{color:"orange"}}>*</span></h5> 
-                        <textarea className="textarea" style={{backgroundColor:"#ECEFF8"}} 
-                         value={formData.address}
+                        <textarea className="textarea" style={{backgroundColor:"#ECEFF8",borderColor:"#ECEFF8"}} 
+                         value={formData.address} 
                          onChange={(e) => setFormData({ ...formData, address: e.target.value })} ></textarea>
                     </div>
                 </div>
@@ -493,17 +548,8 @@ const SignUp = (props) => {
                 </div>}
                 {currentPart === 3 &&
                 <div className={`col-12 mt-3 mb-4`} >
-                    <div className="d-flex justify-content-center mt-5 w-100" >
-                    {/* <CountdownCircleTimer
-                    isPlaying
-                    duration={3}
-                    colors={["#FFA500"]}
-                    colorsTime={[3]}
-                    >
-                    {RenderTime }      
-                    
-                    </CountdownCircleTimer> */}
-                     <MyCountdownTimer currentTime={currentTime} />
+                    <div className="d-flex justify-content-center mt-5 w-100">
+                     {timerstatus && <MyCountdownTimer currentTime={currentTime}   />}
                 
                     </div>
                     { status && !timerstatus && 
@@ -514,7 +560,7 @@ const SignUp = (props) => {
                             <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
                         </div>
                         <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
-                            <button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button>
+                            <Link to={"/login"}><button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button></Link>
                         </div>
                     </div>}
                     { !status && !timerstatus &&
