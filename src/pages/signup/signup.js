@@ -21,8 +21,10 @@ import success from "../../assets/img/smaill.gif"
 import tryagain from "../../assets/img/tryagain.gif"
 import { GET_BRANCHES } from "../../helpers/api";
 
-import isMobile from 'is-mobile';
+import otp_image from "../../assets/img/otp.jpg";
+
 import { Throw_Error } from "../../helpers/NotifiyToasters";
+import { GENERIC_OTP } from "../../helpers/api";
 
 
 
@@ -74,8 +76,8 @@ function MyCountdownTimer({ currentTime }) {
       <div>
         <CountdownCircleTimer
           isPlaying
-          duration={5}
-          colors={['#FFA500']}
+          duration={6}
+          colors={['#FFA500',]}
           colorsTime={[3]}
         >
           {RenderTime}
@@ -195,26 +197,16 @@ const SignUp = (props) => {
       });
     }
 
+
   useEffect(() => {
     generateRandomNumber();
     GETBranches();
-    const interval = setInterval(() => {
-      if (currentTime > 0) {
-        setCurrentTime(currentTime - 1);
-    }
-    else{
-        settimerstatus(false)
-        // if else if show success or error 
-        
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [currentTime]);
+  }, []);
     const [currentPart, setCurrentPart] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture,setProfilePicture]=useState("");
     const [status, setstatus]=useState(true)
-    const [timerstatus, settimerstatus]=useState(true)
+    const [showingstatus, setshowingstatus]=useState(false)
     const [formData, setFormData] = useState({
         name: "",
         fatherName: "",
@@ -262,42 +254,64 @@ const SignUp = (props) => {
         return parseInt(weight)>5?true:false
 
     }
-
+    const [otpvalue,setotpvalue]=useState("");
+    const Get_OTP=async()=>{
+        await GENERIC_OTP(formData.email).then((response)=>{
+            if(response.status ==200){
+                setotpvalue(response.data.otp)
+            }
+        })
+    }
     const handleNext = () => {
             setCurrentPart(currentPart + 1);
         
-        // if (currentPart==1&&formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
-        //     validateWeight(formData.weight) && formData.dob!="" && formData.doj!="" && formData.city!=""&&
-        //     formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
-        // {
-        //     setCurrentPart(currentPart + 1);
-        // }
-        // else if(currentPart==2&& formData.email!="" && formData.playerContact!=""&& formData.password!="" && formData.address!==""){
-        //     if(validatePassword(formData.password) &&  validateEmail(formData.email) && validatePhoneNumber(formData.playerContact) ){
-        //         if (formData.guardianContact!="" && !validatePhoneNumber(formData.guardianContact)){
-        //             Throw_Error("Invalid Player Guardian Contact Number")
-        //         }
-        //         else if (formData.fatherContact!="" &&!validatePhoneNumber(formData.fatherContact)){
-        //             Throw_Error("Invalid Father Contact Number")
-        //         }
-        //         else{
-        //         setCurrentPart(currentPart + 1);
-        //         }
-        //     }
-        //     else if (!validatePassword(formData.password)){
-        //         Throw_Error("Invalid Password")
-        //     }
-        //     else if (! validateEmail(formData.email)){
-        //         Throw_Error("Invalid Email")
-        //     }
-        //     else if (!validatePhoneNumber(formData.playerContact)){
-        //         Throw_Error("Invalid Player Contact Number")
-        //     }
+        if (currentPart==1&&formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
+            validateWeight(formData.weight) && formData.dob!="" && formData.doj!="" && formData.city!=""&&
+            formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
+        {
+            setCurrentPart(currentPart + 1);
+        }
+        else if(currentPart==2&& formData.email!="" && formData.playerContact!=""&& formData.password!="" && formData.address!==""){
+            if(validatePassword(formData.password) &&  validateEmail(formData.email) && validatePhoneNumber(formData.playerContact) ){
+                if (formData.guardianContact!="" && !validatePhoneNumber(formData.guardianContact)){
+                    Throw_Error("Invalid Player Guardian Contact Number")
+                }
+                else if (formData.fatherContact!="" &&!validatePhoneNumber(formData.fatherContact)){
+                    Throw_Error("Invalid Father Contact Number")
+                }
+                else{
+                setCurrentPart(currentPart + 1);
+                // Get_OTP();
+                }
+            }
+            else if (!validatePassword(formData.password)){
+                Throw_Error("Invalid Password")
+            }
+            else if (! validateEmail(formData.email)){
+                Throw_Error("Invalid Email")
+            }
+            else if (!validatePhoneNumber(formData.playerContact)){
+                Throw_Error("Invalid Player Contact Number")
+            }
             
-        // }
-        // else{
-        //     Throw_Error("Kindly Enter Valid Data")
-        // }
+        }
+        else if(currentPart==3){
+            let inputValuesss = "";
+            inputRefs.current.forEach((ref,index) => {
+              inputValuesss+= (ref.value).toString();
+            });
+            if(inputValuesss==otpvalue){
+                setCurrentPart(currentPart + 1);
+                // call the api for sending data 
+
+            }
+            else{
+                Throw_Error("Invalid OTP")
+            }
+        }
+        else{
+            Throw_Error("Kindly Enter Valid Data")
+        }
     };
 
     const handlePrevious = () => {
@@ -319,6 +333,15 @@ const SignUp = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    const inputRefs = useRef([]);
+    const handleInputChange = (index, value) => {
+        if (value && index < 5) {
+          inputRefs.current[index + 1].focus();
+        } else if (!value && index > 0) {
+          inputRefs.current[index - 1].focus();
+        }
+      };
+
   return (
     <Fragment>
       <LayoutOne
@@ -333,7 +356,7 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 1
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==1?"heading-active":"heading"}`} >
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==1?"heading-active":"heading"}`} style={{width:"220px"}} >
                             Personal 
                             </div>
                     </div>}
@@ -341,7 +364,7 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 2
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} >
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} style={{width:"220px"}} >
                             Contact
                             </div>
                     </div>}
@@ -350,8 +373,8 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 3
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} >
-                            Status
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} style={{width:"220px"}}>
+                            Verification
                             </div>
                     </div>}
                     {Mobile && currentPart==1 && <div className="d-flex justify-content-start inner-section">
@@ -367,7 +390,7 @@ const SignUp = (props) => {
                                 2
                             </div>
                             <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} >
-                            Status
+                            Contact
                             </div>
                     </div>}
                     {Mobile && currentPart==3 &&<div className="d-flex justify-content-start inner-section">
@@ -375,7 +398,7 @@ const SignUp = (props) => {
                                 3
                             </div>
                             <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} >
-                            Submit
+                            Verification
                             </div>
                     </div>}
                   
@@ -546,13 +569,58 @@ const SignUp = (props) => {
                         <button onClick={handleNext} className="next-btn">Next</button>
                     </div>
                 </div>}
+               
                 {currentPart === 3 &&
                 <div className={`col-12 mt-3 mb-4`} >
-                    <div className="d-flex justify-content-center mt-5 w-100">
-                     {timerstatus && <MyCountdownTimer currentTime={currentTime}   />}
-                
+                  
+                        <div className="row d-flex justify-content-center">
+                    <div className="col-lg-6 col-12 col-md-6 login-container2">
+                        <div className="w-100 mt-2">
+                        <h1>VERIFY OTP </h1>
+                        <p className="text-center pt-2" style={{ fontFamily: "Mont" }}>
+                            We have sent an OTP to ****@*****.com{" "}
+                        </p>
+                        </div>
+                        <div className="d-flex justify-content-center">
+                        <img
+                            src={otp_image}
+                            style={{ height: "200px", width: "300px" }}
+                            alt="OTP"
+                        />
+                        </div>
+                        <div
+                        className="w-100 d-flex mt-2 justify-content-center"
+                        style={{ columnGap: "10px" }}
+                        >
+                        {Array.from({ length: 6 }, (_, index) => (
+                            <input
+                            key={index}
+                            ref={(el) => (inputRefs.current[index] = el)}
+                            className="otp-field"
+                            maxLength={1}
+                            minLength={1}
+                            onInput={(e) => handleInputChange(index, e.target.value)}
+                            />
+                        ))}
+                        </div>
+                        <div className="w-100 mt-3 d-flex justify-content-center">
+                            <p style={{fontSize:"20px" , font:"Mont",fontStyle:"italic"}}>
+                            Didn't receive{" "}
+                            <span style={{color:"red"}}  className="resend-code" onClick={Get_OTP}>Resend OTP?</span>
+                            </p>
+                        </div>
                     </div>
-                    { status && !timerstatus && 
+                    </div>
+
+                    <div className="d-flex justify-content-end pt-3 mt-4"style={{columnGap:"7px"}}>
+                        <button onClick={handlePrevious}className="pre-btn">Back</button>
+                        <button onClick={handleNext} className="next-btn">VERIFY</button>
+                    </div>
+                   
+                </div>}
+                {currentPart === 4 &&
+                <div className={`col-12 mt-3 mb-4`} >
+                    {showingstatus && status && 
                      <div>
                          <div className="d-flex flex-column " style={{alignItems:"center"}}>
                             <img src={success} style={{height:"200px", width:"250px"}}/>
@@ -563,7 +631,7 @@ const SignUp = (props) => {
                             <Link to={"/login"}><button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button></Link>
                         </div>
                     </div>}
-                    { !status && !timerstatus &&
+                    { showingstatus && !status &&
                      <div>
                          <div className="d-flex flex-column " style={{alignItems:"center"}}>
                             <img src={tryagain} style={{height:"200px", width:"250px"}}/>

@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
-import otp from "../../assets/img/otp.jpg";
+import otp_image from "../../assets/img/otp.jpg";
 import { Success, Success_light, Throw_Error } from "../../helpers/NotifiyToasters";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -48,10 +48,8 @@ const OTP = (props) => {
   const handleInputChange = (index, value) => {
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
-      // setInputValue([...inputValue, inputValue[index]=value]);
     } else if (!value && index > 0) {
       inputRefs.current[index - 1].focus();
-      // setInputValue([...inputValue, inputValue[index]='']);
     }
   };
 
@@ -122,7 +120,7 @@ const OTP = (props) => {
                 </div>
                 <div className="d-flex justify-content-center">
                   <img
-                    src={otp}
+                    src={otp_image}
                     style={{ height: "200px", width: "300px" }}
                     alt="OTP"
                   />
