@@ -8,12 +8,16 @@ import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
 import { Success, Throw_Error } from "../../helpers/NotifiyToasters";
 import { Forget_Password_OTP } from "../../helpers/api";
+import { useDispatch } from "react-redux";
+import {setOTPDATA} from "../../redux/actions/OTPActions"
 
 
 const ForgetPassword = (props) => {
+  const dispatch=useDispatch();
   const nevigate=useNavigate();
   const [email,setemail]=useState("")
   const[username,setusername]=useState("")
+  const[password,setpassword]=useState("Ha3k5rrr")
   const [forget_portion,set_forget_portion]=useState(true);
 
   const changeHandlEmail=(event)=>{
@@ -31,8 +35,15 @@ const ForgetPassword = (props) => {
     }
     await Forget_Password_OTP(username,email).then((response)=>{
       if(response.status==200){
+        const data={
+          email:email,
+          username:username,
+          otp:response.data.message,
+          password:password,
+        }
+        dispatch(setOTPDATA(data));
         nevigate("/otp");
-        Success("I was Calling API");
+        Success("OTP Send to your mail.");
 
       }
       else{
