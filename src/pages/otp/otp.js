@@ -4,12 +4,26 @@ import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import otp from "../../assets/img/otp.jpg";
 import { Success, Success_light, Throw_Error } from "../../helpers/NotifiyToasters";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setOTPDATA } from "../../redux/actions/OTPActions";
+import { Reset_Password,Forget_Password_OTP } from "../../helpers/api";
 const OTP = (props) => {
+  
+  const navigate=useNavigate();
+  const otp_data= useSelector((state) => state.otp);
+  const [hasotp,sethasotp]=useState("");
+  if("otp" in otp_data){
+    sethasotp(otp_data.otp);
+  }
+  else{
+    navigate("/login")
+  }
   const inputRefs = useRef([]);
   const [timer, setTimer] = useState(60);
   const [inputValue,setInputValue]=useState("");
   const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const dispatch=useDispatch();
 
   useEffect(() => {
     if (inputRefs.current[0]) {
@@ -41,7 +55,7 @@ const OTP = (props) => {
     }
   };
 
-  const handleResendOTP = () => {
+  const handleResendOTP = async() => {
     setTimer(60);
     setIsTimerRunning(true);
     inputRefs.current[0].focus();
@@ -52,16 +66,42 @@ const OTP = (props) => {
                 ref.disabled = false;
               }
             });
-  };
-  const VerifyOTP=()=>{
-     // Initialize an array to store the input values
-  let inputValuesss = "";
+    await Forget_Password_OTP(otp_data.username,otp_data.email).then((response)=>{
+      if(response.status==200){
+        const data={
+          email:otp_data.email,
+          username:otp_data.username,
+          otp:response.data.message,
+          password:otp_data.password,
+        }
+        dispatch(setOTPDATA(data));
+        sethasotp(response.data.message);
 
-  // Iterate through the inputRefs to collect the values
+      }
+      else{
+        Throw_Error("Try Again")
+      }
+    });
+  };
+  const VerifyOTP=async()=>{
+  let inputValuesss = "";
   inputRefs.current.forEach((ref,index) => {
     inputValuesss+= (ref.value).toString();
   });
-  setInputValue(inputValuesss);
+    if(inputValuesss==hasotp){
+      const passwrd=otp_data.password;
+      await Reset_Password(otp_data.username,otp_data.email,passwrd).then((response)=>{
+        if(response.status==200)
+        {
+          dispatch(setOTPDATA({}));
+          Success("Password Reset Successfully")
+          navigate("/login");
+        }
+      });
+    }
+    else{
+      Throw_Error("Try Again")
+    }
   }
 
   return (
