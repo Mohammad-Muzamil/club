@@ -13,12 +13,7 @@ const OTP = (props) => {
   const navigate=useNavigate();
   const otp_data= useSelector((state) => state.otp);
   const [hasotp,sethasotp]=useState("");
-  if("otp" in otp_data){
-    sethasotp(otp_data.otp);
-  }
-  else{
-    navigate("/login")
-  }
+  
   const inputRefs = useRef([]);
   const [timer, setTimer] = useState(60);
   const [inputValue,setInputValue]=useState("");
@@ -42,6 +37,12 @@ const OTP = (props) => {
       }, 1000);
 
       return () => clearInterval(interval);
+    }
+    if("otp" in otp_data){
+      sethasotp(otp_data.otp);
+    }
+    else{
+      navigate("/login")
     }
   }, [isTimerRunning]);
 

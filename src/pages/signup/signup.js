@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState, useRef } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AllBrands } from "../../helpers/api";
+import { AllBrands, SEND_PLAYER_DATA } from "../../helpers/api";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
@@ -183,8 +183,8 @@ const SignUp = (props) => {
     const[total_branch, set_total_branch]=useState([]);
     const [randomNumber, setRandomNumber]=useState("");
     const generateRandomNumber = () => {
-        const min = 10000; // Minimum 5-digit number
-        const max = 99999; // Maximum 5-digit number
+        const min = 10000; 
+        const max = 99999; 
         const randomNums = Math.floor(Math.random() * (max - min + 1)) + min;
         setRandomNumber(randomNums.toString())
       };
@@ -214,8 +214,8 @@ const SignUp = (props) => {
         weight: "",
         dob: "",
         doj:"",
-        city: "",
-        branch: "4",
+        city: "Faisalabad",
+        branch: "",
         gender: "Male",
         fatherStatus: "Alive",
         email: "",
@@ -225,6 +225,7 @@ const SignUp = (props) => {
         username:"",
         password: "",
         address: "",
+        // profilePicture:"", // must be added when sending data
     });
     const onSubmit=()=>{
         alert(formData.name);
@@ -249,7 +250,7 @@ const SignUp = (props) => {
         return pattern.test(password);
       };  
     const  validateWeight=(weight)=>{
-        if(weight!="")
+        if(weight=="")
             return false;
         return parseInt(weight)>5?true:false
 
@@ -262,9 +263,7 @@ const SignUp = (props) => {
             }
         })
     }
-    const handleNext = () => {
-            setCurrentPart(currentPart + 1);
-        
+    const handleNext = async () => {
         if (currentPart==1&&formData.name!="" && formData.fatherName!="" && formData.cnic!="" &&
             validateWeight(formData.weight) && formData.dob!="" && formData.doj!="" && formData.city!=""&&
             formData.branch!="" && formData.gender!=""&& formData.fatherStatus!=""&& profilePicture!="")
@@ -281,7 +280,7 @@ const SignUp = (props) => {
                 }
                 else{
                 setCurrentPart(currentPart + 1);
-                // Get_OTP();
+                Get_OTP();
                 }
             }
             else if (!validatePassword(formData.password)){
@@ -300,10 +299,26 @@ const SignUp = (props) => {
             inputRefs.current.forEach((ref,index) => {
               inputValuesss+= (ref.value).toString();
             });
-            if(inputValuesss==otpvalue){
+        
+            if(inputValuesss!="" && inputValuesss==otpvalue){
                 setCurrentPart(currentPart + 1);
-                // call the api for sending data 
+                 // call the api for sending data 
+                await  SEND_PLAYER_DATA().then((response)=>{
+                    if(response.status==200){
+                        setstatus(true)
+                        setshowingstatus(true)
+                    }
+                    else{
+                        setstatus(false)
+                        setshowingstatus(true)
+                    }
+                    
+                })
+               
 
+            }
+            else if (inputValuesss==""){
+                Throw_Error("Enter OTP")
             }
             else{
                 Throw_Error("Invalid OTP")
@@ -356,7 +371,7 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 1
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==1?"heading-active":"heading"}`} style={{width:"220px"}} >
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==1?"heading-active":"heading"}`} style={{width:"170px"}}  >
                             Personal 
                             </div>
                     </div>}
@@ -364,7 +379,7 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 2
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} style={{width:"220px"}} >
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==2?"heading-active":"heading"}`} style={{width:"170px"}} >
                             Contact
                             </div>
                     </div>}
@@ -373,8 +388,8 @@ const SignUp = (props) => {
                             <div className="d-flex justify-content-center pt-2 number" >
                                 3
                             </div>
-                            <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} style={{width:"220px"}}>
-                            Verification
+                            <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} style={{width:"170px"}}>
+                            Verify
                             </div>
                     </div>}
                     {Mobile && currentPart==1 && <div className="d-flex justify-content-start inner-section">
@@ -398,7 +413,7 @@ const SignUp = (props) => {
                                 3
                             </div>
                             <div className={`d-flex justify-content-start p-2 ${currentPart==3?"heading-active":"heading"}`} >
-                            Verification
+                            Verify
                             </div>
                     </div>}
                   
@@ -463,8 +478,9 @@ const SignUp = (props) => {
                         <h5>Branch<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.branch} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, branch: e.target.value })} >
-                            {total_branch.map((brn)=>(
-                            <option value={`${brn.name}`}>{brn.name}</option>
+                            <option selected></option>
+                            {total_branch.map((brn,index)=>(
+                            <option value={`${brn.id}`}>{brn.name}</option>
 
                             ))}
                             
@@ -476,7 +492,7 @@ const SignUp = (props) => {
                         <h5>Gender<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.gender} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, gender: e.target.value })} >
-                            <option select value={"Male"} >Male</option>
+                            <option selected value={"Male"} >Male</option>
                             <option value={"Female"}>Female</option>
                             <option value={"Other"}>Other</option>
                         </select>

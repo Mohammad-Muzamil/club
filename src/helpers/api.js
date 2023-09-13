@@ -167,7 +167,6 @@ export async function GET_BRANCHES() {
   return GetResponse;
 }
 
-// correct post method of this api on django
 export async function GENERIC_OTP(email) {
   const data={
     email:email
@@ -177,6 +176,28 @@ export async function GENERIC_OTP(email) {
     url: `http://127.0.0.1:8000/api/otp`,
     // url: `//${window.location.host}/api/otp`,
     data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function SEND_PLAYER_DATA() {
+
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/player`,
+    // url: `//${window.location.host}/api/player,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
