@@ -19,7 +19,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import success from "../../assets/img/smaill.gif"
 import tryagain from "../../assets/img/tryagain.gif"
-import { GET_BRANCHES } from "../../helpers/api";
+import { GET_BRANCHES,UP } from "../../helpers/api";
 
 import otp_image from "../../assets/img/otp.jpg";
 
@@ -100,7 +100,7 @@ function BlurredBackgroundModal({ onImageSelect }) {
 
     const handleCloseModal = () => {
         setShowModal(false);
-        console.log("imagepath", selectedImage)
+        
     };
 
     const handleOpenModal = () => {
@@ -112,11 +112,12 @@ function BlurredBackgroundModal({ onImageSelect }) {
     };
    
 
-    const handleImageSelect = (e) => {
+    const handleImageSelect = async(e) => {
         const file = e.target.files[0];
+
         if (file) {
             setSelectedImage(URL.createObjectURL(file));
-            onImageSelect(URL.createObjectURL(file));
+            onImageSelect(file);
         }
     };
 
@@ -219,13 +220,12 @@ const SignUp = (props) => {
         gender: "Male",
         fatherStatus: "Alive",
         email: "",
-        playerContact: "",
-        guardianContact: "",
+        playerContact: "033",
+        guardianContact: "033",
         fatherContact: "",
         username:"",
         password: "",
         address: "",
-        // profilePicture:"", // must be added when sending data
     });
     const onSubmit=()=>{
         alert(formData.name);
@@ -302,8 +302,13 @@ const SignUp = (props) => {
         
             if(inputValuesss!="" && inputValuesss==otpvalue){
                 setCurrentPart(currentPart + 1);
-                 // call the api for sending data 
-                await  SEND_PLAYER_DATA().then((response)=>{
+        
+                  const dataforsending=new FormData();
+                  dataforsending.append('file',profilePicture);
+                  {Object.keys(formData).map(key => (
+                      dataforsending.append(`${key}`,`${formData[key]}`) 
+                ))}
+                await  UP(dataforsending).then((response)=>{
                     if(response.status==200){
                         setstatus(true)
                         setshowingstatus(true)
@@ -423,7 +428,7 @@ const SignUp = (props) => {
                     <div className="col-lg-6 col-12 ">
                         <h5>Name<span style={{color:"orange"}}>*</span></h5> 
                         <input type="text" required  value={formData.name} style={{borderColor:"#ECEFF8"}}
-                            onChange={(e) =>{ setFormData({ ...formData, name: e.target.value, username:"P-"+e.target.value+randomNumber})}} />
+                            onChange={(e) =>{ setFormData({ ...formData, name: e.target.value , username:"P-"+e.target.value.trim()+randomNumber})}} />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Father Name<span style={{color:"orange"}}>*</span></h5> 
@@ -470,7 +475,7 @@ const SignUp = (props) => {
                         <h5>City<span style={{color:"orange"}}>*</span></h5> 
                         <select className="selectform"  value={formData.city} style={{borderColor:"#ECEFF8"}}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })} >
-                            <option value={"Faisalabad"}>Faisalabad</option>
+                            <option value={"Faisalabad"} selected>Faisalabad</option>
                      
                         </select>
                     </div>
@@ -644,7 +649,7 @@ const SignUp = (props) => {
                             <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
                         </div>
                         <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
-                            <Link to={"/login"}><button  className="next-btn" style={{width:"300px"}} onClick={onSubmit} >BACK TO LOGIN</button></Link>
+                            <Link to={"/login"}><button  className="next-btn" style={{width:"300px"}}>BACK TO LOGIN</button></Link>
                         </div>
                     </div>}
                     { showingstatus && !status &&

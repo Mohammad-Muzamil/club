@@ -12,6 +12,7 @@ function Testing() {
     const handleUpload = async () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
+        console.log(selectedFile);
          // '//${window.location.host}/api/upload/
         try {
             await axios.post(`//${window.location.host}/api/upload/`, formData, {
