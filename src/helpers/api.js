@@ -192,33 +192,11 @@ export async function GENERIC_OTP(email) {
   return GetResponse;
 }
 
-export async function SEND_PLAYER_DATA(formdata) {
 
-  var config = {
-    method: 'post',
-    url: `http://127.0.0.1:8000/api/player`,
-    // url: `//${window.location.host}/api/player,
-    data:formdata,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  };
-
-  const GetResponse = await axios(config)
-    .then(function (response) {
-      return response;
-    })
-    .catch(function (error) {
-      return error.response;
-    });
-  return GetResponse;
-}
-
-// make endpoint on django
-export async function UP(d) {
+export async function SEND_PLAYER_DATA(data) {
+  // let url= `//${window.location.host}/api/player`;
   let url= `http://127.0.0.1:8000/api/player`;
-  const GetResponse = await axios.post(url, d, {
+  const GetResponse = await axios.post(url, data, {
     headers: {
       'content-type': 'multipart/form-data'
     }

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../assets/css/upcomming_event.css"
 import { Wave } from "react-animated-text";
 import national_games from "../../assets/img/nationalgames.jpg"
 import Timer from '../timer/timer';
+import { UPCOMMING_EVENTS } from '../../helpers/api';
+import { useState } from 'react';
 
 
  const Wave1=(prop)=> {
@@ -15,6 +17,21 @@ import Timer from '../timer/timer';
 
 
 const Upcomming_Event=()=> {
+   const [listofevents, setlistofevents]=useState([])
+   const etting=async()=>{
+      await UPCOMMING_EVENTS().then((response)=>{
+         if(response.status==200){
+            console.log(response.data)
+            setlistofevents(response.data);
+         }
+         else{
+            console.log("Error is here")
+         }
+      });  
+   }
+   useEffect(()=>{
+      etting()
+   },[])
  
      return (
     <div className="team-holder theme-padding" style={{marginBottom:"-80px"}}>
@@ -23,17 +40,20 @@ const Upcomming_Event=()=> {
           <div className="main-heading sytle-2">
                 <h2  style={{fontFamily:"Ethnocentric", fontSize:"25px"}} >Events</h2>
           </div>
-          <div className='col-5 timer'  >
-                      <Timer/>
-                  </div>
-                <div className="w-100 checking " style={{ display: "flex", flexDirection: "row", flexWrap:" wrap"}}>
+
+            {listofevents.map((obj)=>( <div>
+               <div className='col-5 timer'>
+                        <Timer/>
+               </div>
+               <div className="w-100 checking " style={{ display: "flex", flexDirection: "row", flexWrap:" wrap"}}>
                    <div className="col-md-5 col-lg-5 col-sm-12 mt-lg-5">
-                      <h1 style={{fontFamily: 'Ethnocentric'}}>  <Wave1 name="National Games 2023"/></h1>
+                      <h1 style={{fontFamily: 'Ethnocentric'}}>  <Wave1 name={obj.event_name}/></h1>
                       <p style={{textAlign: "justify",fontFamily: 'mont'}}>
-                         We are all set to hold the 34th edition of the National Games in Quetta from May 15. The arrangements are being given the final touches. Hopefully, it would be one of the best Games ever to be held in Pakistan
+                        
+                         {obj.description}
                       </p>
                       <div className="w-100  ">
-                         <span className='name_of_ann'>(Khalid Mehmood, Secretary of POA.)</span>
+                         <span className='name_of_ann'>{"("+obj.announcer+")"}</span>
                       </div>
                    </div>
                    <div className="col-md-7 col-lg-7 col-12">
@@ -43,7 +63,8 @@ const Upcomming_Event=()=> {
                          </div>
                       </div>
                    </div>
-                </div>
+               </div>
+            </div>))}
        </div>
     </div>
  </div>

@@ -19,7 +19,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import success from "../../assets/img/smaill.gif"
 import tryagain from "../../assets/img/tryagain.gif"
-import { GET_BRANCHES,UP } from "../../helpers/api";
+import { GET_BRANCHES} from "../../helpers/api";
 
 import otp_image from "../../assets/img/otp.jpg";
 
@@ -308,7 +308,7 @@ const SignUp = (props) => {
                   {Object.keys(formData).map(key => (
                       dataforsending.append(`${key}`,`${formData[key]}`) 
                 ))}
-                await  UP(dataforsending).then((response)=>{
+                await  SEND_PLAYER_DATA(dataforsending).then((response)=>{
                     if(response.status==200){
                         setstatus(true)
                         setshowingstatus(true)
@@ -339,20 +339,36 @@ const SignUp = (props) => {
     };
     const [Mobile, setMobile] = useState(false);
 
-   
-    useEffect(() => {
-        const handleResize = () => {
-            setMobile(/Mobi|Android/i.test(navigator.userAgent));
-            // setMobile(/Mobi|Android|iPhone/i.test(navigator.userAgent));
-
-        };
-
+    const handleResize = () => {
+        if (window.innerWidth <= 768) {
+        setMobile(true);
+    } else {
+            setMobile(false);
+         
+        }
+      };
+    
+      useEffect(() => {
         window.addEventListener('resize', handleResize);
+    
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+   
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setMobile(/Mobi|Android/i.test(navigator.userAgent));
+    //         // setMobile(/Mobi|Android|iPhone/i.test(navigator.userAgent));
+
+    //     };
+
+    //     window.addEventListener('resize', handleResize);
+
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, []);
     const inputRefs = useRef([]);
     const handleInputChange = (index, value) => {
         if (value && index < 5) {
@@ -428,7 +444,7 @@ const SignUp = (props) => {
                     <div className="col-lg-6 col-12 ">
                         <h5>Name<span style={{color:"orange"}}>*</span></h5> 
                         <input type="text" required  value={formData.name} style={{borderColor:"#ECEFF8"}}
-                            onChange={(e) =>{ setFormData({ ...formData, name: e.target.value , username:"P-"+e.target.value.trim()+randomNumber})}} />
+                            onChange={(e) =>{ setFormData({ ...formData, name: e.target.value , username:"P-"+e.target.value.trim().replace(/\s/g, '')+randomNumber})}} />
                     </div>
                     <div className="col-lg-6 col-12 ">
                         <h5>Father Name<span style={{color:"orange"}}>*</span></h5> 

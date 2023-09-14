@@ -1,6 +1,7 @@
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import "../../assets/css/timer.css"
+import { useState } from "react";
 
 const minuteSeconds = 60;
 const hourSeconds = 3600;
@@ -26,9 +27,25 @@ const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
 const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
 const getTimeDays = (time) => (time / daySeconds) | 0;
 
-const  Timer=()=> {
-  const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endTime = stratTime + 243248; // use UNIX timestamp in seconds
+const  Timer=(prop)=> {
+
+
+  const [time, setTime] = useState('');
+  const [seconds, setSeconds] = useState(null);
+
+  const convertToSeconds = () => {
+    const timeParts = time.split(':');
+    if (timeParts.length === 2) {
+      const hours = parseInt(timeParts[0], 10);
+      const minutes = parseInt(timeParts[1], 10);
+      const totalSeconds = hours * 3600 + minutes * 60;
+      setSeconds(totalSeconds);
+    } else {
+      setSeconds(null); 
+    }
+  };
+  const stratTime = Date.now() / 1000; 
+  const endTime = stratTime + 200; // use UNIX timestamp in seconds
 
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(remainingTime / daySeconds);
