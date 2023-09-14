@@ -43,7 +43,7 @@ const Upcomming_Event=()=> {
 
             {listofevents.map((obj)=>( <div>
                <div className='col-5 timer'>
-                        <Timer/>
+                        <Timer time={200}/>
                </div>
                <div className="w-100 checking " style={{ display: "flex", flexDirection: "row", flexWrap:" wrap"}}>
                    <div className="col-md-5 col-lg-5 col-sm-12 mt-lg-5">
