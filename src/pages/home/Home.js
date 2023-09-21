@@ -25,7 +25,7 @@ import btnBg from "../../assets/img/btn-bg.png";
 
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
-import { Cover_Products, Populer_Picks } from "../../helpers/api";
+import { Cover_Products, Populer_Picks, GET_BRANCHE_STUDENTS } from "../../helpers/api";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Rating from "../../components/rating/rating";
@@ -63,6 +63,8 @@ const Home = (props) => {
       setImageSrc(myStory);
     }
   };
+
+
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);

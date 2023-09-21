@@ -15,16 +15,15 @@ import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
 import CoachHeader from './CoachHeader';
-import KataTable from '../../components/features_section/KataTable';
-import tekki from "../../assets/img/tekki1.gif"
+import Chart from "chart.js/auto";
+import { Bar } from "react-chartjs-2";
+import { Error_light } from '../../helpers/NotifiyToasters';
+import ApprovalGenericTemplate from './ApprovalGenericTemplate';
 import { useSelector } from 'react-redux';
+const CoachChangePassword=()=> { 
 
-
-
-const Kata=()=> {
   const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
-
   const user_details= useSelector((state) => state.user)
   useEffect(()=>{
     if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
@@ -34,9 +33,9 @@ const Kata=()=> {
         Success_light("Welcome Nouman asrshad");
      }
   },[]);
-
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
+  const [approvalsdata, setapprovaldata]=useState([1,2])
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
@@ -45,20 +44,20 @@ const Kata=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
         <div className="content">
         <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
-          
-            <div className='w-100 pl-lg-5 pr-lg-5 pb-3 mt-4' style={{backgroundColor:"#ECECEC", marginTop:"-10px", overflowX:"scroll"}}>
-                <div className='w-100 d-flex justify-content-center ' >
-                    <img src={tekki}  className='pt-3'/>
+            {approvalsdata.map((app,index)=>(
+                <div className='col-12 mt-2 '>
+                    <ApprovalGenericTemplate />
+                    {index<approvalsdata.length-1 && <hr className='col-11 m-auto'></hr>}
                 </div>
-            <KataTable/>
-            </div>
+             ))}
+
         </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
 </div>
   )
 }
 
-export default  Kata;
+export default  CoachChangePassword;

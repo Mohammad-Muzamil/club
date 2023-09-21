@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { Error_light, Success_light, Throw_Error } from '../../helpers/NotifiyToasters';
+import { ACCOUNT_APPROVED } from '../../helpers/api';
 
 
 import { useEffect } from 'react';
@@ -19,22 +20,52 @@ import "../../assets/css/profile.css"
 
 const ApprovalGenericTemplate=(prop)=> {
     const isMobileactive = useMediaQuery({ maxWidth:767 });
-    const [argument,setargument]=useState("")
-    const OnhandleChange=(event)=>{
-       setargument(event.target.value)
-       console.log(argument);
+    const [data,setdata]=useState(prop.data)
+    var accepted=false;
+
+
+    const onHandleChange=async(e)=>{
+        setdata({...data,[e.target.name]:e.target.value})
+        console.log(data)
+        
+        
     }
-    const accept=()=>{
-    // call the api for approval
-    }
-    const reject=()=>{
-        if(argument==""){
-            Error_light("Give some details why you reject admission")
+    const accept= async()=>{
+        prop.func(true)
+   
+    if (!accept&&data.weight!="" && data.player_level!==""&& data.date_of_joinning!=""&& data.date_of_birth!=""&& data.monthly_fee!=null){
+        const response =await ACCOUNT_APPROVED(prop.branch,data);
+        if (response.status==200){
+            prop.func(false)
+            prop.new_list(response.data)
+           
         }
         else{
-            //call the api for sending status
-            Success_light("Successfully rejected ")
+        prop.func(false)
+        Error_light("Try Again")
         }
+    }
+    else if (accept&& data.comment!=null){
+        const response =await ACCOUNT_APPROVED(prop.branch,data);
+        if (response.status==200){
+            prop.func(false)
+            prop.new_list(response.data)
+            Success_light("Sucessfully Rejected")
+        }
+        else{
+        prop.func(false)
+        Error_light("Try Again")
+        }
+    }
+    else{
+        prop.func(false);
+        Error_light("Please Enter Correct Data")
+    }
+    }
+
+    const reject=()=>{
+        accepted=true;
+        accept();
     }
   return (
 
@@ -49,12 +80,12 @@ const ApprovalGenericTemplate=(prop)=> {
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
                         <div className="card-header bg-transparent text-center">
                             <img className="profile_img" src={"https://source.unsplash.com/600x300/?student"} alt="student dp"/>
-                            <h3>Ishmam Ahasan Samin</h3>
+                            <h3>{data.player_name}</h3>
                         </div>
                         <div className="card-body">
-                            <p className="mb-0"><strong className="pr-1">Student ID:</strong>321000001</p>
-                            <p className="mb-0"><strong className="pr-1">className:</strong>4</p>
-                            <p className="mb-0"><strong className="pr-1">Section:</strong>A</p>
+                            <p className="mb-0"style={{color:"gray"}}><strong className="pr-1"style={{color:"black"}} >Username:</strong>{data.user.username}</p>
+                            <p className="mb-0"style={{color:"gray"}}><strong className="pr-1"style={{color:"black"}} >Father:</strong>{data.father_name}</p>
+                            <p className="mb-0"style={{color:"gray"}}><strong className="pr-1"style={{color:"black"}} >email:</strong>{data.user.email}</p>
                         </div>
                         </div>
                     </div>
@@ -64,43 +95,45 @@ const ApprovalGenericTemplate=(prop)=> {
                             <h3 className="mb-0"><i className="far fa-clone pr-1"></i>General Information</h3>
                         </div>
                         <div className="card-body pt-0">
-                            <table className="table table-bordered">
-                            <tr>
-                                <th style={{width:"30%"}}>Roll</th>
-                              
-                                <td>125</td>
-                            </tr>
-                            <tr>
-                                <th style={{width:"30%"}}>Academic Year	</th>
-                               
-                                <td>2020</td>
-                            </tr>
-                            <tr>
-                                <th style={{width:"30%"}}>Gender</th>
-                                
-                                <td>Male</td>
-                            </tr>
-                            <tr>
-                                <th style={{width:"30%"}}>Religion</th>
-                              
-                                <td>Group</td>
-                            </tr>
-                            <tr>
-                                <th style={{width:"30%"}}>blood</th>
-                            
-                                <td>B+</td>
-                            </tr>
-                            </table>
+                            <div>
+                                <label>Weight (KG)</label>
+                                <input type='number' name='weight' onChange={onHandleChange} value={data.weight} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px"}}/>
+                            </div>
+                            <div>
+                                <label>Date of Birth</label>
+                                <input type='date' name='date_of_birth' onChange={onHandleChange} value={data.date_of_birth} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}/>
+                            </div>
+                            <div style={{marginTop:"5px"}}>
+                                <label>Date of Joinning</label>
+                                <input type='date'name='date_of_joinning' onChange={onHandleChange} value={data.date_of_joinning} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}/>
+                            </div>
+                           
                         </div>
                         </div>
                         <div style={{height: "20px"}}></div>
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
+                            
                         <div className="card-header bg-transparent border-0">
-                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Approval Status</h3>
+                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>For Coach</h3>
                         </div>
                         <div className="card-body pt-0">
-                            <div className='w-100' >
-                            <textarea rows="2" onChange={OnhandleChange} style={{maxHeight:"70px"}}></textarea>
+                        <div style={{marginTop:"5px"}}>
+                                <label>Monthly Fee</label>
+                                <input type='number' name='monthly_fee' onChange={onHandleChange} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}/>
+                            </div>
+                            <div style={{marginTop:"5px"}}>
+                                <label>Player Level</label>
+                                <select type='number' name='player_level' onChange={onHandleChange} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}>
+                                    <option selected value={"District"}>District</option>
+                                    <option value={"National Player"}>National Player</option>
+                                    <option value={"HEC"}>HEC</option>
+                                    <option value={"Provincial Level"}>Provincial Level</option>
+                                    <option value={"Department"}>Department</option>
+                                </select>
+                            </div>
+                            <div className='w-100' style={{marginTop:"9px"}} >
+                            <label>Comment</label>
+                            <textarea rows="2"  name='comment' onChange={onHandleChange}  style={{maxHeight:"70px"}}></textarea>
                             </div>
                             <div className='w-100 d-flex justify-content-end mt-2' style={{columnGap:"7px"}}>
                                 <button className='btn btn-danger' onClick={reject} >Reject</button>

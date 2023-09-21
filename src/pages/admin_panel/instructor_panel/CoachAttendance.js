@@ -3,7 +3,7 @@ import "../../assets/panel_css/style.css"
 import "../../assets/panel_css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.css';
 import { faBell,faBars,faAngleUp,faAngleDown,faUser, faUserGroup, faPeopleArrows, faUserCheck,
-     faQuestionCircle,faAdd,faEdit, faUpload,faRecycle,  faUniversity, faCity, faLocation, faMap, faAddressCard, faAddressBook, faUsers,faKey, faEye, faEyeSlash, faL, faAd } from '@fortawesome/free-solid-svg-icons';
+     faQuestionCircle,faEdit, faUpload,faRecycle,  faUniversity, faCity, faLocation, faMap, faAddressCard, faAddressBook, faUsers,faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import test_img from "../../assets/test_img.jpg"
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -12,14 +12,11 @@ import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import CoachSideNavBar from "./CoachSideNavBar";
 import TruncateText from '../../helpers/TruncatedText';
-import { Success_light, Throw_Error } from '../../helpers/NotifiyToasters';
+import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
 import CoachHeader from './CoachHeader';
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
-import { PLAYER_LIST,SEND_PLAYER_ATTENDANCE_LIST, EDIT_PLAYER_ATTENDANCE_LIST } from '../../helpers/api';
-import Loader from '../../components/Loader/Loader';
-
 
 const StudentRow=(prop)=>{
   const isMobilerow = useMediaQuery({ maxWidth:767 });
@@ -38,51 +35,27 @@ const [ischecked, setischecked] =useState(prop.defaultvalue)
     )
 }
 
-
 const CoachAttendance=()=> {
   const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
 
   const user_details= useSelector((state) => state.user)
- 
-  const branch_details= useSelector((state) => state.branch)
-  const [edited,setedited]=useState(false)
-  const isMobileactive = useMediaQuery({ maxWidth:767 });
-  const [isDropOpen, setDropOpen] = useState(!isMobileactive);
-  const [listofplayers,setlistofplayers]=useState([])
-  const [listofattendance,setlistofattendance]= useState([])
-  const currentDate = new Date().toISOString().split('T')[0];
-  const [selectedDate, setSelectedDate] = useState(currentDate);
-  const [datevalidation, setdatevalidation]=useState(true)
-  const [isLoading,setIsLoading]=useState(false)
-
- const setAttendanceList = async () => {
-    setIsLoading(true);
-    try {
-      const response = await PLAYER_LIST(branch_details.id);
-      if (response.status === 200) {
-        setlistofplayers(response.data);
-        setlistofattendance(response.data.map((obj) => ({ Id: obj.id, player_name: obj.player_name, status: false })));
-        setIsLoading(false);
-      }
-       else {
-        setIsLoading(false);
-      }
-    } catch (error) {
-
-      setIsLoading(false);
-      console.error('Error fetching player attendance list:', error);
-    }
-  };
-  
   useEffect(()=>{
     if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
         nevigate('/login');
      }
      else{
-      setAttendanceList();
+        Success_light("Welcome Nouman asrshad");
      }
   },[]);
+  const [edited,setedited]=useState(false)
+  const isMobileactive = useMediaQuery({ maxWidth:767 });
+  const [isDropOpen, setDropOpen] = useState(!isMobileactive);
+  const listofplayers=[{name:"Muhammad Muzamil",id:"12345"},{name:"Muhammad Nouman Arshad",id:"12346"},{name:"Muhammad Harris",id:"12347"}]
+  const [listofattendance,setlistofattendance]= useState( listofplayers.map(obj=>({Id:obj.id,name:obj.name,status:false})))
+  const currentDate = new Date().toISOString().split('T')[0];
+  const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [datevalidation, setdatevalidation]=useState(true)
 
    const sevenDaysAgo = new Date();
    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -114,69 +87,30 @@ const CoachAttendance=()=> {
       }));
   }
 
-  const SendAttendance=async(e)=>{
-    e.preventDefault();
-      setIsLoading(true);
-       await SEND_PLAYER_ATTENDANCE_LIST(branch_details.id,listofattendance,selectedDate).then((response)=>{
-        if(response.status==200)
-        {
-          Success_light(" Attendance Uploaded Successfully")
-          let status=false
-          setlistofattendance(prevList => prevList.map(obj => {
-             return { ...obj, status };
-           }))
-          setIsLoading(false)
-        }
-        else if (response.status==406){
-          Error_light("Already Uploaded Attendance");
-          setIsLoading(false)
-       
-        }
-        else{
-          setIsLoading(false)
-        }
-      
-       })
+  const SendAttendance=()=>{
+       listofattendance.map(b=>{
+        console.log(b.Id)
+        console.log(b.status)
+    })
   }
   
   const EditAttendence=()=>{
     // remember the case if not upload the how it edited the attandence
     if(datevalidation){
       setedited(true);
+      // call the api and rederred the component 
+      // setedited(false)
     }
   }
-
-  const SendEditAttendence=async()=>{
-
-        setIsLoading(true);
-       await EDIT_PLAYER_ATTENDANCE_LIST(branch_details.id,listofattendance,selectedDate).then((response)=>{
-        if(response.status==200)
-        {
-          Success_light("Attendance Updated Successfully")
-          setIsLoading(false)
-       
-          setedited(false);
-        }
-        else{
-          Error_light("Try Again");
-          setIsLoading(false)
-        }
-        const status=false
-        setlistofattendance(prevList => prevList.map(obj => {return { ...obj, status }}))
-        
-       })
-  }
-
 
   
   
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
         <div className="content">
         <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
-        <Loader show={isLoading} message="Loading..."/>
-          {!isLoading&& <div className='container-fluid mt-5' style={{backgroundColor:"#ECECEC"}} >
+          <div className='container-fluid mt-5' style={{backgroundColor:"#ECECEC"}} >
           <div className="col-sm-12 col-12">
                         <div className=" rounded h-100 p-4">
                             <h2 className="mb-4 text-primary">Player Attendance</h2>
@@ -193,21 +127,21 @@ const CoachAttendance=()=> {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {listofattendance.map((ply,index)=>(<StudentRow key={ply.Id} name={ply.player_name} index={index} id={ply.Id} callme={calling} defaultvalue={ply.status} />))}
+                                    {listofattendance.map((ply,index)=>(<StudentRow key={ply.Id} name={ply.name} index={index} id={ply.Id} callme={calling} defaultvalue={ply.status} />))}
                              
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     {!edited&&<div className='d-flex justify-content-end w-100 pb-3' style={{columnGap:"10px"}}>
-                        <button type="button" className='btn text-primary' style={{width:"80px",border:"2px solid #007BFF" }} onClick={EditAttendence}><FontAwesomeIcon icon={faEdit} style={{paddingRight:"5px"}} />Edit</button>
-                        <button type="button" className='btn btn-primary' style={{width:"120px"}} onClick={SendAttendance}><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}} />Submit</button>
+                        <button className='btn text-primary' style={{width:"80px",border:"2px solid #007BFF" }} onClick={EditAttendence}><FontAwesomeIcon icon={faEdit} style={{paddingRight:"5px"}} />Edit</button>
+                        <button className='btn btn-primary' style={{width:"120px"}} onClick={SendAttendance}><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}} />Submit</button>
                     </div>}
 
                     {edited &&<div className='d-flex justify-content-end w-100 pb-3' style={{columnGap:"10px"}}>
-                        <button type="button" className='btn btn-primary' style={{width:"120px"}} onClick={SendEditAttendence}><FontAwesomeIcon icon={faRecycle} style={{paddingRight:"5px"}} />Update</button>
+                        <button className='btn btn-primary' style={{width:"120px"}} onClick={SendAttendance}><FontAwesomeIcon icon={faRecycle} style={{paddingRight:"5px"}} />Update</button>
                     </div>}
-          </div>}
+          </div>
         </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
 </div>

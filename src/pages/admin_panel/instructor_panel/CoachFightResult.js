@@ -17,8 +17,6 @@ import { useEffect } from 'react';
 import CoachHeader from './CoachHeader';
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
-import { PLAYER_LIST,SEND_PLAYER_FIGHT_LIST } from '../../helpers/api';
-import Loader from '../../components/Loader/Loader';
 
 const StudentRow=(prop)=>{
   const isMobilerow = useMediaQuery({ maxWidth:767 });
@@ -27,34 +25,17 @@ const StudentRow=(prop)=>{
   const[played,setplayed]=useState(prop.playedstatus)
   const callme=prop.callme;  
     const onsetFight=(event)=>{
-      if (played)
-      {
         setfight(event.target.checked)
         callme(prop.id,event.target.checked,kata,played)
-      }else{
-        Error_light("Please seletect played")
-      }
     }
     const onsetKata=(event)=>{
-      if (played)
-      {
         setkata(event.target.checked)
         callme(prop.id,fight,event.target.checked,played)
-      }else{
-        Error_light("Please seletect played")
-      }
 
     }
     const onsetPlayed=(event)=>{
         setplayed(event.target.checked)
-        if (event.target.checked==true){
-          callme(prop.id,fight,kata,event.target.checked)
-        }
-        else{
-          setkata(false)
-          setfight(false)
-          callme(prop.id,false,false,event.target.checked)
-        }
+        callme(prop.id,fight,kata,event.target.checked)
     }  
     return(
         <tr style={{marginBottom:"0px"}}>
@@ -67,7 +48,7 @@ const StudentRow=(prop)=>{
             <input style={{height:"20px"}} type='checkbox'  onChange={onsetFight} checked={fight} />
             </td>
             <td >
-            <input style={{height:"20px"}} type='checkbox' onChange={onsetKata} checked={kata} />
+            <input style={{height:"20px"}} type='checkbox'  onChange={onsetKata} checked={kata} />
             </td>
         </tr>
     )
@@ -75,15 +56,21 @@ const StudentRow=(prop)=>{
 
 const CoachFightResult=()=> {
   const nevigate = useNavigate();
-  const [isLoading,setIsLoading]=useState(false)
   const isAuthenticated= useSelector((state) => state.login)
   const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+  useEffect(()=>{
+    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
+        nevigate('/login');
+     }
+     else{
+        Success_light("Welcome Nouman asrshad");
+     }
+  },[]);
   const [typepassword, settypepassword]=useState("password")
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
-  const [listofplayers,setlistofplayers]=useState([])
-  const [listofFightResults,setlistofFightResults]= useState( listofplayers.map(obj=>({Id:obj.id,player_name:obj.player_name,playedstatus:false,Fightstatus:false,katastatus:false})))
+  const listofplayers=[{name:"Muhammad Muzamil",id:"12345"},{name:"Muhammad Nouman Arshad",id:"12346"},{name:"Muhammad Harris",id:"12347"}]
+  const [listofFightResults,setlistofFightResults]= useState( listofplayers.map(obj=>({Id:obj.id,name:obj.name,playedstatus:false,Fightstatus:false,katastatus:false})))
 
   const currentDate = new Date().toISOString().split('T')[0];
   const [selectedDate, setSelectedDate] = useState(currentDate);
@@ -110,36 +97,8 @@ const CoachFightResult=()=> {
     setDropOpen(!isDropOpen);
   };
 
-  const setFightsList = async () => {
-    setIsLoading(true);
-    try {
-      const response = await PLAYER_LIST(branch_details.id);
-      if (response.status === 200) {
-        setlistofplayers(response.data);
-        setlistofFightResults(response.data.map((obj) => ({ Id: obj.id, player_name: obj.player_name, playedstatus:false,Fightstatus:false,katastatus:false })));
-        setIsLoading(false);
-      }
-       else {
-        setIsLoading(false);
-      }
-    } catch (error) {
-
-      setIsLoading(false);
-      console.error('Error fetching player attendance list:', error);
-    }
-  };
-  
-  useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
-        nevigate('/login');
-     }
-     else{
-      setFightsList();
-     }
-  },[]);
-
   const calling=(id,Fightstatus,katastatus,playedstatus)=>{ 
-    
+    // console.log(id,Fightstatus,katastatus,playedstatus);
         const result=listofFightResults.map(obj => {
         if (obj.Id == id) {
           return { ...obj, playedstatus,Fightstatus,katastatus };
@@ -150,34 +109,20 @@ const CoachFightResult=()=> {
   }
 
 
-  const sendFightResult=async()=>{
+  const sendFightResult=()=>{
       listofFightResults.map(obj=>{
         console.log(`${obj.Id} ${obj.name} ${obj.playedstatus} ${obj.Fightstatus} ${obj.katastatus}`)
     })
-    if (!datevalidation)
-    {
-      return;
-    }
-
-    await SEND_PLAYER_FIGHT_LIST(branch_details.id,listofFightResults).then((response)=>{
-      if (response.status==200)
-      {
-        Success_light("Uploaded sucessfully ")
-      }
-      else{
-        Error_light("Try Again")
-      }
-    })
+    // cal the api for sending result
  
   }
   
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
         <div className="content">
         <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
-        <Loader show={isLoading} message="Loading..."/>
-          {!isLoading&&<div className='container-fluid mt-5' style={{backgroundColor:"#ECECEC"}} >
+          <div className='container-fluid mt-5' style={{backgroundColor:"#ECECEC"}} >
           <div className="col-sm-12 col-12">
                         <div className=" rounded h-100 p-4">
                                 <h3 className="mb-4 text-primary">Player Fights Result</h3>
@@ -198,7 +143,7 @@ const CoachFightResult=()=> {
                                 </thead>
                                 <tbody>
                                     {listofFightResults.map((ply,index)=>(
-                                        <StudentRow key={ply.Id} name={ply.player_name} index={index}  callme={calling} id={ply.Id} playedstatus={ply.playedstatus} Fightstatus={ply.Fightstatus} katastatus={ply.katastatus} />
+                                        <StudentRow key={ply.Id} name={ply.name} index={index}  callme={calling} id={ply.Id} playedstatus={ply.playedstatus} Fightstatus={ply.Fightstatus} katastatus={ply.katastatus} />
                                     ))}
                                 
                                 
@@ -210,7 +155,7 @@ const CoachFightResult=()=> {
                         <button type='button' className='btn btn-primary' style={{width:"120px"}}onClick={sendFightResult} ><FontAwesomeIcon icon={faUpload} style={{paddingRight:"5px"}}  />Submit</button>
                     </div>
 
-          </div>}
+          </div>
         </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
 </div>

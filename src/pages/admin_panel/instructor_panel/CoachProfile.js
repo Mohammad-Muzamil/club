@@ -47,7 +47,7 @@ const CoachProfile=()=> {
  
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
         <div className="content">
         <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />
             

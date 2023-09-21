@@ -87,6 +87,7 @@ const OTP = (props) => {
   inputRefs.current.forEach((ref,index) => {
     inputValuesss+= (ref.value).toString();
   });
+
     if(inputValuesss==hasotp){
       const passwrd=otp_data.password;
       await Reset_Password(otp_data.username,otp_data.email,passwrd).then((response)=>{

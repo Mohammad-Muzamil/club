@@ -29,8 +29,7 @@ const getTimeDays = (time) => (time / daySeconds) | 0;
 
 const  Timer=(prop)=> {
 
-    const [stratTime,setstratTime] = useState(Date.now() / 1000); 
-    // const endTime = stratTime + 60*60*24; 
+    const [stratTime,setstratTime] = useState(Date.now() / 1000);  
     const [endTime,setendTime] = useState(stratTime + prop.time); 
 
     const [remainingTime, setremainingTime] = useState(endTime - stratTime);

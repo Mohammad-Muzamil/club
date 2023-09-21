@@ -40,8 +40,8 @@ const Upcomming_Event=()=> {
           <div className="main-heading sytle-2">
                 <h2  style={{fontFamily:"Ethnocentric", fontSize:"25px"}} >Events</h2>
           </div>
-
-            {listofevents.map((obj)=>( <div>
+            
+            {listofevents.length>0 && listofevents.map((obj)=>( obj.seconds >0 && <div>
                <div className='col-5 timer'>
                         <Timer time={obj.seconds}/>
                </div>
@@ -60,11 +60,16 @@ const Upcomming_Event=()=> {
                       <div className="about_box " style={{marginLeft:"-1px"}}>
                          <div className="image_1">
                             <img src={national_games} style={{maxHeight:"300px", width: "100%"}}/>
+                            {/* <img src={ `//${window.location.host}/media/` +obj.image_path}  style={{maxHeight:"300px", width: "100%"}}/> */}
                          </div>
                       </div>
                    </div>
                </div>
             </div>))}
+            {listofevents.length<=0 &&
+            <div>
+               No Event Ahead!!
+            </div>}
        </div>
     </div>
  </div>

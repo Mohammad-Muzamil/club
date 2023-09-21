@@ -20,22 +20,43 @@ import { Bar } from "react-chartjs-2";
 import { Error_light } from '../../helpers/NotifiyToasters';
 import ApprovalGenericTemplate from './ApprovalGenericTemplate';
 import { useSelector } from 'react-redux';
+import {ACCOUNT_APPROVAL_LIST} from '../../helpers/api';
+import Loader from '../../components/Loader/Loader';
+
 const CoachChangePassword=()=> { 
 
   const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
+  const user_details= useSelector((state) => state.user)
+  const branch_details= useSelector((state) => state.branch)
+  const [isLoading,setIsLoading]=useState(false)
+  const [approvalsdata, setapprovaldata]=useState([])
 
+  const approval_list=async()=>{
+    setIsLoading(true);
+    const response= await ACCOUNT_APPROVAL_LIST(branch_details.id);
+    if (response.status==200){
+      console.log(response.data)
+      setapprovaldata(response.data);
+      setIsLoading(false);
+    }
+    else{
+      setIsLoading(false);
+    }
+  }
+  const reupdate=(listofdata)=>{
+    setapprovaldata(listofdata);
+  }
   useEffect(()=>{
-    if (isAuthenticated === ""){
+    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
         nevigate('/login');
      }
      else{
-        Success_light("Welcome Nouman asrshad");
+       approval_list();
      }
   },[]);
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
-  const [approvalsdata, setapprovaldata]=useState([1,2])
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
@@ -44,12 +65,14 @@ const CoachChangePassword=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
+    {isDropOpen&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-          <CoachHeader onClickHandler={toggleDrop}/>
-            {approvalsdata.map((app,index)=>(
+        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  /> 
+        <Loader show={isLoading} message="Loading..."/>
+
+            {!isLoading&&approvalsdata.map((app,index)=>(
                 <div className='col-12 mt-2 '>
-                    <ApprovalGenericTemplate />
+                    <ApprovalGenericTemplate data={app} func={setIsLoading} branch={branch_details.id} new_list={reupdate}/>
                     {index<approvalsdata.length-1 && <hr className='col-11 m-auto'></hr>}
                 </div>
              ))}

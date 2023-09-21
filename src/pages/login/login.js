@@ -11,6 +11,9 @@ import { Login_API,USER_API_SELECTION } from "../../helpers/api";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../redux/actions/LoginActions";
 import { setUser } from "../../redux/actions/userActions";
+import { setBranch } from "../../redux/actions/BranchActions";
+import { GET_BRANCH } from '../../helpers/api';
+
 
 
 
@@ -20,7 +23,14 @@ const Login = (props) => {
   const[username,setusername]=useState(null)
   const[password,setpassword]=useState(null)
   const [validuserslist,setvaliduserslist]=useState([])
-  // const[ session,setsession]=useState( useSelector((state) => state.login)); for getting data from redux
+  const Set_Branch=async (id)=>{
+    await GET_BRANCH(id).then((response)=>{
+      if (response.status==200)
+      {
+        dispatch(setBranch(response.data));
+      }
+    })
+  }
   const fetchData = async () => {
     try {
       const response = await ALL_USERS_API();
@@ -64,6 +74,7 @@ const Login = (props) => {
     validuserslist.map(ply=>{
       if(ply.username.toString().toLowerCase()==username.toString().toLowerCase()){
         getUser(ply.id);
+        Set_Branch(ply.id);
         valid=true;
         return;
       }
@@ -74,8 +85,12 @@ const Login = (props) => {
         console.log(response.data.token)
         let token=response.data.token // save into redux 
         dispatch(setToken(token));
-        // set condition to which dashboard you want to negivate
-        nevigate("/coach")
+        if (username[0].toLowerCase()=='i')
+            nevigate("/coach")
+        else if (username[0].toLowerCase()=='a')
+            nevigate("/")
+        else if (username[0].toLowerCase()=='p')
+            nevigate("/")
         valid=false
         }
         else{

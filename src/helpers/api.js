@@ -52,8 +52,8 @@ export async function Login_API(username, password) {
 export async function Cover_Products() {
   var config = {
     method: 'get',
-    // url: `http://127.0.0.1:8000/products/cover_products/`,
-    url: `//${window.location.host}/products/cover_products`,
+    url: `http://127.0.0.1:8000/products/cover_products/`,
+    // url: `//${window.location.host}/products/cover_products`,
     
     headers: {
       'Content-Type': 'application/json',
@@ -167,6 +167,48 @@ export async function GET_BRANCHES() {
   return GetResponse;
 }
 
+export async function GET_BRANCH(instructor_id) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/branch/${instructor_id}`,
+    // url: `//${window.location.host}/api/branch/${instructor_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function PLAYER_Stats(branch_id) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/playersstats/${branch_id}`,
+    // url: `//${window.location.host}/api/playersstats/${branch_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
 export async function GENERIC_OTP(email) {
   const data={
     email:email
@@ -231,3 +273,190 @@ export async function UPCOMMING_EVENTS() {
   return GetResponse;
 }
 
+export async function PLAYER_LIST(branch_id,player_list) {
+
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/playerattendance/${branch_id}`,
+    // url: `//${window.location.host}/api/playerattendance/${branch_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SEND_PLAYER_ATTENDANCE_LIST(branch_id,player_list,date) {
+  const data={
+    listofplayers:player_list,
+    date:date
+  }
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/playerattendance/${branch_id}`,
+    // url: `//${window.location.host}/api/playerattendance/${branch_id}`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function EDIT_PLAYER_ATTENDANCE_LIST(branch_id,player_list,date) {
+  const data={
+    listofplayers:player_list,
+    date:date
+  }
+  var config = {
+    method: 'put',
+    url: `http://127.0.0.1:8000/api/playerattendance/${branch_id}`,
+    // url: `//${window.location.host}/api/playerattendance/${branch_id}`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function SEND_PLAYER_FIGHT_LIST(branch_id,player_list) {
+  const data={
+    listofplayers:player_list
+  }
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/individualplayerstats/${branch_id}`,
+    // url: `//${window.location.host}/api/individualplayerstats/${branch_id}`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function PLAYER_ACCOUNTS(branch_id) {
+
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/account/${branch_id}`,
+    // url: `//${window.location.host}/api/account/${branch_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function PLAYER_ACCOUNTS_DELETION(branch_id,player_id) {
+  const data={
+    player_id:player_id,
+  }
+  var config = {
+    method: 'delete',
+    url: `http://127.0.0.1:8000/api/account/${branch_id}`,
+    // url: `//${window.location.host}/api/account/${branch_id}`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ACCOUNT_APPROVAL_LIST(branch_id) {
+
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/approval/${branch_id}`,
+    // url: `//${window.location.host}/api/approval/${branch_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ACCOUNT_APPROVED(branch_id, data) {
+  const new_data={
+    player:data
+  }
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/approval/${branch_id}`,
+    // url: `//${window.location.host}/api/approval/${branch_id}`,
+    data:new_data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}

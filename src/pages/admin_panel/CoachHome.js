@@ -29,9 +29,7 @@ const CoachHome=()=> {
   const [isLoading,setIsLoading]=useState(true)
   const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
- 
   const user_details= useSelector((state) => state.user)
-  console.log(user_details)
   const branch_details= useSelector((state) => state.branch)
   const [players,setplayers]=useState(0)
   const [activePlayers,setActivePlayers]=useState(0)
@@ -55,14 +53,10 @@ const CoachHome=()=> {
   }
 
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i' ){
+    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
         nevigate('/login');
      }
-     else{
-
-     
      settled_promises();
-     }
 
   },[]);
     const labels = ["January", "February", "March", "April", "May", "June","July","August","September","October","November","December"];
