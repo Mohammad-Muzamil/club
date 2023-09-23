@@ -152,7 +152,7 @@ const CoachFightResult=()=> {
 
   const sendFightResult=async()=>{
       listofFightResults.map(obj=>{
-        console.log(`${obj.Id} ${obj.name} ${obj.playedstatus} ${obj.Fightstatus} ${obj.katastatus}`)
+      
     })
     if (!datevalidation)
     {
@@ -162,6 +162,7 @@ const CoachFightResult=()=> {
     await SEND_PLAYER_FIGHT_LIST(branch_details.id,listofFightResults).then((response)=>{
       if (response.status==200)
       {
+        setlistofFightResults(listofplayers.map((obj) => ({ Id: obj.id, player_name: obj.player_name, playedstatus:false,Fightstatus:false,katastatus:false })));
         Success_light("Uploaded sucessfully ")
       }
       else{

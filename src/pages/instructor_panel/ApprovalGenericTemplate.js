@@ -21,7 +21,6 @@ import "../../assets/css/profile.css"
 const ApprovalGenericTemplate=(prop)=> {
     const isMobileactive = useMediaQuery({ maxWidth:767 });
     const [data,setdata]=useState(prop.data)
-    var accepted=false;
 
 
     const onHandleChange=async(e)=>{
@@ -33,24 +32,14 @@ const ApprovalGenericTemplate=(prop)=> {
     const accept= async()=>{
         prop.func(true)
    
-    if (!accept&&data.weight!="" && data.player_level!==""&& data.date_of_joinning!=""&& data.date_of_birth!=""&& data.monthly_fee!=null){
-        const response =await ACCOUNT_APPROVED(prop.branch,data);
+    if (data.weight!="" && data.weight!=null && data.player_level!==""&& data.date_of_joinning!=""&& data.date_of_birth!=""&& data.monthly_fee!=null&& data.monthly_fee!=""){
+        
+        const response =await ACCOUNT_APPROVED(prop.branch,{...data,['is_approved']:true});
         if (response.status==200){
             prop.func(false)
             prop.new_list(response.data)
+            Success_light("Successfully Approved")
            
-        }
-        else{
-        prop.func(false)
-        Error_light("Try Again")
-        }
-    }
-    else if (accept&& data.comment!=null){
-        const response =await ACCOUNT_APPROVED(prop.branch,data);
-        if (response.status==200){
-            prop.func(false)
-            prop.new_list(response.data)
-            Success_light("Sucessfully Rejected")
         }
         else{
         prop.func(false)
@@ -59,13 +48,23 @@ const ApprovalGenericTemplate=(prop)=> {
     }
     else{
         prop.func(false);
-        Error_light("Please Enter Correct Data")
-    }
+        Error_light("Please Enter complete Data")
+         }
     }
 
-    const reject=()=>{
-        accepted=true;
-        accept();
+    const reject=async()=>{
+        if (data.comment!=null&& data.comment!=""){
+            const response =await ACCOUNT_APPROVED(prop.branch,data);
+            if (response.status==200){
+                prop.func(false)
+                prop.new_list(response.data)
+                Success_light("Sucessfully Rejected")
+            }
+            else{
+            prop.func(false)
+            Error_light("Please give some reason for rejection")
+            }
+        }
     }
   return (
 
@@ -79,7 +78,7 @@ const ApprovalGenericTemplate=(prop)=> {
                     <div className="col-lg-4 " >
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
                         <div className="card-header bg-transparent text-center">
-                            <img className="profile_img" src={"https://source.unsplash.com/600x300/?student"} alt="student dp"/>
+                            <img className="profile_img" src={ `//${window.location.host}/media/` +data.profile_image}alt="student dp"/>
                             <h3>{data.player_name}</h3>
                         </div>
                         <div className="card-body">
@@ -119,7 +118,7 @@ const ApprovalGenericTemplate=(prop)=> {
                         <div className="card-body pt-0">
                         <div style={{marginTop:"5px"}}>
                                 <label>Monthly Fee</label>
-                                <input type='number' name='monthly_fee' onChange={onHandleChange} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}/>
+                                <input type='number' name='monthly_fee' value={data.monthly_fee} onChange={onHandleChange} style={{backgroundColor:"#F8F8F8",marginTop:"-5px",height:"40px" }}/>
                             </div>
                             <div style={{marginTop:"5px"}}>
                                 <label>Player Level</label>
