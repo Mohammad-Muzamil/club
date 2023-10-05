@@ -31,7 +31,7 @@ const Kata=()=> {
         nevigate('/login');
      }
      else{
-        Success_light("Welcome Nouman asrshad");
+       
      }
   },[]);
 

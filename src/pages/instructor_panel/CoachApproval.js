@@ -3,7 +3,7 @@ import "../../assets/panel_css/style.css"
 import "../../assets/panel_css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.css';
 import { faBell,faBars,faAngleUp,faAngleDown,faUser, faUserGroup, faPeopleArrows, faUserCheck,
-     faQuestionCircle,  faUniversity, faCity, faLocation, faMap, faAddressCard, faAddressBook, faUsers,faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+     faQuestionCircle,  faUniversity, faCity, faLocation, faMap, faAddressCard, faAddressBook, faUsers,faKey, faEye, faEyeSlash, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import test_img from "../../assets/test_img.jpg"
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -36,7 +36,7 @@ const CoachChangePassword=()=> {
     setIsLoading(true);
     const response= await ACCOUNT_APPROVAL_LIST(branch_details.id);
     if (response.status==200){
-      console.log(response.data)
+ 
       setapprovaldata(response.data);
       setIsLoading(false);
     }
@@ -76,6 +76,11 @@ const CoachChangePassword=()=> {
                     {index<approvalsdata.length-1 && <hr className='col-11 m-auto'></hr>}
                 </div>
              ))}
+            {!isLoading&&approvalsdata.length==0 &&
+            <div className='mt-5'>
+              No Approval Required...
+            </div> 
+            }
 
         </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>

@@ -159,24 +159,7 @@ const Home = (props) => {
     );
   };
 
-  const HomePageData = async () => {
 
-  
-
-    await Cover_Products().then((response) => {
-      if (response.status === 200) {
-        alert(response.data.message);
-        // setcoverData(response.data);
-      } else {
-       
-        // alert("Something went Wrong");
-        Throw_Error("Cover Data Not Updated !! ")
-      }
-    });
-  };
-  useEffect(() => {
-    HomePageData();
-  }, []);
   
   
   const popular_player=[
@@ -260,7 +243,7 @@ const Home = (props) => {
                 <div className="row justify-content-center ">
                     <div className="col-lg-5 col-md-5 col-sm-12 first-sec pm-l-0">
              
-                      <h1>If you <spam style={{color:"orange"}}>Don’t </spam>Practice You <spam style={{color:"orange"}}>Don't</spam> Derserve to win!</h1>
+                      <h1>If you can't accept <spam style={{color:"orange"}}>losing</spam>, you can't  <spam style={{color:"orange"}}>win</spam>.</h1>
                       <p ></p>
                   
                       <div className="slider-img" >

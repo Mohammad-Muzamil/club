@@ -23,6 +23,8 @@ const Login = (props) => {
   const[username,setusername]=useState(null)
   const[password,setpassword]=useState(null)
   const [validuserslist,setvaliduserslist]=useState([])
+  const [userid,setuserid]=useState("")
+
   const Set_Branch=async (id)=>{
     await GET_BRANCH(id).then((response)=>{
       if (response.status==200)
@@ -36,7 +38,7 @@ const Login = (props) => {
       const response = await ALL_USERS_API();
       if (response.status === 200) {
         setvaliduserslist(response.data);
-        console.log(response.data);
+       
       } else {
         setvaliduserslist([]);
       }
@@ -52,7 +54,7 @@ const Login = (props) => {
     await USER_API_SELECTION(user_id).then((response)=>{
       if(response.status==200){
         dispatch(setUser(response.data));
-        console.log(response.data);
+      
       }
     });
   }
@@ -71,10 +73,15 @@ const Login = (props) => {
       return;
     }
     let valid=false
+    console.log(validuserslist)
     validuserslist.map(ply=>{
       if(ply.username.toString().toLowerCase()==username.toString().toLowerCase()){
         getUser(ply.id);
-        Set_Branch(ply.id);
+     
+        if (ply.username[0].toLowerCase()=='i')
+        {
+          Set_Branch(ply.id);
+        }
         valid=true;
         return;
       }
@@ -82,13 +89,14 @@ const Login = (props) => {
     if(valid){
       await Login_API(username,password).then((response)=>{
         if(response.status==200){
-        console.log(response.data.token)
         let token=response.data.token // save into redux 
         dispatch(setToken(token));
         if (username[0].toLowerCase()=='i')
-            nevigate("/coach")
+        {
+          nevigate("/coach")
+        }
         else if (username[0].toLowerCase()=='a')
-            nevigate("/")
+            nevigate("/admin")
         else if (username[0].toLowerCase()=='p')
             nevigate("/")
         valid=false

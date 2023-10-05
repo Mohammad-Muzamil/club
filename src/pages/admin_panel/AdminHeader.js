@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TruncateText from '../../helpers/TruncatedText';
 import { faBell,faBars,faAngleUp,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,16 +8,39 @@ import test_img from "../../assets/test_img.jpg"
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../redux/actions/LoginActions';
-const CoachHeader=(props)=> {
+import { setUser } from '../../redux/actions/userActions';
+import { setBranch } from '../../redux/actions/BranchActions';
+import { UPCOMMING_EVENTS,LOGOUT } from '../../helpers/api';
+const AdminHeader=(props)=> {
   const dispatch1 = useDispatch();
   const nevigate=useNavigate();
   const isMobilewidth = useMediaQuery({ maxWidth:767 });
   const [iconnam, seticonnam] = useState(faAngleDown);
+  const [events,setevents]=useState(0)
+
+  const seteventstotal=async()=>{
+    await UPCOMMING_EVENTS().then((response)=>{
+      if (response.status=200){
+        setevents(response.data.length)
+  
+      }
+      else{
+
+      }
+    })
+  }
+  useEffect(()=>{
+    seteventstotal();
+  },[])
     const { onClickHandler } = props;
   const [logOpen, setlogOpen] = useState(false);
+
   const LogoutPage=()=>{
     dispatch1(setToken(""));
+    dispatch1(setUser({}));
+  
     nevigate('/login');
+  
   }
   const logoutDrop = () => {
     setlogOpen(!logOpen);
@@ -41,11 +64,11 @@ const CoachHeader=(props)=> {
                 </a>
                 <div className="navbar-nav align-items-center ms-auto">
                     <div className="nav-item ">
-                    <a href="#" className="nav-link"  >
+                    <Link  className="nav-link"  >
                         <FontAwesomeIcon icon={faBell} style={{fontSize:"20px"}}  />
-                        <span className="badge badge-dark " style={{borderRadius:"100%"}}>{props.total_events}</span>
+                        <span className="badge badge-dark " style={{borderRadius:"100%"}}>{events}</span>
                         <span className="d-none d-lg-inline-flex" style={{paddingLeft:"10px"}}>Events</span>
-                    </a>
+                    </Link>
                     </div>
                     <div className="nav-item" onClick={logoutDrop} >
                     <a href="#" className="nav-link" >
@@ -53,7 +76,7 @@ const CoachHeader=(props)=> {
                         <span className="d-lg-inline-flex"> {TruncateText(props.name,8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
                     {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="/coach-profile" className="dropdown-item" >My Profile</Link>
+                        <Link to="/admin-profile" className="dropdown-item" >My Profile</Link>
                         <p  className="dropdown-item" onClick={LogoutPage}>Log Out</p>
                     </div>}
                     </div>
@@ -63,4 +86,4 @@ const CoachHeader=(props)=> {
   )
 }
 
-export default CoachHeader;
+export default AdminHeader;

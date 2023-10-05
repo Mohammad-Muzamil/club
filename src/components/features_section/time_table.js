@@ -17,19 +17,19 @@ const Timetable = () => {
         <ul className="nav nav-pills justify-content-center mb-4" style={{columnGap:"20px"}}>
           <li className="nav-item">
             { current==1 &&<div className="text-white text-center py-1 " onClick={()=>changeCurrentState(1)} style={{width:"200px" ,fontFamily:"Ethnocentric", backgroundColor:"orange"}}>All Classes</div>}
-            {current!=1&&  <a className="nav-link" data-toggle="pill" href="#class-cardio" onClick={()=>changeCurrentState(1)}>All Classes</a>}
+            {current!=1&&  <a className="nav-link" data-toggle="pill" href="#class-cardio" style={{color:"black"}} onClick={()=>changeCurrentState(1)}>All Classes</a>}
           </li>
           <li className="nav-item">
           { current==2 &&<div className="text-white text-center py-1 " onClick={()=>changeCurrentState(2)} style={{width:"200px" ,fontFamily:"Ethnocentric", backgroundColor:"orange"}}>Kumite</div>}
-          {current!=2&&  <a className="nav-link" data-toggle="pill" onClick={()=>changeCurrentState(2)} href="#class-cardio">Kumite</a>}
+          {current!=2&&  <a className="nav-link" data-toggle="pill" style={{color:"black"}} onClick={()=>changeCurrentState(2)} href="#class-cardio">Kumite</a>}
           </li>
           <li className="nav-item">
           { current==3 &&<div className="text-white text-center py-1 "onClick={()=>changeCurrentState(3)} style={{width:"200px" ,fontFamily:"Ethnocentric", backgroundColor:"orange"}}>Kata</div>}
-          {current!=3 &&  <a className="nav-link" data-toggle="pill"onClick={()=>changeCurrentState(3)} href="#class-cardio">Kata</a>}
+          {current!=3 &&  <a className="nav-link" data-toggle="pill" style={{color:"black"}} onClick={()=>changeCurrentState(3)} href="#class-cardio">Kata</a>}
           </li>
           <li className="nav-item">
           { current==4 &&<div className="text-white text-center py-1 " onClick={()=>changeCurrentState(4)} style={{width:"200px" ,fontFamily:"Ethnocentric", backgroundColor:"orange"}}>Fitness</div>}
-          {current!=4 &&  <a className="nav-link" data-toggle="pill" onClick={()=>changeCurrentState(4)} href="#class-cardio">Fitness</a>}
+          {current!=4 &&  <a className="nav-link" data-toggle="pill" style={{color:"black"}} onClick={()=>changeCurrentState(4)} href="#class-cardio">Fitness</a>}
           </li>
         </ul>
         <div className="tab-content">

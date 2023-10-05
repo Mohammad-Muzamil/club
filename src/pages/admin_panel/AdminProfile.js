@@ -4,37 +4,45 @@ import "../../assets/panel_css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.css';
 import { faBell,faBars,faAngleUp,faAngleDown,faUser, faUserGroup, faPeopleArrows, faUserCheck,
      faQuestionCircle,  faUniversity, faCity, faLocation, faMap, faAddressCard, faAddressBook, faUsers,faKey, faEye, faEyeSlash
-     ,faClone} from '@fortawesome/free-solid-svg-icons';
+     ,faClone,
+     faMessage,
+     faHome,
+     faMailReply,
+     faSignsPost,
+     faVoicemail} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import test_img from "../../assets/test_img.jpg"
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import CoachSideNavBar from "./CoachSideNavBar";
+
 import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
-import CoachHeader from './CoachHeader';
+
 import "../../assets/css/profile.css"
+import AdminHeader from './AdminHeader';
+import AdminSideNavBar from './AdminSideNavBar';
 
 
 
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
+import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 
-const CoachProfile=()=> {
+const AdminProfile=()=> {
     const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
   
 
   const user_details= useSelector((state) => state.user)
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
+    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
         nevigate('/login');
      }
      else{
-        console.log(user_details)
+ 
      }
   },[]);
 
@@ -47,9 +55,9 @@ const CoachProfile=()=> {
  
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
+    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />
+        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />
             
         <div className='container-fluid mt-4' style={{}} >
 
@@ -64,12 +72,12 @@ const CoachProfile=()=> {
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
                         <div className="card-header bg-transparent text-center">
                             <img className="profile_img" src={ `//${window.location.host}/media/` +user_details.profile_image} alt="coach dp"/>
-                            <h3>{user_details.name}</h3>
+                            <h3 className='text-primary' >{user_details.name}</h3>
                         </div>
                         <div className="card-body">
-                            <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>PKF-ID:</strong>{user_details.coach_pkf_id}</p>
+                            <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>Designation:</strong>Head</p>
                             <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>username:</strong>{user_details.user.username}</p>
-                            <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>Coach of:</strong>{user_details.coach_of}</p>
+                   
 
                         </div>
                         </div>
@@ -77,7 +85,7 @@ const CoachProfile=()=> {
                     <div className="col-lg-8" style={{marginTop:isMobileactive?"20px":"0px"}}>
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
                         <div className="card-header bg-transparent border-0">
-                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>General Information</h3>
+                            <h3 className="mb-0" style={{fontSize:"17px", fontStyle:"italic"}} >General Information</h3>
                         </div>
                         <div className="card-body pt-0">
                             <table className="table table-bordered">
@@ -107,20 +115,20 @@ const CoachProfile=()=> {
                         </div>
                         <div style={{height: "20px"}}></div>
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
-                        <div className="card-header bg-transparent border-0">
-                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Email</h3>
+                        <div className="card-header bg-transparent border-0 d-flex">
+                        <FontAwesomeIcon icon={faVoicemail} className='text-primary mt-2' /><h3 className="mb-0" style={{fontSize:"17px", fontStyle:"italic"}}>&nbsp;&nbsp;Email</h3>
                         </div>
                         <div className="card-body pt-0" >
                             <p style={{fontSize:"15px"}} >{user_details.user.email}</p>
                         </div>
-                        <div className="card-header bg-transparent border-0" style={{marginTop:"-15px"}}>
-                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Home Address</h3>
+                        <div className="card-header bg-transparent border-0 d-flex" style={{marginTop:"-15px"}}>
+                        <FontAwesomeIcon icon={faHome} className='text-primary mt-2' /> <h3 className="mb-0" style={{fontSize:"17px", fontStyle:"italic"}}>&nbsp;&nbsp;Home Address</h3>
                         </div>
                         <div className="card-body pt-0">
                             <p style={{fontSize:"15px"}} >{user_details.address}</p>
                         </div>
-                        <div className="card-header bg-transparent border-0" style={{marginTop:"-15px"}}>
-                            <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Message from Cheif Coach</h3>
+                        <div className="card-header bg-transparent border-0 d-flex" style={{marginTop:"-15px"}}>
+                        <FontAwesomeIcon icon={faMessage} className='text-primary mt-2' /> <h3 className="mb-0" style={{fontSize:"17px", fontStyle:"italic"}}> &nbsp;&nbsp;Message from Cheif Coach</h3>
                         </div>
                         <div className="card-body pt-0 "  >
                             <p style={{fontSize:"15px"}}>I want to express my deep appreciation for the unwavering dedication and commitment you bring to our karate family. Your passion for the sport and your tireless efforts in nurturing our athletes are the driving force behind our success.
@@ -145,4 +153,4 @@ const CoachProfile=()=> {
   )
 }
 
-export default  CoachProfile;
+export default  AdminProfile;

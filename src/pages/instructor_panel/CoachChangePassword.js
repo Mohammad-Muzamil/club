@@ -103,21 +103,21 @@ const CoachChangePassword=()=> {
             <div className='col-lg-6 col-xl-6 col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1"}}>
                              
                 <h3 style={{fontWeight:"bold"}}className='text-primary' ><FontAwesomeIcon icon={faKey} style={{fontSize:"30px", paddingRight:"10px"}} className='text-primary' />Change Password</h3>
-                <div class="form-floating mb-3 mt-4">
-                    <input type={typepassword}  id="floatingInput"
+                <div className="form-floating mb-3 mt-4">
+                    <input type={typepassword} 
                     className={`form-control ${!passwordIsValid ? 'is-invalid' : ''}`}
                   
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
-                    <label for="floatingInput">Password</label>
+                    <label htmlFor="floatingInput">Password</label>
                 </div>
 
-                <div class="form-floating mb-3 mt-1 ">
-                    <input type={typepassword}   id="floatingInput"
+                <div className="form-floating mb-3 mt-1 ">
+                    <input type={typepassword}  
                     className={`form-control ${!passwordIsValid ? 'is-invalid' : ''}`}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}/>                    
-                    <label for="floatingInput">Confirm Password</label>
+                    <label htmlFor="floatingInput">Confirm Password</label>
                     
                 </div>
                 <div className='d-flex justify-content-end' style={{marginTop:"-5px"}}>
@@ -125,9 +125,9 @@ const CoachChangePassword=()=> {
                     <input type='checkBox' style={{height:"20px",width:"20px", marginTop:isMobileactive?"2px":"0px" }} onClick={handleType}/>
                 </div>
 
-                <div class="form-floating mb-3 mt-1 d-flex justify-content-end">
-                    <button type="button" class="btn m-2 btn-danger" style={{width:"120px"}} onClick={ clearAll} >Clear</button>
-                    <button type="button" class="btn btn-md btn-primary m-2"style={{width:"120px"}} onClick={handleResetClick}>Reset</button>
+                <div className="form-floating mb-3 mt-1 d-flex justify-content-end">
+                    <button type="button" className="btn m-2 btn-danger" style={{width:"120px"}} onClick={ clearAll} >Clear</button>
+                    <button type="button" className="btn btn-md btn-primary m-2"style={{width:"120px"}} onClick={handleResetClick}>Reset</button>
                 </div>
             </div>
             <div className='col-lg-6 col-xl-6 col-12 p-5'style={{ backgroundColor:"#ECECEC",borderRadius:"6px", order:isMobileactive?"1":"2"}}>

@@ -3,6 +3,7 @@ import LayoutOne from "../../layouts/LayoutOne";
 import { Link, useNavigate } from "react-router-dom";
 import { AllBrands } from "../../helpers/api";
 import LightGallery from "lightgallery/react/Lightgallery.es5"
+import { GALLERY_IMAGES } from "../../helpers/api";
 
 
 
@@ -42,6 +43,18 @@ import lgsvideo from"lightgallery/plugins/video"
 const Gallery = (props) => {
   const navigate = useNavigate();
   const [images, setimages] = useState([]);
+  const get_images=async()=>{
+    await GALLERY_IMAGES().then((response)=>{
+      if(response.status=200){
+   
+        setimages(response.data)
+      }
+    })
+  }
+
+  useEffect(()=>{
+    get_images();
+  },[])
 
  
 
@@ -114,6 +127,18 @@ const Gallery = (props) => {
                       <a href={pic_17}   >
                         <img className="col-xl-4 col-lg-4 col-6 mb-1 p-1"  src={pic_17} style={{width:"350px",height:"350px"}} />
                       </a>
+                     
+                      {images.map( (img)=>(
+                      <a href={`//${window.location.host}/media/gallery/`+img.image_path}   >
+                        <img className="col-xl-4 col-lg-4 col-6 mb-1 p-1"  src={ `//${window.location.host}/media/gallery/` +img.image_path}style={{width:"350px",height:"350px"}} />
+                      </a>
+                      ))}
+                      {/* {images.map( (img)=>(
+                      <a href={`http://127.0.0.1:8000/media/gallery/`+img.image_path}   >
+                        <img className="col-xl-4 col-lg-4 col-6 mb-1 p-1"  src={ `http://127.0.0.1:8000/media/gallery/` +img.image_path}style={{width:"350px",height:"350px"}} />
+                      </a>
+                      ))} */}
+
                      
                     
               </LightGallery>

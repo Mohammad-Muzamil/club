@@ -22,6 +22,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader/Loader';
 import { PLAYER_Stats } from '../../helpers/api';
+import { PieChart } from 'react-minimal-pie-chart';
 
 
 const CoachHome=()=> {
@@ -31,19 +32,21 @@ const CoachHome=()=> {
   const isAuthenticated= useSelector((state) => state.login)
  
   const user_details= useSelector((state) => state.user)
-  console.log(user_details)
+
   const branch_details= useSelector((state) => state.branch)
   const [players,setplayers]=useState(0)
   const [activePlayers,setActivePlayers]=useState(0)
   const [deactivePlayers,setDeactivePlayers]=useState(0)
   const [montly_admission,setmontly_admission]=useState([0,0,0,0,0,0,0,0,0,0,0,0])
   const [montly_attendance,setmontly_attendance]=useState([0,0,0,0,0,0,0,0,0,0,0,0])
+  const [montly_fee,setmontly_fee]=useState([0,0,0,0,0,0,0,0,0,0,0,0])
+
 
   const settled_promises=async()=>{
     await PLAYER_Stats(branch_details.id).then((response)=>{
         if (response.status==200)
         {
-            console.log(response.data);
+         
             setplayers(response.data.total_player);
             setActivePlayers(response.data.total_active_players);
             setDeactivePlayers(response.data.total_deactive_players)
@@ -89,7 +92,17 @@ const CoachHome=()=> {
         },
       ],
     };
-
+    const data_of_monthly_fee = {
+      labels: labels,
+      datasets: [
+        {
+          label: "New Admissions",
+          backgroundColor: "rgb(0,123,255)",
+          borderColor: "rgb(255, 99, 132)",
+          data: montly_fee,
+        },
+      ],
+    };
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
   const toggleDrop = () => {
@@ -149,7 +162,7 @@ const CoachHome=()=> {
                     <div className="col-sm-12 col-xl-6 ">
                         <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h4 className="mb-0">Monthly Attendance</h4>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Attendance</h3>
                               
                             </div>
                             <Bar data={data_monthly_attendance} options={{Response: true}} />
@@ -158,12 +171,28 @@ const CoachHome=()=> {
                     <div className="col-sm-12 col-xl-6" >
                         <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h4 className="mb-0">Monthly Admissions</h4>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Admissions</h3>
                               
                             </div>
                             <Bar data={data_of_monthly_addmission} />
                         </div>
                     </div>
+                </div>
+            </div> }
+            {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
+                <div className="row">
+                    <div className="col-sm-12 col-xl-12 ">
+                  
+                        <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                            <div className="d-flex align-items-center justify-content-between mb-4">
+                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Fee</h2>
+                              
+                            </div>
+                            <Bar data={data_of_monthly_fee} />
+                        </div>
+                      
+                    </div>
+                   
                 </div>
             </div> }
            

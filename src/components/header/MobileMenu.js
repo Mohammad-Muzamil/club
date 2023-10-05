@@ -36,7 +36,7 @@ const MobileMenu = () => {
                 <li >
                   <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
                 </li>
-                <li classname="na" >
+                <li className="na" >
                   <Link to={"/branch"} data-toggle="collapse" data-target="#brand-collapse"  >Branches</Link>
 				           
                 </li>

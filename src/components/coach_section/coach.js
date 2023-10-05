@@ -4,6 +4,7 @@ import shahbaz_ahmad from "../../assets/img/coachimages/shahbazahmad.jpg"
 import shahbaz_saleem from "../../assets/img/coachimages/shahbazsaleem.jpg"
 import majid from "../../assets/img/coachimages/majidbutt.jpeg"
 import yasir from "../../assets/img/coachimages/yasirarafat.jpg"
+import shahbaz_cover from "../../assets/gallery/shahbaz_cover.jpg"
 const Img=(prop)=>{
     return(
         <div className="col-md-3">
@@ -33,7 +34,7 @@ const Img=(prop)=>{
         <div className="container d-flex  small-screen " style={{paddingLeft:"35px"}} >
             <Img number="1" img={majid} type="Chief Coach" name="Majid Butt"/>
             <Img number="2" img={yasir} type="Chief Coach" name="Yasir Arafat"/>
-            <Img number="3" img={shahbaz_ahmad} type="Coach" name="Shahbaz Ahmad"/>
+            <Img number="3" img={shahbaz_cover} type="Coach" name="Shahbaz Ahmad"/>
             <Img number="4" img={shahbaz_saleem} type="Coach" name="Shahbaz Saleem"/>
         </div>
      </div>

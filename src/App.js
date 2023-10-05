@@ -28,6 +28,19 @@ import CoachDeletePlayerAccount from "./pages/instructor_panel/CoachDeletePlayer
 import Kata from "./pages/instructor_panel/Kata"
 import Kumite from "./pages/instructor_panel/Kumite"
 
+import AdminHome from "./pages/admin_panel/AdminHome"
+import AdminProfile from "./pages/admin_panel/AdminProfile"
+import AdminChangePassword from "./pages/admin_panel/AdminChangePassword"
+import AdminBranches from "./pages/admin_panel/AdminBranches"
+import AdminCoaches from "./pages/admin_panel/AdminCoaches";
+import AdminKata from "./pages/admin_panel/Kata";
+import AdminKumite from "./pages/admin_panel/Kumite";
+import AdminDeletePlayerAccount from "./pages/admin_panel/AdminDeletePlayerAccount"
+import AdminApproval from "./pages/admin_panel/AdminApproval"
+import AdminAttendance from"./pages/admin_panel/AdminAttendance"
+import AdminFight from"./pages/admin_panel/AdminFight"
+import AdminGallery from"./pages/admin_panel/AdminGallery"
+import AdminFees from"./pages/admin_panel/AdminFees"
 
 
 const App = (props) => {
@@ -53,12 +66,25 @@ const App = (props) => {
         <Route path="/coach-attendance" element={<CoachAttendance />} />
         <Route path="/coach-fight-result" element={<CoachFightResult />} />
         <Route path="/coach-approval" element={<CoachApproval />} />
-        <Route
-          path="/coach-delete-player-account"
-          element={<CoachDeletePlayerAccount />}
-        />
+        <Route path="/coach-delete-player-account" element={<CoachDeletePlayerAccount />}/>
         <Route path="/coach-kumite" element={<Kumite />} />
         <Route path="/coach-kata" element={<Kata />} />
+
+        <Route path="/admin" element={<AdminHome/>}/>
+        <Route path="/admin-profile" element={<AdminProfile/>}/>
+        <Route path="/admin-change-password" element={<AdminChangePassword/>}/>
+        <Route path="/admin-branches" element={<AdminBranches/>}/>
+        <Route path="/admin-coaches" element={<AdminCoaches/>}/>
+        <Route path="/admin-kata" element={<AdminKata/>}/>
+        <Route path="/admin-kumite" element={<AdminKumite/>}/>
+        <Route path="/admin-delete-account" element={<AdminDeletePlayerAccount />}/>
+        <Route path="/admin-approval" element={<AdminApproval />}/>
+        <Route path="/admin-attendance" element={<AdminAttendance />}/>
+        <Route path="/admin-fight-result" element={<AdminFight />}/>
+        <Route path="/admin-gallery" element={<AdminGallery />}/>
+        <Route path="/admin-fees" element={<AdminFees />}/>
+
+
       </Routes>
       <ToastContainer />
     </BrowserRouter>

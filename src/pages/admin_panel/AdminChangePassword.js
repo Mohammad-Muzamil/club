@@ -10,24 +10,26 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import CoachSideNavBar from "./CoachSideNavBar";
+
 import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
-import CoachHeader from './CoachHeader';
+
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader/Loader';
 import { Reset_Password } from '../../helpers/api';
+import AdminHeader from './AdminHeader';
+import AdminSideNavBar from './AdminSideNavBar';
 
-const CoachChangePassword=()=> {
+const AdminChangePassword=()=> {
  const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
   const user_details= useSelector((state) => state.user)
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
+    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
         nevigate('/login');
      }
      else{
@@ -95,29 +97,29 @@ const CoachChangePassword=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name="Muhammad Muzamil" level="National"/>}
+    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading&&<div className='container-fluid   ml-auto mr-auto mt-4 d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"10px"}} >
             <div className='col-lg-6 col-xl-6 col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1"}}>
                              
                 <h3 style={{fontWeight:"bold"}}className='text-primary' ><FontAwesomeIcon icon={faKey} style={{fontSize:"30px", paddingRight:"10px"}} className='text-primary' />Change Password</h3>
-                <div class="form-floating mb-3 mt-4">
-                    <input type={typepassword}  id="floatingInput"
+                <div className="form-floating mb-3 mt-4">
+                    <input type={typepassword} 
                     className={`form-control ${!passwordIsValid ? 'is-invalid' : ''}`}
                   
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
-                    <label for="floatingInput">Password</label>
+                    <label htmlFor="floatingInput">Password</label>
                 </div>
 
-                <div class="form-floating mb-3 mt-1 ">
-                    <input type={typepassword}   id="floatingInput"
+                <div className="form-floating mb-3 mt-1 ">
+                    <input type={typepassword}  
                     className={`form-control ${!passwordIsValid ? 'is-invalid' : ''}`}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}/>                    
-                    <label for="floatingInput">Confirm Password</label>
+                    <label htmlFor="floatingInput">Confirm Password</label>
                     
                 </div>
                 <div className='d-flex justify-content-end' style={{marginTop:"-5px"}}>
@@ -125,9 +127,9 @@ const CoachChangePassword=()=> {
                     <input type='checkBox' style={{height:"20px",width:"20px", marginTop:isMobileactive?"2px":"0px" }} onClick={handleType}/>
                 </div>
 
-                <div class="form-floating mb-3 mt-1 d-flex justify-content-end">
-                    <button type="button" class="btn m-2 btn-danger" style={{width:"120px"}} onClick={ clearAll} >Clear</button>
-                    <button type="button" class="btn btn-md btn-primary m-2"style={{width:"120px"}} onClick={handleResetClick}>Reset</button>
+                <div className="form-floating mb-3 mt-1 d-flex justify-content-end">
+                    <button type="button" className="btn m-2 btn-danger" style={{width:"120px"}} onClick={ clearAll} >Clear</button>
+                    <button type="button" className="btn btn-md btn-primary m-2"style={{width:"120px"}} onClick={handleResetClick}>Reset</button>
                 </div>
             </div>
             <div className='col-lg-6 col-xl-6 col-12 p-5'style={{ backgroundColor:"#ECECEC",borderRadius:"6px", order:isMobileactive?"1":"2"}}>
@@ -152,4 +154,4 @@ const CoachChangePassword=()=> {
   )
 }
 
-export default  CoachChangePassword;
+export default  AdminChangePassword;

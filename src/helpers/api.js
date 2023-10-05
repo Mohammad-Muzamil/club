@@ -21,6 +21,49 @@ export async function ALL_USERS_API() {
     });
   return GetResponse;
 }
+export async function GALLERY_IMAGES() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/gallery`,
+    // url: `//${window.location.host}/api/gallery`,
+    
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function ALL_BRANCHES() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/allbranches`,
+    // url: `//${window.location.host}/api/allbranches`,
+    
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
 
 
 export async function Login_API(username, password) {
@@ -146,11 +189,53 @@ export async function Reset_Password(user_name,email,password) {
   return GetResponse;
 }
 
-export async function GET_BRANCHES() {
+export async function GET_BRANCHES(branch_id) {
   var config = {
     method: 'get',
-    url: `http://127.0.0.1:8000/api/branch`,
-    // url: `//${window.location.host}/api/branch`,
+    url: `http://127.0.0.1:8000/api/allbranches/${branch_id}`,
+    // url: `//${window.location.host}/api/${brand_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function CREATE_BRANCHE(data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/createbranch`,
+    // url: `//${window.location.host}/api/createbranch`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function UPDATE_BRANCHE(data) {
+  var config = {
+    method: 'put',
+    url: `http://127.0.0.1:8000/api/createbranch`,
+    // url: `//${window.location.host}/api/createbranch`,
+    data:data,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -208,6 +293,26 @@ export async function PLAYER_Stats(branch_id) {
     });
   return GetResponse;
 }
+export async function ADMIN_PLAYER_Stats() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/adminplayersstats`,
+    // url: `//${window.location.host}/api/playersstats`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
 
 export async function GENERIC_OTP(email) {
   const data={
@@ -250,13 +355,185 @@ export async function SEND_PLAYER_DATA(data) {
   });
   return GetResponse;
 }
+export async function SEND_GALLERY_DATA(data) {
+  // let url= `//${window.location.host}/api/player`;
+  let url= `http://127.0.0.1:8000/api/gallery`;
+  const GetResponse = await axios.post(url, data, {
+    headers: {
+      'content-type': 'multipart/form-data'
+    }
+  }).then(function (response) {
+    return response;
+  })
+  .catch(function (error) {
+    return error.response;
+  });
+  return GetResponse;
+}
+export async function SEND_COACH_DATA(data) {
+  // let url= `//${window.location.host}/api/coach`;
+  let url= `http://127.0.0.1:8000/api/coach`;
+  const GetResponse = await axios.post(url, data, {
+    headers: {
+      'content-type': 'multipart/form-data'
+    }
+  }).then(function (response) {
+    return response;
+  })
+  .catch(function (error) {
+    return error.response;
+  });
+  return GetResponse;
+}
 
-// make endpoint on django
+
+export async function ALL_COACHES() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/coach`,
+    // url: `//${window.location.host}/api/coach`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ALL_PLAYERS_ADMIN(name) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/allaccounts/${name}`,
+    // url: `//${window.location.host}/api/coach`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SPECIFIC_COACH(coach_id) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/coach/${coach_id}`,
+    // url: `//${window.location.host}/api/coach/${coach_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function SPECIFIC_COACH_Update(coach_id,data) {
+  var config = {
+    method: 'put',
+    url: `http://127.0.0.1:8000/api/coach/${coach_id}`,
+    // url: `//${window.location.host}/api/coach/${coach_id}`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SPECIFIC_COACH_DELETE(coach_id) {
+  var config = {
+    method: 'delete',
+    url: `http://127.0.0.1:8000/api/coach/${coach_id}`,
+    // url: `//${window.location.host}/api/coach/${coach_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ALL_ACCOUNTS(name) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/allaccounts/${name}`,
+    // url: `//${window.location.host}/api/allaccounts/${name}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
 export async function UPCOMMING_EVENTS() {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/upcomming_events`,
     // url: `//${window.location.host}/api/upcomming_events`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function LOGOUT() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/logout`,
+    // url: `//${window.location.host}/api/logout`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -445,6 +722,93 @@ export async function ACCOUNT_APPROVED(branch_id, data) {
     url: `http://127.0.0.1:8000/api/approval/${branch_id}`,
     // url: `//${window.location.host}/api/approval/${branch_id}`,
     data:new_data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ADMIN_ATTENDANCE(branch, date,student) {
+ 
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/attendance/${branch}/${date}/${student}`,
+    // url: `//${window.location.host}/api/attendance/${branch}/${date}/${student}
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ADMIN_Fight(branch,student) {
+ 
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/fight/${branch}/${student}`,
+    // url: `//${window.location.host}/api/fight/${branch}/${student}
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function ACCOUNT_APPROVED_ADMIN( data) {
+  const new_data={
+    player:data
+  }
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/approvaladmin`,
+    // url: `//${window.location.host}/api/approvaladmin`,
+    data:new_data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function GET_INSTRUCTORS() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/instructor`,
+    // url: `//${window.location.host}/api/instructor`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

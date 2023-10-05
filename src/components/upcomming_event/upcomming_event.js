@@ -21,11 +21,11 @@ const Upcomming_Event=()=> {
    const etting=async()=>{
       await UPCOMMING_EVENTS().then((response)=>{
          if(response.status==200){
-            console.log(response.data)
+
             setlistofevents(response.data);
          }
          else{
-            console.log("Error is here")
+
          }
       });  
    }
