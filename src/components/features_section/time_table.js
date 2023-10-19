@@ -75,7 +75,7 @@ const Timetable = () => {
                     <td style={current==2? {backgroundColor:"orange"} :{} }><h5 style={current==2? {color:"white"} :{} }>Kumite</h5></td>                  
                     <td style={current==3? {backgroundColor:"orange"} :{} }><h5 style={current==3? {color:"white"} :{} }>Kata</h5></td>
                     <td style={current==4? {backgroundColor:"orange"} :{} }><h5 style={current==4? {color:"white"} :{} }>Fitness</h5></td>                  
-                    <td style={current==3 || current==2? {backgroundColor:"orange"} :{} }><h5 style={current==3? {color:"white"} :{} }>Kata & kumite</h5></td>   
+                    <td style={current==3 || current==2? {backgroundColor:"orange"} :{} }><h5 style={(current==2 ||current==3) ? {color:"white"} :{} }>Kata & kumite</h5></td>   
                     <td><h5>Competition</h5></td>
                     <td></td>
                     <td></td>

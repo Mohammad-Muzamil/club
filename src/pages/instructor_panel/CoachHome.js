@@ -43,6 +43,7 @@ const CoachHome=()=> {
 
 
   const settled_promises=async()=>{
+    setIsLoading(true);
     await PLAYER_Stats(branch_details.id).then((response)=>{
         if (response.status==200)
         {
@@ -52,7 +53,12 @@ const CoachHome=()=> {
             setDeactivePlayers(response.data.total_deactive_players)
             setmontly_admission(response.data.monthly_admissions)
             setmontly_attendance(response.data.monthly_attendance)
+            setmontly_fee(response.data.monthly_fee)
             setIsLoading(false);
+    }
+    else{
+      setIsLoading(false);
+
     }
     })
   }
@@ -96,7 +102,7 @@ const CoachHome=()=> {
       labels: labels,
       datasets: [
         {
-          label: "New Admissions",
+          label: "Total Amount",
           backgroundColor: "rgb(0,123,255)",
           borderColor: "rgb(255, 99, 132)",
           data: montly_fee,

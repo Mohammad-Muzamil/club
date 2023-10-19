@@ -59,8 +59,8 @@ const Upcomming_Event=()=> {
                    <div className="col-md-7 col-lg-7 col-12">
                       <div className="about_box " style={{marginLeft:"-1px"}}>
                          <div className="image_1">
-                            <img src={national_games} style={{maxHeight:"300px", width: "100%"}}/>
-                            {/* <img src={ `//${window.location.host}/media/` +obj.image_path}  style={{maxHeight:"300px", width: "100%"}}/> */}
+                            {/* <img src={national_games} style={{maxHeight:"300px", width: "100%"}}/> */}
+                            <img src={ `//${window.location.host}/media/` +obj.image_path}  style={{maxHeight:"300px", width: "100%"}}/>
                          </div>
                       </div>
                    </div>

@@ -97,7 +97,7 @@ const AdminHome=()=> {
       labels: labels,
       datasets: [
         {
-          label: "New Admissions",
+          label: "Total Amount",
           backgroundColor: "rgb(0,123,255)",
           borderColor: "rgb(255, 99, 132)",
           data: montly_fee,

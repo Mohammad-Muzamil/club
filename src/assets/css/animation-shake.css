@@ -147,3 +147,6 @@
   .animated-things {
     animation: shake3 0.4s ease-in-out 0s infinite;
   }
+  .dragging{
+    cursor: pointer;
+  }

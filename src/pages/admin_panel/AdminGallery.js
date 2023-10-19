@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,useRef} from 'react'
 import "../../assets/panel_css/style.css"
 import "../../assets/panel_css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.css';
@@ -26,23 +26,6 @@ import AdminSideNavBar from './AdminSideNavBar';
 import majid from "../../assets/img/coachimages/majidbutt.jpeg"
 import "../../assets/css/animation-shake.css"
 
-const ImageRow=(prop)=>{
-    const removeImagenow =()=>{
-        prop.removeImage(prop.path.name)
-    }
-    return(
-     
-        <div className=''  style={{width:"170px",height:"208px",border:"2px dashed black", backgroundColor:"white"}}>
-        <FontAwesomeIcon className='animated-things'  onClick={removeImagenow}  icon={faTrash} style={{color:"red",fontSize:"17px" ,paddingTop:"5px", fontWeight:"bold",marginLeft:"140px",zIndex:"999"}} />
-            
-
-            <div className='' >
-           
-               <img src={URL.createObjectURL(prop.path)} style={{height:"180px",width:"167px",padding:"3px",paddingBottom:"6px"}}/>
-            </div>
-        </div>
-    );
-}
 const AdminGallery=()=> {
  const nevigate = useNavigate();
   const isAuthenticated= useSelector((state) => state.login)
@@ -57,13 +40,36 @@ const AdminGallery=()=> {
        
      }
   },[]);
+  const dragItem = useRef();
+  const dragOverItem = useRef();
   const [isLoading,setIsLoading]=useState(false)
-
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
   const toggleDrop = () => {
     setDropOpen(!isDropOpen);
   };
+  const dragStart = (e, position) => {
+    dragItem.current = position;
+    e.currentTarget.classList.add('dragging');
+  };
+ 
+  const dragEnter = (e, position) => {
+    dragOverItem.current = position;
+    e.currentTarget.classList.add('dragging');
+
+  };
+ 
+  const drop = (e) => {
+    const copyListItems = [...images];
+    const dragItemContent = copyListItems[dragItem.current];
+    copyListItems.splice(dragItem.current, 1);
+    copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setimages(copyListItems);
+    e.currentTarget.classList.remove('dragging'); 
+  };
+
 const uploadimages=()=>{
     document.getElementById("uploadimages").click();
 }
@@ -82,6 +88,7 @@ setCouunt(count+list.length);
 }
 
 const removeImage=(name)=>{
+    setIsLoading(true);
     let z=[]
     for (var i=0;i<count;i++){
          if (images[i].image.name==name){
@@ -92,6 +99,7 @@ const removeImage=(name)=>{
          }
     }
     setimages(z);
+    setIsLoading(false);
 }
 
 const uploaddata=async()=>{
@@ -126,8 +134,22 @@ const uploaddata=async()=>{
         {!isLoading && <div className='container-fluid  mb-5 ml-auto mr-auto d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"20px"}} >
 
             <div   div className='w-100 d-flex p-3 flex-row  justify-content-center' style={{columnGap:"10px",rowGap:"15px" ,backgroundColor:"#ECECEC", borderRadius:"7px", flexWrap:"wrap"}}>
-                {images.map((obj)=>(
-                    <ImageRow path={obj.image} removeImage={removeImage} />
+                {images.map((obj,index)=>(
+
+                    <div className=''  style={{width:"170px",height:"208px",border:"2px dashed black", backgroundColor:"white"}} 
+                    onDragStart={(e) => dragStart(e, index)}
+                    onDragEnter={(e) => dragEnter(e, index)}
+                    onDragEnd={drop}
+                    key={index}
+                    draggable
+                    >
+                    <FontAwesomeIcon className='animated-things'  onClick={()=>removeImage(obj.image.name)}  icon={faTrash} style={{color:"red",fontSize:"17px" ,paddingTop:"5px", fontWeight:"bold",marginLeft:"140px",zIndex:"999"}} />
+                        
+                        <div className='' >
+                    
+                        <img src={URL.createObjectURL(obj.image)} style={{height:"180px",width:"167px",padding:"3px",paddingBottom:"6px"}}/>
+                        </div>
+                    </div>
                 ))}
                { count<20&& <div  className=' d-flex justify-content-center align-items-center' onClick={uploadimages} style={{width:"170px",height:"208px",border:"2px dashed black", backgroundColor:"white"}}>
                     <div>

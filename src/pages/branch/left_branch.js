@@ -1,10 +1,44 @@
-import React from 'react';
+import React ,{ lazy, Suspense } from 'react';
 import call from "../../assets/img/call-icon.png"
 import email from "../../assets/img/email-icon.png"
 import location from "../../assets/img/location-icon.png"
 import { useMediaQuery } from 'react-responsive';
 import MObileView from "./mobile_view"
 
+ {/* <iframe
+            title="Google Map"
+            frameborder="0"
+            className="parallelogram-desktop col-4"
+            style={{
+              marginLeft: '-10%',
+              height: '400px',
+
+              position: 'relative',
+              transform: 'skew(-15deg)',
+              transformOrigin: 'left',
+            }}
+            src={prop.location}
+            ></iframe> */}
+
+const MapComponent = lazy(() =>
+Promise.resolve({
+  default: ({ location }) => (
+    <iframe
+      title="Google Map"
+      frameBorder="0"
+      className="parallelogram-desktop col-4"
+      style={{
+        marginLeft: '-10%',
+        height: '400px',
+        position: 'relative',
+        transform: 'skew(-15deg)',
+        transformOrigin: 'left',
+      }}
+      src={location}
+    ></iframe>
+  ),
+})
+);
 const LeftBranchView = (prop) => {
   const isMobileModeOn = useMediaQuery({ maxWidth: 767 });
 
@@ -40,7 +74,6 @@ const LeftBranchView = (prop) => {
             style={{
               marginLeft: '-10%',
               height: '400px',
-
               position: 'relative',
               transform: 'skew(-15deg)',
               transformOrigin: 'left',

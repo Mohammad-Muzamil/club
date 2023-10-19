@@ -12,6 +12,9 @@ import Page404 from "../src/pages/page404/Page404";
 import ForgetPassword from "./pages/forget_password/forget_password";
 import SignUp from "./pages/signup/signup";
 import Branch from "./pages/branch/branch"
+import Drawzinglogin from "./pages/drawzing/drawzinglogin";
+import RegisterTeam from "./pages/drawzing/RegisterTeam";
+import Drawzing from "./pages/drawzing/drawzing";
 import Testing from "./pages/Testing";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,6 +30,8 @@ import CoachApproval from "./pages/instructor_panel/CoachApproval"
 import CoachDeletePlayerAccount from "./pages/instructor_panel/CoachDeletePlayerAccount"
 import Kata from "./pages/instructor_panel/Kata"
 import Kumite from "./pages/instructor_panel/Kumite"
+import CoachSendEmailAttendance from"./pages/instructor_panel/CoachSendEmailAttendance"
+
 
 import AdminHome from "./pages/admin_panel/AdminHome"
 import AdminProfile from "./pages/admin_panel/AdminProfile"
@@ -41,6 +46,10 @@ import AdminAttendance from"./pages/admin_panel/AdminAttendance"
 import AdminFight from"./pages/admin_panel/AdminFight"
 import AdminGallery from"./pages/admin_panel/AdminGallery"
 import AdminFees from"./pages/admin_panel/AdminFees"
+import CoachFees from"./pages/instructor_panel/CoachFees"
+import AdminEvents from"./pages/admin_panel/AdminEvents"
+import AdminCompetition from"./pages/admin_panel/AdminCompetition"
+import AdminSendAttendance from"./pages/admin_panel/AdminSendAttendance"
 
 
 const App = (props) => {
@@ -57,6 +66,9 @@ const App = (props) => {
         <Route path="/otp" element={<OTP />} />
         <Route path="/registration" element={<SignUp />} />
         <Route path="/branch" element={<Branch />} />
+        <Route path="/drawzinglogin" element={<Drawzinglogin />} />
+        <Route path="/drawzing" element={<Drawzing />} />
+        <Route path="/teamregistration" element={<RegisterTeam />} />
         <Route path="/testing" element={<Testing />} />
         <Route path="*" element={<Page404 />} />
         
@@ -65,10 +77,13 @@ const App = (props) => {
         <Route path="/coach-profile" element={<CoachProfile />} />
         <Route path="/coach-attendance" element={<CoachAttendance />} />
         <Route path="/coach-fight-result" element={<CoachFightResult />} />
+        <Route path="/coach-fees" element={<CoachFees />}/>
+
         <Route path="/coach-approval" element={<CoachApproval />} />
         <Route path="/coach-delete-player-account" element={<CoachDeletePlayerAccount />}/>
         <Route path="/coach-kumite" element={<Kumite />} />
         <Route path="/coach-kata" element={<Kata />} />
+        <Route path="/coach-send-attendance" element={<CoachSendEmailAttendance />} />
 
         <Route path="/admin" element={<AdminHome/>}/>
         <Route path="/admin-profile" element={<AdminProfile/>}/>
@@ -83,6 +98,9 @@ const App = (props) => {
         <Route path="/admin-fight-result" element={<AdminFight />}/>
         <Route path="/admin-gallery" element={<AdminGallery />}/>
         <Route path="/admin-fees" element={<AdminFees />}/>
+        <Route path="/admin-events" element={<AdminEvents />}/>
+        <Route path="/admin-competition" element={<AdminCompetition />}/>
+        <Route path="/admin-send-attendance" element={<AdminSendAttendance />}/>
 
 
       </Routes>

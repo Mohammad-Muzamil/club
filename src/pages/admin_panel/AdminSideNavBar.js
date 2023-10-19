@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding,faUser, faAngleDown,faAngleUp, faCircleDot, faCircle,
-   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash, faChalkboardTeacher, faImages, faDollar, faRupee } from '@fortawesome/free-solid-svg-icons';
+   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash, faChalkboardTeacher, faImages, faDollar, faRupee, faGamepad, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import TruncateText from '../../helpers/TruncatedText';
 import test_img from "../../assets/test_img.jpg"
@@ -39,7 +39,8 @@ const AdminSideNavBar=(prop)=>{
     const listof_profile=[{ href: '/admin-profile', text: 'Profile' },
       { href: '/admin-change-password', text: 'Change Password' },]
     const listof_player=[{ href: '/admin-attendance', text: 'Attendance' },
-      { href: '/admin-fight-result', text: 'Fight Result' },]
+      { href: '/admin-fight-result', text: 'Fight Result' },
+      { href: '/admin-send-attendance', text: 'Email Attendance' },]
     const listof_reading=[{ href: '/admin-kumite', text: 'Kumite' },
       { href: '/admin-kata', text: 'Kata' },]
       return(
@@ -68,6 +69,8 @@ const AdminSideNavBar=(prop)=>{
                         <Link to={"/admin-branches"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faBuilding} style={{paddingRight:"10px"}}/>Branches</Link>
                         <Link to={"/admin-gallery"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faImages} style={{paddingRight:"10px"}}/>Gallery</Link>
                         <Link to={"/admin-fees"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faDollar} style={{paddingRight:"10px"}}/>Fees</Link>
+                        <Link to={"/admin-events"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faGamepad} style={{paddingRight:"10px"}}/>Events</Link>
+                        <Link to={"/admin-competition"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faTrophy} style={{paddingRight:"10px"}}/>Competition</Link>
                         <SideBarDropDown icon={faPersonChalkboard} name="Players" list_of_subcategories={listof_player} />
                         <Link to={"/admin-approval"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faCircleExclamation} style={{paddingRight:"10px"}}/>Approvals</Link>
                         <Link to={"/admin-delete-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>

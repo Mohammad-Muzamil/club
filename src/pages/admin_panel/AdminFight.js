@@ -95,10 +95,11 @@ else{
 }
 
 const findAttendancewithStudent=async()=>{
+    setIsLoading(true);
     if ( branch1!=""&& std!=""){
         await ADMIN_Fight(branch1,std).then((response)=>{
             if (response.status==200){
-                console.log(response.data)
+            
                 setresult2(response.data)
             }
         })
@@ -106,6 +107,8 @@ const findAttendancewithStudent=async()=>{
     else{
         Error_light("select date or branch or student");
     }
+    setIsLoading(false);
+
 }
 
   return (

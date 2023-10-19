@@ -193,7 +193,7 @@ export async function GET_BRANCHES(branch_id) {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/allbranches/${branch_id}`,
-    // url: `//${window.location.host}/api/${brand_id}`,
+    // url: `//${window.location.host}/api/allbranches/${branch_id}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -297,7 +297,7 @@ export async function ADMIN_PLAYER_Stats() {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/adminplayersstats`,
-    // url: `//${window.location.host}/api/playersstats`,
+    // url: `//${window.location.host}/api/adminplayersstats`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -355,8 +355,24 @@ export async function SEND_PLAYER_DATA(data) {
   });
   return GetResponse;
 }
+
+export async function SEND_EVENT_DATA(data) {
+  // let url= `//${window.location.host}/api/upcomming_events`;
+  let url= `http://127.0.0.1:8000/api/upcomming_events`;
+  const GetResponse = await axios.post(url, data, {
+    headers: {
+      'content-type': 'multipart/form-data'
+    }
+  }).then(function (response) {
+    return response;
+  })
+  .catch(function (error) {
+    return error.response;
+  });
+  return GetResponse;
+}
 export async function SEND_GALLERY_DATA(data) {
-  // let url= `//${window.location.host}/api/player`;
+  // let url= `//${window.location.host}/api/gallery`;
   let url= `http://127.0.0.1:8000/api/gallery`;
   const GetResponse = await axios.post(url, data, {
     headers: {
@@ -411,7 +427,7 @@ export async function ALL_PLAYERS_ADMIN(name) {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/allaccounts/${name}`,
-    // url: `//${window.location.host}/api/coach`,
+    // url: `//${window.location.host}/api/allaccounts/${name}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -742,7 +758,7 @@ export async function ADMIN_ATTENDANCE(branch, date,student) {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/attendance/${branch}/${date}/${student}`,
-    // url: `//${window.location.host}/api/attendance/${branch}/${date}/${student}
+    // url: `//${window.location.host}/api/attendance/${branch}/${date}/${student}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -763,7 +779,7 @@ export async function ADMIN_Fight(branch,student) {
   var config = {
     method: 'get',
     url: `http://127.0.0.1:8000/api/fight/${branch}/${student}`,
-    // url: `//${window.location.host}/api/fight/${branch}/${student}
+    // url: `//${window.location.host}/api/fight/${branch}/${student}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -809,6 +825,200 @@ export async function GET_INSTRUCTORS() {
     method: 'get',
     url: `http://127.0.0.1:8000/api/instructor`,
     // url: `//${window.location.host}/api/instructor`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SEND_EMAIL_ATTENDANCE(data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/sendattendance`,
+    // url: `//${window.location.host}/api/sendattendance`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SEND_EMAIL_FEES(data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/sendfees`,
+    // url: `//${window.location.host}/api/sendfees`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+// start from here
+export async function GET_COMPEPTITIONS() {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/admincompetition`,
+    // url: `//${window.location.host}/api/admincompetition`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function DELETE_COMPEPTITIONS(id) {
+  var config = {
+    method: 'delete',
+    url: `http://127.0.0.1:8000/api/admincompetition/${id}`,
+    // url: `//${window.location.host}/api/admincompetition/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SEND_COMPEPTITIONS(data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/admincompetition`,
+    // url: `//${window.location.host}/api/admincompetition`,
+    data:data,
+    headers: {
+
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function VERIFY_COMPETITIONS_DETAILS(id,data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/admincompetition/${id}`,
+    // url: `//${window.location.host}/api/admincompetition/${id}`,
+  
+    data:data,
+    headers: {
+
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function SEND_TEAM_REGISTRATION(competition_type,data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/teamregistration/${competition_type}`,
+    // url: `//${window.location.host}/api/teamregistration/${competition_type}`,
+  
+    data:data,
+    headers: {
+
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function START_DRAWZING(id) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/teamdrawzing/${id}`,
+    // url: `//${window.location.host}api/teamdrawzing/${id}`,
+    headers: {
+
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+export async function GET_DRAWZ_DATA(id,category) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/drawzingdata/${id}/${category}`,
+    // url: `//${window.location.host}api/drawzingdata/${id}/${category}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

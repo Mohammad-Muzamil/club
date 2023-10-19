@@ -37,10 +37,10 @@ const HeaderOne = (props) => {
           </div>
           <div className="row" style={{marginTop:"-5px"}}>
 
-            <div className="col-xl-10 col-lg-10 d-none d-lg-block">
+            <div className="col-xl-11 col-lg-11 d-none d-lg-block d-xl-block">
               <NavMenu />
             </div>
-            <div className="col-xl-2 col-lg-2 col-md-6 col-7" >
+            <div className="col-xl-1 col-lg-1 col-md-6 col-7" >
               <IconGroup />
             </div>
           </div>

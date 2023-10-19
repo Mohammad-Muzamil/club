@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faAngleDown,faAngleUp, faCircleDot, faCircle,
-   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash } from '@fortawesome/free-solid-svg-icons';
+   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash, faDollar } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import TruncateText from '../../helpers/TruncatedText';
 import test_img from "../../assets/test_img.jpg"
@@ -39,7 +39,7 @@ const CoachSideNavBar=(prop)=>{
     const listof_profile=[{ href: '/coach-profile', text: 'Profile' },
       { href: '/coach-change-password', text: 'Change Password' },]
     const listof_player=[{ href: '/coach-attendance', text: 'Attendance' },
-      { href: '/coach-fight-result', text: 'Fight Result' },]
+      { href: '/coach-fight-result', text: 'Fight Result' },{ href: '/coach-send-attendance', text: 'Send E-mail' },]
     const listof_reading=[{ href: '/coach-kumite', text: 'Kumite' },
       { href: '/coach-kata', text: 'Kata' },]
       return(
@@ -65,6 +65,7 @@ const CoachSideNavBar=(prop)=>{
                         <Link to={"/coach"} className="nav-item nav-link active"><FontAwesomeIcon icon={faHome} style={{paddingRight:"10px"}}/>Dashboard</Link>
                         <SideBarDropDown icon={faUser} name="Profile" list_of_subcategories={listof_profile} />
                         <SideBarDropDown icon={faPersonChalkboard} name="Players" list_of_subcategories={listof_player} />
+                        <Link to={"/coach-fees"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faDollar} style={{paddingRight:"10px"}}/>Fees</Link>
                         <Link to={"/coach-approval"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faCircleExclamation} style={{paddingRight:"10px"}}/>Approvals</Link>
                         <Link to={"/coach-delete-player-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>
                         <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_reading} />

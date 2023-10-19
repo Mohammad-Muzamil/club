@@ -131,10 +131,14 @@ function BlurredBackgroundModal({ onImageSelect }) {
     return (
         <div className="">
            
-            <div className="col-lg-3 col-12 d-flex  flex-column justify-content-center"  onClick={handleOpenModal} style={{border:"2px dashed gray", alignItems:"center", height:"150px"}}>
+           {selectedImage==null && <div className="col-lg-3 col-12 d-flex  flex-column justify-content-center"  onClick={handleOpenModal} style={{border:"2px dashed gray", alignItems:"center", height:"150px"}}>
                 <img src={cloud} style={{height:"50px", width:"50px"}} />
                 <p style={{fontFamily: "mont", color:"#87CEEB"}}>click to upload</p>
-            </div>
+            </div>}
+           {selectedImage!=null && <div className="col-lg-3 col-12 d-flex  flex-column justify-content-center"  onClick={handleOpenModal} style={{border:"2px dashed gray", alignItems:"center", height:"150px"}}>
+                <img src={selectedImage} style={{width:"100%",maxHeight:"140px"}} />
+                
+            </div>}
 
             {showModal && (
                 <div className="modal-overlay">
@@ -191,7 +195,7 @@ const SignUp = (props) => {
       };
 
     const GETBranches=async()=>{
-      await GET_BRANCHES().then((response)=>{
+      await GET_BRANCHES("1").then((response)=>{
           if (response.status==200){
               set_total_branch(response.data)
           }
@@ -220,8 +224,8 @@ const SignUp = (props) => {
         gender: "Male",
         fatherStatus: "Alive",
         email: "",
-        playerContact: "033",
-        guardianContact: "033",
+        playerContact: "",
+        guardianContact: "",
         fatherContact: "",
         username:"",
         password: "",
@@ -311,6 +315,25 @@ const SignUp = (props) => {
                 await  SEND_PLAYER_DATA(dataforsending).then((response)=>{
                     if(response.status==200){
                         setstatus(true)
+                        setFormData({
+                            name: "",
+                            fatherName: "",
+                            cnic: "",
+                            weight: "",
+                            dob: "",
+                            doj:"",
+                            city: "Faisalabad",
+                            branch: "",
+                            gender: "Male",
+                            fatherStatus: "Alive",
+                            email: "",
+                            playerContact: "",
+                            guardianContact: "",
+                            fatherContact: "",
+                            username:"",
+                            password: "",
+                            address: "",
+                        });
                         setshowingstatus(true)
                     }
                     else{
@@ -662,7 +685,9 @@ const SignUp = (props) => {
                          <div className="d-flex flex-column " style={{alignItems:"center"}}>
                             <img src={success} style={{height:"200px", width:"250px"}}/>
                             <h4 className="text-success"  style={{fontFamily:"Ethnocentric"}}>Congratulations </h4>
-                            <h5 className="text-success"style={{fontFamily:"mont"}} >Data Uploaded Successfully </h5>
+                            <h5 className="text-success"style={{fontFamily:"mont"}} >Data Sended Successfully </h5>
+                            <h5 className="text-black"style={{fontFamily:"mont"}} >Download PKF Player Form. <a href={`//${window.location.host}/media/registrationformpkf.pdf`}><span className="text-primary">Click here</span></a> </h5>
+                            <h5 className="text-black"style={{fontFamily:"mont"}} >Submit Downloaded form to your coach.</h5>
                         </div>
                         <div className="d-flex justify-content-end pt-3" style={{columnGap:"7px"}}>
                             <Link to={"/login"}><button  className="next-btn" style={{width:"300px"}}>BACK TO LOGIN</button></Link>

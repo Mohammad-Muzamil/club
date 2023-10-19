@@ -26,9 +26,7 @@ const MobileMenu = () => {
           <img onClick={()=> setopen(true)} src={Menu} data-toggle="collapse" data-target="#menu"  />
         </div>
         </div>
-        {/* <div style={{left: open ? 0 : '100vw'}} className={` ${open ? "d-block" : "d-none"} Side-Menu`}>
-          <p onClick={()=> setopen(false)} >hell</p>  
-        </div> */}
+    
         <div  className="collapse" id="menu"  >
           <div className="main-menu">
               <nav>
@@ -63,6 +61,22 @@ const MobileMenu = () => {
                       </Link>
                       <a href={"https://www.wkf.net/structure-statutes-rules"}>
                         <li>{"Rules"}</li>
+                      </a>
+                      </ul>
+                    </li>
+                  </ul>
+                  <img className="dropdown-img" src={dropdown} />
+                </li>
+                <li >
+                  <Link to={process.env.PUBLIC_URL}>Event</Link>
+                  <ul className="mega-menu mega-menu-padding">
+                    <li className="w-100">
+                      <ul>
+                      <Link to={process.env.PUBLIC_URL + "/teamregistration"}>
+                        <li>{"Register Team"}</li>
+                      </Link>
+                      <a href={"/drawzinglogin"}>
+                        <li>{"Drawzing"}</li>
                       </a>
                       </ul>
                     </li>

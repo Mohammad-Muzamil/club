@@ -382,7 +382,6 @@ const Home = (props) => {
                 <h3>
                   WHY IS KARATE SO <span className="grey-text">IMPORTANT</span>?
                 </h3>
-<a target="_blank" href="https://icons8.com/icon/7880/location">Location</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
                 <p style={{paddingTop:'10PX'}}>
                   

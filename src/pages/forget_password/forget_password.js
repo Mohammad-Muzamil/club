@@ -10,7 +10,21 @@ import { Success, Throw_Error } from "../../helpers/NotifiyToasters";
 import { Forget_Password_OTP } from "../../helpers/api";
 import { useDispatch } from "react-redux";
 import {setOTPDATA} from "../../redux/actions/OTPActions"
+import { HashLoader,RingLoader } from 'react-spinners';
+import { useMediaQuery } from "react-responsive";
 
+
+const WebLoader=(prop)=>{
+  const isMobilemodeActive = useMediaQuery({ maxWidth:767 });
+  return(
+    <div className="col-12 d-flex justify-content-center align-items-center flex-column">
+      
+      <RingLoader color="#FFFFFF"  className={`${isMobilemodeActive?"ml-2":"ml-0"}`} size={ isMobilemodeActive?50:100}/>
+      <h4 className={`text-white mt-4 ${isMobilemodeActive?"ml-3":"ml-2"}`}>{prop.text}....</h4>
+
+    </div>
+  );
+}
 
 const ForgetPassword = (props) => {
   const dispatch=useDispatch();
@@ -19,6 +33,7 @@ const ForgetPassword = (props) => {
   const[username,setusername]=useState("")
   const[password,setpassword]=useState("")
   const [forget_portion,set_forget_portion]=useState(true);
+  const [isLoading,setIsLoading]=useState(false)
 
   const changeHandlEmail=(event)=>{
     setemail(event.target.value);
@@ -52,6 +67,7 @@ const ForgetPassword = (props) => {
       return;
     }
     await Forget_Password_OTP(username,email).then((response)=>{
+      setIsLoading(true);
       if(response.status==200){
         const data={
           email:email,
@@ -60,12 +76,14 @@ const ForgetPassword = (props) => {
           password:password,
         }
         dispatch(setOTPDATA(data));
+        setIsLoading(false);
         nevigate("/otp");
         Success("OTP Send to your mail.");
 
       }
       else{
         Throw_Error("Try Again")
+        setIsLoading(false);
       }
     });
   }
@@ -76,10 +94,15 @@ const ForgetPassword = (props) => {
         headerPaddingClass="header-padding-2"
       >
         <div className="BackgroundPicture pt-100 pb-100">
+
+   
           <div className="container">
+          {isLoading&&<WebLoader text="Sending "/>}
+
    
            
-            <div className="row d-flex justify-content-center " >
+            {!isLoading &&<div className="row d-flex justify-content-center " >
+          
             
             <div className="col-lg-6 col-12 col-md-6 login-container">
                 <div className="w-100 mt-2 ">
@@ -99,7 +122,7 @@ const ForgetPassword = (props) => {
                     
                         <h3>New Password<span style={{color:"orange"}}>*</span></h3> 
                         <p style={{color:"orange"}}>(password should contain 1 uppercase, 1 lowercase and 1 digit and minimum length is 8)</p>
-                        <input type="text" onChange={changeHandlPassword} style={{borderColor:"#ECEFF8"}} />
+                        <input type="password" onChange={changeHandlPassword} style={{borderColor:"#ECEFF8"}} />
                     </div>
                     <div className="input-container " >
                        <button className="col-12" onClick={SendOTP} >
@@ -116,7 +139,7 @@ const ForgetPassword = (props) => {
                 </div>
               
             </div>
-            </div>
+            </div>}
           </div>
         </div>
       </LayoutOne>

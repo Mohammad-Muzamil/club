@@ -23,6 +23,17 @@ export const Success_light = (message) =>
     progress: undefined,
   });
 
+export const Warning_light = (message) =>
+  toast.warning(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
 export const Error = (item) =>
   toast.error(`We have only ${item.quantity} Items`, {
     position: "top-right",

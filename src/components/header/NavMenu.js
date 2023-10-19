@@ -7,17 +7,7 @@ import { AllBrands } from"../../helpers/api";
 
 const NavMenu = (props) => {
   const [brandData, setbrandData] = useState([]);
-  // useEffect(() => {
-  //   AllBrands().then((response) => {
-  //     if (response.status === 200) {
-  //       setbrandData(response.data);
-  //     } else {
-  //       toast.error('Brands Data Not Loaded', {
-  //         // ...
-  //       });
-  //     }
-  //   });
-  // }, []);
+
   return (
     <div className={` ${`main-menu`} `}>
       <nav>
@@ -57,6 +47,23 @@ const NavMenu = (props) => {
                   </Link>
                   <a href={"https://www.wkf.net/structure-statutes-rules"}>
                     <li>{"Rules"}</li>
+                  </a>
+                </ul>
+              </li>
+            </ul>
+            <img className="dropdown-img" src={dropdown} />
+          </li>
+          <li>
+            <Link>Event</Link>
+            <ul className="mega-menu mega-menu-padding">
+              <li className="w-100">
+                <ul>
+                
+                  <Link to={process.env.PUBLIC_URL + "/teamregistration"}>
+                    <li>{"Register Team"}</li>
+                  </Link>
+                  <a href={"/drawzinglogin"}>
+                    <li>{"Drawzing"}</li>
                   </a>
                 </ul>
               </li>
