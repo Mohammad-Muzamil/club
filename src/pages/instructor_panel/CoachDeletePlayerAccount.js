@@ -21,6 +21,7 @@ import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import { PLAYER_ACCOUNTS,PLAYER_ACCOUNTS_DELETION } from '../../helpers/api';
 import Loader from '../../components/Loader/Loader';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 
 
@@ -60,9 +61,9 @@ const DeletionRow=(prop)=>{
 
 const CoachDeletePlayerAccount=()=> { 
     const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+    const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+    const user_details= decrypt(sessionStorage.getItem('inst_user'))
+    const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
   const [isLoading,setIsLoading]=useState(false)
 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
@@ -90,9 +91,10 @@ const CoachDeletePlayerAccount=()=> {
     }
   }
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
+      nevigate('/login');
+   }
      else{
         populate_data();
      }
@@ -131,9 +133,10 @@ const CoachDeletePlayerAccount=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&&user_details!=null&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
+        <Loader show={isLoading} message="Loading..."/>
             <div className='w-100 mt-4 d-flex p-3' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>
                 <input type='text' className='form-control col-lg-5 col-xl-5 col-md-5 col-8'  style={{height:"45px"}} onChange={onHandleChange} placeholder='Enter Player Username....'/>
                 <button className='btn btn-primary mt-2' style={{width:"120px", height:"45px"}} onClick={handleSarchBar} ><FontAwesomeIcon icon={faSearch} style={{paddingRight:"5px"}}/>Search</button>

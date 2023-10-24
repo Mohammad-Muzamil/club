@@ -23,6 +23,7 @@ import Loader from '../../components/Loader/Loader';
 import { ADMIN_ATTENDANCE, ADMIN_Fight, ALL_ACCOUNTS, GET_BRANCHES, PLAYER_LIST, Reset_Password } from '../../helpers/api';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
+import { decrypt } from '../../helpers/encryption_decrption';
 
 
 const AdminFight=()=> {
@@ -38,14 +39,15 @@ const AdminFight=()=> {
  const[students,setstudents]=useState([]);
  const isMobileactive = useMediaQuery({ maxWidth:767 });
  const [isDropOpen, setDropOpen] = useState(!isMobileactive);
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+ const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [showdiv,setshowdiv]=useState(true);
   const [showdiv1,setshowdiv1]=useState(false);
   const [result1,setresult1]=useState([])
   const [result2,setresult2]=useState([])
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -113,9 +115,9 @@ const findAttendancewithStudent=async()=>{
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+       {user_details!=null&& <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading&& <div className='container-fluid    ml-auto mr-auto mt-4 ' style={{columnGap:"10px", rowGap:"10px"}} >
             <div className=' col-12 p-5 d-flex  'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1",columnGap:"10px"}}>
@@ -194,7 +196,7 @@ const findAttendancewithStudent=async()=>{
 
         </div>}
         {!isLoading&&showdiv1&&<div className='container-fluid  mt-1 ml-auto mr-auto mt-4  mb-5' style={{columnGap:"10px", rowGap:"10px"}} >
-        <div className=' col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px"}}>
+        <div className=' col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px",overflowX:"scroll"}}>
         <table style={{overflowX:"scroll"}}>
             <tr>
             <th style={{fontSize:"25px",fontStyle:"italic"}}>Name</th>

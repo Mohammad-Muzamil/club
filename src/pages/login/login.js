@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import { Link, useNavigate } from "react-router-dom";
-import { ALL_USERS_API, AllBrands } from "../../helpers/api";
+import { ALL_USERS_API, AllBrands, GET_BRANCH_FOR_STUDENT } from "../../helpers/api";
 import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
@@ -14,6 +14,7 @@ import { setUser } from "../../redux/actions/userActions";
 import { setBranch } from "../../redux/actions/BranchActions";
 import { GET_BRANCH } from '../../helpers/api';
 
+import { encrypt } from "../../helpers/encryption_decrption";
 
 
 
@@ -25,11 +26,30 @@ const Login = (props) => {
   const [validuserslist,setvaliduserslist]=useState([])
   const [userid,setuserid]=useState("")
 
-  const Set_Branch=async (id)=>{
+
+  const set_std_branch=async(id)=>{
+    
+    await GET_BRANCH_FOR_STUDENT(id).then((response)=>{
+      if (response.status==200)
+      {
+        sessionStorage.setItem('ply_branch',encrypt(response.data));
+       
+      }
+      else{
+
+      }
+    })
+  }
+  const Set_Branch=async (id,person)=>{
     await GET_BRANCH(id).then((response)=>{
       if (response.status==200)
       {
-        dispatch(setBranch(response.data));
+        if (person=="i"){
+          sessionStorage.setItem('inst_branch',encrypt(response.data));
+        }
+   
+      }
+      else{
       }
     })
   }
@@ -53,7 +73,18 @@ const Login = (props) => {
   const getUser=async(user_id)=>{
     await USER_API_SELECTION(user_id).then((response)=>{
       if(response.status==200){
-        dispatch(setUser(response.data));
+        // dispatch(setUser(response.data));
+        if(response.data.user.username[0].toLowerCase() == "i"){
+          sessionStorage.setItem('inst_user',encrypt(response.data))
+
+        }else if (response.data.user.username[0].toLowerCase() =="a"){
+          sessionStorage.setItem('admin_user',encrypt(response.data))
+
+        }else if (response.data.user.username[0].toLowerCase() =="p"){
+          sessionStorage.setItem('ply_user',encrypt(response.data))
+          set_std_branch(response.data.branch_id);
+
+        }
       
       }
     });
@@ -73,14 +104,13 @@ const Login = (props) => {
       return;
     }
     let valid=false
-    console.log(validuserslist)
     validuserslist.map(ply=>{
       if(ply.username.toString().toLowerCase()==username.toString().toLowerCase()){
         getUser(ply.id);
      
         if (ply.username[0].toLowerCase()=='i')
         {
-          Set_Branch(ply.id);
+          Set_Branch(ply.id,"i");
         }
         valid=true;
         return;
@@ -89,16 +119,23 @@ const Login = (props) => {
     if(valid){
       await Login_API(username,password).then((response)=>{
         if(response.status==200){
-        let token=response.data.token // save into redux 
-        dispatch(setToken(token));
+        let token=response.data.token 
+        
+        // dispatch(setToken(token));
         if (username[0].toLowerCase()=='i')
         {
+          sessionStorage.setItem('inst_token',encrypt(token)); // added into session 
           nevigate("/coach")
         }
-        else if (username[0].toLowerCase()=='a')
-            nevigate("/admin")
-        else if (username[0].toLowerCase()=='p')
-            nevigate("/")
+        else if (username[0].toLowerCase()=='a'){
+          sessionStorage.setItem('admin_token',encrypt(token)); // added into session   
+          nevigate("/admin")
+          }
+        else if (username[0].toLowerCase()=='p'){
+          sessionStorage.setItem('ply_token',encrypt(token)); // added into session   
+          nevigate("/student")
+          }
+
         valid=false
         }
         else{
@@ -171,7 +208,7 @@ const Login = (props) => {
                     </button>
                 </div>
                 <div className=" d-flex justify-content-center" style={{marginTop:"-20px"}}>
-                    <p>Don't have account? <span style={{fontFamily:'Ethnocentric', cursor:"pointer"}}> <Link to={"/signup"}> SIGN UP</Link></span></p>
+                    <p>Don't have account? <span style={{fontFamily:'Ethnocentric', cursor:"pointer"}}> <Link to={"/registration"}> SIGN UP</Link></span></p>
                 </div>
             </div>
             </div>

@@ -22,13 +22,14 @@ import ApprovalGenericTemplate from './ApprovalGenericTemplate';
 import { useSelector } from 'react-redux';
 import {ACCOUNT_APPROVAL_LIST} from '../../helpers/api';
 import Loader from '../../components/Loader/Loader';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
-const CoachChangePassword=()=> { 
+const CoachApproval=()=> { 
 
   const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+  const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+  const user_details= decrypt(sessionStorage.getItem('inst_user'))
+  const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
   const [isLoading,setIsLoading]=useState(false)
   const [approvalsdata, setapprovaldata]=useState([])
 
@@ -48,9 +49,10 @@ const CoachChangePassword=()=> {
     setapprovaldata(listofdata);
   }
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
+      nevigate('/login');
+   }
      else{
        approval_list();
      }
@@ -65,9 +67,9 @@ const CoachChangePassword=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <CoachSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  /> 
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  /> }
         <Loader show={isLoading} message="Loading..."/>
 
             {!isLoading&&approvalsdata.map((app,index)=>(
@@ -88,4 +90,4 @@ const CoachChangePassword=()=> {
   )
 }
 
-export default  CoachChangePassword;
+export default  CoachApproval;

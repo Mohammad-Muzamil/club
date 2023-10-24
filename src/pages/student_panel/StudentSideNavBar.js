@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faAngleDown,faAngleUp, faCircleDot, faCircle,
-   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash, faDollar } from '@fortawesome/free-solid-svg-icons';
+   faPersonChalkboard,faBookOpen, faCircleExclamation, faRemove, faTrash, faDollar, faPerson, faAdjust, faIdBadge, faUserCheck, faLock, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import TruncateText from '../../helpers/TruncatedText';
 import test_img from "../../assets/test_img.jpg"
@@ -35,14 +35,14 @@ const SideBarDropDown=(prop)=>{
     </div>
     );
 }
-const CoachSideNavBar=(prop)=>{
-    const listof_profile=[{ href: '/coach-profile', text: 'Profile' },
-      { href: '/coach-change-password', text: 'Change Password' },]
-    const listof_player=[{ href: '/coach-attendance', text: 'Attendance' },
-      { href: '/coach-fight-result', text: 'Fight Result' },{ href: '/coach-send-attendance', text: 'Send E-mail' },
-      { href: '/coach-players-profiles', text: 'Player Profile' },]
-    const listof_reading=[{ href: '/coach-kumite', text: 'Kumite' },
-      { href: '/coach-kata', text: 'Kata' },]
+const StudentSideNavBar=(prop)=>{
+    const listof_profile=[{ href: '/student-profile', text: 'Profile' },
+      { href: '/student-change-password', text: 'Change Password' },]
+    const listof_player=[{ href: '/student-attendance', text: 'Attendance' },
+      { href: '/student-fight-result', text: 'Fight Result' }
+      ]
+    const listof_reading=[{ href: '/student-kumite', text: 'Kumite' },
+      { href: '/student-kata', text: 'Kata' },]
       return(
         <div className="sidebar pe-4 pb-3">
                 <nav className="s-nav navbar ">
@@ -63,12 +63,14 @@ const CoachSideNavBar=(prop)=>{
                     </div>
                     </div>
                     <div className="navbar-nav w-100">
-                        <Link to={"/coach"} className="nav-item nav-link active"><FontAwesomeIcon icon={faHome} style={{paddingRight:"10px"}}/>Dashboard</Link>
-                        <SideBarDropDown icon={faUser} name="Profile" list_of_subcategories={listof_profile} />
-                        <SideBarDropDown icon={faPersonChalkboard} name="Players" list_of_subcategories={listof_player} />
-                        <Link to={"/coach-fees"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faDollar} style={{paddingRight:"10px"}}/>Fees</Link>
-                        <Link to={"/coach-approval"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faCircleExclamation} style={{paddingRight:"10px"}}/>Approvals</Link>
-                        <Link to={"/coach-delete-player-account"} className="nav-item nav-link  mt-4"><FontAwesomeIcon icon={faTrash} style={{paddingRight:"10px"}}/>Delete Account</Link>
+                        <Link to={"/student"} className="nav-item nav-link active"><FontAwesomeIcon icon={faHome} style={{paddingRight:"10px"}}/>Dashboard</Link>
+                        {/* <SideBarDropDown icon={faUser} name="Profile" list_of_subcategories={listof_profile} /> */}
+                        <Link to={"/student-profile"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faUser} style={{paddingRight:"10px"}}/>Profile</Link>
+                        <Link to={"/student-change-password"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faLock} style={{paddingRight:"10px"}}/>Change Password</Link>
+                        <Link to={"/student-attendance"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faUserCheck} style={{paddingRight:"10px"}}/>Attendance</Link>
+                        <Link to={"/student-fight-result"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faPersonChalkboard} style={{paddingRight:"10px"}}/>Fight Results</Link>
+
+                        <Link to={"/student-fees"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faMoneyBill} style={{paddingRight:"10px"}}/>Fees</Link>
                         <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_reading} />
                     </div>
                 </nav>
@@ -76,4 +78,4 @@ const CoachSideNavBar=(prop)=>{
       )
 }
 
-export default CoachSideNavBar;
+export default StudentSideNavBar;

@@ -23,16 +23,18 @@ import Kicks from '../../components/features_section/KIcks';
 import Stance from '../../components/features_section/Stance';
 import Blocks from '../../components/features_section/Blocks';
 import { useSelector } from 'react-redux';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 
 
 const Kumite=()=> {
     const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-
-  const user_details= useSelector((state) => state.user)
+    const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+    const user_details= decrypt(sessionStorage.getItem('inst_user'))
+    const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
         nevigate('/login');
      }
      else{
@@ -52,17 +54,17 @@ const Kumite=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
              <div className='w-100 d-flex mt-4 p-3 justify-content-center ' style={{backgroundColor:"#ECECEC",columnGap:"10px",flexWrap:"wrap"}}>
-                <p className={` mt-2 text-center ${number==1?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(1)} >ALL</p>
-                <p className={` mt-2 text-center ${number==2?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(2)} >BELTS</p>
-                <p className={` mt-2 text-center ${number==3?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(3)} >KASHAN</p>
-                <p className={` mt-2 text-center ${number==4?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(4)} >BLOCKS</p>
-                <p className={` mt-2 text-center ${number==5?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(5)} >KICKS</p>
-                <p className={` mt-2 text-center ${number==6?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(6)} >PUNCHES</p>
-                <p className={` mt-2 text-center ${number==7?"search-value-active" :"search-value"}`} style={{fontSize:"18px"}}  onClick={()=>setnumber(7)} >GENERAL</p>
+                <p className={` mt-2 text-center ${number==1?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(1)} >ALL</p>
+                <p className={` mt-2 text-center ${number==2?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(2)} >BELTS</p>
+                <p className={` mt-2 text-center ${number==3?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(3)} >KASHAN</p>
+                <p className={` mt-2 text-center ${number==4?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(4)} >BLOCKS</p>
+                <p className={` mt-2 text-center ${number==5?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(5)} >KICKS</p>
+                <p className={` mt-2 text-center ${number==6?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(6)} >PUNCHES</p>
+                <p className={` mt-2 text-center ${number==7?"search-value-active" :"search-value"}`} style={{fontSize:"18px",cursor:"pointer"}}  onClick={()=>setnumber(7)} >GENERAL</p>
                 
             </div>
             {number==1&&

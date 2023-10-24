@@ -24,13 +24,13 @@ import {ACCOUNT_APPROVAL_LIST, ALL_PLAYERS_ADMIN} from '../../helpers/api';
 import Loader from '../../components/Loader/Loader';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
+import { decrypt } from '../../helpers/encryption_decrption';
 
 const AdminApproval=()=> { 
 
   const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+  const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+  const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [isLoading,setIsLoading]=useState(false)
   const [approvalsdata, setapprovaldata]=useState([])
 
@@ -50,9 +50,10 @@ const AdminApproval=()=> {
     setapprovaldata(listofdata);
   }
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
+      nevigate('/login');
+   }
      else{
        approval_list();
      }
@@ -67,9 +68,9 @@ const AdminApproval=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  /> 
+        {user_details!=null&&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  /> }
         <Loader show={isLoading} message="Loading..."/>
 
             {!isLoading&&approvalsdata.map((app,index)=>(

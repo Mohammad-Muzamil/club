@@ -7,8 +7,6 @@ import dropdown  from "../../assets/img/icons/dropdown.png"
 
 const SocialMediaGroup = (props) => {
 
-
-
   return (
     <div className={`header-right-wrap`}>
 
@@ -22,9 +20,10 @@ const SocialMediaGroup = (props) => {
         <img src={Instagram}/>
       </div>
 
-      <div className="social-icon">
+      <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank"><div className="social-icon">
         <img src={Telegram}/>
       </div>
+      </a>
 
     </div>
   );

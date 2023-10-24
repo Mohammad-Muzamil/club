@@ -23,6 +23,7 @@ import Loader from '../../components/Loader/Loader';
 import { ADMIN_ATTENDANCE, ALL_ACCOUNTS, GET_BRANCHES, PLAYER_LIST, Reset_Password } from '../../helpers/api';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
+import { decrypt } from '../../helpers/encryption_decrption';
 
 
 const AdminAttendance=()=> {
@@ -38,14 +39,15 @@ const AdminAttendance=()=> {
  const[students,setstudents]=useState([]);
  const isMobileactive = useMediaQuery({ maxWidth:767 });
  const [isDropOpen, setDropOpen] = useState(!isMobileactive);
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+ const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [showdiv,setshowdiv]=useState(true);
   const [showdiv1,setshowdiv1]=useState(false);
   const [result1,setresult1]=useState([])
   const [result2,setresult2]=useState([])
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -91,7 +93,7 @@ const findAttendancewithStudent=async()=>{
     if (date1!=null && branch1!=""&& std!=""){
         await ADMIN_ATTENDANCE(branch1,date1,std).then((response)=>{
             if (response.status==200){
-                console.log(response.data)
+            
                 setresult2(response.data)
             }
         })
@@ -103,9 +105,9 @@ const findAttendancewithStudent=async()=>{
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+       {user_details!=null&& <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading&& <div className='container-fluid    ml-auto mr-auto mt-4 ' style={{columnGap:"10px", rowGap:"10px"}} >
             <div className=' col-12 p-5 d-flex  'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1",columnGap:"10px"}}>

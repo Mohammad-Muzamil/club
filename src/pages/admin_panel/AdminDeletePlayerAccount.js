@@ -23,13 +23,14 @@ import { ALL_ACCOUNTS, PLAYER_ACCOUNTS,PLAYER_ACCOUNTS_DELETION } from '../../he
 import Loader from '../../components/Loader/Loader';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
+import { decrypt } from '../../helpers/encryption_decrption';
 
 
 const DeletionRow=(prop)=>{
     const functtorenew=prop.callback;
     const deleteStudent= async()=>{
         // call the api for soft deletion of student 
-        await PLAYER_ACCOUNTS_DELETION(prop.branch,prop.id).then((response)=>{
+        await PLAYER_ACCOUNTS_DELETION("1",prop.id).then((response)=>{
             if(response.status==200)
             {
                 functtorenew(response.data);
@@ -61,9 +62,8 @@ const DeletionRow=(prop)=>{
 
 const AdminDeletePlayerAccount=()=> { 
     const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+    const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+    const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [isLoading,setIsLoading]=useState(false)
 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
@@ -91,9 +91,10 @@ const AdminDeletePlayerAccount=()=> {
     }
   }
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
+      nevigate('/login');
+   }
      else{
         populate_data();
      }
@@ -132,16 +133,16 @@ const AdminDeletePlayerAccount=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <div className='w-100 mt-4 d-flex p-3' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>
                 <input type='text' className='form-control col-lg-5 col-xl-5 col-md-5 col-8'  style={{height:"45px"}} onChange={onHandleChange} placeholder='Enter Player Name....'/>
                 <button className='btn btn-primary mt-2' style={{width:"120px", height:"45px"}} onClick={handleSarchBar} ><FontAwesomeIcon icon={faSearch} style={{paddingRight:"5px"}}/>Search</button>
             </div>
             {!isLoading&&<div className='w-100 mt-2 p-3' style={{height:"300px"}}>
                 {listofplayers.map(std=>(
-                    <DeletionRow branch={branch_details.id} name={std.player_name} username={std.user.username} image={std.profile_image} id={std.user.id} contact={std.player_contact_no} callback={renew_data} />
+                    <DeletionRow  name={std.player_name} username={std.user.username} image={std.profile_image} id={std.user.id} contact={std.player_contact_no} callback={renew_data} />
                 ))}
                 
             </div>}

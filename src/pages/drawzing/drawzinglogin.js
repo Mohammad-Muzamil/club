@@ -8,13 +8,13 @@ import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
 import { Error_light, Success, Success_light, Throw_Error, Warning_light } from "../../helpers/NotifiyToasters";
 import { Forget_Password_OTP } from "../../helpers/api";
-import { useDispatch } from "react-redux";
 import {setOTPDATA} from "../../redux/actions/OTPActions"
 import { HashLoader,RingLoader } from 'react-spinners';
 import { useMediaQuery } from "react-responsive";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { setDrawz } from "../../redux/actions/DrawzActions";
+import { encrypt } from '../../helpers/encryption_decrption';
 
 
 
@@ -31,7 +31,7 @@ const WebLoader=(prop)=>{
 }
 
 const Drawzinglogin = (props) => {
-  const dispatch=useDispatch();
+
   const nevigate=useNavigate();
   const [isLoading,setIsLoading]=useState(false)
   const [competition,setcompetition]=useState([])
@@ -85,7 +85,8 @@ const sendCredentials=async()=>{
                           break;
                       }
                   }
-                  dispatch(setDrawz(temp));
+                  sessionStorage.setItem('drawz_info',encrypt(temp));
+               
                   setIsLoading(false);
                   nevigate("/drawzing")
             }

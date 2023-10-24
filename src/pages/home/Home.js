@@ -9,6 +9,7 @@ import rightbutton from "../../assets/img/buttons/arrow-square-right.png";
 import leftbutton from "../../assets/img/buttons/arrow-square-left.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { encrypt } from "../../helpers/encryption_decrption";
 
 import { Throw_Error, Warning, Success } from "../../helpers/NotifiyToasters";
 
@@ -63,11 +64,9 @@ const Home = (props) => {
       setImageSrc(myStory);
     }
   };
-
-
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
+      
 
     handleResize();
     return () => window.removeEventListener('resize', handleResize);

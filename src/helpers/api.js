@@ -1034,3 +1034,67 @@ export async function GET_DRAWZ_DATA(id,category) {
     });
   return GetResponse;
 }
+
+export async function CONATCT_US_DATA(data) {
+  var config = {
+    method: 'post',
+    url: `http://127.0.0.1:8000/api/contactus/`,
+    // url: `//${window.location.host}/api/contactus/`,
+    data:data,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function GET_BRANCH_FOR_STUDENT(branch_id) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/branches/${branch_id}`,
+    // url: `//${window.location.host}/api/branches/${branch_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}
+
+export async function SINGLE_PLAYER_STATS(player_id) {
+  var config = {
+    method: 'get',
+    url: `http://127.0.0.1:8000/api/Singleplayersstats/${player_id}`,
+    // url: `//${window.location.host}/Singleplayersstats/${player_id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  };
+
+  const GetResponse = await axios(config)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+  return GetResponse;
+}

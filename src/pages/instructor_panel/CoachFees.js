@@ -23,21 +23,23 @@ import Loader from '../../components/Loader/Loader';
 import { PLAYER_ACCOUNTS, Reset_Password, SEND_EMAIL_FEES } from '../../helpers/api';
 import plus from "../../assets/img/plus.png"
 import minus from "../../assets/img/minus.png"
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 const CoachFees=()=> {
  const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+ const user_details= decrypt(sessionStorage.getItem('inst_user'))
+ const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
 
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
+      nevigate('/login');
+   }
      else{
        
      }
   },[]);
-  const branch_details= useSelector((state) => state.branch)
   const[date,setdate]=useState("")
 
   const isMobileactive = useMediaQuery({ maxWidth:767 });
@@ -159,9 +161,9 @@ const CoachFees=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Please wait fee is sending through mails"/>
         {!isLoading&&
         <div className='container-fluid  mt-1 ml-auto mr-auto mt-4  mb-5 d-flex flex-lg-row flex-xl-row flex-md-row flex-column flex-wrap justify-content-between ' style={{rowGap:"20px"}} >

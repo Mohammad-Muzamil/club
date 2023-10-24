@@ -31,7 +31,7 @@ const FooterOne = (props) => {
             Delivering exceptional user support to ensure seamless experiences and satisfaction.
             </p>
 
-            <p className="email-support">NYKAF@gmail.com</p>
+            <p className="email-support">youthkarateacademies@gmail.com</p>
           </div>
 
           <div className="row footer-end col-xl-7 col-lg-7 col-sm-8 m-0">
@@ -50,7 +50,7 @@ const FooterOne = (props) => {
                   <ul>
                     <li>
                       <img src={Telegram} />
-                      <Link to={process.env.PUBLIC_URL + "/"}>Youtube</Link>
+                      <a href={"https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg"} target="_blank">Youtube</a>
                     </li>
                     <li>
                       <img src={Instagram} />
@@ -60,7 +60,7 @@ const FooterOne = (props) => {
                       <img src={FaceBook} />
                       <Link to={process.env.PUBLIC_URL + "/"}>Facebook</Link>
                     </li>
-                    <li>
+                    <li onClick={()=>{ window.location.href = "mailto:youthkarateacademies@gmail.com";}}>
                       <img src={mail} />
                       <Link to={process.env.PUBLIC_URL + "/"}>Email</Link>
                     </li>
@@ -97,8 +97,8 @@ const FooterOne = (props) => {
                   
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/branches"}>
-                        Brnaches
+                      <Link to={process.env.PUBLIC_URL + "/branch"}>
+                        Branches
                       </Link>
                     </li>
                 

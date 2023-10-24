@@ -23,17 +23,20 @@ import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader/Loader';
 import { ADMIN_PLAYER_Stats } from '../../helpers/api';
 import { PieChart } from 'react-minimal-pie-chart';
+import { decrypt } from '../../helpers/encryption_decrption';
+import { Radar } from "react-chartjs-2";
+
 
 
 const AdminHome=()=> {
     // react-cssfx-loading
   const [isLoading,setIsLoading]=useState(true)
   const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
- 
-  const user_details= useSelector((state) => state.user)
 
-  const branch_details= useSelector((state) => state.branch)
+
+  const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+  const user_details= decrypt(sessionStorage.getItem('admin_user'));
+
   const [players,setplayers]=useState(0)
   const [activePlayers,setActivePlayers]=useState(0)
   const [deactivePlayers,setDeactivePlayers]=useState(0)
@@ -43,6 +46,7 @@ const AdminHome=()=> {
   const [montly_fee,setmontly_fee]=useState([0,0,0,0,0,0,0,0,0,0,0,0])
 
   const settled_promises=async()=>{
+    setIsLoading(true);
     await ADMIN_PLAYER_Stats().then((response)=>{
         if (response.status==200)
         {
@@ -56,11 +60,15 @@ const AdminHome=()=> {
             setBranches(response.data.total_branches);
             setIsLoading(false);
         }
+        else{
+          setIsLoading(false);
+        }
     })
   }
 
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a' ){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -69,6 +77,13 @@ const AdminHome=()=> {
      }
 
   },[]);
+  const options = {
+    scales: {
+      r: {
+        beginAtZero: true,
+      },
+    },
+  };
     const labels = ["January", "February", "March", "April", "May", "June","July","August","September","October","November","December"];
     const data_monthly_attendance = {
       labels: labels,
@@ -93,14 +108,18 @@ const AdminHome=()=> {
         },
       ],
     };
-    const data_of_monthly_fee = {
-      labels: labels,
+    const data_of_monthly_fee  = {
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       datasets: [
         {
-          label: "Total Amount",
-          backgroundColor: "rgb(0,123,255)",
-          borderColor: "rgb(255, 99, 132)",
-          data: montly_fee,
+          label: "Monthly Fees",
+          data:montly_fee,
+          backgroundColor: "#007BFF",
+          borderColor: "rgba(75, 192, 192, 1)",
+          pointBackgroundColor: "#007BFF",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(75, 192, 192, 1)",
         },
       ],
     };
@@ -113,9 +132,9 @@ const AdminHome=()=> {
 
   return (
     <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar name={user_details.name} level="Admin" image_path={user_details.profile_image} />}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar name={user_details.name} level="Admin" image_path={user_details.profile_image} />}
         <div className="content">
-          <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />
+          {user_details!=null &&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />}
           <Loader show={isLoading} message="Loading..."/>
           
            {!isLoading&& <div className="container-fluid pt-4 px-4">
@@ -164,7 +183,7 @@ const AdminHome=()=> {
                     <div className="col-sm-12 col-xl-6 ">
                         <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Attendance</h3>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ATTENDANCE</h3>
                               
                             </div>
                             <Bar data={data_monthly_attendance} options={{Response: true}} />
@@ -173,7 +192,7 @@ const AdminHome=()=> {
                     <div className="col-sm-12 col-xl-6" >
                         <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Admissions</h3>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ADMISSIONS</h3>
                               
                             </div>
                             <Bar data={data_of_monthly_addmission} />
@@ -182,22 +201,34 @@ const AdminHome=()=> {
                 </div>
             </div> }
             {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
-                <div className="row">
-                    <div className="col-sm-12 col-xl-12 ">
+                <div className="row" style={{minHeight:"300px",maxHeight:"300px"}}>
+                    <div className="col-sm-12 col-xl-6 col-lg-6 mt-4  ">
             
                           
                              <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Fee</h2>
+                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
                               
                             </div>
                             <Bar data={data_of_monthly_fee} />
                         </div>
                  
                     </div>
+                    <div className="col-sm-12 col-xl-6 col-lg-6 mt-4 mb-5">
+                  
+                  <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                      <div className="d-flex align-items-center justify-content-between mb-4 w-100">
+                          <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
+                        
+                      </div>
+                
+                      <Radar data={data_of_monthly_fee } options={options}style={{minHeight:"215px",maxHeight:"215px"}}  />
+                  </div>
+              </div>
                    
                 </div>
             </div> }
+            
            
           
         

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Cart from "../../assets/img/icons/Cart.png"
 import search from "../../assets/img/icons/search.png"
 import Avatar from "../../assets/img/icons/Avatar.png"
-
+import dropdown from "../../assets/img/icons/dropdown.png";
 
 const IconGroup = (props) => {
   const triggerMobileMenu = () => {
@@ -37,7 +37,7 @@ const IconGroup = (props) => {
             className="navBarLogo "
           
           />
-
+          
           </Link>
         </div>
       </div>

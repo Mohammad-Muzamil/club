@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import {setOTPDATA} from "../../redux/actions/OTPActions"
 import { HashLoader,RingLoader } from 'react-spinners';
 import { useMediaQuery } from "react-responsive";
+import { decrypt,encrypt } from '../../helpers/encryption_decrption';
 
 
 const WebLoader=(prop)=>{
@@ -66,8 +67,8 @@ const ForgetPassword = (props) => {
       Throw_Error("Invalid Email");
       return;
     }
+    setIsLoading(true);
     await Forget_Password_OTP(username,email).then((response)=>{
-      setIsLoading(true);
       if(response.status==200){
         const data={
           email:email,
@@ -75,10 +76,10 @@ const ForgetPassword = (props) => {
           otp:response.data.message,
           password:password,
         }
-        dispatch(setOTPDATA(data));
+        sessionStorage.setItem('otp_data',encrypt(data));
         setIsLoading(false);
-        nevigate("/otp");
         Success("OTP Send to your mail.");
+        nevigate("/otp");
 
       }
       else{

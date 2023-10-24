@@ -24,6 +24,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import CoachHome from "./pages/instructor_panel/CoachHome"
 import CoachChangePassword from "./pages/instructor_panel/CoachChangePassword"
 import CoachProfile from "./pages/instructor_panel/CoachProfile"
+import CoachPlayersProfiles from "./pages/instructor_panel/CoachPlayersProfiles"
 import CoachAttendance from "./pages/instructor_panel/CoachAttendance"
 import CoachFightResult from "./pages/instructor_panel/CoachFightResult"
 import CoachApproval from "./pages/instructor_panel/CoachApproval"
@@ -51,6 +52,14 @@ import AdminEvents from"./pages/admin_panel/AdminEvents"
 import AdminCompetition from"./pages/admin_panel/AdminCompetition"
 import AdminSendAttendance from"./pages/admin_panel/AdminSendAttendance"
 
+import StudentHome from "./pages/student_panel/StudentHome"
+import StudentProfile from "./pages/student_panel/StudentProfile"
+import StudentChangePassword from "./pages/student_panel/StudentChangePassword"
+import StudentKata from "./pages/student_panel/Kata"
+import Studentkumite from "./pages/student_panel/Kumite"
+import StudentAttendance from "./pages/student_panel/StudentAttendance";
+import StudentFight from "./pages/student_panel/StudentFight";
+import StudentFee from "./pages/student_panel/StudentFee";
 
 const App = (props) => {
   return (
@@ -75,6 +84,7 @@ const App = (props) => {
         <Route path="/coach" element={<CoachHome />} />
         <Route path="/coach-change-password" element={<CoachChangePassword />} />
         <Route path="/coach-profile" element={<CoachProfile />} />
+        <Route path="/coach-players-profiles" element={<CoachPlayersProfiles />} />
         <Route path="/coach-attendance" element={<CoachAttendance />} />
         <Route path="/coach-fight-result" element={<CoachFightResult />} />
         <Route path="/coach-fees" element={<CoachFees />}/>
@@ -101,6 +111,15 @@ const App = (props) => {
         <Route path="/admin-events" element={<AdminEvents />}/>
         <Route path="/admin-competition" element={<AdminCompetition />}/>
         <Route path="/admin-send-attendance" element={<AdminSendAttendance />}/>
+
+        <Route path="/student" element={<StudentHome/>}/>
+        <Route path="/student-profile" element={<StudentProfile/>}/>
+        <Route path="/student-change-password" element={<StudentChangePassword/>}/>
+        <Route path="/student-kata" element={<StudentKata/>}/>
+        <Route path="/student-kumite" element={<Studentkumite/>}/>
+        <Route path="/student-attendance" element={<StudentAttendance/>}/>
+        <Route path="/student-fight-result" element={<StudentFight/>}/>
+        <Route path="/student-fees" element={<StudentFee/>}/>
 
 
       </Routes>

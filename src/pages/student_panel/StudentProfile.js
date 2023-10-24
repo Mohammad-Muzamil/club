@@ -16,27 +16,29 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-
+import StudentSideNavBar from "./StudentSideNavBar";
 import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
-
+import StudentHeader from './StudentHeader';
 import "../../assets/css/profile.css"
-import AdminHeader from './AdminHeader';
-import AdminSideNavBar from './AdminSideNavBar';
 
 
 
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
-import { decrypt } from '../../helpers/encryption_decrption';
-const AdminProfile=()=> {
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
+
+const StudentProfile=()=> {
     const nevigate = useNavigate();
-    const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
-    const user_details= decrypt(sessionStorage.getItem('admin_user'));
+    const isAuthenticated= decrypt(sessionStorage.getItem('ply_token'))
+    const user_details= decrypt(sessionStorage.getItem('ply_user'))
+    const branch_details= decrypt(sessionStorage.getItem('ply_branch'))
+  
+
   useEffect(()=>{
-    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='p' ){
     
         nevigate('/login');
      }
@@ -54,9 +56,9 @@ const AdminProfile=()=> {
  
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& user_details!=null&&<AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&&  user_details!=null&&<StudentSideNavBar  name={user_details.player_name} level="Player"  image_path={user_details.profile_image}/>}
         <div className="content">
-        {user_details!=null&&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />}
+        {user_details!=null&&<StudentHeader onClickHandler={toggleDrop} name={user_details.player_name} total_events={"5"} image_path={user_details.profile_image}  />}
             
         <div className='container-fluid mt-4' style={{}} >
 
@@ -71,12 +73,11 @@ const AdminProfile=()=> {
                         <div className="card shadow-sm"style={{backgroundColor:"#ECECEC", border:"1px solid #ECECEC"}}>
                         <div className="card-header bg-transparent text-center">
                             <img className="profile_img" src={ `//${window.location.host}/media/` +user_details.profile_image} alt="coach dp"/>
-                            <h3 className='text-primary' >{user_details.name}</h3>
+                            <h3 className='text-primary' >{user_details.player_name}</h3>
                         </div>
                         <div className="card-body">
-                            <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>Designation:</strong>Head</p>
+                            <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>PKF-ID:</strong>{user_details.coach_pkf_id}</p>
                             <p className="mb-0" style={{color:"gray"}} ><strong className="pr-1" style={{color:"black"}}>username:</strong>{user_details.user.username}</p>
-                   
 
                         </div>
                         </div>
@@ -91,12 +92,12 @@ const AdminProfile=()=> {
                             <tr className='col-12'>
                                 <th style={{width:"30%"}}>CNIC</th>
                               
-                                <td>{user_details.cnic}</td>
+                                <td>{user_details.player_cnic}</td>
                             </tr>
                             <tr>
                                 <th style={{width:"30%"}}>Contact	</th>
                                
-                                <td>{user_details.phone_number}</td>
+                                <td>{user_details.player_contact_no}</td>
                             </tr>
                             <tr>
                                 <th style={{width:"30%"}}>Gender</th>
@@ -106,7 +107,12 @@ const AdminProfile=()=> {
                             <tr>
                                 <th style={{width:"30%"}}>DOB</th>
                               
-                                <td>{user_details.DOB}</td>
+                                <td>{user_details.date_of_birth}</td>
+                            </tr>
+                            <tr>
+                                <th style={{width:"30%"}}>Age</th>
+                              
+                                <td>{user_details.age}</td>
                             </tr>
                           
                             </table>
@@ -152,4 +158,4 @@ const AdminProfile=()=> {
   )
 }
 
-export default  AdminProfile;
+export default  StudentProfile;

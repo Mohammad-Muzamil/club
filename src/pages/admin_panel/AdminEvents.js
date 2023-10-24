@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import "../../assets/panel_css/style.css"
 import "../../assets/panel_css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.css';
@@ -24,13 +24,15 @@ import { Reset_Password, SEND_EVENT_DATA } from '../../helpers/api';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
 import imgeve from "../../assets/img/camera.png"
+import { decrypt } from '../../helpers/encryption_decrption';
 
 const AdminEvents=()=> {
  const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+ const user_details= decrypt(sessionStorage.getItem('admin_user'));
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -93,9 +95,9 @@ const sendeventdata=async()=>{
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+       {user_details!=null&& <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>         
         {!isLoading&&
         <div className='container-fluid  mt-1 ml-auto mr-auto mt-4  mb-5' style={{columnGap:"10px", rowGap:"10px"}}>

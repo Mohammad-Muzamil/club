@@ -20,18 +20,19 @@ import tekki from "../../assets/img/tekki1.gif"
 import { useSelector } from 'react-redux';
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
+import { decrypt } from '../../helpers/encryption_decrption';
 
 
 
 const Kata=()=> {
   const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-
-  const user_details= useSelector((state) => state.user)
+  const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+  const user_details= decrypt(sessionStorage.getItem('admin_user'));
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
+      nevigate('/login');
+   }
      else{
        
      }
@@ -47,9 +48,9 @@ const Kata=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null &&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
           
             <div className='w-100 pl-lg-5 pr-lg-5 pb-3 mt-4' style={{backgroundColor:"#ECECEC", marginTop:"-10px", overflowX:"scroll"}}>
                 <div className='w-100 d-flex justify-content-center ' >

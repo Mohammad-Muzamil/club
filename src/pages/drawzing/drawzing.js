@@ -13,8 +13,9 @@ import {setOTPDATA} from "../../redux/actions/OTPActions"
 import { HashLoader,RingLoader ,BarLoader,GridLoader } from 'react-spinners';
 import { useMediaQuery } from "react-responsive";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt } from "@fortawesome/free-solid-svg-icons";
+import { faBolt, faL } from "@fortawesome/free-solid-svg-icons";
 import { setDrawz } from "../../redux/actions/DrawzActions";
+import { decrypt } from '../../helpers/encryption_decrption';
 
 
 
@@ -51,7 +52,7 @@ const Drawzing = (props) => {
   const [IsGridLoading,setIsGridLoading]=useState(false)
   const [competition,setcompetition]=useState([])
   const [weight,setweight]=useState([])
-  const drawz_data= useSelector((state) => state.drawz)
+  const drawz_data= decrypt(sessionStorage.getItem('drawz_info'))
   const [status,setstatus]=useState(false)
 
   const [isfight,setisfight]=useState(false)
@@ -119,13 +120,16 @@ const Drawzing = (props) => {
     await GET_DRAWZ_DATA(drawz_data.id,"Team Kumite").then((response)=>{
         if (response.status==200){
             settotalteamkumitecategory(response.data);
+            setIsGridLoading(false);
         }
         else{
             Throw_Error("Enable To Load Drawz")
+            setIsGridLoading(false);
         }
     })
     setIsGridLoading(false);
   }
+
   const ChampionshipIniliatation=async()=>{
     setIsGridLoading(true);
     await GET_DRAWZ_DATA(drawz_data.id,"Championship").then((response)=>{
@@ -135,15 +139,19 @@ const Drawzing = (props) => {
             settotalteamkatacategory(response.data.team_kata)
             settotalkatacategory(response.data.individual_kata);
             settotalweightcategory(response.data.fight_weights);
+        setIsGridLoading(false);
+
         }
         else{
             Throw_Error("Enable To Load Drawz")
+        setIsGridLoading(false);
+
         }
     })
     setIsGridLoading(false);
   }
   useEffect(()=>{
-    if (!drawz_data.hasOwnProperty('id') ||
+    if (drawz_data ==null || !drawz_data.hasOwnProperty('id') ||
     !drawz_data.hasOwnProperty('competition_name') ||
     !drawz_data.hasOwnProperty('date') ||
     !drawz_data.hasOwnProperty('password') ||
@@ -172,7 +180,7 @@ const Drawzing = (props) => {
 },[])
 
   const logoutfunc=()=>{
-    dispatch(setDrawz({}));
+    sessionStorage.removeItem('drawz_info');
     nevigate("/drawzinglogin")
     Success("Logout Successfully")
   }
@@ -307,9 +315,6 @@ const startdrawzingfunc=async()=>{
             {!isMobileactive&&<h1 className="mt-2" style={{fontFamily: "Ethnocentric"}}>MATCH FIXTURES</h1>}
             {isMobileactive&&<h4 className="mt-2" style={{fontFamily: "Ethnocentric"}}>MATCH FIXTURES</h4>}
             <p className="mb-1" style={{color:"orange",marginTop:"-5px",fontSize:"16px"}}>( {drawz_data.competition_name} )</p>
-
-
-          
           </div>}
           {!isLoading&&<div className="col-12 mt-2 d-flex flex-lg-row flex-xl-row flex-column justify-content-between">
             {!isLoading&&<div className="col-lg-3 col-xl-3 mt-2 bg-white d-flex flex-column align-items-center" style={{borderRadius:"4px",maxHeight:"550px" , overflowY:"scroll"}}>
@@ -318,9 +323,9 @@ const startdrawzingfunc=async()=>{
                 <h2 className="text-center" style={{fontStyle:"italic",fontWeight:"bold"}}>Categories</h2>
             <ul >
                 {weight.map((obj)=>(
-                     <li onClick={showSpecficDrawz}  id={`${(obj!=84 && obj!=68)?(obj>0?"-":""):(obj==84 ||obj==68 ?"+":"")}${obj} KG`}   className="bg-primary text-center text-white pt-2 mb-2 fs-5" style={{height:"35px", borderRadius:"4px",cursor:"pointer"}}>
+                    <li onClick={showSpecficDrawz}  id={`${(obj!=84 && obj!=68)?(obj>0?"-":""):(obj==84 ||obj==68 ?"+":"")}${obj} KG`}   className="bg-primary text-center text-white pt-2 mb-2 fs-5" style={{height:"35px", borderRadius:"4px",cursor:"pointer"}}>
                     {(obj!=84&& obj!=68)  ? (obj>0?"-":"") :(obj==84 ||obj==68 ?"+":"")}{obj} KG
-                  </li>
+                    </li>
                 ))}
                 { drawz_data.individual_kata&&
                     <li   onClick={showSpecficDrawz} id={"Individual Kata"} className="bg-primary text-center text-white pt-2 mb-2 fs-5" style={{height:"35px", borderRadius:"4px",cursor:"pointer"}}>

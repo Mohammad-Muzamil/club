@@ -25,15 +25,17 @@ import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
 import majid from "../../assets/img/coachimages/majidbutt.jpeg"
 import "../../assets/css/animation-shake.css"
+import { decrypt } from '../../helpers/encryption_decrption';
 
 const AdminGallery=()=> {
  const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+ const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [count,setCouunt]=useState(0);
   const[images,setimages]=useState([]);
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -124,9 +126,9 @@ const uploaddata=async()=>{
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>  
         <div className='mt-3 pl-3'>
             <span>You can Upload maximum <span style={{fontWeight:"bold"}}>20</span> Images</span> 

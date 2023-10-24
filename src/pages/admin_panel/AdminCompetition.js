@@ -24,6 +24,7 @@ import { DELETE_COMPEPTITIONS, GET_COMPEPTITIONS, Reset_Password, SEND_COMPEPTIT
 import AdminHeader from './AdminHeader';
 import AdminSideNavBar from './AdminSideNavBar';
 import {GET_BRANCHES,GET_INSTRUCTORS,CREATE_BRANCHE,UPDATE_BRANCHE} from '../../helpers/api'
+import { decrypt } from '../../helpers/encryption_decrption';
 
 const AdminCompetition=()=> {
  const nevigate = useNavigate();
@@ -55,8 +56,8 @@ const AdminCompetition=()=> {
    
  }
 
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
+ const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
+ const user_details= decrypt(sessionStorage.getItem('admin_user'));
   const [isLoading,setIsLoading]=useState(false)
   const [competition,setcompetition]=useState([])
   const [instructor_id, setinstructor_id]=useState([])
@@ -101,7 +102,8 @@ const AdminCompetition=()=> {
   }
   
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='a'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+    
         nevigate('/login');
      }
      else{
@@ -248,9 +250,9 @@ const deleteCompetition=async()=>{
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&&<AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null &&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading && <div className='container-fluid   ml-auto mr-auto mt-4 d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"10px"}} >
         <div className='w-100 mt-4 d-flex p-3' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>

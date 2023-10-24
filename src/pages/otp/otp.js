@@ -8,16 +8,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setOTPDATA } from "../../redux/actions/OTPActions";
 import { Reset_Password,Forget_Password_OTP } from "../../helpers/api";
+import { HashLoader,RingLoader } from 'react-spinners';
+import { useMediaQuery } from "react-responsive";
+import { decrypt,encrypt } from '../../helpers/encryption_decrption';
+const WebLoader=(prop)=>{
+  const isMobilemodeActive = useMediaQuery({ maxWidth:767 });
+  return(
+    <div className="col-12 d-flex justify-content-center align-items-center flex-column">
+      
+      <RingLoader color="#FFFFFF"  className={`${isMobilemodeActive?"ml-2":"ml-0"}`} size={ isMobilemodeActive?50:100}/>
+      <h4 className={`text-white mt-4 ${isMobilemodeActive?"ml-3":"ml-2"}`}>{prop.text}....</h4>
+
+    </div>
+  );
+}
 const OTP = (props) => {
   
   const navigate=useNavigate();
-  const otp_data= useSelector((state) => state.otp);
+  const otp_data= decrypt(sessionStorage.getItem('otp_data'));
   const [hasotp,sethasotp]=useState("");
   
   const inputRefs = useRef([]);
   const [timer, setTimer] = useState(60);
   const [inputValue,setInputValue]=useState("");
   const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [isLoading,setIsLoading]=useState(false)
   const dispatch=useDispatch();
 
   useEffect(() => {
@@ -38,7 +53,7 @@ const OTP = (props) => {
 
       return () => clearInterval(interval);
     }
-    if("otp" in otp_data){
+    if(otp_data !=null && "otp" in otp_data){
       sethasotp(otp_data.otp);
     }
     else{
@@ -66,6 +81,7 @@ const OTP = (props) => {
               }
             });
     await Forget_Password_OTP(otp_data.username,otp_data.email).then((response)=>{
+      setIsLoading(true);
       if(response.status==200){
         const data={
           email:otp_data.email,
@@ -73,12 +89,13 @@ const OTP = (props) => {
           otp:response.data.message,
           password:otp_data.password,
         }
-        dispatch(setOTPDATA(data));
+        sessionStorage.setItem('otp_data',encrypt(data));
         sethasotp(response.data.message);
-
+        setIsLoading(false);
       }
       else{
         Throw_Error("Try Again")
+        setIsLoading(false);
       }
     });
   };
@@ -91,11 +108,16 @@ const OTP = (props) => {
     if(inputValuesss==hasotp){
       const passwrd=otp_data.password;
       await Reset_Password(otp_data.username,otp_data.email,passwrd).then((response)=>{
+        setIsLoading(true);
         if(response.status==200)
         {
-          dispatch(setOTPDATA({}));
+          // dispatch(setOTPDATA({}));
+          sessionStorage.removeItem('otp_data');
+          setIsLoading(false);
           Success("Password Reset Successfully")
           navigate("/login");
+        }else{
+        setIsLoading(false);
         }
       });
     }
@@ -112,7 +134,8 @@ const OTP = (props) => {
       >
         <div className="BackgroundPicture pt-100 pb-100">
           <div className="container">
-            <div className="row d-flex justify-content-center">
+          {isLoading&&<WebLoader text="Sending "/>}
+            {!isLoading&&<div className="row d-flex justify-content-center">
               <div className="col-lg-6 col-12 col-md-6 login-container2">
                 <div className="w-100 mt-2">
                   <h1>VERIFY OTP </h1>
@@ -168,7 +191,7 @@ const OTP = (props) => {
                  
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </LayoutOne>

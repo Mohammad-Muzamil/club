@@ -6,13 +6,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import test_img from "../../assets/test_img.jpg"
 import { useMediaQuery } from 'react-responsive';
-import { useDispatch } from 'react-redux';
-import { setToken } from '../../redux/actions/LoginActions';
-import { setUser } from '../../redux/actions/userActions';
-import { setBranch } from '../../redux/actions/BranchActions';
 import { UPCOMMING_EVENTS,LOGOUT } from '../../helpers/api';
 const AdminHeader=(props)=> {
-  const dispatch1 = useDispatch();
+
   const nevigate=useNavigate();
   const isMobilewidth = useMediaQuery({ maxWidth:767 });
   const [iconnam, seticonnam] = useState(faAngleDown);
@@ -22,7 +18,6 @@ const AdminHeader=(props)=> {
     await UPCOMMING_EVENTS().then((response)=>{
       if (response.status=200){
         setevents(response.data.length)
-  
       }
       else{
 
@@ -36,8 +31,8 @@ const AdminHeader=(props)=> {
   const [logOpen, setlogOpen] = useState(false);
 
   const LogoutPage=()=>{
-    dispatch1(setToken(""));
-    dispatch1(setUser({}));
+    sessionStorage.removeItem('admin_token');
+    sessionStorage.removeItem('admin_user');
   
     nevigate('/login');
   

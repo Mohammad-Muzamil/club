@@ -19,6 +19,7 @@ import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import { PLAYER_LIST,SEND_PLAYER_FIGHT_LIST } from '../../helpers/api';
 import Loader from '../../components/Loader/Loader';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 const StudentRow=(prop)=>{
   const isMobilerow = useMediaQuery({ maxWidth:767 });
@@ -76,9 +77,9 @@ const StudentRow=(prop)=>{
 const CoachFightResult=()=> {
   const nevigate = useNavigate();
   const [isLoading,setIsLoading]=useState(false)
-  const isAuthenticated= useSelector((state) => state.login)
-  const user_details= useSelector((state) => state.user)
-  const branch_details= useSelector((state) => state.branch)
+  const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+  const user_details= decrypt(sessionStorage.getItem('inst_user'))
+  const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
   const [typepassword, settypepassword]=useState("password")
   const isMobileactive = useMediaQuery({ maxWidth:767 });
   const [isDropOpen, setDropOpen] = useState(!isMobileactive);
@@ -130,9 +131,10 @@ const CoachFightResult=()=> {
   };
   
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
-        nevigate('/login');
-     }
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
+      nevigate('/login');
+   }
      else{
       setFightsList();
      }
@@ -174,9 +176,9 @@ const CoachFightResult=()=> {
   
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null && <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>
           {!isLoading&&<div className='container-fluid mt-5' style={{backgroundColor:"#ECECEC"}} >
           <div className="col-sm-12 col-12">

@@ -11,7 +11,7 @@ import { setToken } from '../../redux/actions/LoginActions';
 import { setUser } from '../../redux/actions/userActions';
 import { setBranch } from '../../redux/actions/BranchActions';
 import { UPCOMMING_EVENTS,LOGOUT } from '../../helpers/api';
-const CoachHeader=(props)=> {
+const StudentHeader=(props)=> {
   const dispatch1 = useDispatch();
   const nevigate=useNavigate();
   const isMobilewidth = useMediaQuery({ maxWidth:767 });
@@ -36,12 +36,9 @@ const CoachHeader=(props)=> {
   const [logOpen, setlogOpen] = useState(false);
 
   const LogoutPage=()=>{
-    sessionStorage.removeItem('inst_token')
-    sessionStorage.removeItem('inst_user')
-    sessionStorage.removeItem('inst_branch')
-    // dispatch1(setToken(""));
-    // dispatch1(setUser({}));
-    // dispatch1(setBranch({}));
+    sessionStorage.removeItem('ply_token')
+    sessionStorage.removeItem('ply_user')
+    sessionStorage.removeItem('ply_branch')
     nevigate('/login');
   
   }
@@ -79,7 +76,7 @@ const CoachHeader=(props)=> {
                         <span className="d-lg-inline-flex"> {TruncateText(props.name,8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
                     {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="/coach-profile" className="dropdown-item" >My Profile</Link>
+                        <Link to="/student-profile" className="dropdown-item" >My Profile</Link>
                         <p  className="dropdown-item" onClick={LogoutPage}>Log Out</p>
                     </div>}
                     </div>
@@ -89,4 +86,4 @@ const CoachHeader=(props)=> {
   )
 }
 
-export default CoachHeader;
+export default StudentHeader;

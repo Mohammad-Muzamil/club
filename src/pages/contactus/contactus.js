@@ -4,14 +4,25 @@ import Send from "../../assets/img/buttons/send.png";
 import axios from "axios";
 import { Throw_Error, Success } from "../../helpers/NotifiyToasters";
 import { useMediaQuery } from "react-responsive";
+import { CONATCT_US_DATA } from "../../helpers/api";
+import { HashLoader,RingLoader } from 'react-spinners';
 
-const send_contactus_data=async (apiEndpoint,formData)=>{
-  const response = await axios.post(apiEndpoint, formData);
-  return response;
+
+
+const WebLoader=(prop)=>{
+  const isMobilemodeActive = useMediaQuery({ maxWidth:767 });
+  return(
+    <div className="col-12 d-flex justify-content-center align-items-center flex-column">
+      
+      <RingLoader color="#FFFFFF"  className={`${isMobilemodeActive?"ml-2":"ml-0"}`} size={ isMobilemodeActive?50:100}/>
+      <h4 className={`text-white mt-4 ${isMobilemodeActive?"ml-3":"ml-2"}`}>{prop.text}....</h4>
+
+    </div>
+  );
 }
-
 const ContactUs = () => {
   const isMobiledevice = useMediaQuery({ maxWidth:767 });
+  const [isLoading,setIsLoading]=useState(false);
   const [contactDetails, setContactDetails] = useState({
     name: "",
     email: "",
@@ -52,18 +63,29 @@ const ContactUs = () => {
     }
     else
     {
-      // call the api to send data
-      const apiEndpoint = "YOUR_API_ENDPOINT";
       const formData = { ...contactDetails };
-      const response = await send_contactus_data()
-      if (true)
-      {
+      
+      setIsLoading(true);
+      await CONATCT_US_DATA(formData).then((response)=>{
+        if (response.status==200){
           Success("Soon we will contact you !!!");
-      }
-      else
-      {
+          setContactDetails({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+            subscribe: false,
+          });
+          setIsLoading(false);
+
+        }else{
           Throw_Error("Message not Send !!!");
-      }
+          setIsLoading(false);
+
+        }
+
+      });
+     
     }
   };
 
@@ -73,8 +95,9 @@ const ContactUs = () => {
            headerContainerClass="container-fluid"
            headerPaddingClass="header-padding-2"
          >
-    <div className="BackgroundPicture pt-100 pb-100">
-             <div className="container">
+            <div className="BackgroundPicture pt-100 pb-100">
+             {isLoading&&<WebLoader text="Sending "/>}
+             {!isLoading&&<div className="container">
                <p className="contact-us">Contact us</p>
                <p className="help-text-heading pt-80">CAN WE HELP?</p>
                <p className="help-text pb-100 pt-30">
@@ -163,10 +186,10 @@ const ContactUs = () => {
 
               <p className="bold-heading">E-mail</p>
 
-              <p className="light-text">nykaf@gmail.com</p>
+              <p className="light-text" style={{marginLeft: isMobiledevice ?"":"-40px"}}>youthkarateacademies@gmail.com</p>
             </div>
         </div>
-      </div>
+      </div>}
     </div>
       </LayoutOne>
     </Fragment>

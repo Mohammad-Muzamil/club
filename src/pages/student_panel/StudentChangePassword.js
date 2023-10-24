@@ -10,30 +10,29 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-
+import StudentSideNavBar from "./StudentSideNavBar";
 import TruncateText from '../../helpers/TruncatedText';
 import { Success_light } from '../../helpers/NotifiyToasters';
 import { useEffect } from 'react';
-
+import StudentHeader from './StudentHeader';
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader/Loader';
 import { Reset_Password } from '../../helpers/api';
-import AdminHeader from './AdminHeader';
-import AdminSideNavBar from './AdminSideNavBar';
-import { decrypt } from '../../helpers/encryption_decrption';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
-const AdminChangePassword=()=> {
+const StudentChangePassword=()=> {
  const nevigate = useNavigate();
- const isAuthenticated= decrypt(sessionStorage.getItem('admin_token'));
- const user_details= decrypt(sessionStorage.getItem('admin_user'));
-  useEffect(()=>{
-    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='a' ){
+ const isAuthenticated= decrypt(sessionStorage.getItem('ply_token'))
+ const user_details= decrypt(sessionStorage.getItem('ply_user'))
+ const branch_details= decrypt(sessionStorage.getItem('ply_branch'))
+ useEffect(()=>{
+  if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='p' ){
     
-        nevigate('/login');
-     }
+    nevigate('/login');
+ }
      else{
        
      }
@@ -88,6 +87,7 @@ const AdminChangePassword=()=> {
                 setIsLoading(false);
             }
             else{
+                Error_light("Try Again")
                 setIsLoading(false);
             }
             
@@ -99,9 +99,9 @@ const AdminChangePassword=()=> {
 
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& user_details!=null&& <AdminSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&& user_details!=null&& <StudentSideNavBar  name={user_details.player_name} level="Player"  image_path={user_details.profile_image}/>}
         <div className="content">
-        {user_details!=null &&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
+        {user_details!=null&&<StudentHeader onClickHandler={toggleDrop} name={user_details.player_name} total_events={"5"} image_path={user_details.profile_image}  />  }
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading&&<div className='container-fluid   ml-auto mr-auto mt-4 d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"10px"}} >
             <div className='col-lg-6 col-xl-6 col-12 p-5 'style={{backgroundColor:"#ECECEC", borderRadius:"6px", order:isMobileactive?"2":"1"}}>
@@ -156,4 +156,4 @@ const AdminChangePassword=()=> {
   )
 }
 
-export default  AdminChangePassword;
+export default  StudentChangePassword;

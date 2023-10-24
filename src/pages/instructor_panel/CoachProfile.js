@@ -28,15 +28,18 @@ import "../../assets/css/profile.css"
 import { Error_light } from '../../helpers/NotifiyToasters';
 import { useSelector } from 'react-redux';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
+import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 const CoachProfile=()=> {
     const nevigate = useNavigate();
-  const isAuthenticated= useSelector((state) => state.login)
+    const isAuthenticated= decrypt(sessionStorage.getItem('inst_token'))
+    const user_details= decrypt(sessionStorage.getItem('inst_user'))
+    const branch_details= decrypt(sessionStorage.getItem('inst_branch'))
   
 
-  const user_details= useSelector((state) => state.user)
   useEffect(()=>{
-    if (isAuthenticated === "" || user_details.user.username[0].toLowerCase()!='i'){
+    if (isAuthenticated == null || user_details == null || user_details.user.username[0].toLowerCase()!='i' ){
+    
         nevigate('/login');
      }
      else{
@@ -53,9 +56,9 @@ const CoachProfile=()=> {
  
   return (
 <div className="container-xxl position-relative bg-white d-flex p-0">
-    {isDropOpen&& <CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
+    {isDropOpen&&  user_details!=null&&<CoachSideNavBar  name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
-        <CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />
+        {user_details!=null&&<CoachHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />}
             
         <div className='container-fluid mt-4' style={{}} >
 
