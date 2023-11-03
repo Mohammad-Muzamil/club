@@ -1,6 +1,7 @@
 {
   "name": "stealth-e-commerce",
   "version": "0.1.0",
+  "homepage": "/static/",
   "private": true,
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",

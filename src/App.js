@@ -59,7 +59,6 @@ import StudentKata from "./pages/student_panel/Kata"
 import Studentkumite from "./pages/student_panel/Kumite"
 import StudentAttendance from "./pages/student_panel/StudentAttendance";
 import StudentFight from "./pages/student_panel/StudentFight";
-import StudentFee from "./pages/student_panel/StudentFee";
 
 const App = (props) => {
   return (
@@ -79,7 +78,7 @@ const App = (props) => {
         <Route path="/drawzing" element={<Drawzing />} />
         <Route path="/teamregistration" element={<RegisterTeam />} />
         <Route path="/testing" element={<Testing />} />
-        <Route path="*" element={<Page404 />} />
+      
         
         <Route path="/coach" element={<CoachHome />} />
         <Route path="/coach-change-password" element={<CoachChangePassword />} />
@@ -119,9 +118,7 @@ const App = (props) => {
         <Route path="/student-kumite" element={<Studentkumite/>}/>
         <Route path="/student-attendance" element={<StudentAttendance/>}/>
         <Route path="/student-fight-result" element={<StudentFight/>}/>
-        <Route path="/student-fees" element={<StudentFee/>}/>
-
-
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

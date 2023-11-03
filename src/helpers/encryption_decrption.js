@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-const encryptionKey = "Dummy";
+const encryptionKey = "Dummy6187218798719127921((())))))(39289289";
 
 
 export function encrypt  (data)  {

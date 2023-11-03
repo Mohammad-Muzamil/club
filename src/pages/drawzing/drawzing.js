@@ -173,8 +173,6 @@ const Drawzing = (props) => {
             initilizingWeights();
             ChampionshipIniliatation();
         }
-      
-
     }
 
 },[])

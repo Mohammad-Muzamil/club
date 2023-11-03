@@ -168,7 +168,7 @@ const CoachHome=()=> {
                     <div className="col-sm-12 col-xl-6 ">
                         <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Attendance</h3>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ATTENDANCE</h3>
                               
                             </div>
                             <Bar data={data_monthly_attendance} options={{Response: true}} />
@@ -177,7 +177,7 @@ const CoachHome=()=> {
                     <div className="col-sm-12 col-xl-6" >
                         <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Admissions</h3>
+                                <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ADMISSIONS</h3>
                               
                             </div>
                             <Bar data={data_of_monthly_addmission} />
@@ -191,7 +191,7 @@ const CoachHome=()=> {
                   
                         <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>Monthly Fee</h2>
+                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
                               
                             </div>
                             <Bar data={data_of_monthly_fee} />

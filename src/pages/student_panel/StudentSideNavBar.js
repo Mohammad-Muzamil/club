@@ -69,8 +69,6 @@ const StudentSideNavBar=(prop)=>{
                         <Link to={"/student-change-password"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faLock} style={{paddingRight:"10px"}}/>Change Password</Link>
                         <Link to={"/student-attendance"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faUserCheck} style={{paddingRight:"10px"}}/>Attendance</Link>
                         <Link to={"/student-fight-result"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faPersonChalkboard} style={{paddingRight:"10px"}}/>Fight Results</Link>
-
-                        <Link to={"/student-fees"} className="nav-item nav-link mt-4 "><FontAwesomeIcon icon={faMoneyBill} style={{paddingRight:"10px"}}/>Fees</Link>
                         <SideBarDropDown icon={faBookOpen} name="Learning" list_of_subcategories={listof_reading} />
                     </div>
                 </nav>

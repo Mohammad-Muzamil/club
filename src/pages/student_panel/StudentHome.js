@@ -29,7 +29,7 @@ import { Radar } from "react-chartjs-2";
 
 const StudentHome=()=> {
     // react-cssfx-loading
-  const [isLoading,setIsLoading]=useState(false)
+  const [isLoading,setIsLoading]=useState(false);
   const nevigate = useNavigate();
   const isAuthenticated= decrypt(sessionStorage.getItem('ply_token'))
   const user_details= decrypt(sessionStorage.getItem('ply_user'))
@@ -50,11 +50,6 @@ const StudentHome=()=> {
     await SINGLE_PLAYER_STATS(user_details.user.id).then((response)=>{
         if (response.status==200)
         {
-         
-            // setplayers(response.data.total_player);
-            // setActivePlayers(response.data.total_active_players);
-            // setDeactivePlayers(response.data.total_deactive_players)
-            // setmontly_admission(response.data.monthly_admissions)
             setplayerrating(response.data.rating)
             setplayerkata(parseInt(response.data.kata_wins))
             setplayerkumite(parseInt(response.data.fight_wins))
@@ -219,7 +214,7 @@ const StudentHome=()=> {
             </div> }
             {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
                 <div className="row">
-                    <div className="col-sm-12 col-xl-6">
+                    <div className="col-sm-12 col-xl-12 col-lg-12">
                   
                         <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">

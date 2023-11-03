@@ -56,7 +56,6 @@ const AdminHome=()=> {
             setmontly_admission(response.data.monthly_admissions)
             setmontly_attendance(response.data.monthly_attendance)
             setmontly_fee(response.data.monthly_fee)
-        
             setBranches(response.data.total_branches);
             setIsLoading(false);
         }
@@ -108,18 +107,29 @@ const AdminHome=()=> {
         },
       ],
     };
-    const data_of_monthly_fee  = {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    // const data_of_monthly_fee  = {
+    //   labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    //   datasets: [
+    //     {
+    //       label: "Monthly Fees",
+    //       data:montly_fee,
+    //       backgroundColor: "rgba(75, 192, 192, 0.3);",
+    //       borderColor: "rgba(75, 192, 192, 1)",
+    //       pointBackgroundColor: "rgba(75, 192, 192, 0.3);",
+    //       pointBorderColor: "#fff",
+    //       pointHoverBackgroundColor: "#fff",
+    //       pointHoverBorderColor: "rgba(75, 192, 192, 0.3);",
+    //     },
+    //   ],
+    // };
+    const data_of_monthly_fee = {
+      labels: labels,
       datasets: [
         {
-          label: "Monthly Fees",
-          data:montly_fee,
-          backgroundColor: "#007BFF",
-          borderColor: "rgba(75, 192, 192, 1)",
-          pointBackgroundColor: "#007BFF",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgba(75, 192, 192, 1)",
+          label: "Total Amount",
+          backgroundColor: "rgb(0,123,255)",
+          borderColor: "rgb(255, 99, 132)",
+          data: montly_fee,
         },
       ],
     };
@@ -200,11 +210,11 @@ const AdminHome=()=> {
                     </div>
                 </div>
             </div> }
+
+
             {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
                 <div className="row" style={{minHeight:"300px",maxHeight:"300px"}}>
-                    <div className="col-sm-12 col-xl-6 col-lg-6 mt-4  ">
-            
-                          
+                    <div className="col-sm-12 col-xl-12 col-lg-12 mt-4  ">
                              <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
@@ -213,26 +223,9 @@ const AdminHome=()=> {
                             <Bar data={data_of_monthly_fee} />
                         </div>
                  
-                    </div>
-                    <div className="col-sm-12 col-xl-6 col-lg-6 mt-4 mb-5">
-                  
-                  <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
-                      <div className="d-flex align-items-center justify-content-between mb-4 w-100">
-                          <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
-                        
-                      </div>
-                
-                      <Radar data={data_of_monthly_fee } options={options}style={{minHeight:"215px",maxHeight:"215px"}}  />
-                  </div>
-              </div>
-                   
+                    </div> 
                 </div>
-            </div> }
-            
-           
-          
-        
-       
+            </div> }    
     </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
 </div>
