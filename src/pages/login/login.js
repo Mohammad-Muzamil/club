@@ -6,7 +6,7 @@ import btnArrowLt from "../../assets/img/hero-btn-arrow-lt.svg";
 import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
 import login from "../../assets/img/login.png"
 import googleicon from "../../assets/img/googleicon.png"
-import { Throw_Error } from "../../helpers/NotifiyToasters";
+import { Throw_Error, Warning_light } from "../../helpers/NotifiyToasters";
 import { Login_API,USER_API_SELECTION } from "../../helpers/api";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../redux/actions/LoginActions";
@@ -67,6 +67,7 @@ const Login = (props) => {
     }
   };
   useEffect(()=>{
+    window.scrollTo(0, 0);
     fetchData();
   },[])
 
@@ -149,13 +150,23 @@ const Login = (props) => {
    
   }
 
+  const handleKeyPress = async(event) => {
+    if (event.key === 'Enter') {
+  
+      VerifyUser();
+    }
+  };
+  const googlelogin=()=>{
+    Warning_light("Apologies, this service is temporarily unavailable.");
+  }
+
   return (
     <Fragment>
       <LayoutOne
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-20 pb-100">
           <div className="container">
             {/* <p className="page-info-text pb-100 ">LOGIN</p> */}
            
@@ -164,12 +175,12 @@ const Login = (props) => {
             <div className="col-lg-6 col-12 col-md-6 login-container1">
                 <div className="w-100 ">
                     <h1>LOGIN</h1>
-                <p className="text-center pt-2">Welcome back! Please enter your details</p>
+                <p className="text-center pt-2"> Welcomeback! Please enter your details</p>
                 </div>
                 <div className="d-flex justify-content-center mt-2">
                     <img src={login} style={{height:'100px', width:'100px'}}/>
                 </div>
-                <div className="w-100 mt-2">
+                <div className="w-100 ">
                     <div className="input-container1">
                         <h3>Username<span style={{color:"orange"}}>*</span></h3> 
                         <input type="email" onChange={handlechangeusername} />
@@ -177,12 +188,12 @@ const Login = (props) => {
                     </div>
                     <div className="input-container1">
                         <h3>Password<span style={{color:"orange"}}>*</span></h3> 
-                        <input type="password" onChange={handlechangepassword} />
+                        <input type="password" onKeyDown={handleKeyPress} onChange={handlechangepassword} />
                     </div>
-                    <div className="input-container1 d-flex w-100" style={{justifyContent:'flex-end'}}>
+                    <div className="input-container1 d-flex w-100" style={{justifyContent:'flex-end', marginTop:"-10px"}}>
                        <Link to={process.env.PUBLIC_URL+"/forgetpassword"}> <span> Forget Password</span></Link>
                     </div>
-                    <div className="input-container1 ">
+                    <div className="input-container1 " style={{marginTop:"-15px"}} >
                        <button className="col-12" onClick={VerifyUser} >
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
@@ -201,7 +212,7 @@ const Login = (props) => {
                     <div>-------------</div>
                 </div>
                 <div className="p-3">
-                    <button className="col-12 new-btn mt-2"  >
+                    <button className="col-12 new-btn mt-2" onClick={googlelogin}  >
                         &nbsp;&nbsp;SIGN IN With &nbsp;
                             <img src={googleicon} style={{height:"25px",width:"25px"}}/>
                     

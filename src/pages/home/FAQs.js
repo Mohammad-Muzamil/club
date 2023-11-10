@@ -1,4 +1,4 @@
-import  { Fragment } from "react";
+import  { Fragment, useEffect } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import "react-multi-carousel/lib/styles.css";
 import FaqItem from "../../components/faq/faq";
@@ -7,6 +7,9 @@ import FaqItem from "../../components/faq/faq";
 
 
 const Faqs = (props) => {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
     <Fragment>
       <LayoutOne

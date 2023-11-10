@@ -13,7 +13,7 @@ import {setOTPDATA} from "../../redux/actions/OTPActions"
 import { HashLoader,RingLoader ,BarLoader,GridLoader } from 'react-spinners';
 import { useMediaQuery } from "react-responsive";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faL } from "@fortawesome/free-solid-svg-icons";
+import { faBolt, faL, faRunning, faSignOut,  } from "@fortawesome/free-solid-svg-icons";
 import { setDrawz } from "../../redux/actions/DrawzActions";
 import { decrypt } from '../../helpers/encryption_decrption';
 
@@ -151,6 +151,7 @@ const Drawzing = (props) => {
     setIsGridLoading(false);
   }
   useEffect(()=>{
+    window.scrollTo(0, 0);
     if (drawz_data ==null || !drawz_data.hasOwnProperty('id') ||
     !drawz_data.hasOwnProperty('competition_name') ||
     !drawz_data.hasOwnProperty('date') ||
@@ -314,7 +315,7 @@ const startdrawzingfunc=async()=>{
             {isMobileactive&&<h4 className="mt-2" style={{fontFamily: "Ethnocentric"}}>MATCH FIXTURES</h4>}
             <p className="mb-1" style={{color:"orange",marginTop:"-5px",fontSize:"16px"}}>( {drawz_data.competition_name} )</p>
           </div>}
-          {!isLoading&&<div className="col-12 mt-2 d-flex flex-lg-row flex-xl-row flex-column justify-content-between">
+          {!isLoading&&<div className="col-12 mt-3 d-flex flex-lg-row flex-xl-row flex-column justify-content-between">
             {!isLoading&&<div className="col-lg-3 col-xl-3 mt-2 bg-white d-flex flex-column align-items-center" style={{borderRadius:"4px",maxHeight:"550px" , overflowY:"scroll"}}>
             
             <div className="col-12 mt-4 d-flex flex-column">
@@ -346,11 +347,11 @@ const startdrawzingfunc=async()=>{
             
             </div>}
             
-            {!isLoading&&<div className="col-lg-8 col-xl-8 mt-2 " style={{borderRadius:"4px"}}>
+            {!isLoading&&<div className="col-lg-8 col-xl-8 mt-3 " style={{borderRadius:"4px"}}>
            
-                <div className="col-12  d-flex justify-content-between" style={{minHeight:"50px",maxHeight:"50px"}} >
-                    <button className="btn btn-primary col-6" style={{height:"40px"}} onClick={startdrawzingfunc} >Start Drawzing</button>
-                    <button className="btn btn-danger col-4 col-lg-2 col-xl-2" onClick={logoutfunc} style={{height:"40px"}}>Logout</button>
+                <div className="col-12  d-flex justify-content-between" style={{minHeight:"50px",maxHeight:"50px", gridColumnGap:"10px"}} >
+                    <button className="btn btn-primary col-6" style={{height: isMobileactive?"70px":"40px"}} onClick={startdrawzingfunc} > <FontAwesomeIcon icon={faRunning} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/> Start Drawzing</button>
+                    <button className="btn btn-danger col-6 " onClick={logoutfunc} style={{height:isMobileactive?"70px":"40px"}}> <FontAwesomeIcon icon={faSignOut} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>Logout</button>
                 </div>
                 {IsGridLoading&&<div className="col-12  mt-5" >
                 <GridLoading text="Drawzing is nearly finished"/>

@@ -16,7 +16,7 @@ import btnArrowGt from "../../assets/img/hero-btn-arrow-gt.svg";
                 <div className="about_taital">Your Choice</div>
                 <p className="about_text"  style={{ marginTop: '-10px', textAlign: 'justify' , fontFamily: 'Mont'}}>Karate is a Japanese martial art whose physical aspects seek the development of defensive and counterattacking body movements.
                     The themes of traditional karate training are fighting and self-defense, though its mental and moral aspects target the overall improvement of the individual.</p>
-                <div className="read_more_bt_1"><a href="#">Learn More</a></div>
+                <div className="read_more_bt_1"> <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank">Learn More</a></div>
            
              </div>
           </div>

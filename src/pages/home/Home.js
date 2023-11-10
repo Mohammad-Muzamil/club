@@ -65,6 +65,7 @@ const Home = (props) => {
     }
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
     window.addEventListener('resize', handleResize);
       
 
@@ -198,7 +199,7 @@ const Home = (props) => {
                         
                       </div>
                       <div className="btn-div">
-                        <button>
+                      <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank"> <button>
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
@@ -206,7 +207,7 @@ const Home = (props) => {
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
-                        </button>
+                        </button></a>
                       </div>
                     </div>
                     <div className="col-lg-5 col-md-5 second-sec">
@@ -224,7 +225,7 @@ const Home = (props) => {
                         
                       </div>
                       <div className="btn-div">
-                        <button>
+                      <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank"> <button>
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
@@ -232,7 +233,7 @@ const Home = (props) => {
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
-                        </button>
+                        </button></a>
                       </div>
                     </div>
                     <div className="col-lg-5 col-md-5 second-sec">
@@ -250,7 +251,7 @@ const Home = (props) => {
                         
                       </div>
                       <div className="btn-div">
-                        <button>
+                      <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank">  <button>
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
                           <img src={btnArrowLt} />
@@ -258,7 +259,7 @@ const Home = (props) => {
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
                           <img src={btnArrowGt} />
-                        </button>
+                        </button></a>
                       </div>
                     </div>
                     <div className="col-lg-5 col-md-5 second-sec">
@@ -389,7 +390,7 @@ const Home = (props) => {
               </div>
               <div className="col-lg-11 col-md-12 col-sm-12 img-section">
                 <img src={imageSrc} className="inner-img" />
-                <img src={btnBg} className="read-story-btn" />
+                <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank"> <img src={btnBg} className="read-story-btn" /></a>
               </div>
               <div className="col-8 btn-group">
                     {/* <img src={btnBg} /> */}

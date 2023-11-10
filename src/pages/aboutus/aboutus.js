@@ -1,21 +1,24 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import CeoSection from "../../assets/img/Background/ceosection.png";
 import img_2 from "../../assets/img/aboutus/img_2.png";
 import img_1 from "../../assets/img/aboutus/img_1.png";
 
 const AboutUs = (props) => {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
     <Fragment>
       <LayoutOne
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-40 pb-100">
           <div className="container">
             <p className="about-us">About us</p>
 
-            <img src={CeoSection} className="ceo-section pt-100" />
+            <img src={CeoSection} className="ceo-section pt-100 mt-4" />
 
             <p className="world-wide">NAtional Youth </p>
             <p className="world-wide">Karate  Academies</p>

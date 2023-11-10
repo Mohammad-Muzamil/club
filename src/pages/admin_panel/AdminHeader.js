@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import TruncateText from '../../helpers/TruncatedText';
-import { faBell,faBars,faAngleUp,faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faBell,faBars,faAngleUp,faAngleDown, faSignOut, faUser, faBackward, faBackwardStep } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -70,9 +70,10 @@ const AdminHeader=(props)=> {
                         <img className="rounded-circle me-lg-2" src={ `//${window.location.host}/media/` +props.image_path} alt="" style={{ width: '40px', height: '40px' }} />
                         <span className="d-lg-inline-flex"> {TruncateText(props.name,8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
-                    {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="/admin-profile" className="dropdown-item" >My Profile</Link>
-                        <p  className="dropdown-item" onClick={LogoutPage}>Log Out</p>
+                    {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute",backgroundColor:"#ECECEC"}}>
+                        <Link to="/" className="dropdown-item" ><FontAwesomeIcon icon={faBackward} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>Main Menu</Link>
+                        <Link to="/admin-profile" className="dropdown-item" ><FontAwesomeIcon icon={faUser} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>My Profile</Link>
+                        <p  className="dropdown-item" style={{cursor:"pointer"}} onClick={LogoutPage}><FontAwesomeIcon icon={faSignOut} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>Log Out</p>
                     </div>}
                     </div>
                 </div>

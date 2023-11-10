@@ -136,11 +136,11 @@ const AdminDeletePlayerAccount=()=> {
     {isDropOpen&& user_details!=null&& <AdminSideNavBar name={user_details.name} level="Coach" image_path={user_details.profile_image}/>}
         <div className="content">
         {user_details!=null&&<AdminHeader onClickHandler={toggleDrop} name={user_details.name} total_events={"5"} image_path={user_details.profile_image}  />  }
-        <div className='w-100 mt-4 d-flex p-3' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>
+        <div className='w-100 mt-4 d-flex p-3 ' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>
                 <input type='text' className='form-control col-lg-5 col-xl-5 col-md-5 col-8'  style={{height:"45px"}} onChange={onHandleChange} placeholder='Enter Player Name....'/>
                 <button className='btn btn-primary mt-2' style={{width:"120px", height:"45px"}} onClick={handleSarchBar} ><FontAwesomeIcon icon={faSearch} style={{paddingRight:"5px"}}/>Search</button>
             </div>
-            {!isLoading&&<div className='w-100 mt-2 p-3' style={{height:"300px"}}>
+            {!isLoading&&<div className='w-100 mt-2 p-3  ' >
                 {listofplayers.map(std=>(
                     <DeletionRow  name={std.player_name} username={std.user.username} image={std.profile_image} id={std.user.id} contact={std.player_contact_no} callback={renew_data} />
                 ))}

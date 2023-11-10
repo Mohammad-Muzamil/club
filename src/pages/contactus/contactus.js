@@ -1,4 +1,4 @@
-import React, { Fragment,useState } from "react";
+import React, { Fragment,useEffect,useState } from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import Send from "../../assets/img/buttons/send.png";
 import axios from "axios";
@@ -21,6 +21,9 @@ const WebLoader=(prop)=>{
   );
 }
 const ContactUs = () => {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   const isMobiledevice = useMediaQuery({ maxWidth:767 });
   const [isLoading,setIsLoading]=useState(false);
   const [contactDetails, setContactDetails] = useState({
@@ -95,11 +98,11 @@ const ContactUs = () => {
            headerContainerClass="container-fluid"
            headerPaddingClass="header-padding-2"
          >
-            <div className="BackgroundPicture pt-100 pb-100">
+            <div className="BackgroundPicture pt-40 pb-100">
              {isLoading&&<WebLoader text="Sending "/>}
              {!isLoading&&<div className="container">
                <p className="contact-us">Contact us</p>
-               <p className="help-text-heading pt-80">CAN WE HELP?</p>
+               <p className="help-text-heading pt-60">CAN WE HELP?</p>
                <p className="help-text pb-100 pt-30">
                Yes, we are here to help! Our office support is available 24/7, and we want to ensure that you have a fantastic and successful experience in our Academy.
                </p>

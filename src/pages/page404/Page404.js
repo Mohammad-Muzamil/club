@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../../assets/css/page_404_style.css"
 
 const Page404=()=> {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
    
     <div id="notfound">

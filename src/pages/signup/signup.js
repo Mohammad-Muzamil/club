@@ -204,6 +204,7 @@ const SignUp = (props) => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     generateRandomNumber();
     GETBranches();
   }, []);
@@ -407,7 +408,7 @@ const SignUp = (props) => {
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100 d-flex justify-content-center" >
+        <div className="BackgroundPicture pt-40 pb-100 d-flex justify-content-center" >
             <div className="col-lg-7  bg-white col-10  pt-3" style={{borderRadius:"10px"}} >
             <h1 className="text-center signup-heading">REGISTRATION</h1>
                 <div className="d-flex col-12 mt-3 list-container" >

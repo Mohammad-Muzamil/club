@@ -15,7 +15,6 @@ import Branch from "./pages/branch/branch"
 import Drawzinglogin from "./pages/drawzing/drawzinglogin";
 import RegisterTeam from "./pages/drawzing/RegisterTeam";
 import Drawzing from "./pages/drawzing/drawzing";
-import Testing from "./pages/Testing";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -77,7 +76,7 @@ const App = (props) => {
         <Route path="/drawzinglogin" element={<Drawzinglogin />} />
         <Route path="/drawzing" element={<Drawzing />} />
         <Route path="/teamregistration" element={<RegisterTeam />} />
-        <Route path="/testing" element={<Testing />} />
+  
       
         
         <Route path="/coach" element={<CoachHome />} />

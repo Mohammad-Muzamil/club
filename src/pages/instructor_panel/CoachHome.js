@@ -24,6 +24,8 @@ import Loader from '../../components/Loader/Loader';
 import { PLAYER_Stats } from '../../helpers/api';
 import { PieChart } from 'react-minimal-pie-chart';
 import { decrypt, encrypt } from '../../helpers/encryption_decrption';
+import Graph from "./graph"
+
 
 
 const CoachHome=()=> {
@@ -166,16 +168,17 @@ const CoachHome=()=> {
             {!isLoading&&<div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
                     <div className="col-sm-12 col-xl-6 ">
-                        <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                        <div className="text-center rounded p-4" style={{borderBlock:"3px solid #ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ATTENDANCE</h3>
                               
                             </div>
                             <Bar data={data_monthly_attendance} options={{Response: true}} />
+                          
                         </div>
                     </div>
                     <div className="col-sm-12 col-xl-6" >
-                        <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                        <div className=" text-center rounded p-4"style={{borderBlock:"3px solid #ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ADMISSIONS</h3>
                               
@@ -188,14 +191,8 @@ const CoachHome=()=> {
             {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
                 <div className="row">
                     <div className="col-sm-12 col-xl-12 ">
-                  
-                        <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
-                            <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
-                              
-                            </div>
-                            <Bar data={data_of_monthly_fee} />
-                        </div>
+                        <Graph yValues={montly_fee}/>
+                      
                       
                     </div>
                    

@@ -25,6 +25,8 @@ import { ADMIN_PLAYER_Stats } from '../../helpers/api';
 import { PieChart } from 'react-minimal-pie-chart';
 import { decrypt } from '../../helpers/encryption_decrption';
 import { Radar } from "react-chartjs-2";
+import Graph from "./graph"
+
 
 
 
@@ -50,14 +52,17 @@ const AdminHome=()=> {
     await ADMIN_PLAYER_Stats().then((response)=>{
         if (response.status==200)
         {
+         
+             setmontly_fee(response.data.monthly_fee);
             setplayers(response.data.total_player);
             setActivePlayers(response.data.total_active_players);
-            setDeactivePlayers(response.data.total_deactive_players)
-            setmontly_admission(response.data.monthly_admissions)
-            setmontly_attendance(response.data.monthly_attendance)
-            setmontly_fee(response.data.monthly_fee)
+            setDeactivePlayers(response.data.total_deactive_players);
+            setmontly_admission(response.data.monthly_admissions);
+            setmontly_attendance(response.data.monthly_attendance);
             setBranches(response.data.total_branches);
+            
             setIsLoading(false);
+           
         }
         else{
           setIsLoading(false);
@@ -122,14 +127,28 @@ const AdminHome=()=> {
     //     },
     //   ],
     // };
+    // const data_of_monthly_fee = {
+    //   labels: labels,
+    //   datasets: [
+    //     {
+    //       label: "Total Amount",
+    //       backgroundColor: "rgb(0,123,255)",
+    //       borderColor: "rgb(255, 99, 132)",
+    //       data: montly_fee,
+    //     },
+    //   ],
+    // };
+
+ 
+   
     const data_of_monthly_fee = {
-      labels: labels,
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       datasets: [
         {
           label: "Total Amount",
           backgroundColor: "rgb(0,123,255)",
           borderColor: "rgb(255, 99, 132)",
-          data: montly_fee,
+          data:montly_fee,
         },
       ],
     };
@@ -191,7 +210,7 @@ const AdminHome=()=> {
             {!isLoading&&<div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
                     <div className="col-sm-12 col-xl-6 ">
-                        <div className="text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                        <div className="text-center rounded p-4" style={{borderBlock:"3px solid #ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ATTENDANCE</h3>
                               
@@ -200,7 +219,7 @@ const AdminHome=()=> {
                         </div>
                     </div>
                     <div className="col-sm-12 col-xl-6" >
-                        <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
+                        <div className=" text-center rounded p-4" style={{borderBlock:"3px solid #ECECEC"}}>
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h3 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY ADMISSIONS</h3>
                               
@@ -213,19 +232,15 @@ const AdminHome=()=> {
 
 
             {!isLoading&&<div className="container-fluid pt-4 px-4 mb-5">
-                <div className="row" style={{minHeight:"300px",maxHeight:"300px"}}>
-                    <div className="col-sm-12 col-xl-12 col-lg-12 mt-4  ">
-                             <div className=" text-center rounded p-4" style={{backgroundColor:"#ECECEC"}}>
-                            <div className="d-flex align-items-center justify-content-between mb-4">
-                                <h2 className="mb-0" style={{fontWeight:"Bold",fontStyle:"italic"}}>MONTHLY FEE</h2>
-                              
-                            </div>
-                            <Bar data={data_of_monthly_fee} />
-                        </div>
+                <div className="row " style={{minHeight:"300px",maxHeight:"300px"}}>
+                    <div className="col-sm-12 col-xl-12 col-lg-12 mt-3 ">
+                            
+                        <Graph yValues={montly_fee}/>
                  
                     </div> 
                 </div>
             </div> }    
+         
     </div>
      <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><FontAwesomeIcon icon={faAngleUp} /></a>
 </div>

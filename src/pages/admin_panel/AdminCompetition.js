@@ -256,7 +256,7 @@ const deleteCompetition=async()=>{
         <Loader show={isLoading} message="Loading..."/>          
         {!isLoading && <div className='container-fluid   ml-auto mr-auto mt-4 d-flex flex-column flex-lg-row flex-xl-row' style={{columnGap:"10px", rowGap:"10px"}} >
         <div className='w-100 mt-4 d-flex p-3' style={{columnGap:"10px" ,backgroundColor:"#ECECEC", borderRadius:"7px"}}>
-                <select  onChange={changeCompetionID} className=' col-lg-5 col-xl-5 col-md-5 col-8'  style={{height:"45px",backgroundColor:"#FFFFFF"}}>
+                <select  onChange={changeCompetionID} className=' col-lg-5 col-xl-5 col-md-5 col-7'  style={{height:"45px",backgroundColor:"#FFFFFF"}}>
                 <option value="">Select Competition ...</option>
                 {competition.map((obj)=>(<option value={obj.id}>{obj.competition_name}</option>))}
                 </select>

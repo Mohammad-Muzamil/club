@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import TruncateText from '../../helpers/TruncatedText';
-import { faBell,faBars,faAngleUp,faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faBell,faBars,faAngleUp,faAngleDown, faSignOut, faUser, faBackward } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -79,8 +79,10 @@ const CoachHeader=(props)=> {
                         <span className="d-lg-inline-flex"> {TruncateText(props.name,8)} <FontAwesomeIcon icon={iconnam} style={{fontSize:"18px", paddingTop:"3px"}}/></span>
                     </a>
                     {logOpen&&<div className=" dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 pb-2" style={{position:"absolute"}}>
-                        <Link to="/coach-profile" className="dropdown-item" >My Profile</Link>
-                        <p  className="dropdown-item" onClick={LogoutPage}>Log Out</p>
+                    <Link to="/" className="dropdown-item" ><FontAwesomeIcon icon={faBackward} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>Main Menu</Link>
+
+                        <Link to="/coach-profile" className="dropdown-item" ><FontAwesomeIcon icon={faUser} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>My Profile</Link>
+                        <p  className="dropdown-item" onClick={LogoutPage} style={{cursor:"pointer"}} > <FontAwesomeIcon icon={faSignOut} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/> Log Out</p>
                     </div>}
                     </div>
                 </div>

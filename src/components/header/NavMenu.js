@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import dropdown from "../../assets/img/icons/dropdown.png";
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { AllBrands } from"../../helpers/api";
+import { faGamepad, faHandHolding, faQuestion, faSignsPost, faTableCells, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavMenu = (props) => {
   const [brandData, setbrandData] = useState([]);
@@ -43,10 +45,10 @@ const NavMenu = (props) => {
                 <ul>
                 
                   <Link to={process.env.PUBLIC_URL + "/faqs"}>
-                    <li>{"FAQs"}</li>
+                    <li><FontAwesomeIcon icon={faQuestion} style={{fontSize:"18px", paddingTop:"0px",paddingRight:"7px"}}/>{"FAQs"}</li>
                   </Link>
                   <a href={"https://www.wkf.net/structure-statutes-rules"}>
-                    <li>{"Rules"}</li>
+                    <li><FontAwesomeIcon icon={faTableCells} style={{fontSize:"18px", paddingTop:"0px",paddingRight:"5px"}}/>{"Rules"}</li>
                   </a>
                 </ul>
               </li>
@@ -60,10 +62,10 @@ const NavMenu = (props) => {
                 <ul>
                 
                   <Link to={process.env.PUBLIC_URL + "/teamregistration"}>
-                    <li>{"Register Team"}</li>
+                    <li><FontAwesomeIcon icon={faUsers} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>{"Register Team"}</li>
                   </Link>
                   <a href={"/drawzinglogin"}>
-                    <li>{"Drawzing"}</li>
+                    <li><FontAwesomeIcon icon={faGamepad} style={{fontSize:"18px", paddingTop:"3px",paddingRight:"7px"}}/>{"Drawzing"}</li>
                   </a>
                 </ul>
               </li>

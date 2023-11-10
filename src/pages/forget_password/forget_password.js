@@ -28,6 +28,9 @@ const WebLoader=(prop)=>{
 }
 
 const ForgetPassword = (props) => {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   const dispatch=useDispatch();
   const nevigate=useNavigate();
   const [email,setemail]=useState("")
@@ -94,7 +97,7 @@ const ForgetPassword = (props) => {
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-30 pb-100">
 
    
           <div className="container">

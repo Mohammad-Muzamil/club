@@ -89,6 +89,7 @@ const RegisterTeam = (props) => {
     })
   }
   useEffect(()=>{
+    window.scrollTo(0, 0);
     comp();
   },[])
 
@@ -285,7 +286,7 @@ const sendCredentials=async()=>{
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className=" BackgroundPicture  pt-100 pb-100  " >
+        <div className=" BackgroundPicture  pt-30 pb-100  " >
           {isLoading&&<WebLoader text="Verifing ... "/>}
           <div className="container" >
           {!isLoading&&
@@ -293,19 +294,21 @@ const sendCredentials=async()=>{
             <div className="col-12 d-flex flex-column align-items-center">
                 {!isMobileactive&&<h1 className="mt-3" style={{fontFamily: "Ethnocentric"}}>TEAM REGISTRATION</h1>}
                 {isMobileactive&&<h4 className="mt-3 " style={{fontFamily: "Ethnocentric"}}>TEAM REGISTRATION</h4>}
-                <p className="" style={{color:"orange"}}>( only filled Team Coach )</p>
+                <p className="" style={{color:"orange"}}>( only filled by Team Coach )</p>
             </div>
-            <div className="row mb-1 mt-2">
-            <h3 style={{fontWeight:"bold"}}>Team Name </h3>
-                <input type="text" autocomplete="off" onChange={(e)=>setteamname(e.target.value)} className="col-lg-5 col-xl-5 col-12" style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}}/>
-            </div>
-            <div className="row mb-3 ">
-                <h3 style={{fontWeight:"bold"}}>Event </h3>
-                <select className="col-lg-5 col-xl-5 col-12"  onChange={(e)=>{setid(e.target.value);findSelected(e.target.value)}} style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}}>
-                    <option value={""}>Select Competition ...</option>
-                    {competition.map((obj)=>( <option value={obj.id}>{obj.competition_name}</option>))}
-                </select>
-            </div>
+            <div className="row mb-3 mt-2">
+                <div className="col-lg-6 col-xl-6 col-12 col-md-6 ">
+                  <h3 style={{fontWeight:"bold"}}>Team Name </h3>
+                  <input type="text" autocomplete="off" onChange={(e)=>setteamname(e.target.value)}  style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}}/>
+                </div>
+                <div className="col-lg-6 col-xl-6 col-12 col-md-6 ">
+                  <h3 style={{fontWeight:"bold"}}>Event </h3>
+                  <select className="mt-2"   onChange={(e)=>{setid(e.target.value);findSelected(e.target.value)}} style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}}>
+                      <option value={""}>Select Competition ...</option>
+                      {competition.map((obj)=>( <option value={obj.id}>{obj.competition_name}</option>))}
+                  </select>
+                </div>
+              </div>
         
            
             {id!=""&& league&&<div className="row mb-3 mt-2">

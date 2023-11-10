@@ -102,11 +102,11 @@ const sendeventdata=async()=>{
         {!isLoading&&
         <div className='container-fluid  mt-1 ml-auto mr-auto mt-4  mb-5' style={{columnGap:"10px", rowGap:"10px"}}>
             <div className=' col-12 p-5  d-flex flex-lg-row flex-xl-row flex-md-row flex-column flex-wrap'style={{backgroundColor:"#ECECEC", borderRadius:"6px"}}>
-                <div className='col-lg-6 col-xl-6 col-md-6 col-12'>
+                <div className='col-lg-6 col-xl-6 col-md-6 col-12 mt-2'>
                     <label>Date</label>
                     <input type='date' value={eventdetails.date} onChange={(e)=>seteventdetails({...eventdetails,date:e.target.value})} style={{height:"45px",backgroundColor:"#FFFFFF"}} />
                 </div>
-                <div className='col-lg-6 col-xl-6 col-md-6 col-12'>
+                <div className='col-lg-6 col-xl-6 col-md-6 col-12 mt-2'>
                     <label>Time</label>
                     <input type='time'  value={eventdetails.time} onChange={(e)=>seteventdetails({...eventdetails,time:e.target.value})} style={{height:"45px",backgroundColor:"#FFFFFF"}} />
                 </div>

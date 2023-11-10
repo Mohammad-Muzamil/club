@@ -27,6 +27,8 @@ import { decrypt, encrypt } from '../../helpers/encryption_decrption';
 
 import KataTable from '../../components/features_section/KataTable';
 import tekki from "../../assets/img/tekki1.gif"
+import Graph from "./grapg"
+
 const StudentFight=()=> {
     // react-cssfx-loading
   const [isLoading,setIsLoading]=useState(false)
@@ -41,6 +43,7 @@ const StudentFight=()=> {
   const [fightwins,setfightwins]=useState(0)
   const [katawins,setkatawins]=useState(0)
   const [rating,setrating]=useState(0)
+  const [stat,setstat]=useState({})
   
   const [obj,setobj]=useState({})
   
@@ -57,6 +60,12 @@ const StudentFight=()=> {
                 setfightwins(response.data[0].fight_wins)
                 setkatawins(response.data[0].kata_wins)
                 setrating(response.data[0].rating)
+                setstat({ label: stringBuilder(response.data[0].user.username),
+                   totalFight: response.data[0].total_fight,
+                    fightsWins: response.data[0].fight_wins, 
+                    totalKata: response.data[0].total_kata, 
+                    kataWins: response.data[0].kata_wins,
+                     rating: response.data[0].rating })
             }
             else{
                 setIsLoading(false);
@@ -126,6 +135,10 @@ const StudentFight=()=> {
            
         </table>
         </div>
+        <div className='mt-2 col-12 col-sm-12' style={{marginLeft:"-20px"}}>
+        <Graph points={stat}/>
+        </div>
+        
 
         </div>}
        

@@ -62,8 +62,10 @@ const Drawzinglogin = (props) => {
     })
   }
 useEffect(()=>{
+  window.scrollTo(0, 0);
    comp();
 },[])
+
 
 
 const sendCredentials=async()=>{
@@ -100,13 +102,19 @@ const sendCredentials=async()=>{
         Warning_light("Please enter password or competition");
     }
 }
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter') {
+
+    sendCredentials();
+  }
+};
   return (
     <Fragment>
       <LayoutOne
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-40 pb-100">
           <div className="container d-flex justify-content-center" >
           {isLoading&&<WebLoader text="Verifing "/>}
           {!isLoading&&<div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 bg-white d-flex flex-column align-items-center" style={{borderRadius:"7px"}}>
@@ -119,7 +127,7 @@ const sendCredentials=async()=>{
                     {competition.map((obj)=>( <option value={obj.id}>{obj.competition_name}</option>))}
                 </select>
                 <strong className="mt-3">Password </strong>
-                <input type={pass} onChange={(e)=>setdata({...data,password:e.target.value})} style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}} />
+                <input type={pass} onChange={(e)=>setdata({...data,password:e.target.value})} style={{borderColor:"#ECEFF8",backgroundColor:"#ECEFF8",height:"45px"}}  onKeyDown={handleKeyPress}/>
                 <FontAwesomeIcon icon={pass=="text"?faEyeSlash:faEye} style={{alignSelf:"end",marginTop:"-30px",fontSize:"17px", paddingRight:"10px"}} onClick={settingeye}  />
 
                

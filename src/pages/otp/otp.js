@@ -36,6 +36,7 @@ const OTP = (props) => {
   const dispatch=useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (inputRefs.current[0]) {
       inputRefs.current[0].focus();
     }
@@ -132,7 +133,7 @@ const OTP = (props) => {
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-20 pb-100">
           <div className="container">
           {isLoading&&<WebLoader text="Sending "/>}
             {!isLoading&&<div className="row d-flex justify-content-center">

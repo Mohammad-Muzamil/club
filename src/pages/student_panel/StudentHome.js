@@ -45,6 +45,7 @@ const StudentHome=()=> {
   const [montly_fee,setmontly_fee]=useState([0,0,0,0,0,0,0,0,0,0,0,0])
 
 
+
   const settled_promises=async()=>{
     setIsLoading(true);
     await SINGLE_PLAYER_STATS(user_details.user.id).then((response)=>{

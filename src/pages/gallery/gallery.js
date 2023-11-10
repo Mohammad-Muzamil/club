@@ -53,6 +53,7 @@ const Gallery = (props) => {
   }
 
   useEffect(()=>{
+    window.scrollTo(0, 0);
     get_images();
   },[])
 
@@ -64,7 +65,7 @@ const Gallery = (props) => {
         headerContainerClass="container-fluid"
         headerPaddingClass="header-padding-2"
       >
-        <div className="BackgroundPicture pt-100 pb-100">
+        <div className="BackgroundPicture pt-30 pb-100">
           <div className="container">
             <p className="page-info-text pb-100 ">Gallery</p>
            
