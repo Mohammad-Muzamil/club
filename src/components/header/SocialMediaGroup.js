@@ -13,11 +13,15 @@ const SocialMediaGroup = (props) => {
    
 
       <div className="social-icon">
-        <img src={FaceBook}/>
+        <a href="https://www.facebook.com/Youthmartialartsfsd?mibextid=ZbWKwL" target="_blank">
+         <img src={FaceBook}/>
+        </a>
       </div>
 
       <div className="social-icon">
-        <img src={Instagram}/>
+        <a href="https://instagram.com/majidbutt.59?igshid=NXN5NjE0bTlvNjVr" target="_blank">
+          <img src={Instagram}/>
+        </a>
       </div>
 
       <a href="https://www.youtube.com/channel/UCIDxLiIcST9yv0vXZgF_XUg" target="_blank"><div className="social-icon">

@@ -54,11 +54,11 @@ const FooterOne = (props) => {
                     </li>
                     <li>
                       <img src={Instagram} />
-                      <Link to={process.env.PUBLIC_URL + "/"}>Instagram</Link>
+                      <a href="https://instagram.com/majidbutt.59?igshid=NXN5NjE0bTlvNjVr" target="_blank">Instagram</a>
                     </li>
                     <li>
                       <img src={FaceBook} />
-                      <Link to={process.env.PUBLIC_URL + "/"}>Facebook</Link>
+                     <a href="https://www.facebook.com/Youthmartialartsfsd?mibextid=ZbWKwL" target="_blank">Facebook</a>
                     </li>
                     <li onClick={()=>{ window.location.href = "mailto:youthkarateacademies@gmail.com";}}>
                       <img src={mail} />
